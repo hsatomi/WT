@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>co.jp</groupId>
 	<artifactId>souya</artifactId>
-	<name>WT3</name>
+	<name>wt</name>
 	<packaging>war</packaging>
 	<version>1.0.0</version>
 	<properties>
@@ -167,6 +167,6 @@
 				</configuration>
 			</plugin>
         </plugins>
-        <finalName>WT3</finalName>
+        <finalName>wt</finalName>
     </build>
 </project>
