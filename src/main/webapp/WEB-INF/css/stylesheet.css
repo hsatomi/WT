@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+body {
+    height:100%;
+}
+#statistics_information{
+    height:80%;
+}
+table.borderList{
+	border:solid 1px #333;
+	border-collapse:collapse;
+	margin:10px auto 0 auto;
+    width:95%;
+}
+table.borderList th,
+table.borderList td{
+	border:solid 1px #707070;
+	background:#FFF;
+}
+table.borderList td{
+	text-align:left;
+	padding:3px;
+	font-size:12px;
+}
+table.borderList th{
+	font-weight:bold;
+	text-align:center;
+	padding:3px;
+	background:#ff7f50;
+	font-size:14px;
+}
