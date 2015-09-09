@@ -10,14 +10,14 @@
 </head>
 <body>
 	<h3>テストツール</h3>
-	<div>遷移パターン1 遷移パターン画面</div>
+	<div>遷移パターン画面</div>
 	<div id="parameter_pattern_information" style="float: left; border-style: solid; margin-right: 20px;">
 		<div>
 			遷移パターン情報
 			<div style="border-style: solid; margin:10px;">
 				<h4>画面遷移パターン名</h4>
 				<p>
-					遷移パターン1
+					ログインからの会員登録機能
 				</p>
 			</div>
 			<div style="border-style: solid; margin:10px;">
@@ -26,6 +26,34 @@
 					パターン1, 2 と別にテストが必要な理由、何をテストしたいかなど。
 					
 				</p>
+			</div>
+			<div style="border-style: solid; margin:10px;">
+				<h4>画面遷移</h4>
+				<div style="width:90%;height:5%; border-style: solid; margin:10px; ">
+					ログイン画面
+					<br/>
+					http://aaaa/bbb/
+				</div>
+				<div style="width:90%;height:5%; border-style: solid; margin:10px; ">
+					メニュー画面
+					<br/>
+					http://aaaa/ccc/
+				</div>
+				<div style="width:90%;height:5%; border-style: solid; margin:10px; ">
+					機能A：メニュー画面
+					<br/>
+					http://aaaa/ddd?mode=menu
+				</div>
+				<div style="width:90%;height:5%; border-style: solid; margin:10px; ">
+					機能A：入力画面
+					<br/>
+					http://aaaa/ddd?mode=input
+				</div>
+				<div style="width:90%;height:5%; border-style: solid; margin:10px; ">
+					機能A：確認画面
+					<br/>
+					http://aaaa/ddd?mode=confirm
+				</div>
 			</div>
 			<div style="margin:10px; border-style:solid;">
 				<h4>インプット情報</h4>

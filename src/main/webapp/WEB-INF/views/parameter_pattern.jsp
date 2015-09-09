@@ -9,43 +9,49 @@
 </head>
 <body>
     <h3>テストツール</h3>
-    <div>パラメータパターン1</div>
-    <div>
-        WEBテストパラメータパターン
-        
+    <div style="border-style: solid; padding:10px;">パラメータパターン1
+    	<div style="float:right;">▲</div>
         <table class="borderList">
-            <tr>
-                <th>
-					変数1
+        	<tr>
+            	<th>
+					変数名
                 </th>
-                <th>
-                	変数2
-                </th>
-                <th>
-                	変数3
-                </th>
-                <th>
-                	変数4
-                </th>
-                
+                <td>
+                	実際の値
+                </td>
             </tr>
             <tr>
-            	<td>
-					a
-                </td>
+            	<th>
+					名前
+                </th>
                 <td>
-                	b
+                	松村 藤吉郎
                 </td>
+            </tr>
+            <tr>
+            	<th>
+					性別
+                </th>
                 <td>
-                	c
+                	男
                 </td>
+            </tr>
+            <tr>
+            	<th>
+					誕生日
+                </th>
                 <td>
-                	d
+                	1992/02/07
                 </td>
             </tr>
         </table>
-
     </div>
-    <button>閉じる</button>
+    
+    <br />
+    <br />
+    <div style="border-style: solid; padding:10px;">パラメータパターン単票
+    	<div style="float:right;">▲</div>
+   	</div>
+    <button style="position:absolute;right:20px;margin-top:10px;">閉じる</button>
 </body>
 </html>
