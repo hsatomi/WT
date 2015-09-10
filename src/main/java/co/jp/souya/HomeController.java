@@ -8,6 +8,8 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+import junit.framework.Assert;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import co.jp.souya.jpa.Customer;
+import co.jp.souya.jpa.Person;
 
 /**
  * Handles requests for the application home page.
@@ -81,7 +84,7 @@ public class HomeController {
 
 
 		try{
-			test();
+			test2();
 		}catch(Exception e){
 		}
 
@@ -124,6 +127,39 @@ public class HomeController {
 		emf.close();
 	}
 
+	public void test2(){
+		EntityManagerFactory emf;
+		EntityManager em;
+
+		emf = Persistence.createEntityManagerFactory("pu-sqlite-jpa");
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
+
+		try {
+
+			//Persist in database
+			Person person = new Person();
+			person.setName("person2");
+			em.persist(person);
+			em.getTransaction().commit();
+
+			//Find by id
+			Person personDB = em.find(Person.class, person.getId());
+
+			int i = 43;
+
+//			Assert.assertEquals(person.getName(), personDB.getName());
+
+		} catch (Throwable e) {
+			e.printStackTrace();
+			Assert.fail();
+		}finally{
+
+			em.close();
+			emf.close();
+		}
+
+	}
 
 
 }

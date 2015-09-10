@@ -1,22 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
-        version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
 
-    <persistence-unit name="testPu" transaction-type="RESOURCE_LOCAL">
-        <class>co.jp.souya.jpa.Customer</class>
-        <properties>
+	<persistence-unit name="pu-sqlite-jpa">
 
-            <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:TestTool.db" />
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-            <property name="hibernate.dialect" value="co.jp.souya.jpa.SQLite3Dialect" />
-            <!-- createdAt (Java) <=> created_at (DB) のような naming strategy  -->
-            <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy" />
-            <property name="hibernate.hbm2ddl.auto" value="update" />
+		<class>co.jp.souya.jpa.Person</class>
 
-            <property name="hibernate.show-sql" value="true" />
-            <property name="hibernate.format-sql" value="true" />
+		<properties>
+
+            <property name="hibernate.dialect" value="co.jp.souya.jpa.SQLiteDialect"/>
+			<property name="hibernate.hbm2ddl.auto" value="create"/>
+			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.format_sql" value="false"/>
+
+			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:TestTool2.db"/>
+
         </properties>
 
     </persistence-unit>
