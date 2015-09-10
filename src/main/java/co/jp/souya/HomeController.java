@@ -137,14 +137,16 @@ public class HomeController {
 
 		try {
 
-			//Persist in database
-			Person person = new Person();
-			person.setName("person2");
-			em.persist(person);
-			em.getTransaction().commit();
+//			//Persist in database
+//			Person person = new Person();
+//			person.setName("person2");
+//			em.persist(person);
+//			em.getTransaction().commit();
+//
+//			//Find by id
+//			Person personDB = em.find(Person.class, person.getId());
 
-			//Find by id
-			Person personDB = em.find(Person.class, person.getId());
+			Person personDB = em.find(Person.class, 1);
 
 			int i = 43;
 
