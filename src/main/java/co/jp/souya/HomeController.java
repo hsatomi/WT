@@ -2,12 +2,20 @@ package co.jp.souya;
 
 import java.util.Locale;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import co.jp.souya.jpa.Customer;
 
 /**
  * Handles requests for the application home page.
@@ -69,8 +77,53 @@ public class HomeController {
 	@RequestMapping(value = "/transition_pattern", method = RequestMethod.GET)
 	public String transition_pattern(Locale locale, Model model) {
 		logger.info("transition_pattern page");
+
+
+
+		try{
+			test();
+		}catch(Exception e){
+		}
+
+
+
+
 		return "transition_pattern";
 	}
+
+
+	public void test(){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("testPu");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+
+		Customer customer;
+
+		tx.begin();
+
+		customer = new Customer();
+//		if (args.length >= 2) {
+//			customer = em.find(Customer.class, Long.valueOf(args[1]));
+//		} else {
+//			customer = new Customer();
+//		}
+
+		customer.setName("test客");
+		em.persist(customer);
+		tx.commit();
+
+//		Customer found = em.find(Customer.class, customer.getId());
+//		System.out.println("PERSISTED OBJECT: " + found);
+
+		TypedQuery<Customer> query = em.createNamedQuery(Customer.FIND_ALL, Customer.class);
+		for (Customer c : query.getResultList()) {
+			System.out.println("OBJECTS IN TABLE: " + c);
+		}
+
+		em.close();
+		emf.close();
+	}
+
 
 
 }
