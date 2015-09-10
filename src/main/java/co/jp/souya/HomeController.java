@@ -4,9 +4,7 @@ import java.util.Locale;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 
 import junit.framework.Assert;
 
@@ -17,8 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import co.jp.souya.jpa.Customer;
-import co.jp.souya.jpa.Person;
+import co.jp.souya.jpa.ProjectAdmin;
 
 /**
  * Handles requests for the application home page.
@@ -95,38 +92,6 @@ public class HomeController {
 	}
 
 
-	public void test(){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("testPu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-
-		Customer customer;
-
-		tx.begin();
-
-		customer = new Customer();
-//		if (args.length >= 2) {
-//			customer = em.find(Customer.class, Long.valueOf(args[1]));
-//		} else {
-//			customer = new Customer();
-//		}
-
-		customer.setName("test客");
-		em.persist(customer);
-		tx.commit();
-
-//		Customer found = em.find(Customer.class, customer.getId());
-//		System.out.println("PERSISTED OBJECT: " + found);
-
-		TypedQuery<Customer> query = em.createNamedQuery(Customer.FIND_ALL, Customer.class);
-		for (Customer c : query.getResultList()) {
-			System.out.println("OBJECTS IN TABLE: " + c);
-		}
-
-		em.close();
-		emf.close();
-	}
-
 	public void test2(){
 		EntityManagerFactory emf;
 		EntityManager em;
@@ -146,9 +111,16 @@ public class HomeController {
 //			//Find by id
 //			Person personDB = em.find(Person.class, person.getId());
 
-			Person personDB = em.find(Person.class, 1);
+			//Person personDB = em.find(Person.class, 1);
+
+
+			ProjectAdmin admin = em.find(ProjectAdmin.class, 1);
+
+
+
 
 			int i = 43;
+			int j = i;
 
 //			Assert.assertEquals(person.getName(), personDB.getName());
 

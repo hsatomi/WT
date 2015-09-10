@@ -7,7 +7,7 @@
 
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-		<class>co.jp.souya.jpa.Person</class>
+		<class>co.jp.souya.jpa.ProjectAdmin</class>
 
 		<properties>
 
@@ -20,7 +20,7 @@
 
 			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
 
-			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:C:\Temp\TestTool.db"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:C:\Users\hsatomi\OneDrive\ドキュメント\社内開発MTG\資料\解析ツール　テスト部分\設計資料\DB実装\TestTool.db"/>
             <!--
 			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:TestTool.db"/>
 			 -->
