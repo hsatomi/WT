@@ -6,23 +6,24 @@
 	<persistence-unit name="pu-sqlite-jpa">
 
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-
+		<class>co.jp.souya.jpa.DisplayAdmin</class>
+		<class>co.jp.souya.jpa.MovePatternAdmin</class>
+		<class>co.jp.souya.jpa.ParamsPattern</class>
 		<class>co.jp.souya.jpa.ProjectAdmin</class>
+		<class>co.jp.souya.jpa.TestCaseAdmin</class>
+		<class>co.jp.souya.jpa.VariableInitialTemplate</class>
 
 		<properties>
 
-            <property name="hibernate.dialect" value="co.jp.souya.jpa.SQLiteDialect"/>
-            <!--
-			<property name="hibernate.hbm2ddl.auto" value="create"/>
-			 -->
+            <property name="hibernate.dialect" value="co.jp.souya.tool.SQLiteDialect"/>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="false"/>
-
 			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
-
 			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:C:\Users\hsatomi\OneDrive\ドキュメント\社内開発MTG\資料\解析ツール　テスト部分\設計資料\DB実装\TestTool.db"/>
+
+			<!-- 変更した内容、コメントアウトした内容を以下に残しておく -->
             <!--
-			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:TestTool.db"/>
+			<property name="hibernate.hbm2ddl.auto" value="create"/>
 			 -->
 
         </properties>

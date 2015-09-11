@@ -83,13 +83,13 @@ public class HomeController {
 		try{
 			test2();
 		}catch(Exception e){
+			e.printStackTrace();
 		}
-
-
 
 
 		return "transition_pattern";
 	}
+
 
 
 	public void test2(){

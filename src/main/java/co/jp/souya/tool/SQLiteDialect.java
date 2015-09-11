@@ -1,4 +1,4 @@
-package co.jp.souya.jpa;
+package co.jp.souya.tool;
 
 import java.sql.Types;
 
