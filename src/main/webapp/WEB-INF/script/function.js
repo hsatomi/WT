@@ -5,7 +5,7 @@
 
     document.getElementById("transition_pattern_list").style.width = window.parent.screen.width * 0.5 + "px";
     document.getElementById("transition_pattern_list").style.height = window.parent.screen.height * 0.8 + "px";
-}
+};
 
 function move(mode) {
     switch (mode) {

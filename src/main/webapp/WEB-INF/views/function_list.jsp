@@ -20,7 +20,7 @@
         <button style="float:right;margin:10px 20px 10px 0;">DBダンプマスタ</button>
         <h4>WEBテスト画面一覧</h4>
         <table class="borderList">
-            ※動的作成部分
+            <!-- ※動的作成部分 -->
             <tr>
                 <th>機能</th>
             </tr>
