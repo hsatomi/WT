@@ -3,28 +3,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>遷移パターン画面</title>
+<title>テストケース管理画面</title>
 
 <script src="../script/transition_pattern.js"></script>
 <link href="../css/stylesheet.css" rel="stylesheet" />
 </head>
 <body>
-	<h3>テストツール</h3>
-	<div>遷移パターン画面</div>
+	<h3>テストツール - テストケース管理画面</h3>
 	<div id="parameter_pattern_information" style="float: left; border-style: solid; margin-right: 20px;">
 		<div>
 			遷移パターン情報
 			<div style="border-style: solid; margin:10px;">
 				<h4>画面遷移パターン名</h4>
 				<p>
-					ログインからの会員登録機能
+					通常ユーザによるログインからの会員登録機能
 				</p>
 			</div>
 			<div style="border-style: solid; margin:10px;">
 				<h4>備考:</h4>
 				<p>
-					パターン1, 2 と別にテストが必要な理由、何をテストしたいかなど。
-					
+					一般ユーザによる会員登録機能の基本項目テスト
+					<br>
+					管理者ユーザによる会員削除、変更は別のケースを参照すること
+
 				</p>
 			</div>
 			<div style="border-style: solid; margin:10px;">
@@ -40,19 +41,9 @@
 					http://aaaa/ccc/
 				</div>
 				<div style="width:90%;height:5%; border-style: solid; margin:10px; ">
-					機能A：メニュー画面
-					<br/>
-					http://aaaa/ddd?mode=menu
-				</div>
-				<div style="width:90%;height:5%; border-style: solid; margin:10px; ">
-					機能A：入力画面
+					会員登録：入力画面
 					<br/>
 					http://aaaa/ddd?mode=input
-				</div>
-				<div style="width:90%;height:5%; border-style: solid; margin:10px; ">
-					機能A：確認画面
-					<br/>
-					http://aaaa/ddd?mode=confirm
 				</div>
 			</div>
 			<div style="margin:10px; border-style:solid;">
@@ -74,9 +65,9 @@
 				<button>パターン自動生成</button>
 				<button>遷移パターン削除</button>
 			</div>
-			
-			
-			
+
+
+
 		</div>
 	</div>
 	<div id="parameter_pattern" style="float: left; border-style: solid; padding: 10px;">

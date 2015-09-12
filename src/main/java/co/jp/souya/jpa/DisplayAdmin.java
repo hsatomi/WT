@@ -21,6 +21,8 @@ public class DisplayAdmin implements Serializable {
 	@Column(name="\"プロジェクトid\"")
 	private String プロジェクトid;
 
+	private String 画面名;
+
 	public DisplayAdmin() {
 	}
 
@@ -38,6 +40,14 @@ public class DisplayAdmin implements Serializable {
 
 	public void setプロジェクトid(String プロジェクトid) {
 		this.プロジェクトid = プロジェクトid;
+	}
+
+	public String get画面名() {
+		return this.画面名;
+	}
+
+	public void set画面名(String 画面名) {
+		this.画面名 = 画面名;
 	}
 
 }

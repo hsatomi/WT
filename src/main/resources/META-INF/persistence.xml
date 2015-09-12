@@ -4,17 +4,16 @@
 	version="2.0">
 
 	<persistence-unit name="pu-sqlite-jpa">
-
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
 		<class>co.jp.souya.jpa.DisplayAdmin</class>
 		<class>co.jp.souya.jpa.MovePatternAdmin</class>
-		<class>co.jp.souya.jpa.ParamsPattern</class>
 		<class>co.jp.souya.jpa.ProjectAdmin</class>
 		<class>co.jp.souya.jpa.TestCaseAdmin</class>
 		<class>co.jp.souya.jpa.VariableInitialTemplate</class>
+		<class>co.jp.souya.jpa.InputPattern</class>
 
 		<properties>
-
             <property name="hibernate.dialect" value="co.jp.souya.tool.SQLiteDialect"/>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="false"/>
@@ -25,8 +24,6 @@
             <!--
 			<property name="hibernate.hbm2ddl.auto" value="create"/>
 			 -->
-
         </properties>
-
     </persistence-unit>
 </persistence>

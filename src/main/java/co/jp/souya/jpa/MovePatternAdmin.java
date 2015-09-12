@@ -21,6 +21,10 @@ public class MovePatternAdmin implements Serializable {
 	@Column(name="\"画面管理id\"")
 	private int 画面管理id;
 
+	private String 遷移パターン名;
+
+	private String 備考;
+
 	public MovePatternAdmin() {
 	}
 
@@ -38,6 +42,22 @@ public class MovePatternAdmin implements Serializable {
 
 	public void set画面管理id(int 画面管理id) {
 		this.画面管理id = 画面管理id;
+	}
+
+	public String get遷移パターン名() {
+		return this.遷移パターン名;
+	}
+
+	public void set遷移パターン名(String 遷移パターン名) {
+		this.遷移パターン名 = 遷移パターン名;
+	}
+
+	public String get備考() {
+		return this.備考;
+	}
+
+	public void set備考(String 備考) {
+		this.備考 = 備考;
 	}
 
 }

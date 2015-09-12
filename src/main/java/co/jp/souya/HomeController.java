@@ -26,23 +26,6 @@ public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-//	/**
-//	 * sample code
-//	 * Simply selects the home view to render by returning its name.
-//	 */
-//	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
-//	public String welcome(Locale locale, Model model) {
-//		logger.info("Welcome home! The client locale is {}.", locale);
-//
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//
-//		String formattedDate = dateFormat.format(date);
-//
-//		model.addAttribute("serverTime", formattedDate );
-//
-//		return "home";
-//	}
 
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -74,20 +57,10 @@ public class HomeController {
 		return "parameter_pattern";
 	}
 
-	@RequestMapping(value = "/transition_pattern", method = RequestMethod.GET)
+	@RequestMapping(value = "/TestCaseAdmin", method = RequestMethod.GET)
 	public String transition_pattern(Locale locale, Model model) {
-		logger.info("transition_pattern page");
-
-
-
-		try{
-			test2();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-
-
-		return "transition_pattern";
+		logger.info("テストケース管理画面");
+		return "TestCaseAdmin";
 	}
 
 
