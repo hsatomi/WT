@@ -37,6 +37,17 @@ public class ApiController {
 		return result;
 	}
 
+	@RequestMapping(value="/generateTestCase",method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public boolean generateTestCase(
+			) {
+		logger.info("generateTestCase");
+		boolean result = false;
+
+		result=true;
+
+		return result;
+	}
 
 }
 

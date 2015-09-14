@@ -36,10 +36,7 @@ public class TestCaseAdminController {
 		return "TestCaseAdmin";
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
-	public String post(Locale locale, Model model) {
-		logger.info("post");
-		return "TestCaseAdmin";
-	}
+
+
 
 }

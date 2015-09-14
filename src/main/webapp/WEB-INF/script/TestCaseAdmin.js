@@ -17,3 +17,30 @@ function move_InputParameters(id) {
 //    }
 }
 
+function generate(){
+//	var form = document.createElement("form");
+//	var form = document.getElementById("input_parameter_pattern");
+
+//	var form = document.forms[0];
+//	form.action="http://localhost:8080/souya/TestCaseAdmin/generate";
+//	form.method="post";
+//	form.submit();
+
+    $.ajax({
+        type:"post",
+        url:"http://localhost:8080/souya/api/generateTestCase",
+        contentType: 'application/json',
+        dataType: "json",
+        success: function(json_data1) {
+            // 成功時の処理
+        	alert("成功");
+        },
+        error: function(json_data2) {
+              // 失敗時の処理
+        	alert("失敗");
+        }
+
+    });
+
+
+}

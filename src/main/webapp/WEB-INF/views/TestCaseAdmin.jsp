@@ -7,10 +7,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>テストケース管理画面</title>
 
+<script src="script/ajax.js"></script>
 <script src="script/TestCaseAdmin.js"></script>
 <link href="css/stylesheet.css" rel="stylesheet" />
 </head>
 <body>
+	<form id="f1" action="/TestCaseAdmin/generate" method="post">
+	<input type="text" name="test" value="test" />
+	</form>
+
 	<h3>テストツール - テストケース管理画面</h3>
 	<div id="move_pattern_information" style="float: left; border-style: solid; margin-right: 20px;">
 		<div>
@@ -62,7 +67,8 @@
 			パラメータパターン一覧
 			<br>
 			<br>
-			<button>生成</button>
+			<input type="button" value="クリック" onClick="generate()" />
+			<button onclick="generate()">生成</button>
 			<button>実行</button>
 			<button>全て選択</button>
 			<button>NGパターン選択</button>
