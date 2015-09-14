@@ -7,9 +7,13 @@
     document.getElementById("parameter_pattern").style.height = window.parent.screen.height * 0.8 + "px";
 };
 
-function move(mode) {
-    switch (mode) {
-        case "parameter_pattern": location.href = "parameter_pattern.jsp"; break;
-        default: break;
-    }
+function move_InputParameters(id) {
+	location.href = "InputParameters?id=" + id;
+	return;
+
+//    switch (id) {
+//        case "1": location.href = "InputParameters?id=" + id; break;
+//        default: break;
+//    }
 }
+

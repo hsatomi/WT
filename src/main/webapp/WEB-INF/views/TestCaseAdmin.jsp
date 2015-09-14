@@ -92,7 +92,7 @@
 						<input type="checkbox">
 					</td>
 					<td>
-						<a href="javascript:move('parameter_pattern');">${入力パターン.入力パターン名}</a>
+						<a href="javascript:move_InputParameters('${入力パターン.id}');">${入力パターン.入力パターン名}</a>
 					</td>
 					<td>
 						${入力パターン.job状況}
