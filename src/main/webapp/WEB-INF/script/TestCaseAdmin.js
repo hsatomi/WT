@@ -5,7 +5,7 @@
 
     document.getElementById("parameter_pattern").style.width = window.parent.screen.width * 0.5 + "px";
     document.getElementById("parameter_pattern").style.height = window.parent.screen.height * 0.8 + "px";
-}
+};
 
 function move(mode) {
     switch (mode) {

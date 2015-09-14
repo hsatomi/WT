@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>パラメータパターン画面</title>
 
-    <script src="script/transition_list.js"></script>
+    <script src="script/InputParameters.js"></script>
     <link href="css/stylesheet.css" rel="stylesheet" />
 </head>
 <body>

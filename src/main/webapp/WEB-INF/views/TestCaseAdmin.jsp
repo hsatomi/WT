@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>テストケース管理画面</title>
 
-<script src="script/transition_pattern.js"></script>
+<script src="script/TestCaseAdmin.js"></script>
 <link href="css/stylesheet.css" rel="stylesheet" />
 </head>
 <body>
@@ -23,14 +23,10 @@
 				<p>
 					${dto.遷移パターン管理.遷移パターン名}
 				</p>
-			</div>
-			<div style="border-style: solid; margin:10px;">
 				<h4>備考:</h4>
 				<p>
 					${dto.遷移パターン管理.備考}
 				</p>
-			</div>
-			<div style="border-style: solid; margin:10px;">
 				<h4>画面遷移</h4>
 				<c:forEach items="${dto.遷移パターン明細リスト}" var="遷移パターン明細" >
 				<div style="width:90%;border-style: solid; margin:10px; ">
@@ -69,6 +65,7 @@
 			パラメータパターン一覧
 			<br>
 			<br>
+			<button>生成</button>
 			<button>実行</button>
 			<button>全て選択</button>
 			<button>NGパターン選択</button>

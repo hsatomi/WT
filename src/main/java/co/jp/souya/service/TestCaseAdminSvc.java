@@ -2,12 +2,6 @@ package co.jp.souya.service;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import junit.framework.Assert;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -19,25 +13,12 @@ import co.jp.souya.jpa.MovePatternDetail;
 import co.jp.souya.jpa.TestCaseAdmin;
 
 @Service
-public class TestCaseAdminSvc {
+public class TestCaseAdminSvc extends BaseSvc {
 	private static final Logger logger = LoggerFactory
 			.getLogger(TestCaseAdminSvc.class);
 
-	private EntityManagerFactory emf;
-	private EntityManager em;
-
 	public TestCaseAdminSvc() {
-		logger.info("TestCaseAdminSvcコンストラクタ");
-	}
-
-	private void init() {
-		emf = Persistence.createEntityManagerFactory("pu-sqlite-jpa");
-		em = emf.createEntityManager();
-	}
-
-	private void destroy() {
-		em.close();
-		emf.close();
+		logger.info(this.getClass().getName());
 	}
 
 	@SuppressWarnings("unchecked")
@@ -72,43 +53,6 @@ public class TestCaseAdminSvc {
 		}
 
 		return dto;
-	}
-
-	public void test() {
-
-		try {
-			init();
-
-			// //Persist in database
-			// Person person = new Person();
-			// person.setName("person2");
-			// em.persist(person);
-			// em.getTransaction().commit();
-			//
-			// //Find by id
-			// Person personDB = em.find(Person.class, person.getId());
-
-			// Person personDB = em.find(Person.class, 1);
-
-			// TestCaseAdmin admin = em.find(TestCaseAdmin.class, 1);
-
-			// MovePatternDetail admin = em.find(MovePatternDetail.class, 2);
-
-			@SuppressWarnings("unchecked")
-			List<MovePatternDetail> admin = em.createNamedQuery(
-					"MovePatternDetail.findAll").getResultList();
-
-			System.out.println(admin.size());
-
-			System.out.println("");
-
-		} catch (Throwable e) {
-			e.printStackTrace();
-			Assert.fail();
-		} finally {
-			destroy();
-		}
-
 	}
 
 }
