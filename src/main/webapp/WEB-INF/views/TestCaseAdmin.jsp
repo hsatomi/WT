@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="co.jp.souya.dto.TestCaseAdminDTO" %>
-<%@ page import="co.jp.souya.jpa.MovePatternAdmin" %>
-<%@ page import="co.jp.souya.jpa.MovePatternDetail" %>
-<%@ page import="co.jp.souya.jpa.TestCaseAdmin" %>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
