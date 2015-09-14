@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>画面一覧画面</title>
 
-    <script type="text/javascript"  src="${pageContext.request.contextPath}/src/main/webapp/script/function_list.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/src/main/webapp/css/stylesheet.css" />
+    <script src="script/function.js"></script>
+    <link href="css/stylesheet.css" rel="stylesheet" />
 
 </head>
 <body>

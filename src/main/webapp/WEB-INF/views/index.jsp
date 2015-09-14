@@ -4,8 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>テストツール</title>
 
-    <script src="../script/index.js"></script>
-    <link href="../css/stylesheet.css" rel="stylesheet" />
+    <script src="script/index.js"></script>
+    <link href="css/stylesheet.css" rel="stylesheet" />
 </head>
 <body>
     <h3>テストツール</h3>
@@ -17,7 +17,7 @@
     <div id="project_list" style="float:left;border-style:solid">
         <table class="borderList">
             <tr>
-                <th>プロジェクト一覧</th> 
+                <th>プロジェクト一覧</th>
             </tr>
             <tr>
                 <td>

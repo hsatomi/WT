@@ -4,8 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>パラメータパターン画面</title>
 
-    <script src="../script/transition_list.js"></script>
-    <link href="../css/stylesheet.css" rel="stylesheet" />
+    <script src="script/transition_list.js"></script>
+    <link href="css/stylesheet.css" rel="stylesheet" />
 </head>
 <body>
     <h3>テストツール</h3>
@@ -46,7 +46,7 @@
             </tr>
         </table>
     </div>
-    
+
     <br />
     <br />
     <div style="border-style: solid; padding:10px;">パラメータパターン単票

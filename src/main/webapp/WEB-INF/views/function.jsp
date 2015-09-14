@@ -4,8 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>画面詳細</title>
 
-    <script src="../script/function.js"></script>
-    <link href="../css/stylesheet.css" rel="stylesheet" />
+    <script src="script/function.js"></script>
+    <link href="css/stylesheet.css" rel="stylesheet" />
 </head>
 <body>
     <h3>テストツール</h3>

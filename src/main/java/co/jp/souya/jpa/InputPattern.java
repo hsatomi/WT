@@ -1,16 +1,25 @@
 package co.jp.souya.jpa;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 /**
  * The persistent class for the "InputPattern" database table.
- * 
+ *
  */
 @Entity
 @Table(name="\"InputPattern\"")
-@NamedQuery(name="InputPattern.findAll", query="SELECT i FROM InputPattern i")
+@NamedQueries({
+	@NamedQuery(name="InputPattern.findAll", query="SELECT i FROM InputPattern i")
+,	@NamedQuery(name="InputPattern.findListById", query="SELECT i FROM InputPattern i where テストケース管理id=:テストケース管理id")
+})
 public class InputPattern implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -27,8 +36,8 @@ public class InputPattern implements Serializable {
 	@Column(name="\"No\"")
 	private int no;
 
-	@Column(name="\"テストケースid\"")
-	private int テストケースid;
+	@Column(name="\"テストケース管理id\"")
+	private int テストケース管理id;
 
 	private String 遷移結果;
 
@@ -83,12 +92,12 @@ public class InputPattern implements Serializable {
 		this.no = no;
 	}
 
-	public int getテストケースid() {
-		return this.テストケースid;
+	public int getテストケース管理id() {
+		return this.テストケース管理id;
 	}
 
-	public void setテストケースid(int テストケースid) {
-		this.テストケースid = テストケースid;
+	public void setテストケース管理id(int テストケース管理id) {
+		this.テストケース管理id = テストケース管理id;
 	}
 
 	public String get遷移結果() {

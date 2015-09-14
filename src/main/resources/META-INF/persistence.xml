@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
 
-	<persistence-unit name="pu-sqlite-jpa">
+	<persistence-unit name="pu-sqlite-jpa" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
 		<class>co.jp.souya.jpa.DisplayAdmin</class>
@@ -12,11 +12,13 @@
 		<class>co.jp.souya.jpa.TestCaseAdmin</class>
 		<class>co.jp.souya.jpa.VariableInitialTemplate</class>
 		<class>co.jp.souya.jpa.InputPattern</class>
+		<class>co.jp.souya.jpa.MovePatternDetail</class>
 
 		<properties>
             <property name="hibernate.dialect" value="co.jp.souya.tool.SQLiteDialect"/>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="false"/>
+			<property name="hibernate.connection.autocommit" value="true" />
 			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:C:\Users\hsatomi\OneDrive\ドキュメント\社内開発MTG\資料\解析ツール　テスト部分\設計資料\DB実装\TestTool.db"/>
 
@@ -26,4 +28,6 @@
 			 -->
         </properties>
     </persistence-unit>
+
+
 </persistence>
