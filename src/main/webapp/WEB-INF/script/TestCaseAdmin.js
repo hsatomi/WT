@@ -17,27 +17,27 @@ function move_InputParameters(id) {
 //    }
 }
 
-function generate(){
-//	var form = document.createElement("form");
-//	var form = document.getElementById("input_parameter_pattern");
+function generate(_id){
 
-//	var form = document.forms[0];
-//	form.action="http://localhost:8080/souya/TestCaseAdmin/generate";
-//	form.method="post";
-//	form.submit();
+	//TODO:選択されているテストケース管理idとテストケースNoを送信する
+//	var data = {"id":id
+//			,input_ids:[1,2,3]
+//	};
+	var data = {"id":_id,"input_ids":[1]};
 
     $.ajax({
         type:"post",
         url:"http://localhost:8080/souya/api/generateTestCase",
+        data:JSON.stringify(data),
         contentType: 'application/json',
         dataType: "json",
         success: function(json_data1) {
             // 成功時の処理
-        	alert("成功");
+        	alert("生成成功");
         },
         error: function(json_data2) {
-              // 失敗時の処理
-        	alert("失敗");
+            // 失敗時の処理
+        	alert("生成失敗");
         }
 
     });

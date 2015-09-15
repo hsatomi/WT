@@ -21,6 +21,11 @@ public class TestCaseAdminSvc extends BaseSvc {
 		logger.info(this.getClass().getName());
 	}
 
+	/**
+	 *
+	 * @param id テストケース管理id
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public TestCaseAdminDTO getDTO(int id) {
 

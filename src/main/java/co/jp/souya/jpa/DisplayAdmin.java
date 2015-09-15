@@ -1,12 +1,17 @@
 package co.jp.souya.jpa;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 /**
  * The persistent class for the "DisplayAdmin" database table.
- * 
+ *
  */
 @Entity
 @Table(name="\"DisplayAdmin\"")
@@ -19,7 +24,7 @@ public class DisplayAdmin implements Serializable {
 	private int id;
 
 	@Column(name="\"プロジェクトid\"")
-	private String プロジェクトid;
+	private int プロジェクトid;
 
 	private String 画面名;
 
@@ -34,11 +39,11 @@ public class DisplayAdmin implements Serializable {
 		this.id = id;
 	}
 
-	public String getプロジェクトid() {
+	public int getプロジェクトid() {
 		return this.プロジェクトid;
 	}
 
-	public void setプロジェクトid(String プロジェクトid) {
+	public void setプロジェクトid(int プロジェクトid) {
 		this.プロジェクトid = プロジェクトid;
 	}
 

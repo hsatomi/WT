@@ -12,10 +12,6 @@
 <link href="css/stylesheet.css" rel="stylesheet" />
 </head>
 <body>
-	<form id="f1" action="/TestCaseAdmin/generate" method="post">
-	<input type="text" name="test" value="test" />
-	</form>
-
 	<h3>テストツール - テストケース管理画面</h3>
 	<div id="move_pattern_information" style="float: left; border-style: solid; margin-right: 20px;">
 		<div>
@@ -67,7 +63,7 @@
 			パラメータパターン一覧
 			<br>
 			<br>
-			<input type="button" value="クリック" onClick="generate()" />
+			<input type="button" value="クリック" onClick="generate(${dto.テストケース管理.id})" />
 			<button onclick="generate()">生成</button>
 			<button>実行</button>
 			<button>全て選択</button>
@@ -79,6 +75,7 @@
 			<table class="borderList">
 				<tr>
 					<th>No</th>
+					<th>id</th>
 					<th>入力パターン名</th>
 					<th>JOB状況</th>
 					<th>遷移結果</th>
@@ -93,6 +90,9 @@
 					<td>
 						${入力パターン.no}
 						<input type="checkbox">
+					</td>
+					<td>
+						${入力パターン.id}
 					</td>
 					<td>
 						<a href="javascript:move_InputParameters('${入力パターン.id}');">${入力パターン.入力パターン名}</a>
