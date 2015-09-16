@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.jp.souya.core.GenerateTestSource;
-import co.jp.souya.requestbody.TestCaseAdminGenerate;
-import co.jp.souya.requestbody.UpdateTestResult;
+import co.jp.souya.jpa.TestCaseAdmin;
+import co.jp.souya.requestbody.ReqTestCaseAdminGenerate;
+import co.jp.souya.requestbody.ReqUpdateTestResult;
 import co.jp.souya.service.InputPatternSvc;
 
 /**
@@ -33,16 +34,16 @@ public class ApiController {
 
 	@RequestMapping(value = "/updateTestResult", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public boolean updateTestResult(@RequestBody UpdateTestResult req) {
+	public boolean updateTestResult(@RequestBody ReqUpdateTestResult req) {
 		logger.info("updateTestResult");
 		boolean result = false;
-		result = inputPatternSvc.updateTestResult(req.id, req.Job状況, req.判定結果);
+		result = inputPatternSvc.updateTestResult(req.id, req.jobStatus, req.testResult);
 		return result;
 	}
 
 	@RequestMapping(value = "/generateTestCase", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public boolean generateTestCase(@RequestBody TestCaseAdminGenerate req) {
+	public boolean generateTestCase(@RequestBody ReqTestCaseAdminGenerate req) {
 		logger.info("generateTestCase");
 		boolean result = false;
 
@@ -59,5 +60,19 @@ public class ApiController {
 
 		return result;
 	}
+
+	@RequestMapping(value = "/test", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public TestCaseAdmin test(@RequestBody ReqUpdateTestResult req) {
+
+		TestCaseAdmin ad = new TestCaseAdmin();
+		return ad;
+	}
+	@RequestMapping(value = "/test2", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public boolean test2(@RequestBody ReqUpdateTestResult req) {
+		return true;
+	}
+
 
 }

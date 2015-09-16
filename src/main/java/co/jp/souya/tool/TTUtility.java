@@ -1,5 +1,8 @@
 package co.jp.souya.tool;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,10 +13,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import co.jp.souya.core.GenerateTestSource;
 
 /**
  * 2014/12/19 Created
@@ -22,7 +24,7 @@ import co.jp.souya.core.GenerateTestSource;
  */
 public class TTUtility {
 	private static final Logger logger = LoggerFactory
-			.getLogger(GenerateTestSource.class);
+			.getLogger(TTUtility.class);
 
 	/** ファイルセパレータ */
 	public static String fileSeparator = System.lineSeparator();
@@ -463,4 +465,30 @@ public class TTUtility {
 		return newword;
 	}
 
+	/**
+	 * File to Base64String
+	 *
+	 * @param file
+	 * @return
+	 */
+	public static String getBase64String(File file) {
+		String encodeResult = "";
+		try {
+			int fileLen = (int) file.length();
+			byte[] data = new byte[fileLen];
+			FileInputStream fis;
+			fis = new FileInputStream(file);
+			fis.read(data);
+			encodeResult = Base64.encodeBase64URLSafeString(data);
+
+			// byte[] data2 = Base64.decodeBase64(encodeResult);
+			// FileOutputStream fos = new FileOutputStream("output.txt");
+			// fos.write(data2);
+
+			fis.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return encodeResult;
+	}
 }

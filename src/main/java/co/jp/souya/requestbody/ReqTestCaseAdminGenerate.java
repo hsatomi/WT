@@ -1,10 +1,15 @@
 package co.jp.souya.requestbody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 
-public class TestCaseAdminGenerate {
+public class ReqTestCaseAdminGenerate {
+
+	public ReqTestCaseAdminGenerate(){
+		input_ids = new ArrayList<Integer>();
+	}
 
 	/**
 	 * テストケース管理id

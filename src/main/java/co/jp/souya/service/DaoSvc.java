@@ -1,5 +1,8 @@
 package co.jp.souya.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -7,6 +10,8 @@ import org.springframework.stereotype.Service;
 import co.jp.souya.jpa.DisplayAdmin;
 import co.jp.souya.jpa.InputPattern;
 import co.jp.souya.jpa.MovePatternAdmin;
+import co.jp.souya.jpa.MovePatternDetail;
+import co.jp.souya.jpa.ParametaValue;
 import co.jp.souya.jpa.ProjectAdmin;
 import co.jp.souya.jpa.TestCaseAdmin;
 
@@ -20,12 +25,12 @@ public class DaoSvc extends BaseSvc {
 
 	public ProjectAdmin getProjectAdmin(int id) {
 
-		ProjectAdmin dto = null;
+		ProjectAdmin dao = null;
 
 		try {
 			init();
 
-			dto = em.find(ProjectAdmin.class, id);
+			dao = em.find(ProjectAdmin.class, id);
 
 		} catch (Throwable e) {
 			logger.error(e.getMessage(), e);
@@ -33,17 +38,17 @@ public class DaoSvc extends BaseSvc {
 			destroy();
 		}
 
-		return dto;
+		return dao;
 	}
 
 	public DisplayAdmin getDisplayAdmin(int id) {
 
-		DisplayAdmin dto = null;
+		DisplayAdmin dao = null;
 
 		try {
 			init();
 
-			dto = em.find(DisplayAdmin.class, id);
+			dao = em.find(DisplayAdmin.class, id);
 
 		} catch (Throwable e) {
 			logger.error(e.getMessage(), e);
@@ -51,17 +56,17 @@ public class DaoSvc extends BaseSvc {
 			destroy();
 		}
 
-		return dto;
+		return dao;
 	}
 
 	public MovePatternAdmin getMovePatternAdmin(int id) {
 
-		MovePatternAdmin dto = null;
+		MovePatternAdmin dao = null;
 
 		try {
 			init();
 
-			dto = em.find(MovePatternAdmin.class, id);
+			dao = em.find(MovePatternAdmin.class, id);
 
 		} catch (Throwable e) {
 			logger.error(e.getMessage(), e);
@@ -69,7 +74,26 @@ public class DaoSvc extends BaseSvc {
 			destroy();
 		}
 
-		return dto;
+		return dao;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<MovePatternDetail> getMovePatternDetailList(int id) {
+
+		List<MovePatternDetail> dao = new ArrayList<MovePatternDetail>();
+
+		try {
+			init();
+			dao = em.createNamedQuery("MovePatternDetail.findListById")
+					.setParameter("遷移パターン管理id", id).getResultList();
+
+		} catch (Throwable e) {
+			logger.error(e.getMessage(), e);
+		} finally {
+			destroy();
+		}
+
+		return dao;
 	}
 
 	/**
@@ -80,12 +104,12 @@ public class DaoSvc extends BaseSvc {
 	 */
 	public TestCaseAdmin getTestCaseAdmin(int id) {
 
-		TestCaseAdmin dto = null;
+		TestCaseAdmin dao = null;
 
 		try {
 			init();
 
-			dto = em.find(TestCaseAdmin.class, id);
+			dao = em.find(TestCaseAdmin.class, id);
 
 		} catch (Throwable e) {
 			logger.error(e.getMessage(), e);
@@ -93,7 +117,7 @@ public class DaoSvc extends BaseSvc {
 			destroy();
 		}
 
-		return dto;
+		return dao;
 	}
 
 	/**
@@ -104,12 +128,12 @@ public class DaoSvc extends BaseSvc {
 	 */
 	public InputPattern getInputPattern(int id) {
 
-		InputPattern dto = null;
+		InputPattern dao = null;
 
 		try {
 			init();
 
-			dto = em.find(InputPattern.class, id);
+			dao = em.find(InputPattern.class, id);
 
 		} catch (Throwable e) {
 			logger.error(e.getMessage(), e);
@@ -117,7 +141,32 @@ public class DaoSvc extends BaseSvc {
 			destroy();
 		}
 
-		return dto;
+		return dao;
+	}
+
+	/**
+	 *
+	 * @param id
+	 *            入力パターンid
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ParametaValue> getParametaValueList(int id) {
+
+		List<ParametaValue> dao = new ArrayList<ParametaValue>();
+
+		try {
+			init();
+			dao = em.createNamedQuery("ParametaValue.findListById")
+					.setParameter("入力パターンid", id).getResultList();
+
+		} catch (Throwable e) {
+			logger.error(e.getMessage(), e);
+		} finally {
+			destroy();
+		}
+
+		return dao;
 	}
 
 }
