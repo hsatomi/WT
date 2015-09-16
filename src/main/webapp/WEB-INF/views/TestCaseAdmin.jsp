@@ -101,7 +101,7 @@
 						${入力パターン.job状況}
 					</td>
 					<td>
-						${入力パターン.遷移結果}
+						<img src="data:image/jpg;base64,${入力パターン.遷移結果}" />
 					</td>
 					<td>
 						<a href="${入力パターン.html}">[確認]</a>
@@ -121,7 +121,5 @@
 			</table>
 		</div>
 	</div>
-
-
 </body>
 </html>

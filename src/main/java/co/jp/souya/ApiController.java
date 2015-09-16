@@ -1,5 +1,9 @@
 package co.jp.souya;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +18,7 @@ import co.jp.souya.core.GenerateTestSource;
 import co.jp.souya.jpa.TestCaseAdmin;
 import co.jp.souya.requestbody.ReqTestCaseAdminGenerate;
 import co.jp.souya.requestbody.ReqUpdateTestResult;
+import co.jp.souya.service.DaoSvc;
 import co.jp.souya.service.InputPatternSvc;
 
 /**
@@ -32,13 +37,46 @@ public class ApiController {
 	@Autowired
 	private GenerateTestSource generateTestSource;
 
-	@RequestMapping(value = "/updateTestResult", method = RequestMethod.POST)
+	@Autowired
+	private DaoSvc daoSvc;
+
+	/**
+	 * テスト結果（正解値）をアップデートする テストケース初回のみ実行すること
+	 *
+	 * @param req
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
+	@RequestMapping(value = "/updateResult", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public boolean updateTestResult(@RequestBody ReqUpdateTestResult req) {
+	public boolean updateResult(@RequestBody ReqUpdateTestResult req)
+			throws UnsupportedEncodingException {
+
 		logger.info("updateTestResult");
 		boolean result = false;
-		result = inputPatternSvc.updateTestResult(req.id, req.jobStatus, req.testResult);
+		result = inputPatternSvc.updateResult(req.id, req.html, req.db);
 		return result;
+	}
+
+	/**
+	 * テスト結果をアップデートする
+	 *
+	 * @param req
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
+	@RequestMapping(value = "/updateTestResult", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public boolean updateTestResult(@RequestBody ReqUpdateTestResult req)
+			throws UnsupportedEncodingException {
+		logger.info("updateResult");
+		boolean result = false;
+		// TODO:RestClient(on firefox)だと文字化けしないのに、RestTemplateだと文字化けするのでこの対応
+		req.jobStatus = URLDecoder.decode(req.jobStatus, "UTF-8");
+		result = inputPatternSvc.updateTestResult(req.id, req.testResult,
+				req.jobStatus, req.snapshot);
+		return result;
+
 	}
 
 	@RequestMapping(value = "/generateTestCase", method = RequestMethod.POST)
@@ -47,14 +85,14 @@ public class ApiController {
 		logger.info("generateTestCase");
 		boolean result = false;
 
-		req.id=1;
+		req.id = 1;
 
 		if (req == null || req.id == null) {
 			logger.warn("idがnull");
 			return false;
 		}
 
-		result = generateTestSource.generate(req.id,req.input_ids);
+		result = generateTestSource.generate(req.id, req.input_ids);
 		if (!result)
 			return false;
 
@@ -68,11 +106,20 @@ public class ApiController {
 		TestCaseAdmin ad = new TestCaseAdmin();
 		return ad;
 	}
+
 	@RequestMapping(value = "/test2", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public boolean test2(@RequestBody ReqUpdateTestResult req) {
+	public boolean test2() throws IOException {
+
+//		InputPattern dao = daoSvc.getInputPattern(1);
+
+//		String encodeResult = dao.get遷移結果();
+//		byte[] data2 = Base64.decodeBase64(encodeResult);
+//		FileOutputStream fos = new FileOutputStream("C:\\Temp\\output.txt");
+//		fos.write(data2);
+//		File file = new File("C:\\Temp\\output.txt");
+
 		return true;
 	}
-
 
 }

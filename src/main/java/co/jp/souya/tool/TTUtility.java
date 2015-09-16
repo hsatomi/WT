@@ -491,4 +491,6 @@ public class TTUtility {
 		}
 		return encodeResult;
 	}
+
+
 }

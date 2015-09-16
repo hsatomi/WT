@@ -47,6 +47,8 @@ public class InputPattern implements Serializable {
 
 	private String 判定結果;
 
+	private int 非初回;
+
 	private String 備考;
 
 	public InputPattern() {
@@ -130,6 +132,14 @@ public class InputPattern implements Serializable {
 
 	public void set判定結果(String 判定結果) {
 		this.判定結果 = 判定結果;
+	}
+
+	public int get非初回() {
+		return this.非初回;
+	}
+
+	public void set非初回(int 非初回) {
+		this.非初回 = 非初回;
 	}
 
 	public String get備考() {

@@ -23,7 +23,7 @@ function generate(_id){
 //	var data = {"id":id
 //			,input_ids:[1,2,3]
 //	};
-	var data = {"id":_id,"input_ids":[1]};
+	var data = {"id":_id,"input_ids":[1,2,3,4,5]};
 
     $.ajax({
         type:"post",

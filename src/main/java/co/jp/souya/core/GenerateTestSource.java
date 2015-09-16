@@ -142,38 +142,197 @@ public class GenerateTestSource {
 				strReplace.append("	public void Test" + inputPattern.getNo() + "(){");
 				strReplace.append(sep);
 				//---------実行---------
-				strReplace.append("		//実行");
-				strReplace.append(sep);
-				//TODO:実行順に取得していることを確認
-				List<ParametaValue> daoパラメタ値リスト=
-				daoSvc.getParametaValueList(inputPattern.getId());
-				for (ParametaValue parametaValue : daoパラメタ値リスト) {
-					strReplace.append("		{");
+				{
 					strReplace.append(sep);
-					strReplace.append("			//" + parametaValue.get項目名());
+					strReplace.append("		//実行");
 					strReplace.append(sep);
-					strReplace
-							.append("			WebElement element = webdriver.findElement("
-									+ parametaValue.getエレメント型()
-									+ "(\""
-									+ parametaValue.getエレメント名() + "\"));");
+					strReplace.append("		boolean bTestResult = true;");
 					strReplace.append(sep);
-					if(TTConst.ACTION_SENDKEYS.equals(parametaValue.getアクション())){
-						strReplace.append("			element.sendKeys(\"" + parametaValue.get値() + "\");");
+					//TODO:実行順に取得していることを確認
+					List<ParametaValue> daoパラメタ値リスト=
+					daoSvc.getParametaValueList(inputPattern.getId());
+					for (ParametaValue parametaValue : daoパラメタ値リスト) {
+						strReplace.append("		{");
+						strReplace.append(sep);
+						strReplace.append("			//" + parametaValue.get項目名());
+						strReplace.append(sep);
+						strReplace
+								.append("			WebElement element = webdriver.findElement("
+										+ parametaValue.getエレメント型()
+										+ "(\""
+										+ parametaValue.getエレメント名() + "\"));");
+						strReplace.append(sep);
+						if(TTConst.ACTION_SENDKEYS.equals(parametaValue.getアクション())){
+							strReplace.append("			element.sendKeys(\"" + parametaValue.get値() + "\");");
+							strReplace.append(sep);
+						}
+						if(TTConst.ACTION_CLICK.equals(parametaValue.getアクション())){
+							strReplace.append("			element.click();");
+							strReplace.append(sep);
+						}
+						strReplace.append("		}");
 						strReplace.append(sep);
 					}
-					if(TTConst.ACTION_CLICK.equals(parametaValue.getアクション())){
-						strReplace.append("			element.click();");
-						strReplace.append(sep);
-					}
-					strReplace.append("		}");
-					strReplace.append(sep);
 				}
 				//---------実行後スナップショット取得---------
+				{
+					strReplace.append(sep);
+					strReplace.append("		// 実行後スナップショット取得");
+					strReplace.append(sep);
+					strReplace.append("		File file = ((TakesScreenshot) webdriver).getScreenshotAs(OutputType.FILE);");
+					strReplace.append(sep);
+					strReplace.append("		String strSnapshot = TTUtility.getBase64String(file);");
+					strReplace.append(sep);
+					strReplace.append("");
+					strReplace.append(sep);
+				}
 				//---------WEB状態取得・比較---------
-				//---------DB状態取得・比較---------
-				//---------JOB状況更新---------
+				{
+					strReplace.append(sep);
+					strReplace.append("		//web状態取得・比較");
+					strReplace.append(sep);
+					strReplace.append("		String strResultWeb = \"\";");
+					strReplace.append(sep);
+					if(inputPattern.get非初回()<=0){
+						//初回
+						strReplace.append("");
+						strReplace.append(sep);
+						strReplace.append("");
+						strReplace.append(sep);
+					}else{
+						//2回目以降
+						strReplace.append("");
+						strReplace.append(sep);
+						strReplace.append("");
+						strReplace.append(sep);
+					}
 
+				}
+				//---------DB状態取得・比較---------
+				{
+					strReplace.append(sep);
+					strReplace.append("		//DB状態取得・比較");
+					strReplace.append(sep);
+					strReplace.append("		String strResultDB = \"\";");
+					strReplace.append(sep);
+					if(inputPattern.get非初回()<=0){
+						//初回
+						strReplace.append("");
+						strReplace.append(sep);
+						strReplace.append("");
+						strReplace.append(sep);
+					}else{
+						//2回目以降
+						strReplace.append("");
+						strReplace.append(sep);
+						strReplace.append("");
+						strReplace.append(sep);
+					}
+				}
+				//---------正解値更新---------
+				if(inputPattern.get非初回()<=0)
+				{
+					//初回
+					strReplace.append(sep);
+					strReplace.append("		// 正解値更新");
+					strReplace.append(sep);
+					strReplace.append("		try {");
+					strReplace.append(sep);
+					strReplace.append("			URI url = new URI(\"" + TTConst.URL_API_BASE + TTConst.URL_UPDATE_RESULT + "\");");
+					strReplace.append(sep);
+					strReplace.append("			JSONObject request = new JSONObject();");
+					strReplace.append(sep);
+					strReplace.append("			request.put(\"id\", " + inputPattern.getId() + ");");
+					strReplace.append(sep);
+					strReplace.append("			request.put(\"html\", URLEncoder.encode(strResultWeb, \"UTF-8\"));");
+					strReplace.append(sep);
+					strReplace.append("			request.put(\"db\", URLEncoder.encode(strResultDB, \"UTF-8\"));");
+					strReplace.append(sep);
+					strReplace.append("");
+					strReplace.append(sep);
+					strReplace.append("			HttpEntity<String> entity = new HttpEntity<String>(");
+					strReplace.append(sep);
+					strReplace.append("					request.toString(), headers);");
+					strReplace.append(sep);
+					strReplace.append("");
+					strReplace.append(sep);
+					strReplace.append("			System.out.println(\"URL: \" + url);");
+					strReplace.append(sep);
+					strReplace.append("			String response = restTemplate.postForObject(url, entity,");
+					strReplace.append(sep);
+					strReplace.append("					String.class);");
+					strReplace.append(sep);
+					strReplace.append("			System.out.println(\"Response: \" + response);");
+					strReplace.append(sep);
+					strReplace.append("");
+					strReplace.append(sep);
+					strReplace.append("		} catch (Exception e) {");
+					strReplace.append(sep);
+					strReplace.append("			e.printStackTrace();");
+					strReplace.append(sep);
+					strReplace.append("			assertTrue(false);");
+					strReplace.append(sep);
+					strReplace.append("		}");
+					strReplace.append(sep);
+					strReplace.append("");
+					strReplace.append(sep);
+					strReplace.append("");
+					strReplace.append(sep);
+					strReplace.append("");
+					strReplace.append(sep);
+				}
+				//---------JOB状況更新---------
+				{
+					strReplace.append(sep);
+					strReplace.append("		// 結果更新");
+					strReplace.append(sep);
+					strReplace.append("		try {");
+					strReplace.append(sep);
+					strReplace.append("			URI url = new URI(\"" + TTConst.URL_API_BASE + TTConst.URL_UPDATE_TEST_RESULT + "\");");
+					strReplace.append(sep);
+					strReplace.append("			JSONObject request = new JSONObject();");
+					strReplace.append(sep);
+					strReplace.append("			request.put(\"id\", " + inputPattern.getId() + ");");
+					strReplace.append(sep);
+					strReplace.append("			request.put(\"jobStatus\", URLEncoder.encode(TTConst.JOB_STATUS_FINISH, \"UTF-8\"));");
+					strReplace.append(sep);
+					strReplace.append("			request.put(\"testResult\", bTestResult ? TTConst.TEST_RESULT_OK : TTConst.TEST_RESULT_NG);");
+					strReplace.append(sep);
+					strReplace.append("			request.put(\"snapshot\", strSnapshot);");
+					strReplace.append(sep);
+					strReplace.append("");
+					strReplace.append(sep);
+					strReplace.append("			HttpEntity<String> entity = new HttpEntity<String>(");
+					strReplace.append(sep);
+					strReplace.append("					request.toString(), headers);");
+					strReplace.append(sep);
+					strReplace.append("");
+					strReplace.append(sep);
+					strReplace.append("			System.out.println(\"URL: \" + url);");
+					strReplace.append(sep);
+					strReplace.append("			String response = restTemplate.postForObject(url, entity,");
+					strReplace.append(sep);
+					strReplace.append("					String.class);");
+					strReplace.append(sep);
+					strReplace.append("			System.out.println(\"Response: \" + response);");
+					strReplace.append(sep);
+					strReplace.append("");
+					strReplace.append(sep);
+					strReplace.append("		} catch (Exception e) {");
+					strReplace.append(sep);
+					strReplace.append("			e.printStackTrace();");
+					strReplace.append(sep);
+					strReplace.append("			assertTrue(false);");
+					strReplace.append(sep);
+					strReplace.append("		}");
+					strReplace.append(sep);
+					strReplace.append("");
+					strReplace.append(sep);
+					strReplace.append("");
+					strReplace.append(sep);
+					strReplace.append("");
+					strReplace.append(sep);
+				}
 				strReplace.append("	}");
 				strReplace.append(sep);
 			}
@@ -185,34 +344,17 @@ public class GenerateTestSource {
 					);
 		}
 
-
-
-
-
-
-
-
-
 		logger.info(strGenerateCls);
 
-
 		try {
-			//TODO:read from property
-			String filePath = "C:\\Temp\\";
-			FileWriter fw = new FileWriter(filePath + strクラス名 + ".java");
+			//クラスファイル出力
+			FileWriter fw = new FileWriter(TTConst.PATH_GENERATESRC_OUTPUT + strクラス名 + ".java");
 			fw.write(strGenerateCls);
 			fw.close();
-
-
-
-
 		} catch (IOException e) {
 			logger.error(e.getMessage(),e);
 			return false;
 		}
-
-
-
 
 		return result;
 	}
@@ -230,6 +372,14 @@ public class GenerateTestSource {
 		strbuf.append(sep);
 		strbuf.append("");
 		strbuf.append(sep);
+		strbuf.append("import java.io.File;");
+		strbuf.append(sep);
+		strbuf.append("import java.net.URI;");
+		strbuf.append(sep);
+		strbuf.append("import java.net.URLEncoder;");
+		strbuf.append(sep);
+		strbuf.append("");
+		strbuf.append(sep);
 		strbuf.append("import org.json.JSONObject;");
 		strbuf.append(sep);
 		strbuf.append("import org.junit.After;");
@@ -243,6 +393,10 @@ public class GenerateTestSource {
 		strbuf.append("import org.junit.Test;");
 		strbuf.append(sep);
 		strbuf.append("import org.openqa.selenium.By;");
+		strbuf.append(sep);
+		strbuf.append("import org.openqa.selenium.OutputType;");
+		strbuf.append(sep);
+		strbuf.append("import org.openqa.selenium.TakesScreenshot;");
 		strbuf.append(sep);
 		strbuf.append("import org.openqa.selenium.WebDriver;");
 		strbuf.append(sep);
@@ -259,6 +413,10 @@ public class GenerateTestSource {
 		strbuf.append("import org.springframework.web.client.RestTemplate;");
 		strbuf.append(sep);
 		strbuf.append("");
+		strbuf.append(sep);
+		strbuf.append("import co.jp.souya.tool.TTConst;");
+		strbuf.append(sep);
+		strbuf.append("import co.jp.souya.tool.TTUtility;");
 		strbuf.append(sep);
 		strbuf.append("");
 		strbuf.append(sep);
