@@ -103,8 +103,6 @@ public class ApiController {
 		return result;
 	}
 
-
-
 	/**
 	 * テストケースをリセットする（回数リセット）
 	 * 補足：テストツールから呼び出される
