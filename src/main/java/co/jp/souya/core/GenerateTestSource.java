@@ -1,6 +1,7 @@
 package co.jp.souya.core;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -412,7 +413,7 @@ public class GenerateTestSource {
 
 			try {
 				//クラスファイル出力
-				FileWriter fw = new FileWriter(TTConst.PATH_GENERATESRC_OUTPUT + strプロジェクト名 + "\\" + strクラス名 +  ".java");
+				FileWriter fw = new FileWriter(TTConst.PATH_GENERATESRC_OUTPUT + strプロジェクト名 + File.separator + strクラス名 +  ".java");
 				fw.write(strGenerateCls);
 				fw.close();
 			} catch (IOException ioe) {
