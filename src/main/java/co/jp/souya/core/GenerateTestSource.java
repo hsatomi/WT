@@ -55,9 +55,7 @@ public class GenerateTestSource {
 			printInputStream(es);
 			process.waitFor();
 			int ret = process.exitValue();
-			System.out.println("戻り値：" + ret);
-
-
+			logger.info("戻り値：" + ret);
 
 		} catch (Exception e) {
 			logger.error(e.getMessage(),e);
@@ -65,13 +63,14 @@ public class GenerateTestSource {
 		return result;
 	}
 
-	private static void printInputStream(InputStream is) throws IOException {
+	private void printInputStream(InputStream is) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		try {
 			for (;;) {
 				String line = br.readLine();
 				if (line == null) break;
-				System.out.println(line);
+//				System.out.println(line);
+				logger.info(line);
 			}
 		} finally {
 			br.close();
