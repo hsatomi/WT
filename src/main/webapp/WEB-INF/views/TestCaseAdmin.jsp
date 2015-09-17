@@ -63,39 +63,46 @@
 			パラメータパターン一覧
 			<br>
 			<br>
-			<input type="button" value="クリック" onClick="generate(${dto.テストケース管理.id})" />
-			<button onclick="generate()">生成</button>
-			<button>実行</button>
+			<button>パターン自動生成</button>
+			<button>遷移パターン削除</button>
+			<br>
+			<br>
+			<input type="button" name="btnReset" value="回数リセット" onClick="generate(${dto.テストケース管理.id})" />
+			<input type="button" name="btnGenerate" value="生成" onClick="generate(${dto.テストケース管理.id})" />
+			<input type="button" name="btnExec" value="実行" onClick="generate(${dto.テストケース管理.id})" />
 			<button>全て選択</button>
 			<button>NGパターン選択</button>
 			<button>全て解除</button>
-			<button>パターン自動生成</button>
-			<button>遷移パターン削除</button>
 			<br>
 			<table class="borderList">
 				<tr>
 					<th>No</th>
 					<th>id</th>
 					<th>入力パターン名</th>
+					<th>実行回数</th>
 					<th>JOB状況</th>
 					<th>遷移結果</th>
-					<th>HTML</th>
-					<th>DB</th>
+					<th>HTML結果</th>
+					<th>DB結果</th>
+					<th>HTML差異</th>
+					<th>DB差異</th>
 					<th>判定結果</th>
-					<th>前回との差異</th>
 				</tr>
 
 				<c:forEach items="${dto.入力パターンリスト}" var="入力パターン" >
 				<tr>
 					<td>
 						${入力パターン.no}
-						<input type="checkbox">
+						<input type="checkbox" name="chkbox${入力パターン.id}">
 					</td>
 					<td>
 						${入力パターン.id}
 					</td>
 					<td>
 						<a href="javascript:move_InputParameters('${入力パターン.id}');">${入力パターン.入力パターン名}</a>
+					</td>
+					<td>
+						${入力パターン.実行回数}
 					</td>
 					<td>
 						${入力パターン.job状況}
@@ -110,10 +117,13 @@
 						<a href="${入力パターン.db}">[確認]</a>
 					</td>
 					<td>
-						${入力パターン.判定結果}
+						<a href="${入力パターン.html差異}">[確認]</a>
 					</td>
 					<td>
-						${入力パターン.前回との結果一致状況}
+						<a href="${入力パターン.db差異}">[確認]</a>
+					</td>
+					<td>
+						${入力パターン.判定結果}
 					</td>
 				</tr>
 				</c:forEach>

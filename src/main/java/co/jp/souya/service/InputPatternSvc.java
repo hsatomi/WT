@@ -46,12 +46,22 @@ public class InputPatternSvc extends BaseSvc {
 	/**
 	 * テスト結果をアップデートする
 	 * @param id
+	 * @param w実行回数
 	 * @param w判定結果
 	 * @param wJob状況
+	 * @param wHtml
+	 * @param wDb
 	 * @param wスナップショットBase64
 	 * @return
 	 */
-	public boolean updateTestResult(int id, String w判定結果, String wJob状況, String wスナップショットBase64) {
+	public boolean updateTestResult(int id,
+			int w実行回数,
+			String w判定結果,
+			String wJob状況,
+			String wスナップショットBase64,
+			String wHtml,
+			String wDb
+			) {
 
 		try {
 			init();
@@ -61,6 +71,9 @@ public class InputPatternSvc extends BaseSvc {
 			dao.set判定結果(w判定結果);
 			dao.setJob状況(wJob状況);
 			dao.set遷移結果(wスナップショットBase64);
+			dao.set実行回数(w実行回数);
+			dao.setDb(wDb);
+			dao.setHtml(wHtml);
 			em.persist(dao);
 
 			tx.commit();
@@ -88,8 +101,8 @@ public class InputPatternSvc extends BaseSvc {
 			tx.begin();
 
 			InputPattern dao = em.find(InputPattern.class, id);
-			dao.setDb(wDB);
-			dao.setHtml(wHTML);
+			dao.setDb正解(wDB);
+			dao.setHtml正解(wHTML);
 			em.persist(dao);
 
 			tx.commit();

@@ -40,6 +40,7 @@ public class ApiController {
 	@Autowired
 	private DaoSvc daoSvc;
 
+
 	/**
 	 * テスト結果（正解値）をアップデートする テストケース初回のみ実行すること
 	 *
@@ -58,6 +59,8 @@ public class ApiController {
 		return result;
 	}
 
+
+
 	/**
 	 * テスト結果をアップデートする
 	 *
@@ -73,11 +76,13 @@ public class ApiController {
 		boolean result = false;
 		// TODO:RestClient(on firefox)だと文字化けしないのに、RestTemplateだと文字化けするのでこの対応
 		req.jobStatus = URLDecoder.decode(req.jobStatus, "UTF-8");
-		result = inputPatternSvc.updateTestResult(req.id, req.testResult,
-				req.jobStatus, req.snapshot);
+		result = inputPatternSvc.updateTestResult(req.id, req.execTimes, req.testResult,
+				req.jobStatus, req.snapshot, req.html, req.db);
 		return result;
 
 	}
+
+
 
 	@RequestMapping(value = "/generateTestCase", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
@@ -98,6 +103,11 @@ public class ApiController {
 
 		return result;
 	}
+
+
+
+
+
 
 	@RequestMapping(value = "/test", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)

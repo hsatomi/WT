@@ -492,5 +492,15 @@ public class TTUtility {
 		return encodeResult;
 	}
 
+	public static String validateWeb(String strResultWeb,String strExpectWeb){
+		String strDif = "";
+
+		if(!strResultWeb.equals(strExpectWeb)){
+			//TODO:差分を記載する
+
+		}
+
+		return strDif;
+	}
 
 }
