@@ -44,7 +44,7 @@ public class GenerateTestSource {
 
 		try {
 			Runtime r = Runtime.getRuntime();
-			Process process = r.exec("C:\\Temp\\displayTree.cmd");
+			Process process = r.exec("C:\\Users\\hsatomi\\git\\wt\\auto_git_sh.cmd");
 
 			process.waitFor();
 			int ret = process.exitValue();
