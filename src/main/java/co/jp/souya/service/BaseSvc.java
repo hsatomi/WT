@@ -23,7 +23,6 @@ public abstract class BaseSvc {
 	protected void init() {
 		emf = Persistence.createEntityManagerFactory("pu-sqlite-jpa");
 		em = emf.createEntityManager();
-//		em.setProperty("", "");
 		tx = em.getTransaction();
 	}
 
