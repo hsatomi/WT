@@ -1,7 +1,10 @@
 package co.jp.souya.core;
 
+import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +37,52 @@ public class GenerateTestSource {
 	@Autowired
 	private DaoSvc daoSvc;
 
+
+	/**
+	 * Git Pushをする
+	 * @return
+	 */
+	public boolean gitpush() {
+		boolean result = false;
+
+		try {
+			Runtime r = Runtime.getRuntime();
+			Process process = r.exec("C:\\Users\\hsatomi\\git\\wt\\auto_git_for_local.cmd");
+
+			InputStream is = process.getInputStream();	//標準出力
+			printInputStream(is);
+			InputStream es = process.getErrorStream();	//標準エラー
+			printInputStream(es);
+			process.waitFor();
+			int ret = process.exitValue();
+			logger.info("戻り値：" + ret);
+
+		} catch (Exception e) {
+			logger.error(e.getMessage(),e);
+		}
+		return result;
+	}
+
+	private void printInputStream(InputStream is) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		try {
+			for (;;) {
+				String line = br.readLine();
+				if (line == null) break;
+//				System.out.println(line);
+				logger.info(line);
+			}
+		} finally {
+			br.close();
+		}
+	}
+
+	/**
+	 * 指定された設定でユニットテストコードを自動生成する
+	 * @param id
+	 * @param input_ids
+	 * @return
+	 */
 	public boolean generate(Integer id, List<Integer> input_ids) {
 		boolean result = false;
 
