@@ -47,7 +47,7 @@ public class GenerateTestSource {
 
 		try {
 			Runtime r = Runtime.getRuntime();
-			Process process = r.exec("C:\\Users\\hsatomi\\git\\wt\\auto_git_for_local.cmd");
+			Process process = r.exec(TTConst.PATH_GITPUSHSCRIPT);
 
 			InputStream is = process.getInputStream();	//標準出力
 			printInputStream(is);

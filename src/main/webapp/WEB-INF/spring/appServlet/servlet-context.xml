@@ -37,7 +37,7 @@
 		<!--
 		<beans:property name="PATH_GENERATESRC_OUTPUT" value="/home/souya/wt/src/test/java/co/jp/souya/" />
 		<beans:property name="URL_API_BASE" value="http://localhost:8080/wt" />
-		<beans:property name="PATH_GITPUSHSCRIPT" value="C:\Users\hsatomi\git\wt\auto_git_for_local.cmd" />
+		<beans:property name="PATH_GITPUSHSCRIPT" value="/home/souya/wt/auto_git_for_wt.sh" />
 		 -->
 
 		<!--
