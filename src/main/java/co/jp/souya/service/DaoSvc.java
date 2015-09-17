@@ -15,6 +15,11 @@ import co.jp.souya.jpa.ParametaValue;
 import co.jp.souya.jpa.ProjectAdmin;
 import co.jp.souya.jpa.TestCaseAdmin;
 
+/**
+ * 各エンティティへの単純なアクセッサを提供します
+ * @author hsatomi
+ *
+ */
 @Service
 public class DaoSvc extends BaseSvc {
 	private static final Logger logger = LoggerFactory.getLogger(DaoSvc.class);

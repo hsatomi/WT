@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="co.jp.souya.tool.TTConst" %>
 
 <html>
 <head>
@@ -10,6 +11,12 @@
 <script src="script/ajax.js"></script>
 <script src="script/TestCaseAdmin.js"></script>
 <link href="css/stylesheet.css" rel="stylesheet" />
+
+<script>
+var URL_RESET = "<%= TTConst.URL_API_BASE+TTConst.URL_RESET_TESTCASE %>";
+var URL_GENERATE = "<%= TTConst.URL_API_BASE+TTConst.URL_GENERATE_TESTCASE %>";
+</script>
+
 </head>
 <body>
 	<h3>テストツール - テストケース管理画面</h3>
@@ -67,12 +74,12 @@
 			<button>遷移パターン削除</button>
 			<br>
 			<br>
-			<input type="button" name="btnReset" value="回数リセット" onClick="generate(${dto.テストケース管理.id})" />
+			<input type="button" name="btnReset" value="回数リセット" onClick="reset(${dto.テストケース管理.id})" />
 			<input type="button" name="btnGenerate" value="生成" onClick="generate(${dto.テストケース管理.id})" />
 			<input type="button" name="btnExec" value="実行" onClick="generate(${dto.テストケース管理.id})" />
-			<button>全て選択</button>
-			<button>NGパターン選択</button>
-			<button>全て解除</button>
+			<input type="button" name="btnSelectAll" value="全て選択" onClick="selectAll()" />
+			<input type="button" name="btnSelectNG" value="NGパターン選択" onClick="selectNG()" />
+			<input type="button" name="btnUnselectAll" value="全て解除" onClick="unselectAll()" />
 			<br>
 			<table class="borderList">
 				<tr>
@@ -93,7 +100,7 @@
 				<tr>
 					<td>
 						${入力パターン.no}
-						<input type="checkbox" name="chkbox${入力パターン.id}">
+						<input type="checkbox" class="chkbox" value="${入力パターン.id}" >
 					</td>
 					<td>
 						${入力パターン.id}

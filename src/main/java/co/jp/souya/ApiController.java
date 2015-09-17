@@ -43,6 +43,7 @@ public class ApiController {
 
 	/**
 	 * テスト結果（正解値）をアップデートする テストケース初回のみ実行すること
+	 * 補足：テストユニットから呼び出される
 	 *
 	 * @param req
 	 * @return
@@ -52,7 +53,6 @@ public class ApiController {
 	@ResponseStatus(HttpStatus.OK)
 	public boolean updateResult(@RequestBody ReqUpdateTestResult req)
 			throws UnsupportedEncodingException {
-
 		logger.info("updateTestResult");
 		boolean result = false;
 		result = inputPatternSvc.updateResult(req.id, req.html, req.db);
@@ -63,6 +63,7 @@ public class ApiController {
 
 	/**
 	 * テスト結果をアップデートする
+	 * 補足：テストユニットから呼び出される
 	 *
 	 * @param req
 	 * @return
@@ -82,30 +83,52 @@ public class ApiController {
 
 	}
 
-
-
+	/**
+	 * テストユニットを自動生成する
+	 * 補足：テストツールから呼び出される
+	 *
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(value = "/generateTestCase", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public boolean generateTestCase(@RequestBody ReqTestCaseAdminGenerate req) {
 		logger.info("generateTestCase");
 		boolean result = false;
-
-		req.id = 1;
-
 		if (req == null || req.id == null) {
 			logger.warn("idがnull");
 			return false;
 		}
-
 		result = generateTestSource.generate(req.id, req.input_ids);
-		if (!result)
-			return false;
-
 		return result;
 	}
 
 
 
+	/**
+	 * テストケースをリセットする（回数リセット）
+	 * 補足：テストツールから呼び出される
+	 *
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping(value = "/resetTestCase", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public boolean resetTestCase(@RequestBody ReqTestCaseAdminGenerate req) {
+		logger.info("resetTestCase");
+		boolean result = false;
+		if (req == null || req.id == null) {
+			logger.warn("idがnull");
+			return false;
+		}
+
+		for (Integer id : req.input_ids) {
+			result = inputPatternSvc.reset(id);
+			if(!result) return false;
+		}
+
+		return result;
+	}
 
 
 
