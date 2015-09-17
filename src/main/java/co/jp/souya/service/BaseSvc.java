@@ -27,8 +27,12 @@ public abstract class BaseSvc {
 	}
 
 	protected void destroy() {
-		em.close();
-		emf.close();
+		if(em!=null){
+			em.close();
+		}
+		if(emf!=null){
+			emf.close();
+		}
 	}
 
 }
