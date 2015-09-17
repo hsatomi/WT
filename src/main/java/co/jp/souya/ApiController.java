@@ -85,7 +85,6 @@ public class ApiController {
 
 	/**
 	 * テストユニットを自動生成する
-	 * 補足：テストツールから呼び出される
 	 *
 	 * @param req
 	 * @return
@@ -99,13 +98,15 @@ public class ApiController {
 			logger.warn("idがnull");
 			return false;
 		}
-		result = generateTestSource.generate(req.id, req.input_ids);
+		//result = generateTestSource.generate(req.id, req.input_ids);
+
+		result = generateTestSource.gitpush();
+
 		return result;
 	}
 
 	/**
 	 * テストケースをリセットする（回数リセット）
-	 * 補足：テストツールから呼び出される
 	 *
 	 * @param req
 	 * @return
@@ -127,6 +128,13 @@ public class ApiController {
 
 		return result;
 	}
+
+
+
+
+
+
+
 
 
 

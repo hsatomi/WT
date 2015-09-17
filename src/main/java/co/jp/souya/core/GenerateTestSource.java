@@ -34,6 +34,37 @@ public class GenerateTestSource {
 	@Autowired
 	private DaoSvc daoSvc;
 
+
+	/**
+	 * Git Pushをする
+	 * @return
+	 */
+	public boolean gitpush() {
+		boolean result = false;
+
+		try {
+			Runtime r = Runtime.getRuntime();
+			Process process = r.exec("C:\\Temp\\displayTree.cmd");
+
+			process.waitFor();
+			int ret = process.exitValue();
+			System.out.println("戻り値：" + ret);
+
+
+
+		} catch (Exception e) {
+			logger.error(e.getMessage(),e);
+		}
+		return result;
+	}
+
+
+	/**
+	 * 指定された設定でユニットテストコードを自動生成する
+	 * @param id
+	 * @param input_ids
+	 * @return
+	 */
 	public boolean generate(Integer id, List<Integer> input_ids) {
 		boolean result = false;
 
