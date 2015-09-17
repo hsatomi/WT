@@ -1,5 +1,5 @@
-#!/sh/bin
-#!内容を自動でローカルリポジトリにPUSHするスクリプト
+#!/bin/sh
+#内容を自動でローカルリポジトリにPUSHするスクリプト
 
 cd /home/souya/wt/
 git add .
