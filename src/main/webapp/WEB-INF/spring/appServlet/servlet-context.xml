@@ -29,16 +29,16 @@
 	<beans:bean id="TTConst" class="co.jp.souya.tool.TTConst">
 
 		<!-- local開発環境 -->
+		<!--
 		<beans:property name="PATH_GENERATESRC_OUTPUT" value="C:\Users\hsatomi\git\wt\src\test\java\co\jp\souya\" />
 		<beans:property name="URL_API_BASE" value="http://localhost:8080/souya" />
 		<beans:property name="PATH_GITPUSHSCRIPT" value="C:\Users\hsatomi\git\wt\auto_git_for_local.cmd" />
+		 -->
 
 		<!-- WTサーバ用 -->
-		<!--
 		<beans:property name="PATH_GENERATESRC_OUTPUT" value="/home/souya/wt/src/test/java/co/jp/souya/" />
-		<beans:property name="URL_API_BASE" value="http://localhost:8080/wt" />
+		<beans:property name="URL_API_BASE" value="http://192.168.0.142:8080/wt" />
 		<beans:property name="PATH_GITPUSHSCRIPT" value="/home/souya/wt/auto_git_for_wt.sh" />
-		 -->
 
 		<!--
 		<beans:property name="ACTION_CLICK" value="" />
