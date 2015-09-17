@@ -7,6 +7,7 @@ public class TTConst {
 	//デフォルト値と考えること
 	//運用時値はDIで上書き設定する -> 設定：servlet-context.xml
 	public static String PATH_GENERATESRC_OUTPUT="C:\\Temp\\";
+	public static String PATH_GITPUSHSCRIPT="C:\\Users\\hsatomi\\git\\wt\\auto_git_for_local.cmd";
 	public static String ACTION_CLICK="click";
 	public static String ACTION_SENDKEYS="sendKeys";
 	public static String URL_API_BASE="http://localhost:8080/souya";
