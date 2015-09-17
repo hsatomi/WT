@@ -7,6 +7,7 @@
     document.getElementById("parameter_pattern").style.height = window.parent.screen.height * 0.8 + "px";
 };
 
+//画面遷移
 function move_InputParameters(id) {
 	location.href = "InputParameters?id=" + id;
 	return;
@@ -17,17 +18,47 @@ function move_InputParameters(id) {
 //    }
 }
 
-function generate(_id){
+//回数リセット
+function reset(_id){
+	var ids = getSelectedStr();
+	if(ids.length==0){
+		alert("未選択です");
+		return;
+	}
 
-	//TODO:選択されているテストケース管理idとテストケースNoを送信する
-//	var data = {"id":id
-//			,input_ids:[1,2,3]
-//	};
-	var data = {"id":_id,"input_ids":[1,2,3,4,5]};
-
+	var data = {"id":_id,"input_ids":ids};
     $.ajax({
         type:"post",
-        url:"http://localhost:8080/souya/api/generateTestCase",
+        url:URL_RESET,
+        data:JSON.stringify(data),
+        contentType: 'application/json',
+        dataType: "json",
+        success: function(json_data1) {
+            // 成功時の処理
+        	alert("リセットしました");
+        	location.reload();
+        },
+        error: function(json_data2) {
+            // 失敗時の処理
+        	alert("失敗");
+        }
+
+    });
+}
+
+//テストユニット自動生成
+function generate(_id){
+
+	var ids = getSelectedStr();
+	if(ids.length==0){
+		alert("未選択です");
+		return;
+	}
+
+	var data = {"id":_id,"input_ids":ids};
+    $.ajax({
+        type:"post",
+        url:URL_GENERATE,
         data:JSON.stringify(data),
         contentType: 'application/json',
         dataType: "json",
@@ -37,10 +68,58 @@ function generate(_id){
         },
         error: function(json_data2) {
             // 失敗時の処理
-        	alert("生成失敗");
+        	alert("失敗");
         }
 
     });
+}
 
+//全て選択
+function selectAll(){
+	var i;
+	var chkboxes = document.getElementsByClassName("chkbox");
+	for(i=0;i<chkboxes.length;i++){
+		var chk = chkboxes[i];
+		chk.checked = true;
+	}
+}
 
+//NGだけ選択
+function selectNG(){
+	var i;
+	var chkboxes = document.getElementsByClassName("chkbox");
+	for(i=0;i<chkboxes.length;i++){
+		var chk = chkboxes[i];
+		chk.checked = true;
+	}
+}
+
+//全て解除
+function unselectAll(){
+	var i;
+	var chkboxes = document.getElementsByClassName("chkbox");
+	for(i=0;i<chkboxes.length;i++){
+		var chk = chkboxes[i];
+		chk.checked = false;
+	}
+}
+
+//選択されているidリストを取得 ex. "1,2,4"
+function getSelectedStr(){
+	var i;
+	var list=[];
+	var chkboxes = document.getElementsByClassName("chkbox");
+	for(i=0;i<chkboxes.length;i++){
+		var chk = chkboxes[i];
+		if(chk.checked){
+			var val = chk.value;
+//			if(list==""){
+//				list+=val;
+//			}else{
+//				list+=","+val;
+//			}
+			list.push(val);
+		}
+	}
+	return list;
 }

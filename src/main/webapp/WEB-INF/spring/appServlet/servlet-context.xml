@@ -26,4 +26,32 @@
 	<context:component-scan base-package="co.jp.souya" />
 
 
+	<beans:bean id="TTConst" class="co.jp.souya.tool.TTConst">
+
+		<!-- local開発環境 -->
+		<!--
+		<beans:property name="PATH_GENERATESRC_OUTPUT" value="C:\Users\hsatomi\git\wt\src\test\java\co\jp\souya\" />
+		<beans:property name="URL_API_BASE" value="http://localhost:8080/souya" />
+		 -->
+
+		<!-- WTサーバ用 -->
+		<beans:property name="PATH_GENERATESRC_OUTPUT" value="C:\Users\hsatomi\git\wt\src\test\java\co\jp\souya\" />
+		<beans:property name="URL_API_BASE" value="http://localhost:8080/souya" />
+
+		<!--
+		<beans:property name="ACTION_CLICK" value="" />
+		<beans:property name="ACTION_SENDKEYS" value="" />
+		<beans:property name="URL_UPDATE_TEST_RESULT" value="" />
+		<beans:property name="URL_UPDATE_RESULT" value="" />
+		<beans:property name="URL_RESET_TESTCASE" value="" />
+		<beans:property name="URL_GENERATE_TESTCASE" value="" />
+		<beans:property name="TEST_RESULT_OK" value="" />
+		<beans:property name="TEST_RESULT_NG" value="" />
+		<beans:property name="JOB_STATUS_START" value="" />
+		<beans:property name="JOB_STATUS_EXEC" value="" />
+		<beans:property name="JOB_STATUS_FINISH" value="" />
+		 -->
+	</beans:bean>
+
+
 </beans:beans>

@@ -60,11 +60,13 @@ public class GenerateTestSource {
 
 			// ----------------クラス構築----------------
 			String strGenerateCls = getHinagata();
+			String strプロジェクト名;
 			{
 				//プロジェクト名生成
+				strプロジェクト名 = "project" + daoプロジェクト管理.getId();
 				strGenerateCls = strGenerateCls.replace(
 						"co.jp.souya.prototype",
-						"co.jp.souya.project" + daoプロジェクト管理.getId()
+						"co.jp.souya." + strプロジェクト名
 						);
 			}
 			String strクラス名;
@@ -361,7 +363,7 @@ public class GenerateTestSource {
 
 			try {
 				//クラスファイル出力
-				FileWriter fw = new FileWriter(TTConst.PATH_GENERATESRC_OUTPUT + strクラス名 + ".java");
+				FileWriter fw = new FileWriter(TTConst.PATH_GENERATESRC_OUTPUT + strプロジェクト名 + "\\" + strクラス名 +  ".java");
 				fw.write(strGenerateCls);
 				fw.close();
 			} catch (IOException ioe) {
@@ -393,7 +395,11 @@ public class GenerateTestSource {
 		strbuf.append(sep);
 		strbuf.append("import java.io.File;");
 		strbuf.append(sep);
+		strbuf.append("import java.io.UnsupportedEncodingException;");
+		strbuf.append(sep);
 		strbuf.append("import java.net.URI;");
+		strbuf.append(sep);
+		strbuf.append("import java.net.URLDecoder;");
 		strbuf.append(sep);
 		strbuf.append("import java.net.URLEncoder;");
 		strbuf.append(sep);

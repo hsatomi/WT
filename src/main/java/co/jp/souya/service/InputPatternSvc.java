@@ -117,4 +117,35 @@ public class InputPatternSvc extends BaseSvc {
 
 		return true;
 	}
+
+	/**
+	 * テストケースをリセットする
+	 * @param id
+	 * @return
+	 */
+	public boolean reset(int id) {
+
+		try {
+			init();
+			tx.begin();
+
+			InputPattern dao = em.find(InputPattern.class, id);
+			dao.set実行回数(0);
+			dao.setJob状況("");
+			dao.set判定結果("");
+			//TODO:全部リセットする？
+			em.persist(dao);
+
+			tx.commit();
+
+		} catch (Throwable e) {
+			tx.rollback();
+			logger.error(e.getMessage(), e);
+			return false;
+		} finally {
+			destroy();
+		}
+
+		return true;
+	}
 }
