@@ -27,8 +27,17 @@
 
 
 	<beans:bean id="TTConst" class="co.jp.souya.tool.TTConst">
-		<beans:property name="PATH_GENERATESRC_OUTPUT" value="C:\Temp\" />
+
+		<!-- local開発環境 -->
+		<beans:property name="PATH_GENERATESRC_OUTPUT" value="C:\Users\hsatomi\git\wt\src\test\java\co\jp\souya\" />
 		<beans:property name="URL_API_BASE" value="http://localhost:8080/souya" />
+
+		<!-- WTサーバ用 -->
+		<!--
+		<beans:property name="PATH_GENERATESRC_OUTPUT" value="C:\Users\hsatomi\git\wt\src\test\java\co\jp\souya\" />
+		<beans:property name="URL_API_BASE" value="http://localhost:8080/souya" />
+		 -->
+
 		<!--
 		<beans:property name="ACTION_CLICK" value="" />
 		<beans:property name="ACTION_SENDKEYS" value="" />
@@ -43,8 +52,6 @@
 		<beans:property name="JOB_STATUS_FINISH" value="" />
 		 -->
 	</beans:bean>
-	<!--
-	 -->
 
 
 </beans:beans>
