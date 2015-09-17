@@ -20,6 +20,9 @@
 			<property name="hibernate.format_sql" value="false"/>
 			<property name="hibernate.connection.autocommit" value="true" />
 			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
+
+            <!--
+			 -->
 			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:C:\Users\hsatomi\OneDrive\ドキュメント\社内開発MTG\資料\解析ツール　テスト部分\設計資料\DB実装\TestTool.db"/>
 
 			<!-- 変更した内容、コメントアウトした内容を以下に残しておく -->
