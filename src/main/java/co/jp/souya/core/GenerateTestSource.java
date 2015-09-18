@@ -355,8 +355,6 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("			request.put(\"id\", " + inputPattern.getId() + ");");
 						strReplace.append(sep);
-						strReplace.append("			request.put(\"execTimes\", " + (inputPattern.get実行回数()+1) + ");");
-						strReplace.append(sep);
 						strReplace.append("			request.put(\"html\", URLEncoder.encode(strResultWeb, \"UTF-8\"));");
 						strReplace.append(sep);
 						strReplace.append("			request.put(\"db\", URLEncoder.encode(strResultDB, \"UTF-8\"));");
