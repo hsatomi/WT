@@ -108,7 +108,6 @@ function execjenkins(_id){
         	alert("失敗");
         }
     });
-	polling(_id);
 }
 
 //Jenkinsジョブポーリング
