@@ -19,6 +19,7 @@ import co.jp.souya.requestbody.ReqUpdateTestResult;
 import co.jp.souya.service.DaoSvc;
 import co.jp.souya.service.InputPatternSvc;
 import co.jp.souya.service.TestCaseAdminSvc;
+import co.jp.souya.tool.TTConst;
 
 /**
  * テストツール機能を外部から利用するためのAPIを提供する
@@ -126,17 +127,15 @@ public class ApiController {
 			return false;
 		}
 		result = generateTestSource.generate(req.id, req.input_ids);
-
 		result = generateTestSource.gitpush();
-
-		result = inputPatternSvc.updateTestStatus(req.input_ids);
+		result = inputPatternSvc.updateTestStatus(req.input_ids,TTConst.JOB_STATUS_START);
 
 		return result;
 	}
 
 
 	/**
-	 * jenkins jobを起動する
+	 * テストユニットを実行する（jenkins job起動）
 	 * @param req
 	 * @return
 	 */
@@ -150,6 +149,7 @@ public class ApiController {
 			return false;
 		}
 
+		result = inputPatternSvc.updateTestStatus(req.input_ids,TTConst.JOB_STATUS_EXEC);
 		result = testCaseAdminSvc.execJenkins(req.id);
 
 		return result;

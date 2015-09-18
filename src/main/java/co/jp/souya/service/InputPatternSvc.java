@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import co.jp.souya.dto.InputParametersDTO;
 import co.jp.souya.jpa.InputPattern;
 import co.jp.souya.jpa.ParametaValue;
-import co.jp.souya.tool.TTConst;
 
 @Service
 public class InputPatternSvc extends BaseSvc {
@@ -88,9 +87,10 @@ public class InputPatternSvc extends BaseSvc {
 	/**
 	 * テストケースを登録済み状態にする
 	 * @param input_ids
+	 * @param status
 	 * @return
 	 */
-	public boolean updateTestStatus(List<Integer> input_ids) {
+	public boolean updateTestStatus(List<Integer> input_ids,String status) {
 
 		if (input_ids == null)
 			return true;
@@ -101,7 +101,7 @@ public class InputPatternSvc extends BaseSvc {
 
 			for (Integer id : input_ids) {
 				InputPattern dao = em.find(InputPattern.class, id);
-				dao.setJob状況(TTConst.JOB_STATUS_START);
+				dao.setJob状況(status);
 				em.persist(dao);
 			}
 
