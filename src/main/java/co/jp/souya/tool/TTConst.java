@@ -25,12 +25,7 @@ public class TTConst {
 
 
 	//↓↓↓↓↓↓↓自動生成したセッター INJECTに必要↓↓↓↓↓↓↓↓
-	public static void setURL_EXECJENKINS(String uRL_EXECJENKINS) {
-		URL_EXECJENKINS = uRL_EXECJENKINS;
-	}
-	public static void setURL_JENKINS_JOB_BASE(String uRL_JENKINS_JOB_BASE) {
-		URL_JENKINS_JOB_BASE = uRL_JENKINS_JOB_BASE;
-	}
+
 	public static void setPATH_GENERATESRC_OUTPUT(String pATH_GENERATESRC_OUTPUT) {
 		PATH_GENERATESRC_OUTPUT = pATH_GENERATESRC_OUTPUT;
 	}
@@ -57,6 +52,12 @@ public class TTConst {
 	}
 	public static void setURL_GENERATE_TESTCASE(String uRL_GENERATE_TESTCASE) {
 		URL_GENERATE_TESTCASE = uRL_GENERATE_TESTCASE;
+	}
+	public static void setURL_EXECJENKINS(String uRL_EXECJENKINS) {
+		URL_EXECJENKINS = uRL_EXECJENKINS;
+	}
+	public static void setURL_JENKINS_JOB_BASE(String uRL_JENKINS_JOB_BASE) {
+		URL_JENKINS_JOB_BASE = uRL_JENKINS_JOB_BASE;
 	}
 	public static void setTEST_RESULT_OK(String tEST_RESULT_OK) {
 		TEST_RESULT_OK = tEST_RESULT_OK;

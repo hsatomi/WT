@@ -47,6 +47,8 @@
 		<beans:property name="URL_UPDATE_RESULT" value="" />
 		<beans:property name="URL_RESET_TESTCASE" value="" />
 		<beans:property name="URL_GENERATE_TESTCASE" value="" />
+		<beans:property name="URL_JENKINS_JOB_BASE" value="" />
+		<beans:property name="URL_EXECJENKINS" value="" />
 		<beans:property name="TEST_RESULT_OK" value="" />
 		<beans:property name="TEST_RESULT_NG" value="" />
 		<beans:property name="JOB_STATUS_START" value="" />
