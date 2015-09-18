@@ -479,7 +479,8 @@ public class TTUtility {
 			FileInputStream fis;
 			fis = new FileInputStream(file);
 			fis.read(data);
-			encodeResult = Base64.encodeBase64URLSafeString(data);
+//			encodeResult = Base64.encodeBase64URLSafeString(data);
+			encodeResult = Base64.encodeBase64String(data);
 
 			// byte[] data2 = Base64.decodeBase64(encodeResult);
 			// FileOutputStream fos = new FileOutputStream("output.txt");
