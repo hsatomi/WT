@@ -22,7 +22,7 @@ function move_InputParameters(id) {
 function reset(_id){
 	var ids = getSelectedStr();
 	if(ids.length==0){
-		alert("未選択です");
+		alert("ケースが未選択です");
 		return;
 	}
 
@@ -35,7 +35,11 @@ function reset(_id){
         dataType: "json",
         success: function(json_data1) {
             // 成功時の処理
-        	alert("リセットしました");
+        	if(json_data1 == true){
+            	alert("リセットしました");
+        	}else{
+            	alert("リセットに失敗しました");
+        	}
         	location.reload();
         },
         error: function(json_data2) {
@@ -49,7 +53,7 @@ function reset(_id){
 function generate(_id){
 	var ids = getSelectedStr();
 	if(ids.length==0){
-		alert("未選択です");
+		alert("ケースが未選択です");
 		return;
 	}
 
@@ -62,7 +66,11 @@ function generate(_id){
         dataType: "json",
         success: function(json_data1) {
             // 成功時の処理
-        	alert("生成成功");
+        	if(json_data1 == true){
+            	alert("テストユニットを生成しました");
+        	}else{
+            	alert("テストユニットの生成に失敗しました");
+        	}
         },
         error: function(json_data2) {
             // 失敗時の処理
