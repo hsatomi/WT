@@ -11,12 +11,13 @@ public class TTConst {
 	public static String ACTION_CLICK="click";
 	public static String ACTION_SENDKEYS="sendKeys";
 	public static String URL_API_BASE="http://localhost:8080/souya";
+	public static String URL_JENKINS_JOB_BASE="http://192.168.0.142:8081/jenkins/job/";
 	public static String URL_UPDATE_TEST_RESULT="/api/updateTestResult";
 	public static String URL_UPDATE_RESULT="/api/updateResult";
 	public static String URL_RESET_TESTCASE="/api/resetTestCase";
 	public static String URL_GENERATE_TESTCASE="/api/generateTestCase";
 	public static String URL_EXECJENKINS="/api/execJenkins";
-	public static String URL_JENKINS_JOB_BASE="http://192.168.0.142:8081/jenkins/job/";
+	public static String URL_POLLINGJENKINS="/api/pollingJenkins";
 	public static String TEST_RESULT_OK="OK";
 	public static String TEST_RESULT_NG="NG";
 	public static String JOB_STATUS_START="登録済み";

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.jp.souya.core.GenerateTestSource;
+import co.jp.souya.dto.TestCaseAdminDTO;
+import co.jp.souya.jpa.InputPattern;
 import co.jp.souya.requestbody.ReqTestCaseAdminGenerate;
 import co.jp.souya.requestbody.ReqUpdateTestResult;
 import co.jp.souya.service.DaoSvc;
@@ -157,6 +159,47 @@ public class ApiController {
 
 
 
+	/**
+	 * Jenkinsジョブ状態をポーリングする
+	 * 状態が何か変更すれば応答をクライアントに返す
+	 * ajaxからの利用を前提とする
+	 * @param req
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public boolean pollingJenkins(@RequestBody ReqTestCaseAdminGenerate req) throws InterruptedException {
+		logger.info("pollingJenkins");
+		boolean result = false;
+		if (req == null || req.id == null) {
+			logger.warn("idがnull");
+			return false;
+		}
+
+		int counter = 0;
+		while(true){
+			TestCaseAdminDTO dto = testCaseAdminSvc.getDTO(req.id);
+			int cnt実行中 = 0;
+			for (InputPattern inputPattern : dto.get入力パターンリスト()) {
+				if(TTConst.JOB_STATUS_EXEC.equals(inputPattern.getJob状況())){
+					cnt実行中++;
+				}
+			}
+			if(cnt実行中==0){
+				break;
+			}
+
+			//3秒待機
+			Thread.sleep(3000);
+
+			counter++;
+			if(counter > 30){
+				logger.warn("TIMEOUT! JOB状態待機が指定回数を超過しました");
+				break;
+			}
+		}
+
+		return result;
+	}
 
 
 

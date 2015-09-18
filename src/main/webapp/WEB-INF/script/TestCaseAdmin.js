@@ -99,6 +99,7 @@ function execjenkins(_id){
         	if(json_data1 == true){
             	alert("JOB実行を登録しました");
             	location.reload();
+            	polling(_id);
         	}else{
             	alert("JOB実行の登録に失敗しました");
         	}
@@ -110,6 +111,25 @@ function execjenkins(_id){
     });
 }
 
+//Jenkinsジョブポーリング
+function polling(_id){
+	var data = {"id":_id};
+    $.ajax({
+        type:"post",
+        url:URL_POLLING,
+        data:JSON.stringify(data),
+        contentType: 'application/json',
+        dataType: "json",
+        success: function(json_data1) {
+            // 成功時の処理
+        	location.reload();
+        },
+        error: function(json_data2) {
+            // 失敗時の処理
+        	alert("ポーリング失敗");
+        }
+    });
+}
 
 //全て選択
 function selectAll(){
