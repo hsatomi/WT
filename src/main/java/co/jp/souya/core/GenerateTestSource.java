@@ -58,6 +58,8 @@ public class GenerateTestSource {
 			int ret = process.exitValue();
 			logger.info("戻り値：" + ret);
 
+			result = true;
+
 		} catch (Exception e) {
 			logger.error(e.getMessage(),e);
 		}
