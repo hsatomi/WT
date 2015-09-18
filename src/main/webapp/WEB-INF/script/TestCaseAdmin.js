@@ -57,7 +57,6 @@ function generate(_id){
 		alert("ケースが未選択です");
 		return;
 	}
-
 	var data = {"id":_id,"input_ids":ids};
     $.ajax({
         type:"post",
@@ -83,7 +82,12 @@ function generate(_id){
 
 //Jenkins実行登録
 function execjenkins(_id){
-	var data = {"id":_id};
+	var ids = getSelectedStr();
+	if(ids.length==0){
+		alert("ケースが未選択です");
+		return;
+	}
+	var data = {"id":_id,"input_ids":ids};
     $.ajax({
         type:"post",
         url:URL_EXECJENKINS,
