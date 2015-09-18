@@ -15,6 +15,7 @@ public class TTConst {
 	public static String URL_UPDATE_RESULT="/api/updateResult";
 	public static String URL_RESET_TESTCASE="/api/resetTestCase";
 	public static String URL_GENERATE_TESTCASE="/api/generateTestCase";
+	public static String URL_EXECJENKINS="/api/execJenkins";
 	public static String TEST_RESULT_OK="OK";
 	public static String TEST_RESULT_NG="NG";
 	public static String JOB_STATUS_START="登録済み";

@@ -1,7 +1,5 @@
 package co.jp.souya.service;
 
-import static org.junit.Assert.*;
-
 import java.net.URI;
 import java.util.List;
 
@@ -91,7 +89,7 @@ public class TestCaseAdminSvc extends BaseSvc {
 	 * @param id
 	 * @return
 	 */
-	public boolean execTest(int id){
+	public boolean execJenkins(int id){
 		// 結果更新
 		try {
 			// ----------------必要情報取得----------------
@@ -112,8 +110,8 @@ public class TestCaseAdminSvc extends BaseSvc {
 			System.out.println("Response: " + response);
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			assertTrue(false);
+			logger.error(e.getMessage(),e);
+			return false;
 		}
 		return true;
 	}

@@ -42,13 +42,11 @@ function reset(_id){
             // 失敗時の処理
         	alert("失敗");
         }
-
     });
 }
 
 //テストユニット自動生成
 function generate(_id){
-
 	var ids = getSelectedStr();
 	if(ids.length==0){
 		alert("未選択です");
@@ -70,9 +68,33 @@ function generate(_id){
             // 失敗時の処理
         	alert("失敗");
         }
-
     });
 }
+
+//Jenkins実行登録
+function execjenkins(_id){
+	var data = {"id":_id};
+    $.ajax({
+        type:"post",
+        url:URL_EXECJENKINS,
+        data:JSON.stringify(data),
+        contentType: 'application/json',
+        dataType: "json",
+        success: function(json_data1) {
+            // 成功時の処理
+        	if(json_data1 == true){
+            	alert("JOB実行を登録しました");
+        	}else{
+            	alert("JOB実行の登録に失敗しました");
+        	}
+        },
+        error: function(json_data2) {
+            // 失敗時の処理
+        	alert("失敗");
+        }
+    });
+}
+
 
 //全て選択
 function selectAll(){

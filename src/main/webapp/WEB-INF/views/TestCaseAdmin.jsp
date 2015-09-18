@@ -15,6 +15,8 @@
 <script>
 var URL_RESET = "<%= TTConst.URL_API_BASE+TTConst.URL_RESET_TESTCASE %>";
 var URL_GENERATE = "<%= TTConst.URL_API_BASE+TTConst.URL_GENERATE_TESTCASE %>";
+var URL_EXECJENKINS = "<%= TTConst.URL_API_BASE+TTConst.URL_EXECJENKINS %>";
+
 </script>
 
 </head>
@@ -76,7 +78,7 @@ var URL_GENERATE = "<%= TTConst.URL_API_BASE+TTConst.URL_GENERATE_TESTCASE %>";
 			<br>
 			<input type="button" name="btnReset" value="回数リセット" onClick="reset(${dto.テストケース管理.id})" />
 			<input type="button" name="btnGenerate" value="生成" onClick="generate(${dto.テストケース管理.id})" />
-			<input type="button" name="btnExec" value="実行" onClick="generate(${dto.テストケース管理.id})" />
+			<input type="button" name="btnExec" value="実行" onClick="execjenkins(${dto.テストケース管理.id})" />
 			<input type="button" name="btnSelectAll" value="全て選択" onClick="selectAll()" />
 			<input type="button" name="btnSelectNG" value="NGパターン選択" onClick="selectNG()" />
 			<input type="button" name="btnUnselectAll" value="全て解除" onClick="unselectAll()" />

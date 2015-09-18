@@ -140,17 +140,17 @@ public class ApiController {
 	 * @param req
 	 * @return
 	 */
-	@RequestMapping(value = "/executeTest", method = RequestMethod.POST)
+	@RequestMapping(value = "/execJenkins", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public boolean executeTest(@RequestBody ReqTestCaseAdminGenerate req) {
-		logger.info("executeTest");
+	public boolean execJenkins(@RequestBody ReqTestCaseAdminGenerate req) {
+		logger.info("execJenkins");
 		boolean result = false;
 		if (req == null || req.id == null) {
 			logger.warn("idがnull");
 			return false;
 		}
 
-		result = testCaseAdminSvc.execTest(req.id);
+		result = testCaseAdminSvc.execJenkins(req.id);
 
 		return result;
 	}
