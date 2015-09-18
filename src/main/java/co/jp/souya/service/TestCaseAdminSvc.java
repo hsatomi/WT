@@ -57,22 +57,37 @@ public class TestCaseAdminSvc extends BaseSvc {
 		try {
 			init();
 
-			TestCaseAdmin wテストケース管理 = em.find(TestCaseAdmin.class, id);
-			MovePatternAdmin w遷移パターン管理 = em.find(MovePatternAdmin.class,
-					wテストケース管理.get遷移パターン管理id());
-			List<MovePatternDetail> w遷移パターン明細リスト = em
+			TestCaseAdmin daoテストケース管理 = em.find(TestCaseAdmin.class, id);
+			MovePatternAdmin dao遷移パターン管理 = em.find(MovePatternAdmin.class,
+					daoテストケース管理.get遷移パターン管理id());
+			List<MovePatternDetail> dao遷移パターン明細リスト = em
 					.createNamedQuery("MovePatternDetail.findListById")
-					.setParameter("遷移パターン管理id", w遷移パターン管理.getId())
+					.setParameter("遷移パターン管理id", dao遷移パターン管理.getId())
 					.getResultList();
-			List<InputPattern> w入力パターンリスト = em
+			List<InputPattern> dao入力パターンリスト = em
 					.createNamedQuery("InputPattern.findListById")
-					.setParameter("テストケース管理id", wテストケース管理.getId())
+					.setParameter("テストケース管理id", daoテストケース管理.getId())
 					.getResultList();
 
-			dto.setテストケース管理(wテストケース管理);
-			dto.set遷移パターン管理(w遷移パターン管理);
-			dto.set遷移パターン明細リスト(w遷移パターン明細リスト);
-			dto.set入力パターンリスト(w入力パターンリスト);
+			DisplayAdmin dao画面管理
+			= daoSvc.getDisplayAdmin(daoテストケース管理.get画面管理id());
+			ProjectAdmin daoプロジェクト管理
+			= daoSvc.getProjectAdmin(dao画面管理.getプロジェクトid());
+
+			//クラス名生成
+			String strLinkJenkins = "";
+			{
+				long nケース管理番号 = 10000*daoプロジェクト管理.getId()
+						+1*daoテストケース管理.getId();
+				String strクラス名 = "Case" + nケース管理番号;
+				strLinkJenkins = TTConst.URL_JENKINS_JOB_BASE + strクラス名 + "/lastBuild";
+			}
+
+			dto.setテストケース管理(daoテストケース管理);
+			dto.set遷移パターン管理(dao遷移パターン管理);
+			dto.set遷移パターン明細リスト(dao遷移パターン明細リスト);
+			dto.set入力パターンリスト(dao入力パターンリスト);
+			dto.setジェンキンスURL(strLinkJenkins);
 
 		} catch (Throwable e) {
 			logger.error(e.getMessage(), e);

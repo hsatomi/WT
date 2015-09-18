@@ -137,8 +137,9 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 					</td>
 				</tr>
 				</c:forEach>
-
 			</table>
+			<br>
+			<a href="${dto.ジェンキンスURL}">JOBの確認</a>
 		</div>
 	</div>
 </body>

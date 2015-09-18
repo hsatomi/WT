@@ -16,6 +16,7 @@ public class TestCaseAdminDTO {
 	private MovePatternAdmin 遷移パターン管理;
 	private List<MovePatternDetail> 遷移パターン明細リスト;
 	private List<InputPattern> 入力パターンリスト;
+	private String ジェンキンスURL;
 
 	public TestCaseAdmin getテストケース管理() {
 		return テストケース管理;
@@ -48,5 +49,14 @@ public class TestCaseAdminDTO {
 	public void set入力パターンリスト(List<InputPattern> 入力パターンリスト) {
 		this.入力パターンリスト = 入力パターンリスト;
 	}
+
+	public String getジェンキンスURL() {
+		return ジェンキンスURL;
+	}
+
+	public void setジェンキンスURL(String ジェンキンスurl) {
+		ジェンキンスURL = ジェンキンスurl;
+	}
+
 
 }
