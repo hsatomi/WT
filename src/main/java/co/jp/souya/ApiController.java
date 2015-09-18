@@ -167,6 +167,8 @@ public class ApiController {
 	 * @return
 	 * @throws InterruptedException
 	 */
+	@RequestMapping(value = "/pollingJenkins", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
 	public boolean pollingJenkins(@RequestBody ReqTestCaseAdminGenerate req) throws InterruptedException {
 		logger.info("pollingJenkins");
 		boolean result = false;
@@ -174,6 +176,9 @@ public class ApiController {
 			logger.warn("idがnull");
 			return false;
 		}
+
+		//3秒待機
+		Thread.sleep(3000);
 
 		int counter = 0;
 		while(true){
@@ -198,6 +203,7 @@ public class ApiController {
 			}
 		}
 
+		result = true;
 		return result;
 	}
 

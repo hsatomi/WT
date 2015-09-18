@@ -98,8 +98,8 @@ function execjenkins(_id){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("JOB実行を登録しました");
-            	location.reload();
             	polling(_id);
+//            	location.reload();
         	}else{
             	alert("JOB実行の登録に失敗しました");
         	}
