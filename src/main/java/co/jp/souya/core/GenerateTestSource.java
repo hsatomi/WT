@@ -416,15 +416,14 @@ public class GenerateTestSource {
 				FileWriter fw = new FileWriter(TTConst.PATH_GENERATESRC_OUTPUT + strプロジェクト名 + File.separator + strクラス名 +  ".java");
 				fw.write(strGenerateCls);
 				fw.close();
+
+				result = true;
 			} catch (IOException ioe) {
 				logger.error(ioe.getMessage(),ioe);
-				return false;
 			}
 
 		}catch(Exception e){
 			logger.error(e.getMessage(),e);
-			return false;
-
 		}
 
 		return result;
