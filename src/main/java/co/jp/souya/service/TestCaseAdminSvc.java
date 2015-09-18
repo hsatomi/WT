@@ -1,24 +1,49 @@
 package co.jp.souya.service;
 
+import static org.junit.Assert.*;
+
+import java.net.URI;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import co.jp.souya.dto.TestCaseAdminDTO;
+import co.jp.souya.jpa.DisplayAdmin;
 import co.jp.souya.jpa.InputPattern;
 import co.jp.souya.jpa.MovePatternAdmin;
 import co.jp.souya.jpa.MovePatternDetail;
+import co.jp.souya.jpa.ProjectAdmin;
 import co.jp.souya.jpa.TestCaseAdmin;
+import co.jp.souya.tool.TTConst;
 
+/**
+ * テストケース管理画面に絡んだサービス
+ * @author hsatomi
+ *
+ */
 @Service
 public class TestCaseAdminSvc extends BaseSvc {
 	private static final Logger logger = LoggerFactory
 			.getLogger(TestCaseAdminSvc.class);
 
+	private static HttpHeaders headers;
+	private static RestTemplate restTemplate;
+
+	@Autowired
+	private DaoSvc daoSvc;
+
 	public TestCaseAdminSvc() {
 		logger.info(this.getClass().getName());
+		//初期化
+		headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		restTemplate = new RestTemplate();
 	}
 
 	/**
@@ -59,5 +84,40 @@ public class TestCaseAdminSvc extends BaseSvc {
 
 		return dto;
 	}
+
+
+	/**
+	 * テストケース管理idでjenkinsJOBを実行する
+	 * @param id
+	 * @return
+	 */
+	public boolean execTest(int id){
+		// 結果更新
+		try {
+			// ----------------必要情報取得----------------
+			TestCaseAdmin daoテストケース管理
+			= daoSvc.getTestCaseAdmin(id);
+			DisplayAdmin dao画面管理
+			= daoSvc.getDisplayAdmin(daoテストケース管理.get画面管理id());
+			ProjectAdmin daoプロジェクト管理
+			= daoSvc.getProjectAdmin(dao画面管理.getプロジェクトid());
+			//クラス名生成
+			long nケース管理番号 = 10000*daoプロジェクト管理.getId()
+					+1*daoテストケース管理.getId();
+			String strクラス名 = "Case" + nケース管理番号;
+
+			URI url = new URI(TTConst.URL_JENKINS_JOB_BASE + strクラス名 + "/build");
+			System.out.println("URL: " + url);
+			String response = restTemplate.getForObject(url, String.class);
+			System.out.println("Response: " + response);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			assertTrue(false);
+		}
+		return true;
+	}
+
+
 
 }

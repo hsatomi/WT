@@ -22,6 +22,10 @@ public class TTConst {
 	public static String JOB_STATUS_FINISH="完了";
 
 
+
+	public static String URL_JENKINS_JOB_BASE="http://192.168.0.142:8081/jenkins/job/";
+
+
 	//↓↓↓↓↓↓↓自動生成したセッター INJECTに必要↓↓↓↓↓↓↓↓
 
 	public static void setPATH_GENERATESRC_OUTPUT(String pATH_GENERATESRC_OUTPUT) {

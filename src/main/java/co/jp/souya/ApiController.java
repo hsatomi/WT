@@ -20,6 +20,7 @@ import co.jp.souya.requestbody.ReqTestCaseAdminGenerate;
 import co.jp.souya.requestbody.ReqUpdateTestResult;
 import co.jp.souya.service.DaoSvc;
 import co.jp.souya.service.InputPatternSvc;
+import co.jp.souya.service.TestCaseAdminSvc;
 
 /**
  * テストツール機能を外部から利用するためのAPIを提供する
@@ -33,6 +34,9 @@ public class ApiController {
 
 	@Autowired
 	private InputPatternSvc inputPatternSvc;
+
+	@Autowired
+	TestCaseAdminSvc testCaseAdminSvc;
 
 	@Autowired
 	private GenerateTestSource generateTestSource;
@@ -84,28 +88,6 @@ public class ApiController {
 	}
 
 	/**
-	 * テストユニットを自動生成する
-	 *
-	 * @param req
-	 * @return
-	 */
-	@RequestMapping(value = "/generateTestCase", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.OK)
-	public boolean generateTestCase(@RequestBody ReqTestCaseAdminGenerate req) {
-		logger.info("generateTestCase");
-		boolean result = false;
-		if (req == null || req.id == null) {
-			logger.warn("idがnull");
-			return false;
-		}
-		result = generateTestSource.generate(req.id, req.input_ids);
-
-		result = generateTestSource.gitpush();
-
-		return result;
-	}
-
-	/**
 	 * テストケースをリセットする（回数リセット）
 	 *
 	 * @param req
@@ -130,9 +112,48 @@ public class ApiController {
 	}
 
 
+	/**
+	 * テストユニットを自動生成する
+	 *
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping(value = "/generateTestCase", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public boolean generateTestCase(@RequestBody ReqTestCaseAdminGenerate req) {
+		logger.info("generateTestCase");
+		boolean result = false;
+		if (req == null || req.id == null) {
+			logger.warn("idがnull");
+			return false;
+		}
+		result = generateTestSource.generate(req.id, req.input_ids);
+
+		result = generateTestSource.gitpush();
+
+		return result;
+	}
 
 
+	/**
+	 * jenkins jobを起動する
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping(value = "/executeTest", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public boolean executeTest(@RequestBody ReqTestCaseAdminGenerate req) {
+		logger.info("executeTest");
+		boolean result = false;
+		if (req == null || req.id == null) {
+			logger.warn("idがnull");
+			return false;
+		}
 
+		result = testCaseAdminSvc.execTest(req.id);
+
+		return result;
+	}
 
 
 
