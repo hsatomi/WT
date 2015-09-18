@@ -16,6 +16,7 @@ public class TTConst {
 	public static String URL_RESET_TESTCASE="/api/resetTestCase";
 	public static String URL_GENERATE_TESTCASE="/api/generateTestCase";
 	public static String URL_EXECJENKINS="/api/execJenkins";
+	public static String URL_JENKINS_JOB_BASE="http://192.168.0.142:8081/jenkins/job/";
 	public static String TEST_RESULT_OK="OK";
 	public static String TEST_RESULT_NG="NG";
 	public static String JOB_STATUS_START="登録済み";
@@ -23,12 +24,13 @@ public class TTConst {
 	public static String JOB_STATUS_FINISH="完了";
 
 
-
-	public static String URL_JENKINS_JOB_BASE="http://192.168.0.142:8081/jenkins/job/";
-
-
 	//↓↓↓↓↓↓↓自動生成したセッター INJECTに必要↓↓↓↓↓↓↓↓
-
+	public static void setURL_EXECJENKINS(String uRL_EXECJENKINS) {
+		URL_EXECJENKINS = uRL_EXECJENKINS;
+	}
+	public static void setURL_JENKINS_JOB_BASE(String uRL_JENKINS_JOB_BASE) {
+		URL_JENKINS_JOB_BASE = uRL_JENKINS_JOB_BASE;
+	}
 	public static void setPATH_GENERATESRC_OUTPUT(String pATH_GENERATESRC_OUTPUT) {
 		PATH_GENERATESRC_OUTPUT = pATH_GENERATESRC_OUTPUT;
 	}
