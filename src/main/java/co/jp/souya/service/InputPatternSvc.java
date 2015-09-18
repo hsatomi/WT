@@ -19,6 +19,11 @@ public class InputPatternSvc extends BaseSvc {
 		logger.info(this.getClass().getName());
 	}
 
+	/**
+	 * 入力パターン画面　表示情報を取得する
+	 * @param id
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public InputParametersDTO getDTO(int id) {
 
