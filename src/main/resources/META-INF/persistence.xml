@@ -16,7 +16,7 @@
 
 		<properties>
             <property name="hibernate.dialect" value="co.jp.souya.tool.SQLiteDialect"/>
-			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.show_sql" value="false"/>
 			<property name="hibernate.format_sql" value="false"/>
 			<property name="hibernate.connection.autocommit" value="true" />
 			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
