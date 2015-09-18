@@ -99,7 +99,6 @@ function execjenkins(_id){
         	if(json_data1 == true){
             	alert("JOB実行を登録しました");
             	location.reload();
-            	polling(_id);
         	}else{
             	alert("JOB実行の登録に失敗しました");
         	}
@@ -109,6 +108,7 @@ function execjenkins(_id){
         	alert("失敗");
         }
     });
+	polling(_id);
 }
 
 //Jenkinsジョブポーリング
