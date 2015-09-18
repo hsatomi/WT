@@ -22,12 +22,12 @@
 			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
 
 			<!-- ローカル開発用 -->
+			<!--
 			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:C:\Users\hsatomi\git\wtdb\TestTool.db"/>
+			 -->
 
 			<!-- WTサーバ用 -->
-			<!--
 			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:/usr/share/tomcat6/wtdb/TestTool.db"/>
-			 -->
 
 			<!-- 変更した内容、コメントアウトした内容を以下に残しておく -->
             <!--
