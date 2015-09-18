@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import co.jp.souya.dto.InputParametersDTO;
 import co.jp.souya.jpa.InputPattern;
 import co.jp.souya.jpa.ParametaValue;
+import co.jp.souya.tool.TTConst;
 
 @Service
 public class InputPatternSvc extends BaseSvc {
@@ -45,6 +46,7 @@ public class InputPatternSvc extends BaseSvc {
 
 	/**
 	 * テスト結果をアップデートする
+	 *
 	 * @param id
 	 * @param w実行回数
 	 * @param w判定結果
@@ -54,14 +56,8 @@ public class InputPatternSvc extends BaseSvc {
 	 * @param wスナップショットBase64
 	 * @return
 	 */
-	public boolean updateTestResult(int id,
-			int w実行回数,
-			String w判定結果,
-			String wJob状況,
-			String wスナップショットBase64,
-			String wHtml,
-			String wDb
-			) {
+	public boolean updateTestResult(int id, int w実行回数, String w判定結果,
+			String wJob状況, String wスナップショットBase64, String wHtml, String wDb) {
 
 		try {
 			init();
@@ -90,7 +86,41 @@ public class InputPatternSvc extends BaseSvc {
 	}
 
 	/**
+	 * テストケースを登録済み状態にする
+	 * @param input_ids
+	 * @return
+	 */
+	public boolean updateTestStatus(List<Integer> input_ids) {
+
+		if (input_ids == null)
+			return true;
+
+		try {
+			init();
+			tx.begin();
+
+			for (Integer id : input_ids) {
+				InputPattern dao = em.find(InputPattern.class, id);
+				dao.setJob状況(TTConst.JOB_STATUS_START);
+				em.persist(dao);
+			}
+
+			tx.commit();
+
+		} catch (Throwable e) {
+			tx.rollback();
+			logger.error(e.getMessage(), e);
+			return false;
+		} finally {
+			destroy();
+		}
+
+		return true;
+	}
+
+	/**
 	 * テスト結果の正解値（HTMLとDB）をアップデートする
+	 *
 	 * @param id
 	 * @return
 	 */
@@ -120,6 +150,7 @@ public class InputPatternSvc extends BaseSvc {
 
 	/**
 	 * テストケースをリセットする
+	 *
 	 * @param id
 	 * @return
 	 */
@@ -133,7 +164,7 @@ public class InputPatternSvc extends BaseSvc {
 			dao.set実行回数(0);
 			dao.setJob状況("");
 			dao.set判定結果("");
-			//TODO:全部リセットする？
+			// TODO:全部リセットする？
 			em.persist(dao);
 
 			tx.commit();

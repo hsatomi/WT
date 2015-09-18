@@ -37,10 +37,11 @@ function reset(_id){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("リセットしました");
+            	location.reload();
+            	unselectAll();
         	}else{
             	alert("リセットに失敗しました");
         	}
-        	location.reload();
         },
         error: function(json_data2) {
             // 失敗時の処理
@@ -68,6 +69,7 @@ function generate(_id){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("テストユニットを生成しました");
+            	location.reload();
         	}else{
             	alert("テストユニットの生成に失敗しました");
         	}
@@ -92,6 +94,7 @@ function execjenkins(_id){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("JOB実行を登録しました");
+            	location.reload();
         	}else{
             	alert("JOB実行の登録に失敗しました");
         	}

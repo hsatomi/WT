@@ -1,6 +1,5 @@
 package co.jp.souya;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.jp.souya.core.GenerateTestSource;
-import co.jp.souya.jpa.TestCaseAdmin;
 import co.jp.souya.requestbody.ReqTestCaseAdminGenerate;
 import co.jp.souya.requestbody.ReqUpdateTestResult;
 import co.jp.souya.service.DaoSvc;
@@ -131,6 +129,8 @@ public class ApiController {
 
 		result = generateTestSource.gitpush();
 
+		result = inputPatternSvc.updateTestStatus(req.input_ids);
+
 		return result;
 	}
 
@@ -159,27 +159,6 @@ public class ApiController {
 
 
 
-	@RequestMapping(value = "/test", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.OK)
-	public TestCaseAdmin test(@RequestBody ReqUpdateTestResult req) {
 
-		TestCaseAdmin ad = new TestCaseAdmin();
-		return ad;
-	}
-
-	@RequestMapping(value = "/test2", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.OK)
-	public boolean test2() throws IOException {
-
-//		InputPattern dao = daoSvc.getInputPattern(1);
-
-//		String encodeResult = dao.get遷移結果();
-//		byte[] data2 = Base64.decodeBase64(encodeResult);
-//		FileOutputStream fos = new FileOutputStream("C:\\Temp\\output.txt");
-//		fos.write(data2);
-//		File file = new File("C:\\Temp\\output.txt");
-
-		return true;
-	}
 
 }

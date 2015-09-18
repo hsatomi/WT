@@ -121,7 +121,7 @@ public class Case10001 {
 
 		// 正解値更新
 		try {
-			URI url = new URI("http://192.168.0.142:8080/wt/api/updateResult");
+			URI url = new URI("http://localhost:8080/souya/api/updateResult");
 			JSONObject request = new JSONObject();
 			request.put("id", 1);
 			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
@@ -145,102 +145,9 @@ public class Case10001 {
 
 		// 結果更新
 		try {
-			URI url = new URI("http://192.168.0.142:8080/wt/api/updateTestResult");
+			URI url = new URI("http://localhost:8080/souya/api/updateTestResult");
 			JSONObject request = new JSONObject();
 			request.put("id", 1);
-			request.put("execTimes", 1);
-			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
-			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
-			request.put("jobStatus", URLEncoder.encode(TTConst.JOB_STATUS_FINISH, "UTF-8"));
-			request.put("testResult", bTestResult ? TTConst.TEST_RESULT_OK : TTConst.TEST_RESULT_NG);
-			request.put("snapshot", strSnapshot);
-
-			HttpEntity<String> entity = new HttpEntity<String>(
-					request.toString(), headers);
-
-			System.out.println("URL: " + url);
-			String response = restTemplate.postForObject(url, entity,
-					String.class);
-			System.out.println("Response: " + response);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			assertTrue(false);
-		}
-
-
-
-	}
-	@Test
-	public void Test2() throws UnsupportedEncodingException{
-
-		//実行
-		boolean bTestResult = true;
-		{
-			//ユーザ名
-			WebElement element = webdriver.findElement(By.name("textfree"));
-			element.sendKeys("TESTパターン2のテストです");
-		}
-		{
-			//入力エリア適当
-			WebElement element = webdriver.findElement(By.name("textinput"));
-			element.sendKeys("test8394fj;xpw");
-		}
-		{
-			//入力エリア適当
-			WebElement element = webdriver.findElement(By.name("pass"));
-			element.sendKeys("password");
-		}
-		{
-			//パスワード
-			WebElement element = webdriver.findElement(By.name("pass"));
-			element.click();
-		}
-
-		// 実行後スナップショット取得
-		File file = ((TakesScreenshot) webdriver).getScreenshotAs(OutputType.FILE);
-		String strSnapshot = TTUtility.getBase64String(file);
-
-
-		//web状態取得・比較
-		String strResultWeb = webdriver.getPageSource();
-
-
-
-		//DB状態取得・比較
-		String strResultDB = "";
-
-
-
-		// 正解値更新
-		try {
-			URI url = new URI("http://192.168.0.142:8080/wt/api/updateResult");
-			JSONObject request = new JSONObject();
-			request.put("id", 2);
-			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
-			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
-
-			HttpEntity<String> entity = new HttpEntity<String>(
-					request.toString(), headers);
-
-			System.out.println("URL: " + url);
-			String response = restTemplate.postForObject(url, entity,
-					String.class);
-			System.out.println("Response: " + response);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			assertTrue(false);
-		}
-
-
-
-
-		// 結果更新
-		try {
-			URI url = new URI("http://192.168.0.142:8080/wt/api/updateTestResult");
-			JSONObject request = new JSONObject();
-			request.put("id", 2);
 			request.put("execTimes", 1);
 			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
 			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
