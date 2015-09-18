@@ -34,7 +34,7 @@
 	</logger>
 
 	<logger name="org.hibernate">
-		<level value=error />
+		<level value="error" />
 	</logger>
 
 	<!-- Root Logger -->
