@@ -92,10 +92,8 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 					<th>実行回数</th>
 					<th>JOB状況</th>
 					<th>キャプチャー</th>
-					<th>HTML結果</th>
-					<th>DB結果</th>
-					<th>HTML差異</th>
-					<th>DB差異</th>
+					<th width=70>HTML</th>
+					<th width=70>DB</th>
 					<th>判定結果</th>
 				</tr>
 
@@ -121,16 +119,18 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 						<img src="data:image/jpg;base64,${入力パターン.遷移結果}" width=200 />
 					</td>
 					<td>
-						<a href="javascript:move_TestCaseAdmin('htmlResult','${dto.テストケース管理.id}','${入力パターン.id}')">[確認]</a>
+						<a href="javascript:move_TestCaseAdmin('htmlCorrect','${dto.テストケース管理.id}','${入力パターン.id}')">正解値</a>
+						<br>
+						<a href="javascript:move_TestCaseAdmin('htmlResult','${dto.テストケース管理.id}','${入力パターン.id}')">実行結果</a>
+						<br>
+						<a href="javascript:move_TestCaseAdmin('htmlDiff','${dto.テストケース管理.id}','${入力パターン.id}')">差異</a>
 					</td>
 					<td>
-						<a href="${入力パターン.db}">[確認]</a>
-					</td>
-					<td>
-						<a href="javascript:move_TestCaseAdmin('htmlDiff','${dto.テストケース管理.id}','${入力パターン.id}')">[確認]</a>
-					</td>
-					<td>
-						<a href="${入力パターン.db差異}">[確認]</a>
+						<a href="javascript:move_TestCaseAdmin('dbCorrect','${dto.テストケース管理.id}','${入力パターン.id}')">正解値</a>
+						<br>
+						<a href="javascript:move_TestCaseAdmin('dbResult','${dto.テストケース管理.id}','${入力パターン.id}')">実行結果</a>
+						<br>
+						<a href="javascript:move_TestCaseAdmin('dbDiff','${dto.テストケース管理.id}','${入力パターン.id}')">差異</a>
 					</td>
 					<td>
 						${入力パターン.判定結果}

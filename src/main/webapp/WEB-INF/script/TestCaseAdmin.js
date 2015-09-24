@@ -28,7 +28,19 @@ function move_TestCaseAdmin(name,id,input_id) {
 	case "htmlDiff":
 		location.href = "TestCaseAdmin/htmlDiff?id=" + id + "&input_id=" + input_id;
 		break;
-		default: break;
+	case "htmlCorrect":
+		location.href = "TestCaseAdmin/htmlCorrect?id=" + id + "&input_id=" + input_id;
+		break;
+	case "dbResult":
+		location.href = "TestCaseAdmin/dbResult?id=" + id + "&input_id=" + input_id;
+		break;
+	case "dbDiff":
+		location.href = "TestCaseAdmin/dbDiff?id=" + id + "&input_id=" + input_id;
+		break;
+	case "dbCorrect":
+		location.href = "TestCaseAdmin/dbCorrect?id=" + id + "&input_id=" + input_id;
+		break;
+	default: break;
 	}
 
 	return;

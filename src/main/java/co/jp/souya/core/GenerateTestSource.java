@@ -264,7 +264,7 @@ public class GenerateTestSource {
 							strReplace.append(sep);
 							strReplace.append("		strExpectWeb = URLDecoder.decode(strExpectWebEncoded, \"UTF-8\");");
 							strReplace.append(sep);
-							strReplace.append("		strWebDif = TTUtility.validateWeb(strResultWeb, strExpectWeb);");
+							strReplace.append("		strWebDif = TTUtility.validateWeb(strExpectWeb, strResultWeb);");
 							strReplace.append(sep);
 							strReplace.append("		if(!strWebDif.isEmpty()) bTestResult=false;");
 							strReplace.append(sep);
