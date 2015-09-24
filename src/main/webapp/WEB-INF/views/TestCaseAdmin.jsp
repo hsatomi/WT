@@ -116,7 +116,7 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 						${入力パターン.job状況}
 					</td>
 					<td>
-						<img src="data:image/jpg;base64,${入力パターン.遷移結果}" width=200 />
+						<img src="data:image/jpg;base64,${入力パターン.遷移結果}" width=200 height=70 />
 					</td>
 					<td>
 						<a href="javascript:move_TestCaseAdmin('htmlCorrect','${dto.テストケース管理.id}','${入力パターン.id}')">正解値</a>
