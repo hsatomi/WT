@@ -315,11 +315,7 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("			request.put(\"html\", URLEncoder.encode(strResultWeb, \"UTF-8\"));");
 						strReplace.append(sep);
-						strReplace.append("			request.put(\"html_dif\", URLEncoder.encode(strWebDif, \"UTF-8\"));");
-						strReplace.append(sep);
 						strReplace.append("			request.put(\"db\", URLEncoder.encode(strResultDB, \"UTF-8\"));");
-						strReplace.append(sep);
-						strReplace.append("			request.put(\"db_dif\", URLEncoder.encode(strDBDif, \"UTF-8\"));");
 						strReplace.append(sep);
 						strReplace.append("");
 						strReplace.append(sep);
@@ -369,7 +365,11 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("			request.put(\"html\", URLEncoder.encode(strResultWeb, \"UTF-8\"));");
 						strReplace.append(sep);
+						strReplace.append("			request.put(\"html_dif\", URLEncoder.encode(strWebDif, \"UTF-8\"));");
+						strReplace.append(sep);
 						strReplace.append("			request.put(\"db\", URLEncoder.encode(strResultDB, \"UTF-8\"));");
+						strReplace.append(sep);
+						strReplace.append("			request.put(\"db_dif\", URLEncoder.encode(strDBDif, \"UTF-8\"));");
 						strReplace.append(sep);
 						strReplace.append("			request.put(\"jobStatus\", URLEncoder.encode(TTConst.JOB_STATUS_FINISH, \"UTF-8\"));");
 						strReplace.append(sep);

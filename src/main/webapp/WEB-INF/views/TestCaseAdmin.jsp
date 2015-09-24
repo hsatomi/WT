@@ -127,7 +127,7 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 						<a href="${入力パターン.db}">[確認]</a>
 					</td>
 					<td>
-						<a href="${入力パターン.html差異}">[確認]</a>
+						<a href="javascript:move_TestCaseAdmin('htmlDiff','${dto.テストケース管理.id}','${入力パターン.id}')">[確認]</a>
 					</td>
 					<td>
 						<a href="${入力パターン.db差異}">[確認]</a>

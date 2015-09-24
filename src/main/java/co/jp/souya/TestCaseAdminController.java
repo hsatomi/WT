@@ -32,6 +32,7 @@ public class TestCaseAdminController {
 
 	/**
 	 * テストケース管理画面　標準ページ
+	 *
 	 * @param locale
 	 * @param model
 	 * @param id
@@ -39,9 +40,7 @@ public class TestCaseAdminController {
 	 * @throws UnsupportedEncodingException
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public String get(
-			Locale locale,
-			Model model,
+	public String get(Locale locale, Model model,
 			@RequestParam(value = "id", required = true) Integer id
 
 	) throws UnsupportedEncodingException {
@@ -52,10 +51,9 @@ public class TestCaseAdminController {
 		return "TestCaseAdmin";
 	}
 
-
-
 	/**
 	 * html結果参照ページ
+	 *
 	 * @param locale
 	 * @param model
 	 * @param id
@@ -63,10 +61,8 @@ public class TestCaseAdminController {
 	 * @return
 	 * @throws UnsupportedEncodingException
 	 */
-	@RequestMapping(value="/htmlResult",method = RequestMethod.GET)
-	public String htmlResult(
-			Locale locale,
-			Model model,
+	@RequestMapping(value = "/htmlResult", method = RequestMethod.GET)
+	public String htmlResult(Locale locale, Model model,
 			@RequestParam(value = "id", required = true) Integer id,
 			@RequestParam(value = "input_id", required = true) Integer input_id
 
@@ -79,7 +75,9 @@ public class TestCaseAdminController {
 		for (InputPattern inputPattern : dto.get入力パターンリスト()) {
 			if (input_id.equals(inputPattern.getId())) {
 				strDto = inputPattern.getHtml();
-				strDto = URLDecoder.decode(strDto,"UTF-8");
+				if (strDto == null || strDto.isEmpty())
+					break;
+				strDto = URLDecoder.decode(strDto, "UTF-8");
 				strDto = strDto.replace("<", "&lt");
 				break;
 			}
@@ -88,16 +86,13 @@ public class TestCaseAdminController {
 		return "TestCaseAdminConfirm";
 	}
 
-
-	@RequestMapping(value="/htmlDif",method = RequestMethod.GET)
-	public String htmlDif(
-			Locale locale,
-			Model model,
+	@RequestMapping(value = "/htmlDiff", method = RequestMethod.GET)
+	public String htmlDif(Locale locale, Model model,
 			@RequestParam(value = "id", required = true) Integer id,
 			@RequestParam(value = "input_id", required = true) Integer input_id
 
 	) throws UnsupportedEncodingException {
-		logger.info("htmlDif");
+		logger.info("htmlDiff");
 
 		TestCaseAdminDTO dto = testCaseAdminSvc.getDTO(id);
 		String strDto = "";
@@ -105,7 +100,9 @@ public class TestCaseAdminController {
 		for (InputPattern inputPattern : dto.get入力パターンリスト()) {
 			if (input_id.equals(inputPattern.getId())) {
 				strDto = inputPattern.getHtml差異();
-				strDto = URLDecoder.decode(strDto,"UTF-8");
+				if (strDto == null || strDto.isEmpty())
+					break;
+				strDto = URLDecoder.decode(strDto, "UTF-8");
 				strDto = strDto.replace("<", "&lt");
 				break;
 			}
