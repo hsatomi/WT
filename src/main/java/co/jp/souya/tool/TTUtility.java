@@ -522,7 +522,7 @@ public class TTUtility {
         Patch patch = DiffUtils.diff(oldLines, newLines);
         for (Object deltaobj : patch.getDeltas()) {
         	Delta delta = (Delta)deltaobj;
-            System.out.println(String.format("[変更前(%d)行目]", delta.getOriginal().getPosition() + 1));
+//            System.out.println(String.format("[変更前(%d)行目]", delta.getOriginal().getPosition() + 1));
             for (Object line : delta.getOriginal().getLines()) {
 //                System.out.println(line);
                 buf.append(line + lineSeparator);
@@ -530,13 +530,14 @@ public class TTUtility {
 //            System.out.println("　↓");
             buf.append("↓" + lineSeparator);
 
-            System.out.println(String.format("[変更後(%d)行目]", delta.getRevised().getPosition() + 1));
+//            System.out.println(String.format("[変更後(%d)行目]", delta.getRevised().getPosition() + 1));
             for (Object line : delta.getRevised().getLines()) {
 //                System.out.println(line);
                 buf.append(line + lineSeparator);
             }
 //            System.out.println();
         }
+        logger.debug(buf.toString());
 		return buf.toString();
 	}
 
