@@ -104,13 +104,31 @@ public class Case10001 {
 			element.click();
 		}
 
+		// 実行後アラートダイアログチェック
+		Alert alert = null;
+		try{
+			alert = webdriver.switchTo().alert();
+		}catch(Exception e){
+			System.out.println("no alert");
+		}
+
+
 		// 実行後スナップショット取得
-		File file = ((TakesScreenshot) webdriver).getScreenshotAs(OutputType.FILE);
-		String strSnapshot = TTUtility.getBase64String(file);
+		String strSnapshot = "";
+		if(alert==null){
+			File file = ((TakesScreenshot) webdriver).getScreenshotAs(OutputType.FILE);
+			strSnapshot = TTUtility.getBase64String(file);
+		}
 
 
 		//web状態取得・比較
-		String strResultWeb = webdriver.getPageSource();
+		String strSnapshot = "";
+		if(alert==null){
+			strResultWeb = webdriver.getPageSource();
+		}else{
+			strResultWeb = alert.getText();
+		}
+
 		String strExpectWeb = "";
 		String strWebDif = "";
 

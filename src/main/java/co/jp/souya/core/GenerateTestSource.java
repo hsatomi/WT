@@ -229,14 +229,40 @@ public class GenerateTestSource {
 							strReplace.append(sep);
 						}
 					}
+					//---------実行直後がアラートダイアログ状態かどうかチェック---------
+					{
+						strReplace.append(sep);
+						strReplace.append("		// 実行後アラートダイアログチェック");
+						strReplace.append(sep);
+						strReplace.append("		Alert alert = null;");
+						strReplace.append(sep);
+						strReplace.append("		try{");
+						strReplace.append(sep);
+						strReplace.append("			alert = webdriver.switchTo().alert();");
+						strReplace.append(sep);
+						strReplace.append("		}catch(Exception e){");
+						strReplace.append(sep);
+						strReplace.append("			System.out.println(\"no alert\");");
+						strReplace.append(sep);
+						strReplace.append("		}");
+						strReplace.append(sep);
+						strReplace.append("");
+						strReplace.append(sep);
+					}
 					//---------実行後スナップショット取得---------
 					{
 						strReplace.append(sep);
 						strReplace.append("		// 実行後スナップショット取得");
 						strReplace.append(sep);
-						strReplace.append("		File file = ((TakesScreenshot) webdriver).getScreenshotAs(OutputType.FILE);");
+						strReplace.append("		String strSnapshot = \"\";");
 						strReplace.append(sep);
-						strReplace.append("		String strSnapshot = TTUtility.getBase64String(file);");
+						strReplace.append("		if(alert==null){");
+						strReplace.append(sep);
+						strReplace.append("			File file = ((TakesScreenshot) webdriver).getScreenshotAs(OutputType.FILE);");
+						strReplace.append(sep);
+						strReplace.append("			strSnapshot = TTUtility.getBase64String(file);");
+						strReplace.append(sep);
+						strReplace.append("		}");
 						strReplace.append(sep);
 						strReplace.append("");
 						strReplace.append(sep);
@@ -246,7 +272,19 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("		//web状態取得・比較");
 						strReplace.append(sep);
-						strReplace.append("		String strResultWeb = webdriver.getPageSource();");
+						strReplace.append("		String strSnapshot = \"\";");
+						strReplace.append(sep);
+						strReplace.append("		if(alert==null){");
+						strReplace.append(sep);
+						strReplace.append("			strResultWeb = webdriver.getPageSource();");
+						strReplace.append(sep);
+						strReplace.append("		}else{");
+						strReplace.append(sep);
+						strReplace.append("			strResultWeb = alert.getText();");
+						strReplace.append(sep);
+						strReplace.append("		}");
+						strReplace.append(sep);
+						strReplace.append("");
 						strReplace.append(sep);
 						strReplace.append("		String strExpectWeb = \"\";");
 						strReplace.append(sep);
