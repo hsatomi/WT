@@ -174,6 +174,117 @@ public class Case10001 {
 
 
 	}
+	@Test
+	public void Test3() throws UnsupportedEncodingException{
+
+		//実行
+		boolean bTestResult = true;
+		{
+			//タイトル
+			WebElement element = webdriver.findElement(By.name("textfree"));
+			element.sendKeys("TESTパターン3のテストです");
+		}
+		{
+			//入力エリア適当
+			WebElement element = webdriver.findElement(By.name("textinput"));
+			element.sendKeys("test8394fj;xpw");
+		}
+		{
+			//入力エリアパスワード
+			WebElement element = webdriver.findElement(By.name("pass"));
+			element.sendKeys("password");
+		}
+
+		// 実行後アラートダイアログチェック
+		Alert alert = null;
+		try{
+			alert = webdriver.switchTo().alert();
+		}catch(Exception e){
+			System.out.println("no alert");
+		}
+
+
+		// 実行後スナップショット取得
+		String strSnapshot = "";
+		if(alert==null){
+			File file = ((TakesScreenshot) webdriver).getScreenshotAs(OutputType.FILE);
+			strSnapshot = TTUtility.getBase64String(file);
+		}
+
+
+		//web状態取得・比較
+		String strResultWeb = "";
+		if(alert==null){
+			strResultWeb = webdriver.getPageSource();
+		}else{
+			strResultWeb = alert.getText();
+		}
+
+		String strExpectWeb = "";
+		String strWebDif = "";
+
+
+
+		//DB状態取得・比較
+		String strResultDB = "";
+		String strExpectDB = "";
+		String strDBDif = "";
+
+
+
+		// 正解値更新
+		try {
+			URI url = new URI("http://localhost:8080/souya/api/updateResult");
+			JSONObject request = new JSONObject();
+			request.put("id", 3);
+			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
+			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
+
+			HttpEntity<String> entity = new HttpEntity<String>(
+					request.toString(), headers);
+
+			System.out.println("URL: " + url);
+			String response = restTemplate.postForObject(url, entity,
+					String.class);
+			System.out.println("Response: " + response);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			assertTrue(false);
+		}
+
+
+
+
+		// 結果更新
+		try {
+			URI url = new URI("http://localhost:8080/souya/api/updateTestResult");
+			JSONObject request = new JSONObject();
+			request.put("id", 3);
+			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
+			request.put("html_dif", URLEncoder.encode(strWebDif, "UTF-8"));
+			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
+			request.put("db_dif", URLEncoder.encode(strDBDif, "UTF-8"));
+			request.put("jobStatus", URLEncoder.encode(TTConst.JOB_STATUS_FINISH, "UTF-8"));
+			request.put("testResult", bTestResult ? TTConst.TEST_RESULT_OK : TTConst.TEST_RESULT_NG);
+			request.put("snapshot", strSnapshot);
+
+			HttpEntity<String> entity = new HttpEntity<String>(
+					request.toString(), headers);
+
+			System.out.println("URL: " + url);
+			String response = restTemplate.postForObject(url, entity,
+					String.class);
+			System.out.println("Response: " + response);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			assertTrue(false);
+		}
+
+
+
+	}
 	//テストケース終了
 
 
