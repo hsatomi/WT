@@ -248,9 +248,9 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("		String strResultWeb = webdriver.getPageSource();");
 						strReplace.append(sep);
-						strReplace.append("		String strExpectWeb;");
+						strReplace.append("		String strExpectWeb = \"\";");
 						strReplace.append(sep);
-						strReplace.append("		String strWebDif;");
+						strReplace.append("		String strWebDif = \"\";");
 						strReplace.append(sep);
 						if(inputPattern.get実行回数()<=0){
 							//初回

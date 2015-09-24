@@ -111,8 +111,8 @@ public class Case10001 {
 
 		//web状態取得・比較
 		String strResultWeb = webdriver.getPageSource();
-		String strExpectWeb;
-		String strWebDif;
+		String strExpectWeb = "";
+		String strWebDif = "";
 
 
 
