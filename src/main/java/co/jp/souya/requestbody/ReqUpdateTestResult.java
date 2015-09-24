@@ -31,6 +31,14 @@ public class ReqUpdateTestResult {
 	 * DB状態を表す何か
 	 */
 	public String db;
+	/**
+	 * html状態差異を表す何か
+	 */
+	public String html_dif;
+	/**
+	 * DB状態差異を表す何か
+	 */
+	public String db_dif;
 
 
 }

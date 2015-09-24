@@ -83,7 +83,7 @@ public class ApiController {
 		// TODO:RestClient(on firefox)だと文字化けしないのに、RestTemplateだと文字化けするのでこの対応
 		req.jobStatus = URLDecoder.decode(req.jobStatus, "UTF-8");
 		result = inputPatternSvc.updateTestResult(req.id, req.testResult,
-				req.jobStatus, req.snapshot, req.html, req.db);
+				req.jobStatus, req.snapshot, req.html, req.db,req.html_dif,req.db_dif);
 		return result;
 
 	}

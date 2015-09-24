@@ -17,6 +17,10 @@ import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import difflib.Delta;
+import difflib.DiffUtils;
+import difflib.Patch;
+
 /**
  * 2014/12/19 Created
  *
@@ -30,7 +34,7 @@ public class TTUtility {
 	public static String fileSeparator = System.lineSeparator();
 	// static String fileSeparator = File.separator;
 
-	public static String lineSeparator = "\n";
+	public static String lineSeparator = System.lineSeparator();
 
 	/**
 	 * オブジェクトがnull又はEmptyか判定
@@ -498,10 +502,42 @@ public class TTUtility {
 
 		if(!strResultWeb.equals(strExpectWeb)){
 			//TODO:差分を記載する
+			strDif = getDifString(splitByLineSeparator(strResultWeb),splitByLineSeparator(strExpectWeb));
 
 		}
 
 		return strDif;
+	}
+
+
+	/**
+	 * 改行つき文字列の差異を出力する
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public static String getDifString(List<String> oldLines,List<String> newLines){
+
+		StringBuffer buf = new StringBuffer();
+
+        Patch patch = DiffUtils.diff(oldLines, newLines);
+        for (Object deltaobj : patch.getDeltas()) {
+        	Delta delta = (Delta)deltaobj;
+            System.out.println(String.format("[変更前(%d)行目]", delta.getOriginal().getPosition() + 1));
+            for (Object line : delta.getOriginal().getLines()) {
+//                System.out.println(line);
+                buf.append(line + lineSeparator);
+            }
+//            System.out.println("　↓");
+            buf.append("↓" + lineSeparator);
+
+            System.out.println(String.format("[変更後(%d)行目]", delta.getRevised().getPosition() + 1));
+            for (Object line : delta.getRevised().getLines()) {
+//                System.out.println(line);
+                buf.append(line + lineSeparator);
+            }
+//            System.out.println();
+        }
+		return buf.toString();
 	}
 
 }

@@ -119,7 +119,7 @@ public class Case10001 {
 
 		//DB状態取得・比較
 		String strResultDB = "";
-
+		String strDBDif="";
 
 
 		// 結果更新
@@ -129,6 +129,9 @@ public class Case10001 {
 			request.put("id", 1);
 			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
 			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
+			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
+			request.put("db_dif", URLEncoder.encode(strDBDif, "UTF-8"));
+			request.put("html_dif", URLEncoder.encode(strWebDif, "UTF-8"));
 			request.put("jobStatus", URLEncoder.encode(TTConst.JOB_STATUS_FINISH, "UTF-8"));
 			request.put("testResult", bTestResult ? TTConst.TEST_RESULT_OK : TTConst.TEST_RESULT_NG);
 			request.put("snapshot", strSnapshot);

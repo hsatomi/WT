@@ -57,11 +57,13 @@ public class InputPatternSvc extends BaseSvc {
 	 * @param wJob状況
 	 * @param wHtml
 	 * @param wDb
+	 * @param wHtmlDif
+	 * @param wDbDif
 	 * @param wスナップショットBase64
 	 * @return
 	 */
 	public boolean updateTestResult(int id, String w判定結果,
-			String wJob状況, String wスナップショットBase64, String wHtml, String wDb) {
+			String wJob状況, String wスナップショットBase64, String wHtml, String wDb,String wHtmlDif,String wDbDif) {
 
 		try {
 			init();
@@ -74,6 +76,8 @@ public class InputPatternSvc extends BaseSvc {
 			dao.set実行回数(dao.get実行回数()+1);
 			dao.setDb(wDb);
 			dao.setHtml(wHtml);
+			dao.setDb差異(wDbDif);
+			dao.setHtml差異(wHtmlDif);
 			em.persist(dao);
 
 			tx.commit();

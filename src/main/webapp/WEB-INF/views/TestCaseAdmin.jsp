@@ -91,7 +91,7 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 					<th>入力パターン名</th>
 					<th>実行回数</th>
 					<th>JOB状況</th>
-					<th>遷移結果</th>
+					<th>キャプチャー</th>
 					<th>HTML結果</th>
 					<th>DB結果</th>
 					<th>HTML差異</th>
@@ -118,7 +118,7 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 						${入力パターン.job状況}
 					</td>
 					<td>
-						<img src="data:image/jpg;base64,${入力パターン.遷移結果}" />
+						<img src="data:image/jpg;base64,${入力パターン.遷移結果}" width=200 />
 					</td>
 					<td>
 						<a href="${入力パターン.html}">[確認]</a>
