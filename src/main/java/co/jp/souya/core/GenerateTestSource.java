@@ -248,6 +248,10 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("		String strResultWeb = webdriver.getPageSource();");
 						strReplace.append(sep);
+						strReplace.append("		String strExpectWeb;");
+						strReplace.append(sep);
+						strReplace.append("		String strWebDif;");
+						strReplace.append(sep);
 						if(inputPattern.get実行回数()<=0){
 							//初回
 							strReplace.append("");
@@ -258,9 +262,9 @@ public class GenerateTestSource {
 							//2回目以降
 							strReplace.append("		String strExpectWebEncoded = \"" + inputPattern.getHtml正解() + "\";");
 							strReplace.append(sep);
-							strReplace.append("		String strExpectWeb = URLDecoder.decode(strExpectWebEncoded, \"UTF-8\");");
+							strReplace.append("		strExpectWeb = URLDecoder.decode(strExpectWebEncoded, \"UTF-8\");");
 							strReplace.append(sep);
-							strReplace.append("		String strWebDif = TTUtility.validateWeb(strResultWeb, strExpectWeb);");
+							strReplace.append("		strWebDif = TTUtility.validateWeb(strResultWeb, strExpectWeb);");
 							strReplace.append(sep);
 							strReplace.append("		if(!strWebDif.isEmpty()) bTestResult=false;");
 							strReplace.append(sep);
