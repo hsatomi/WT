@@ -132,37 +132,16 @@ public class Case10001 {
 
 		String strExpectWeb = "";
 		String strWebDif = "";
-
+		String strExpectWebEncoded = "%E7%99%BB%E9%8C%B2%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F";
+		strExpectWeb = URLDecoder.decode(strExpectWebEncoded, "UTF-8");
+		strWebDif = TTUtility.validateWeb(strExpectWeb, strResultWeb);
+		if(!strWebDif.isEmpty()) bTestResult=false;
 
 
 		//DB状態取得・比較
 		String strResultDB = "";
 		String strExpectDB = "";
 		String strDBDif = "";
-
-
-
-		// 正解値更新
-		try {
-			URI url = new URI("http://localhost:8080/souya/api/updateResult");
-			JSONObject request = new JSONObject();
-			request.put("id", 1);
-			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
-			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
-
-			HttpEntity<String> entity = new HttpEntity<String>(
-					request.toString(), headers);
-
-			System.out.println("URL: " + url);
-			String response = restTemplate.postForObject(url, entity,
-					String.class);
-			System.out.println("Response: " + response);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			assertTrue(false);
-		}
-
 
 
 
