@@ -15,6 +15,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -122,7 +123,7 @@ public class Case10001 {
 
 
 		//web状態取得・比較
-		String strSnapshot = "";
+		String strResultWeb = "";
 		if(alert==null){
 			strResultWeb = webdriver.getPageSource();
 		}else{

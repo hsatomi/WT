@@ -272,7 +272,7 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("		//web状態取得・比較");
 						strReplace.append(sep);
-						strReplace.append("		String strSnapshot = \"\";");
+						strReplace.append("		String strResultWeb = \"\";");
 						strReplace.append(sep);
 						strReplace.append("		if(alert==null){");
 						strReplace.append(sep);
@@ -515,6 +515,8 @@ public class GenerateTestSource {
 		strbuf.append("import org.junit.BeforeClass;");
 		strbuf.append(sep);
 		strbuf.append("import org.junit.Test;");
+		strbuf.append(sep);
+		strbuf.append("import org.openqa.selenium.Alert;");
 		strbuf.append(sep);
 		strbuf.append("import org.openqa.selenium.By;");
 		strbuf.append(sep);
