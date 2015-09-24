@@ -111,15 +111,36 @@ public class Case10002 {
 
 		//web状態取得・比較
 		String strResultWeb = webdriver.getPageSource();
-		String strExpectWebEncoded = "%3C%21DOCTYPE+html+PUBLIC+%22-%2F%2FW3C%2F%2FDTD+XHTML+1.0+Transitional%2F%2FEN%22+%22http%3A%2F%2Fwww.w3.org%2FTR%2Fxhtml1%2FDTD%2Fxhtml1-transitional.dtd%22%3E%0D%0A%3Chtml+xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Chead%3E%0A%3Cmeta+content%3D%22text%2Fhtml%3B+charset%3Dutf-8%22+http-equiv%3D%22Content-Type%22+%2F%3E%0A%3Ctitle%3E%E3%83%86%E3%82%B9%E3%83%88%E7%94%A8web%E3%83%9A%E3%83%BC%E3%82%B8index%3C%2Ftitle%3E%0A%3C%2Fhead%3E%0A%0A%3Cbody%3E%0A%3Ctable+border%3D%222%22%3E%0A%3Ctbody%3E%3Ctr%3E%0A%3Ctd%3E%3Cp%3E%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%82%A8%E3%83%AA%E3%82%A2+%3C%2Fp%3E%3C%2Ftd%3E%0A%3Ctd%3E%3Cp%3E%E8%A1%A8%E7%A4%BA%E3%82%A8%E3%83%AA%E3%82%A2%28%E6%9C%AA%E4%BD%9C%E6%88%90%29%3C%2Fp%3E%3C%2Ftd%3E%0A%3Ctd%3E%3Cp%3E%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E5%85%A5%E5%8A%9B%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%89%3C%2Fp%3E%3C%2Ftd%3E%0A%3Ctd%3E%3Cp%3E%E3%83%91%E3%82%B9%E3%83%AF%E3%83%BC%E3%83%89%E5%85%A5%E5%8A%9B%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%89%3C%2Fp%3E%3C%2Ftd%3E%0A%3Ctd%3E%3Cp%3E%E3%83%AA%E3%83%B3%E3%82%AF%3C%2Fp%3E%3C%2Ftd%3E%0A%3Ctd%3E%3Cp%3E%E3%83%A9%E3%82%B8%E3%82%AA%E3%83%9C%E3%82%BF%E3%83%B3%3C%2Fp%3E%3C%2Ftd%3E%0A%3Ctd%3E%3Cp%3E%E3%83%AA%E3%82%B9%E3%83%88%3C%2Fp%3E%3C%2Ftd%3E%0A%3C%2Ftr%3E%0A%0A%3Ctr%3E%0A%3Ctd%3E%3Ctextarea+cols%3D%2210%22+rows%3D%222%22+name%3D%22textfree%22%3E%3C%2Ftextarea%3E%3C%2Ftd%3E%0A%3Ctd%3E%3Cp%3E%3C%2Fp%3E%3C%2Ftd%3E%0A%3Ctd%3E%3Cinput+type%3D%22text%22+value%3D%22%E5%85%A5%E5%8A%9B%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%22+name%3D%22textinput%22+%2F%3E%3C%2Ftd%3E%0A%3Ctd%3E%3Cinput+type%3D%22password%22+name%3D%22pass%22+%2F%3E%3C%2Ftd%3E%0A%3Ctd%3E%3Ca+href%3D%22index2.html%22%3E%E4%BC%9A%E5%93%A1%E7%99%BB%E9%8C%B2%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%B8%3C%2Fa%3E%3C%2Ftd%3E%0A%3Ctd%3E%3Cinput+type%3D%22button%22+onclick%3D%22window_close%28%29%22+value%3D%22%E9%96%89%E3%81%98%E3%82%8B%22+%2F%3E%3C%2Ftd%3E%0A%3Ctd%3E%3Cul%3E%3Cli%3E%E3%83%86%E3%82%B9%E3%83%881%3C%2Fli%3E%3Cli%3E%E3%83%86%E3%82%B9%E3%83%882%3C%2Fli%3E%3C%2Ful%3E%3C%2Ftd%3E%0A%3C%2Ftr%3E%0A%0A%3Ctr%3E%3C%2Ftr%3E%0A%0A%3Ctr%3E%0A%3Ctd%3E%3Cp%3E%E3%83%97%E3%83%AB%E3%83%80%E3%82%A6%E3%83%B3%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%3C%2Fp%3E%3C%2Ftd%3E%0A%3Ctd%3E%3Cp%3E%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B9%EF%BC%86%E3%83%A9%E3%83%99%E3%83%AB%3C%2Fp%3E%3C%2Ftd%3E%0A%3Ctd%3E%3Cp%3E%E5%AE%9F%E8%A1%8C%E3%83%9C%E3%82%BF%E3%83%B3%3C%2Fp%3E%3C%2Ftd%3E%0A%3Ctd%3E%3Cp%3E%E5%8F%96%E3%82%8A%E6%B6%88%E3%81%97%E3%83%9C%E3%82%BF%E3%83%B3%3C%2Fp%3E%3C%2Ftd%3E%0A%3Ctd%3E%3Cp%3ESat+Sep+19+03%3A06%3A35+JST+2015%3C%2Fp%3E%3C%2Ftd%3E%0A%3C%2Ftr%3E%0A%0A%3Ctr%3E%0A%3Ctd%3E%3C%2Ftd%3E%0A%3Ctd%3E%3Cinput+type%3D%22radio%22+checked%3D%22checked%22+value%3D%22yes%22+%2F%3E%0A++%3Clabel+for%3D%22r1%22+accesskey%3D%22Y%22%3E%E3%81%AF%E3%81%84%28%3Cu%3EY%3C%2Fu%3E%29%3C%2Flabel%3E%0A++%3Cinput+type%3D%22radio%22+value%3D%22no%22+id%3D%22r2%22+name%3D%22YES_NO%22+%2F%3E%0A++%3Clabel+for%3D%22r2%22+accesskey%3D%22N%22%3E%E3%81%84%E3%81%84%E3%81%88%28%3Cu%3EN%3C%2Fu%3E%29%3C%2Flabel%3E%0A+%3C%2Ftd%3E%0A%3Ctd%3E%3Cinput+type%3D%22submit%22+name%3D%22submit%22+%2F%3E%3C%2Ftd%3E%0A%3Ctd%3E%3Cinput+type%3D%22reset%22+name%3D%22reset%22+%2F%3E%3C%2Ftd%3E%0A%3C%2Ftr%3E%0A%0A%3C%2Ftbody%3E%3C%2Ftable%3E%0A%0A%0A%0A%3C%2Fbody%3E%3Ccanvas+id%3D%22fxdriver-screenshot-canvas%22+style%3D%22display%3A+none%3B%22+width%3D%221192%22+height%3D%22554%22%3E%3C%2Fcanvas%3E%3C%2Fhtml%3E";
-		String strExpectWeb = URLDecoder.decode(strExpectWebEncoded, "UTF-8");
-		String strWebDif = TTUtility.validateWeb(strResultWeb, strExpectWeb);
-		if(!strWebDif.isEmpty()) bTestResult=false;
+
 
 
 		//DB状態取得・比較
 		String strResultDB = "";
-		String strDBDif="";
+
+
+
+		// 正解値更新
+		try {
+			URI url = new URI("http://localhost:8080/souya/api/updateResult");
+			JSONObject request = new JSONObject();
+			request.put("id", 1);
+			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
+			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
+
+			HttpEntity<String> entity = new HttpEntity<String>(
+					request.toString(), headers);
+
+			System.out.println("URL: " + url);
+			String response = restTemplate.postForObject(url, entity,
+					String.class);
+			System.out.println("Response: " + response);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			assertTrue(false);
+		}
+
+
 
 
 		// 結果更新
@@ -129,9 +150,6 @@ public class Case10002 {
 			request.put("id", 1);
 			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
 			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
-			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
-			request.put("db_dif", URLEncoder.encode(strDBDif, "UTF-8"));
-			request.put("html_dif", URLEncoder.encode(strWebDif, "UTF-8"));
 			request.put("jobStatus", URLEncoder.encode(TTConst.JOB_STATUS_FINISH, "UTF-8"));
 			request.put("testResult", bTestResult ? TTConst.TEST_RESULT_OK : TTConst.TEST_RESULT_NG);
 			request.put("snapshot", strSnapshot);
