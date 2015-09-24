@@ -276,6 +276,10 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("		String strResultDB = \"\";");
 						strReplace.append(sep);
+						strReplace.append("		String strExpectDB = \"\";");
+						strReplace.append(sep);
+						strReplace.append("		String strDBDif = \"\";");
+						strReplace.append(sep);
 						if(inputPattern.get実行回数()<=0){
 							//初回
 							strReplace.append("");
@@ -307,7 +311,11 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("			request.put(\"html\", URLEncoder.encode(strResultWeb, \"UTF-8\"));");
 						strReplace.append(sep);
+						strReplace.append("			request.put(\"html_dif\", URLEncoder.encode(strWebDif, \"UTF-8\"));");
+						strReplace.append(sep);
 						strReplace.append("			request.put(\"db\", URLEncoder.encode(strResultDB, \"UTF-8\"));");
+						strReplace.append(sep);
+						strReplace.append("			request.put(\"db_dif\", URLEncoder.encode(strDBDif, \"UTF-8\"));");
 						strReplace.append(sep);
 						strReplace.append("");
 						strReplace.append(sep);

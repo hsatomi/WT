@@ -121,7 +121,7 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 						<img src="data:image/jpg;base64,${入力パターン.遷移結果}" width=200 />
 					</td>
 					<td>
-						<a href="${入力パターン.html}">[確認]</a>
+						<a href="javascript:move_TestCaseAdmin('htmlResult','${dto.テストケース管理.id}','${入力パターン.id}')">[確認]</a>
 					</td>
 					<td>
 						<a href="${入力パターン.db}">[確認]</a>

@@ -80,7 +80,7 @@ public class ApiController {
 			throws UnsupportedEncodingException {
 		logger.info("updateResult");
 		boolean result = false;
-		// TODO:RestClient(on firefox)だと文字化けしないのに、RestTemplateだと文字化けするのでこの対応
+		// TODO:RestClient(on firefox)だと文字化けしないのに、RestTemplateだと文字化けするのでこの対応 何かいい方法があればfixして
 		req.jobStatus = URLDecoder.decode(req.jobStatus, "UTF-8");
 		result = inputPatternSvc.updateTestResult(req.id, req.testResult,
 				req.jobStatus, req.snapshot, req.html, req.db,req.html_dif,req.db_dif);

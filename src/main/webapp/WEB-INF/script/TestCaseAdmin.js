@@ -18,6 +18,22 @@ function move_InputParameters(id) {
 //    }
 }
 
+//画面遷移(確認画面)
+function move_TestCaseAdmin(name,id,input_id) {
+
+	switch (name) {
+	case "htmlResult":
+		location.href = "TestCaseAdmin/htmlResult?id=" + id + "&input_id=" + input_id;
+		break;
+	case "htmlDiff":
+		location.href = "TestCaseAdmin/htmlDiff?id=" + id + "&input_id=" + input_id;
+		break;
+		default: break;
+	}
+
+	return;
+}
+
 //回数リセット
 function reset(_id){
 	var ids = getSelectedStr();
@@ -111,6 +127,7 @@ function execjenkins(_id){
 }
 
 //Jenkinsジョブポーリング
+//TODO:ジョブ実行をポーリングして再表示したい・・・けど、うまくいかない
 function polling(_id){
 	var data = {"id":_id};
     $.ajax({
@@ -178,4 +195,13 @@ function getSelectedStr(){
 		}
 	}
 	return list;
+}
+
+//別窓でテキスト表示(未使用)
+function HtmlWrite(strText){
+	//ウィンドウサイズ600×400でスクロールバーONに設定する
+var htmlsource = window.open("", "", "scrollbars=yes, width=600, height=400");
+htmlsource.document.open();
+htmlsource.document.write(strText);
+htmlsource.document.close();
 }
