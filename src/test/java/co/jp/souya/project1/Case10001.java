@@ -133,8 +133,6 @@ public class Case10001 {
 
 		//DB状態取得・比較
 		String strResultDB = "";
-		String strExpectDB = "";
-		String strDBDif = "";
 
 		// 結果更新
 		try {

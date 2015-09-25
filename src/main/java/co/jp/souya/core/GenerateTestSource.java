@@ -317,10 +317,10 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("		String strResultDB = \"\";");
 						strReplace.append(sep);
-						strReplace.append("		String strExpectDB = \"\";");
-						strReplace.append(sep);
-						strReplace.append("		String strDBDif = \"\";");
-						strReplace.append(sep);
+//						strReplace.append("		String strExpectDB = \"\";");
+//						strReplace.append(sep);
+//						strReplace.append("		String strDBDif = \"\";");
+//						strReplace.append(sep);
 //						if(inputPattern.get実行回数()<=0){
 //							//初回
 //							strReplace.append("");
