@@ -229,6 +229,7 @@ public class InputPatternSvc extends BaseSvc {
 			dao.set実行回数(0);
 			dao.setJob状況("");
 			dao.set判定結果("");
+			dao.set遷移結果("");
 			// TODO:全部リセットする？
 			em.persist(dao);
 
