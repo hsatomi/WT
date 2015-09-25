@@ -38,18 +38,37 @@ public class InputParametersApiController {
 	public boolean update(@RequestBody ReqInputParameters req)
 			throws UnsupportedEncodingException {
 		logger.info("update");
-		boolean result = false;
 
-		//登録 or 更新
-		result = inputPatternSvc.update(req.inputPattern);
-		if (!result)
-			return result;
+		// 登録 or 更新
+		req.inputPattern = inputPatternSvc.update(req.inputPattern);
+		if (req.inputPattern == null)
+			return false;
 
 		for (ParametaValue parametaValue : req.list) {
-			parametaValueSvc.update(parametaValue);
+			// 入力チェック・自動除外
+			if (parametaValue.getId() == null) {
+				if (parametaValue.getエレメント型() == null
+						|| parametaValue.getエレメント型().isEmpty()) {
+					continue;
+				}
+				if (parametaValue.getエレメント名() == null
+						|| parametaValue.getエレメント名().isEmpty()) {
+					continue;
+				}
+				if (parametaValue.getアクション() == null
+						|| parametaValue.getアクション().isEmpty()) {
+					continue;
+				}
+			}
+			// TODO:削除ロジック
+
+			parametaValue.set入力パターンid(req.inputPattern.getId());
+			parametaValue = parametaValueSvc.update(parametaValue);
+			if (parametaValue == null)
+				return false;
 		}
 
-		return result;
+		return true;
 	}
 
 }

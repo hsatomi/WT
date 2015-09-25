@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import co.jp.souya.dto.InputParametersDTO;
+import co.jp.souya.jpa.ParametaValue;
 import co.jp.souya.service.InputPatternSvc;
 
 /**
@@ -29,10 +30,13 @@ public class InputParametersController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String get(Locale locale, Model model,
-			@RequestParam(value = "id", required = true) Integer id
-			) {
+			@RequestParam(value = "id", required = true) Integer id) {
 		logger.info("get");
 		InputParametersDTO dto = inputPatternSvc.getDTO(id);
+		{
+			// 空白編集行を追加
+			dto.getパラメタ値リスト().add(new ParametaValue());
+		}
 		model.addAttribute("dto", dto);
 		return "InputParameters";
 	}

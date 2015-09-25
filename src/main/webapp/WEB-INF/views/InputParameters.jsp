@@ -54,9 +54,9 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 				<tr>
 					<th>実行順</th>
 					<th>項目名</th>
-					<th>エレメント型</th>
-					<th>エレメント名</th>
-					<th>アクション</th>
+					<th>エレメント型※</th>
+					<th>エレメント名※</th>
+					<th>アクション※</th>
 					<th>型</th>
 					<th>値</th>
 					<th>備考</th>
@@ -71,16 +71,28 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 						<input type="text" value="${パラメタ値.項目名}" />
 					</td>
 					<td>
-						<input type="text" value="${パラメタ値.エレメント型}" />
+						<select name="_エレメント型">
+						<option value="" <c:if test="${パラメタ値.エレメント型==''}">selected</c:if>></option>
+						<option value="By.name" <c:if test="${パラメタ値.エレメント型=='By.name'}">selected</c:if>>By.name</option>
+						<option value="By.id" <c:if test="${パラメタ値.エレメント型=='By.id'}">selected</c:if>>By.id</option>
+						</select>
 					</td>
 					<td>
 						<input type="text" value="${パラメタ値.エレメント名}" />
 					</td>
 					<td>
-						<input type="text" value="${パラメタ値.アクション}" />
+						<select name="_アクション">
+						<option value="" <c:if test="${パラメタ値.アクション==''}">selected</c:if>></option>
+						<option value="sendKeys" <c:if test="${パラメタ値.アクション=='sendKeys'}">selected</c:if>>sendKeys</option>
+						<option value="click" <c:if test="${パラメタ値.アクション=='click'}">selected</c:if>>click</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" value="${パラメタ値.型}" />
+						<select name="_型">
+						<option value="" <c:if test="${パラメタ値.型==''}">selected</c:if>></option>
+						<option value="文字列" <c:if test="${パラメタ値.型=='文字列'}">selected</c:if>>文字列</option>
+						<option value="数値" <c:if test="${パラメタ値.型=='数値'}">selected</c:if>>数値</option>
+						</select>
 					</td>
 					<td>
 						<input type="text" value="${パラメタ値.値}" />

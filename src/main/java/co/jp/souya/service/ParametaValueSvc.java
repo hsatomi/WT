@@ -43,15 +43,16 @@ public class ParametaValueSvc extends BaseSvc {
 	 * @param dao
 	 * @return
 	 */
-	public boolean update(ParametaValue dao) {
-
+	public ParametaValue update(ParametaValue dao) {
+		ParametaValue newdao = null;
 		try {
 			init();
 			tx.begin();
 
-			ParametaValue newdao = (dao.getId() == null) ? new ParametaValue()
-					: em.find(ParametaValue.class, dao.getId());
+			newdao = (dao.getId() == null) ? new ParametaValue() : em.find(
+					ParametaValue.class, dao.getId());
 
+			newdao.set入力パターンid(dao.get入力パターンid());
 			newdao.set実行順(dao.get実行順());
 			newdao.set項目名(dao.get項目名());
 			newdao.setエレメント型(dao.getエレメント型());
@@ -67,12 +68,11 @@ public class ParametaValueSvc extends BaseSvc {
 		} catch (Throwable e) {
 			tx.rollback();
 			logger.error(e.getMessage(), e);
-			return false;
 		} finally {
 			destroy();
 		}
 
-		return true;
+		return newdao;
 	}
 
 }

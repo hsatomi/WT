@@ -19,10 +19,9 @@ public class InputPatternSvc extends BaseSvc {
 		logger.info(this.getClass().getName());
 	}
 
-
-
 	/**
 	 * 単純取得
+	 *
 	 * @param id
 	 * @return
 	 */
@@ -44,17 +43,19 @@ public class InputPatternSvc extends BaseSvc {
 
 	/**
 	 * 単純更新
+	 *
 	 * @param dao
 	 * @return
 	 */
-	public boolean update(InputPattern dao) {
+	public InputPattern update(InputPattern dao) {
 
+		InputPattern newdao = null;
 		try {
 			init();
 			tx.begin();
 
-			InputPattern newdao = (dao.getId() == null) ? new InputPattern()
-			: em.find(InputPattern.class, dao.getId());
+			newdao = (dao.getId() == null) ? new InputPattern() : em.find(
+					InputPattern.class, dao.getId());
 
 			newdao.setテストケース管理id(dao.getテストケース管理id());
 			newdao.setNo(dao.getNo());
@@ -67,16 +68,16 @@ public class InputPatternSvc extends BaseSvc {
 		} catch (Throwable e) {
 			tx.rollback();
 			logger.error(e.getMessage(), e);
-			return false;
 		} finally {
 			destroy();
 		}
 
-		return true;
+		return newdao;
 	}
 
 	/**
 	 * 入力パターン画面　表示情報を取得する
+	 *
 	 * @param id
 	 * @return
 	 */
@@ -118,8 +119,9 @@ public class InputPatternSvc extends BaseSvc {
 	 * @param wスナップショットBase64
 	 * @return
 	 */
-	public boolean updateTestResult(int id, String w判定結果,
-			String wJob状況, String wスナップショットBase64, String wHtml, String wDb,String wHtmlDif,String wDbDif) {
+	public boolean updateTestResult(int id, String w判定結果, String wJob状況,
+			String wスナップショットBase64, String wHtml, String wDb, String wHtmlDif,
+			String wDbDif) {
 
 		try {
 			init();
@@ -129,7 +131,7 @@ public class InputPatternSvc extends BaseSvc {
 			dao.set判定結果(w判定結果);
 			dao.setJob状況(wJob状況);
 			dao.set遷移結果(wスナップショットBase64);
-			dao.set実行回数(dao.get実行回数()+1);
+			dao.set実行回数(dao.get実行回数() + 1);
 			dao.setDb(wDb);
 			dao.setHtml(wHtml);
 			dao.setDb差異(wDbDif);
@@ -151,11 +153,12 @@ public class InputPatternSvc extends BaseSvc {
 
 	/**
 	 * テストケースを登録済み状態にする
+	 *
 	 * @param input_ids
 	 * @param status
 	 * @return
 	 */
-	public boolean updateTestStatus(List<Integer> input_ids,String status) {
+	public boolean updateTestStatus(List<Integer> input_ids, String status) {
 
 		if (input_ids == null)
 			return true;
