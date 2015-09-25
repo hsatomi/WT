@@ -39,6 +39,10 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 					${遷移パターン明細.画面タイトル}
 					<br/>
 					${遷移パターン明細.url}
+					<br/>
+					<a href="javascript:move_InputParameters('${遷移パターン明細.入力パターンid}')">入力パターン編集へ</a>
+					<input type="hidden" id="_遷移パターン明細id" value="${遷移パターン明細.id}" />
+					<input type="hidden" id="_入力パターンid" value="${遷移パターン明細.入力パターンid}" />
 				</div>
 				</c:forEach>
 			</div>
