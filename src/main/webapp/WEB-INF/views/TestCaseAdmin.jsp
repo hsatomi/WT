@@ -16,6 +16,7 @@ var URL_RESET = "<%= TTConst.URL_API_BASE+TTConst.URL_RESET_TESTCASE %>";
 var URL_GENERATE = "<%= TTConst.URL_API_BASE+TTConst.URL_GENERATE_TESTCASE %>";
 var URL_EXECJENKINS = "<%= TTConst.URL_API_BASE+TTConst.URL_EXECJENKINS %>";
 var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
+var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 </script>
 </head>
 
@@ -45,6 +46,7 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 					<input type="hidden" id="_入力パターンid" value="${遷移パターン明細.入力パターンid}" />
 				</div>
 				</c:forEach>
+				<input type="button" name="btnAnalyze" value="遷移先解析" onClick="analyze(${dto.テストケース管理.id})" />
 			</div>
 			<div style="margin:10px; border-style:solid;">
 				<h4>インプット情報</h4>

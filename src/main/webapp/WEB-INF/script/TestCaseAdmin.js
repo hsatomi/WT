@@ -209,6 +209,32 @@ function getSelectedStr(){
 	return list;
 }
 
+//遷移先ページ解析APIコール
+function analyze(_id){
+	var data = {"id":_id};
+    $.ajax({
+        type:"post",
+        url:URL_ANALYZE,
+        data:JSON.stringify(data),
+        contentType: 'application/json',
+        dataType: "json",
+        success: function(json_data1) {
+            // 成功時の処理
+        	if(json_data1 == true){
+            	alert("解析しました");
+            	location.reload();
+        	}else{
+            	alert("解析に失敗しました");
+        	}
+        },
+        error: function(json_data2) {
+            // 失敗時の処理
+        	alert("失敗");
+        }
+    });
+}
+
+
 //別窓でテキスト表示(未使用)
 function HtmlWrite(strText){
 	//ウィンドウサイズ600×400でスクロールバーONに設定する

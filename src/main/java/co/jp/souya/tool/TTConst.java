@@ -16,6 +16,7 @@ public class TTConst {
 	public static String URL_GENERATE_TESTCASE="/api/generateTestCase";
 	public static String URL_EXECJENKINS="/api/execJenkins";
 	public static String URL_POLLINGJENKINS="/api/pollingJenkins";
+	public static String URL_ANALYZE="/api/analyze";
 	public static String TEST_RESULT_OK="OK";
 	public static String TEST_RESULT_NG="NG";
 	public static String ACTION_CLICK="click";

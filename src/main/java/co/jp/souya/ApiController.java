@@ -3,6 +3,7 @@ package co.jp.souya;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,7 @@ import co.jp.souya.requestbody.ReqUpdateTestResult;
 import co.jp.souya.service.DaoSvc;
 import co.jp.souya.service.InputPatternSvc;
 import co.jp.souya.service.TestCaseAdminSvc;
+import co.jp.souya.tool.GetIdwithNekoHTML;
 import co.jp.souya.tool.TTConst;
 import co.jp.souya.tool.TTUtility;
 
@@ -236,5 +238,31 @@ public class ApiController {
 		result = true;
 		return result;
 	}
+
+
+	@RequestMapping(value = "/analyze", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public boolean analyze(@RequestBody ReqTestCaseAdminGenerate id)
+			throws InterruptedException {
+		logger.info("analyze");
+
+		try {
+			GetIdwithNekoHTML neko = new GetIdwithNekoHTML();
+			@SuppressWarnings("unused")
+			List<List<String>> list = neko.getId("http://192.168.0.142:8080/ts/");
+
+			logger.info("a");
+
+
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		return true;
+
+	}
+
+
+
 
 }
