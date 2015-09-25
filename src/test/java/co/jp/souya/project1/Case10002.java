@@ -58,7 +58,7 @@ public class Case10002 {
     	webdriver = new FirefoxDriver();
 		//画面遷移
 		//ログイン
-		webdriver.get("http://www.souya.biz:81/aipo/");
+		webdriver.get("http://prove-admin.rivieramypage.jp/admin/login");
 		{
 			//ユーザ名
 			WebElement element = webdriver.findElement(By.name("login_id"));
