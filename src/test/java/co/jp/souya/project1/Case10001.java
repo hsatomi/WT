@@ -130,13 +130,6 @@ public class Case10001 {
 			strResultWeb = alert.getText();
 		}
 
-		String strExpectWeb = "";
-		String strWebDif = "";
-		String strExpectWebEncoded = "%E7%99%BB%E9%8C%B2%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F";
-		strExpectWeb = URLDecoder.decode(strExpectWebEncoded, "UTF-8");
-		strWebDif = TTUtility.validateWeb(strExpectWeb, strResultWeb);
-		if(!strWebDif.isEmpty()) bTestResult=false;
-
 
 		//DB状態取得・比較
 		String strResultDB = "";
@@ -149,11 +142,7 @@ public class Case10001 {
 			JSONObject request = new JSONObject();
 			request.put("id", 1);
 			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
-			request.put("html_dif", URLEncoder.encode(strWebDif, "UTF-8"));
 			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
-			request.put("db_dif", URLEncoder.encode(strDBDif, "UTF-8"));
-			request.put("jobStatus", URLEncoder.encode(TTConst.JOB_STATUS_FINISH, "UTF-8"));
-			request.put("testResult", bTestResult ? TTConst.TEST_RESULT_OK : TTConst.TEST_RESULT_NG);
 			request.put("snapshot", strSnapshot);
 
 			HttpEntity<String> entity = new HttpEntity<String>(

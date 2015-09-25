@@ -286,10 +286,10 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("");
 						strReplace.append(sep);
-						strReplace.append("		String strExpectWeb = \"\";");
-						strReplace.append(sep);
-						strReplace.append("		String strWebDif = \"\";");
-						strReplace.append(sep);
+//						strReplace.append("		String strExpectWeb = \"\";");
+//						strReplace.append(sep);
+//						strReplace.append("		String strWebDif = \"\";");
+//						strReplace.append(sep);
 //						if(inputPattern.get実行回数()<=0){
 //							//初回
 //							strReplace.append("");
@@ -309,17 +309,6 @@ public class GenerateTestSource {
 //							strReplace.append("");
 //							strReplace.append(sep);
 //						}
-						strReplace.append("		String strExpectWebEncoded = \"" + inputPattern.getHtml正解() + "\";");
-						strReplace.append(sep);
-						strReplace.append("		strExpectWeb = URLDecoder.decode(strExpectWebEncoded, \"UTF-8\");");
-						strReplace.append(sep);
-						strReplace.append("		strWebDif = TTUtility.validateWeb(strExpectWeb, strResultWeb);");
-						strReplace.append(sep);
-						strReplace.append("		if(!strWebDif.isEmpty()) bTestResult=false;");
-						strReplace.append(sep);
-						strReplace.append("");
-						strReplace.append(sep);
-
 					}
 					//---------DB状態取得・比較---------
 					{
@@ -413,16 +402,16 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("			request.put(\"html\", URLEncoder.encode(strResultWeb, \"UTF-8\"));");
 						strReplace.append(sep);
-						strReplace.append("			request.put(\"html_dif\", URLEncoder.encode(strWebDif, \"UTF-8\"));");
-						strReplace.append(sep);
+//						strReplace.append("			request.put(\"html_dif\", URLEncoder.encode(strWebDif, \"UTF-8\"));");
+//						strReplace.append(sep);
 						strReplace.append("			request.put(\"db\", URLEncoder.encode(strResultDB, \"UTF-8\"));");
 						strReplace.append(sep);
-						strReplace.append("			request.put(\"db_dif\", URLEncoder.encode(strDBDif, \"UTF-8\"));");
-						strReplace.append(sep);
-						strReplace.append("			request.put(\"jobStatus\", URLEncoder.encode(TTConst.JOB_STATUS_FINISH, \"UTF-8\"));");
-						strReplace.append(sep);
-						strReplace.append("			request.put(\"testResult\", bTestResult ? TTConst.TEST_RESULT_OK : TTConst.TEST_RESULT_NG);");
-						strReplace.append(sep);
+//						strReplace.append("			request.put(\"db_dif\", URLEncoder.encode(strDBDif, \"UTF-8\"));");
+//						strReplace.append(sep);
+//						strReplace.append("			request.put(\"jobStatus\", URLEncoder.encode(TTConst.JOB_STATUS_FINISH, \"UTF-8\"));");
+//						strReplace.append(sep);
+//						strReplace.append("			request.put(\"testResult\", bTestResult ? TTConst.TEST_RESULT_OK : TTConst.TEST_RESULT_NG);");
+//						strReplace.append(sep);
 						strReplace.append("			request.put(\"snapshot\", strSnapshot);");
 						strReplace.append(sep);
 						strReplace.append("");
