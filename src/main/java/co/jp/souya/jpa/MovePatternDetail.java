@@ -28,28 +28,28 @@ public class MovePatternDetail implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="\"id\"")
-	private int id;
+	private Integer id;
 
 	private String url;
 
 	private String 画面タイトル;
 
 	@Column(name="\"遷移パターン管理id\"")
-	private int 遷移パターン管理id;
+	private Integer 遷移パターン管理id;
 
-	private int 遷移順;
+	private Integer 遷移順;
 
 	@Column(name="\"入力パターンid\"")
-	private int 入力パターンid;
+	private Integer 入力パターンid;
 
 	public MovePatternDetail() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -69,27 +69,27 @@ public class MovePatternDetail implements Serializable {
 		this.画面タイトル = 画面タイトル;
 	}
 
-	public int get遷移パターン管理id() {
+	public Integer get遷移パターン管理id() {
 		return this.遷移パターン管理id;
 	}
 
-	public void set遷移パターン管理id(int 遷移パターン管理id) {
+	public void set遷移パターン管理id(Integer 遷移パターン管理id) {
 		this.遷移パターン管理id = 遷移パターン管理id;
 	}
 
-	public int get遷移順() {
+	public Integer get遷移順() {
 		return this.遷移順;
 	}
 
-	public void set遷移順(int 遷移順) {
+	public void set遷移順(Integer 遷移順) {
 		this.遷移順 = 遷移順;
 	}
 
-	public int get入力パターンid() {
+	public Integer get入力パターンid() {
 		return this.入力パターンid;
 	}
 
-	public void set入力パターンid(int 入力パターンid) {
+	public void set入力パターンid(Integer 入力パターンid) {
 		this.入力パターンid = 入力パターンid;
 	}
 

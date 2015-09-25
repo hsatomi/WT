@@ -26,7 +26,7 @@ public class InputPattern implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="\"id\"")
 	private Integer id;
 
@@ -45,12 +45,12 @@ public class InputPattern implements Serializable {
 	private String job状況;
 
 	@Column(name="\"No\"")
-	private int no;
+	private Integer no;
 
 	@Column(name="\"テストケース管理id\"")
-	private int テストケース管理id;
+	private Integer テストケース管理id;
 
-	private int 実行回数;
+	private Integer 実行回数;
 
 	private String 遷移結果;
 
@@ -127,27 +127,27 @@ public class InputPattern implements Serializable {
 		this.job状況 = job状況;
 	}
 
-	public int getNo() {
+	public Integer getNo() {
 		return this.no;
 	}
 
-	public void setNo(int no) {
+	public void setNo(Integer no) {
 		this.no = no;
 	}
 
-	public int getテストケース管理id() {
+	public Integer getテストケース管理id() {
 		return this.テストケース管理id;
 	}
 
-	public void setテストケース管理id(int テストケース管理id) {
+	public void setテストケース管理id(Integer テストケース管理id) {
 		this.テストケース管理id = テストケース管理id;
 	}
 
-	public int get実行回数() {
+	public Integer get実行回数() {
 		return this.実行回数;
 	}
 
-	public void set実行回数(int 実行回数) {
+	public void set実行回数(Integer 実行回数) {
 		this.実行回数 = 実行回数;
 	}
 

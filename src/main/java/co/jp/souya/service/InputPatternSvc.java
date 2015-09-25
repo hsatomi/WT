@@ -53,10 +53,9 @@ public class InputPatternSvc extends BaseSvc {
 			init();
 			tx.begin();
 
-			InputPattern newdao = em.find(InputPattern.class, dao.getId());
-			if(newdao==null){
-				newdao = new InputPattern();
-			}
+			InputPattern newdao = (dao.getId() == null) ? new InputPattern()
+			: em.find(InputPattern.class, dao.getId());
+
 			newdao.setテストケース管理id(dao.getテストケース管理id());
 			newdao.setNo(dao.getNo());
 			newdao.set入力パターン名(dao.get入力パターン名());

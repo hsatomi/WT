@@ -24,18 +24,18 @@ public class ProjectAdmin implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="\"id\"")
-	private int id;
+	private Integer id;
 
 	private String プロジェクト名;
 
 	public ProjectAdmin() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

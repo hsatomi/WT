@@ -24,10 +24,10 @@ public class MovePatternAdmin implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="\"id\"")
-	private int id;
+	private Integer id;
 
 	@Column(name="\"画面管理id\"")
-	private int 画面管理id;
+	private Integer 画面管理id;
 
 	private String 遷移パターン名;
 
@@ -36,19 +36,19 @@ public class MovePatternAdmin implements Serializable {
 	public MovePatternAdmin() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int get画面管理id() {
+	public Integer get画面管理id() {
 		return this.画面管理id;
 	}
 
-	public void set画面管理id(int 画面管理id) {
+	public void set画面管理id(Integer 画面管理id) {
 		this.画面管理id = 画面管理id;
 	}
 

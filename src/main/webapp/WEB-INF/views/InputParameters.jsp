@@ -23,9 +23,8 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 <body>
     <h3>テストツール - 入力パラメータ画面</h3>
     <div id="div_hidden" style="display:none">
-    </div>
-    <div>
     <input type="text" id="_id" value="${dto.入力パターン.id}" />
+    <input type="text" id="_no" value="${dto.入力パターン.no}" />
     <input type="text" id="_テストケース管理id" value="${dto.入力パターン.テストケース管理id}" />
     </div>
 	<div id="move_pattern_information" style="float: left; border-style: solid; margin-right: 20px;">

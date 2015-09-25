@@ -24,29 +24,29 @@ public class DisplayAdmin implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="\"id\"")
-	private int id;
+	private Integer id;
 
 	@Column(name="\"プロジェクトid\"")
-	private int プロジェクトid;
+	private Integer プロジェクトid;
 
 	private String 画面名;
 
 	public DisplayAdmin() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getプロジェクトid() {
+	public Integer getプロジェクトid() {
 		return this.プロジェクトid;
 	}
 
-	public void setプロジェクトid(int プロジェクトid) {
+	public void setプロジェクトid(Integer プロジェクトid) {
 		this.プロジェクトid = プロジェクトid;
 	}
 

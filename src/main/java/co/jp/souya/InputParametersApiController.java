@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.jp.souya.jpa.InputPattern;
 import co.jp.souya.jpa.ParametaValue;
 import co.jp.souya.requestbody.ReqInputParameters;
 import co.jp.souya.service.InputPatternSvc;
+import co.jp.souya.service.ParametaValueSvc;
 
 /**
  * Handles requests for the application home page.
@@ -31,7 +31,7 @@ public class InputParametersApiController {
 	private InputPatternSvc inputPatternSvc;
 
 	@Autowired
-	private ParametaValue parametaValue; 
+	private ParametaValueSvc parametaValueSvc;
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
@@ -40,24 +40,16 @@ public class InputParametersApiController {
 		logger.info("update");
 		boolean result = false;
 
-		InputPattern dao = inputPatternSvc.get(req.inputPattern.getId());
-		if(dao==null){
-			dao = new InputPattern();
-		}
-		dao.setテストケース管理id(req.inputPattern.getテストケース管理id());
-		dao.setNo(req.inputPattern.getNo());
-		dao.set入力パターン名(req.inputPattern.get入力パターン名());
-		dao.set備考(req.inputPattern.get備考());
-		result = inputPatternSvc.update(dao);
-		if(!result) return result;
+		//登録 or 更新
+		result = inputPatternSvc.update(req.inputPattern);
+		if (!result)
+			return result;
 
-		
-		parametaValue.
-		
-		
-		
+		for (ParametaValue parametaValue : req.list) {
+			parametaValueSvc.update(parametaValue);
+		}
+
 		return result;
 	}
-
 
 }

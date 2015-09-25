@@ -16,6 +16,7 @@ function move(mode) {
 
 function doRegist(){
 	var _id = document.getElementById("_id").value;
+	var _no = document.getElementById("_no").value;
 	var _テストケース管理id = document.getElementById("_テストケース管理id").value;
 	var _備考 = document.getElementById("_備考").value;
 	var _入力パターン名 = document.getElementById("_入力パターン名").value;
@@ -23,6 +24,7 @@ function doRegist(){
 
 	var data_inputPattern = {
 			"id":_id
+			,"no":_no
 			,"テストケース管理id":_テストケース管理id
 			,"備考":_備考
 			,"入力パターン名":_入力パターン名

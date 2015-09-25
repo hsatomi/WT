@@ -28,7 +28,7 @@ public class ParametaValue implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="\"id\"")
-	private int id;
+	private Integer id;
 
 	private String アクション;
 
@@ -40,23 +40,23 @@ public class ParametaValue implements Serializable {
 
 	private String 項目名;
 
-	private int 実行順;
+	private Integer 実行順;
 
 	private String 値;
 
 	@Column(name="\"入力パターンid\"")
-	private int 入力パターンid;
+	private Integer 入力パターンid;
 
 	private String 備考;
 
 	public ParametaValue() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -100,11 +100,11 @@ public class ParametaValue implements Serializable {
 		this.項目名 = 項目名;
 	}
 
-	public int get実行順() {
+	public Integer get実行順() {
 		return this.実行順;
 	}
 
-	public void set実行順(int 実行順) {
+	public void set実行順(Integer 実行順) {
 		this.実行順 = 実行順;
 	}
 
@@ -116,11 +116,11 @@ public class ParametaValue implements Serializable {
 		this.値 = 値;
 	}
 
-	public int get入力パターンid() {
+	public Integer get入力パターンid() {
 		return this.入力パターンid;
 	}
 
-	public void set入力パターンid(int 入力パターンid) {
+	public void set入力パターンid(Integer 入力パターンid) {
 		this.入力パターンid = 入力パターンid;
 	}
 
