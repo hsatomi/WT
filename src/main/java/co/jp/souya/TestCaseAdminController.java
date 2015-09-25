@@ -55,7 +55,7 @@ public class TestCaseAdminController {
 
 
 	/**
-	 * html結果参照ページ
+	 * 結果参照ページ
 	 *
 	 * @param locale
 	 * @param model
@@ -71,24 +71,18 @@ public class TestCaseAdminController {
 
 	) throws UnsupportedEncodingException {
 		logger.info("htmlResult");
-
-		TestCaseAdminDTO dto = testCaseAdminSvc.getDTO(id);
-		String strDto = "";
-		// 欲しいのは入力パターンid1つ
-		for (InputPattern inputPattern : dto.get入力パターンリスト()) {
-			if (input_id.equals(inputPattern.getId())) {
-				strDto = inputPattern.getHtml();
-				if (strDto == null || strDto.isEmpty())
-					break;
-				strDto = URLDecoder.decode(strDto, "UTF-8");
-				strDto = strDto.replace("<", "&lt");
-				break;
-			}
-		}
-		model.addAttribute("dto", strDto);
-		return "TestCaseAdminConfirm";
+		return getResult(locale,model,"htmlResult",id,input_id);
 	}
-
+	/**
+	 * 結果参照ページ
+	 *
+	 * @param locale
+	 * @param model
+	 * @param id
+	 * @param input_id
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	@RequestMapping(value = "/htmlDiff", method = RequestMethod.GET)
 	public String htmlDif(Locale locale, Model model,
 			@RequestParam(value = "id", required = true) Integer id,
@@ -96,24 +90,18 @@ public class TestCaseAdminController {
 
 	) throws UnsupportedEncodingException {
 		logger.info("htmlDiff");
-
-		TestCaseAdminDTO dto = testCaseAdminSvc.getDTO(id);
-		String strDto = "";
-		// 欲しいのは入力パターンid1つ
-		for (InputPattern inputPattern : dto.get入力パターンリスト()) {
-			if (input_id.equals(inputPattern.getId())) {
-				strDto = inputPattern.getHtml差異();
-				if (strDto == null || strDto.isEmpty())
-					break;
-				strDto = URLDecoder.decode(strDto, "UTF-8");
-				strDto = strDto.replace("<", "&lt");
-				break;
-			}
-		}
-		model.addAttribute("dto", strDto);
-		return "TestCaseAdminConfirm";
+		return getResult(locale,model,"htmlDiff",id,input_id);
 	}
-
+	/**
+	 * 結果参照ページ
+	 *
+	 * @param locale
+	 * @param model
+	 * @param id
+	 * @param input_id
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	@RequestMapping(value = "/htmlCorrect", method = RequestMethod.GET)
 	public String htmlCorrect(Locale locale, Model model,
 			@RequestParam(value = "id", required = true) Integer id,
@@ -121,25 +109,19 @@ public class TestCaseAdminController {
 
 	) throws UnsupportedEncodingException {
 		logger.info("htmlCorrect");
-
-		TestCaseAdminDTO dto = testCaseAdminSvc.getDTO(id);
-		String strDto = "";
-		// 欲しいのは入力パターンid1つ
-		for (InputPattern inputPattern : dto.get入力パターンリスト()) {
-			if (input_id.equals(inputPattern.getId())) {
-				strDto = inputPattern.getHtml正解();
-				if (strDto == null || strDto.isEmpty())
-					break;
-				strDto = URLDecoder.decode(strDto, "UTF-8");
-				strDto = strDto.replace("<", "&lt");
-				break;
-			}
-		}
-		model.addAttribute("dto", strDto);
-		return "TestCaseAdminConfirm";
+		return getResult(locale,model,"htmlCorrect",id,input_id);
 	}
 
-
+	/**
+	 * 結果参照ページ
+	 *
+	 * @param locale
+	 * @param model
+	 * @param id
+	 * @param input_id
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	@RequestMapping(value = "/dbResult", method = RequestMethod.GET)
 	public String dbResult(Locale locale, Model model,
 			@RequestParam(value = "id", required = true) Integer id,
@@ -147,24 +129,18 @@ public class TestCaseAdminController {
 
 	) throws UnsupportedEncodingException {
 		logger.info("dbResult");
-
-		TestCaseAdminDTO dto = testCaseAdminSvc.getDTO(id);
-		String strDto = "";
-		// 欲しいのは入力パターンid1つ
-		for (InputPattern inputPattern : dto.get入力パターンリスト()) {
-			if (input_id.equals(inputPattern.getId())) {
-				strDto = inputPattern.getDb();
-				if (strDto == null || strDto.isEmpty())
-					break;
-				strDto = URLDecoder.decode(strDto, "UTF-8");
-				strDto = strDto.replace("<", "&lt");
-				break;
-			}
-		}
-		model.addAttribute("dto", strDto);
-		return "TestCaseAdminConfirm";
+		return getResult(locale,model,"dbResult",id,input_id);
 	}
-
+	/**
+	 * 結果参照ページ
+	 *
+	 * @param locale
+	 * @param model
+	 * @param id
+	 * @param input_id
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	@RequestMapping(value = "/dbDiff", method = RequestMethod.GET)
 	public String dbDiff(Locale locale, Model model,
 			@RequestParam(value = "id", required = true) Integer id,
@@ -172,24 +148,19 @@ public class TestCaseAdminController {
 
 	) throws UnsupportedEncodingException {
 		logger.info("dbDiff");
+		return getResult(locale,model,"dbDiff",id,input_id);
 
-		TestCaseAdminDTO dto = testCaseAdminSvc.getDTO(id);
-		String strDto = "";
-		// 欲しいのは入力パターンid1つ
-		for (InputPattern inputPattern : dto.get入力パターンリスト()) {
-			if (input_id.equals(inputPattern.getId())) {
-				strDto = inputPattern.getDb差異();
-				if (strDto == null || strDto.isEmpty())
-					break;
-				strDto = URLDecoder.decode(strDto, "UTF-8");
-				strDto = strDto.replace("<", "&lt");
-				break;
-			}
-		}
-		model.addAttribute("dto", strDto);
-		return "TestCaseAdminConfirm";
 	}
-
+	/**
+	 * 結果参照ページ
+	 *
+	 * @param locale
+	 * @param model
+	 * @param id
+	 * @param input_id
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	@RequestMapping(value = "/dbCorrect", method = RequestMethod.GET)
 	public String dbCorrect(Locale locale, Model model,
 			@RequestParam(value = "id", required = true) Integer id,
@@ -197,13 +168,40 @@ public class TestCaseAdminController {
 
 	) throws UnsupportedEncodingException {
 		logger.info("dbCorrect");
+		return getResult(locale,model,"dbCorrect",id,input_id);
+	}
+
+
+
+	private String getResult( Locale locale, Model model,
+			String kind,
+			Integer id, Integer input_id) throws UnsupportedEncodingException{
 
 		TestCaseAdminDTO dto = testCaseAdminSvc.getDTO(id);
 		String strDto = "";
 		// 欲しいのは入力パターンid1つ
 		for (InputPattern inputPattern : dto.get入力パターンリスト()) {
 			if (input_id.equals(inputPattern.getId())) {
-				strDto = inputPattern.getDb正解();
+
+				if("htmlResult".equals(kind)){
+					strDto = inputPattern.getHtml();
+				}
+				if("htmlDiff".equals(kind)){
+					strDto = inputPattern.getHtml差異();
+				}
+				if("htmlCorrect".equals(kind)){
+					strDto = inputPattern.getHtml正解();
+				}
+				if("dbResult".equals(kind)){
+					strDto = inputPattern.getDb();
+				}
+				if("dbDiff".equals(kind)){
+					strDto = inputPattern.getDb差異();
+				}
+				if("dbCorrect".equals(kind)){
+					strDto = inputPattern.getDb正解();
+				}
+
 				if (strDto == null || strDto.isEmpty())
 					break;
 				strDto = URLDecoder.decode(strDto, "UTF-8");
@@ -214,4 +212,6 @@ public class TestCaseAdminController {
 		model.addAttribute("dto", strDto);
 		return "TestCaseAdminConfirm";
 	}
+
+
 }

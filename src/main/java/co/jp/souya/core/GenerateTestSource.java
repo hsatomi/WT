@@ -459,7 +459,7 @@ public class GenerateTestSource {
 						);
 			}
 
-			logger.info(strGenerateCls);
+			logger.debug(strGenerateCls);
 
 			try {
 				//クラスファイル出力

@@ -5,22 +5,20 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>テストケース管理画面</title>
-
-<script src="script/ajax.js"></script>
-<script src="script/TestCaseAdmin.js"></script>
-<link href="css/stylesheet.css" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>テストケース管理画面</title>
+	<script src="script/ajax.js"></script>
+	<script src="script/TestCaseAdmin.js"></script>
+	<link href="css/stylesheet.css" rel="stylesheet" />
 
 <script>
 var URL_RESET = "<%= TTConst.URL_API_BASE+TTConst.URL_RESET_TESTCASE %>";
 var URL_GENERATE = "<%= TTConst.URL_API_BASE+TTConst.URL_GENERATE_TESTCASE %>";
 var URL_EXECJENKINS = "<%= TTConst.URL_API_BASE+TTConst.URL_EXECJENKINS %>";
 var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
-
 </script>
-
 </head>
+
 <body>
 	<h3>テストツール - テストケース管理画面</h3>
 	<div id="move_pattern_information" style="float: left; border-style: solid; margin-right: 20px;">

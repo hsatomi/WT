@@ -19,6 +19,63 @@ public class InputPatternSvc extends BaseSvc {
 		logger.info(this.getClass().getName());
 	}
 
+
+
+	/**
+	 * 単純取得
+	 * @param id
+	 * @return
+	 */
+	public InputPattern get(Integer id) {
+		InputPattern dao = null;
+		try {
+			init();
+
+			dao = em.find(InputPattern.class, id);
+
+		} catch (Throwable e) {
+			logger.error(e.getMessage(), e);
+		} finally {
+			destroy();
+		}
+
+		return dao;
+	}
+
+	/**
+	 * 単純更新
+	 * @param dao
+	 * @return
+	 */
+	public boolean update(InputPattern dao) {
+
+		try {
+			init();
+			tx.begin();
+
+			InputPattern newdao = em.find(InputPattern.class, dao.getId());
+			if(newdao==null){
+				newdao = new InputPattern();
+			}
+			newdao.setテストケース管理id(dao.getテストケース管理id());
+			newdao.setNo(dao.getNo());
+			newdao.set入力パターン名(dao.get入力パターン名());
+			newdao.set備考(dao.get備考());
+			em.persist(newdao);
+
+			tx.commit();
+
+		} catch (Throwable e) {
+			tx.rollback();
+			logger.error(e.getMessage(), e);
+			return false;
+		} finally {
+			destroy();
+		}
+
+		return true;
+	}
+
 	/**
 	 * 入力パターン画面　表示情報を取得する
 	 * @param id

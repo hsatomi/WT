@@ -1,5 +1,6 @@
 package co.jp.souya.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import co.jp.souya.jpa.InputPattern;
@@ -9,6 +10,11 @@ public class InputParametersDTO {
 
 	private InputPattern 入力パターン;
 	private List<ParametaValue> パラメタ値リスト;
+
+	public InputParametersDTO(){
+		入力パターン = new InputPattern();
+		パラメタ値リスト = new ArrayList<ParametaValue>();
+	}
 
 	public InputPattern get入力パターン() {
 		return 入力パターン;

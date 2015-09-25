@@ -29,16 +29,11 @@ public class InputParametersController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String get(Locale locale, Model model,
-			@RequestParam(value = "id", required = true) Integer id) {
+			@RequestParam(value = "id", required = true) Integer id
+			) {
 		logger.info("get");
 		InputParametersDTO dto = inputPatternSvc.getDTO(id);
 		model.addAttribute("dto", dto);
-		return "InputParameters";
-	}
-
-	@RequestMapping(method = RequestMethod.POST)
-	public String post(Locale locale, Model model) {
-		logger.info("post");
 		return "InputParameters";
 	}
 
