@@ -2,6 +2,7 @@ package co.jp.souya;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,7 @@ import co.jp.souya.service.DaoSvc;
 import co.jp.souya.service.InputPatternSvc;
 import co.jp.souya.service.TestCaseAdminSvc;
 import co.jp.souya.tool.TTConst;
+import co.jp.souya.tool.TTUtility;
 
 /**
  * テストツール機能を外部から利用するためのAPIを提供する
@@ -45,10 +47,8 @@ public class ApiController {
 	@Autowired
 	private DaoSvc daoSvc;
 
-
 	/**
-	 * テスト結果（正解値）をアップデートする テストケース初回のみ実行すること
-	 * 補足：テストユニットから呼び出される
+	 * テスト結果（正解値）をアップデートする テストケース初回のみ実行すること 補足：テストユニットから呼び出される
 	 *
 	 * @param req
 	 * @return
@@ -59,16 +59,15 @@ public class ApiController {
 	public boolean updateResult(@RequestBody ReqUpdateTestResult req)
 			throws UnsupportedEncodingException {
 		logger.info("updateTestResult");
-		boolean result = false;
-		result = inputPatternSvc.updateResult(req.id, req.html, req.db);
-		return result;
+		InputPattern dao = inputPatternSvc.updateResult(req.id, req.html,
+				req.db);
+		if (dao == null)
+			return false;
+		return true;
 	}
 
-
-
 	/**
-	 * テスト結果をアップデートする
-	 * 補足：テストユニットから呼び出される
+	 * テスト結果をアップデートする 補足：テストユニットから呼び出される
 	 *
 	 * @param req
 	 * @return
@@ -78,14 +77,45 @@ public class ApiController {
 	@ResponseStatus(HttpStatus.OK)
 	public boolean updateTestResult(@RequestBody ReqUpdateTestResult req)
 			throws UnsupportedEncodingException {
-		logger.info("updateResult");
-		boolean result = false;
-		// TODO:RestClient(on firefox)だと文字化けしないのに、RestTemplateだと文字化けするのでこの対応 何かいい方法があればfixして
-		req.jobStatus = URLDecoder.decode(req.jobStatus, "UTF-8");
-		result = inputPatternSvc.updateTestResult(req.id, req.testResult,
-				req.jobStatus, req.snapshot, req.html, req.db,req.html_dif,req.db_dif);
-		return result;
+		logger.info("updateTestResult");
 
+		if (req.id == null)
+			return false;
+		InputPattern dao = inputPatternSvc.get(req.id);
+		if (dao == null)
+			return false;
+
+		// 状態評価を全てAPI側で判定する
+		{
+			if (dao.get実行回数() <= 0) {
+				// 初回のみ正解値を格納
+				dao = inputPatternSvc.updateResult(req.id, req.html,
+						req.db);
+			}
+			boolean bTestResult=true;
+			String strExpectWeb = URLDecoder.decode(dao.getHtml正解(), "UTF-8");
+			String strResultWeb = URLDecoder.decode(req.html, "UTF-8");
+			String strWebDif = TTUtility.validateWeb(strExpectWeb, strResultWeb);
+			if(!strWebDif.isEmpty()) bTestResult=false;
+
+			String strExpectDB = URLDecoder.decode(dao.getDb正解(), "UTF-8");
+			String strResultDB = URLDecoder.decode(req.db, "UTF-8");
+			String strDBDif = TTUtility.validateWeb(strExpectDB, strResultDB);
+			if(!strDBDif.isEmpty()) bTestResult=false;
+
+			req.jobStatus = TTConst.JOB_STATUS_FINISH;
+			req.html_dif = URLEncoder.encode(strWebDif, "UTF-8");
+			req.db_dif = URLEncoder.encode(strDBDif, "UTF-8");
+			req.testResult = bTestResult ? TTConst.TEST_RESULT_OK : TTConst.TEST_RESULT_NG;
+		}
+
+		InputPattern newdao = inputPatternSvc.updateTestResult(req.id,
+				req.testResult, req.jobStatus, req.snapshot, req.html, req.db,
+				req.html_dif, req.db_dif);
+
+		if (newdao == null)
+			return false;
+		return true;
 	}
 
 	/**
@@ -106,12 +136,12 @@ public class ApiController {
 
 		for (Integer id : req.input_ids) {
 			result = inputPatternSvc.reset(id);
-			if(!result) return false;
+			if (!result)
+				return false;
 		}
 
 		return result;
 	}
-
 
 	/**
 	 * テストユニットを自動生成する
@@ -130,14 +160,15 @@ public class ApiController {
 		}
 		result = generateTestSource.generate(req.id, req.input_ids);
 		result = generateTestSource.gitpush();
-		result = inputPatternSvc.updateTestStatus(req.input_ids,TTConst.JOB_STATUS_START);
+		result = inputPatternSvc.updateTestStatus(req.input_ids,
+				TTConst.JOB_STATUS_START);
 
 		return result;
 	}
 
-
 	/**
 	 * テストユニットを実行する（jenkins job起動）
+	 *
 	 * @param req
 	 * @return
 	 */
@@ -151,25 +182,24 @@ public class ApiController {
 			return false;
 		}
 
-		result = inputPatternSvc.updateTestStatus(req.input_ids,TTConst.JOB_STATUS_EXEC);
+		result = inputPatternSvc.updateTestStatus(req.input_ids,
+				TTConst.JOB_STATUS_EXEC);
 		result = testCaseAdminSvc.execJenkins(req.id);
 
 		return result;
 	}
 
-
-
 	/**
-	 * Jenkinsジョブ状態をポーリングする
-	 * 状態が何か変更すれば応答をクライアントに返す
-	 * ajaxからの利用を前提とする
+	 * Jenkinsジョブ状態をポーリングする 状態が何か変更すれば応答をクライアントに返す ajaxからの利用を前提とする
+	 *
 	 * @param req
 	 * @return
 	 * @throws InterruptedException
 	 */
 	@RequestMapping(value = "/pollingJenkins", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public boolean pollingJenkins(@RequestBody ReqTestCaseAdminGenerate req) throws InterruptedException {
+	public boolean pollingJenkins(@RequestBody ReqTestCaseAdminGenerate req)
+			throws InterruptedException {
 		logger.info("pollingJenkins");
 		boolean result = false;
 		if (req == null || req.id == null) {
@@ -177,27 +207,27 @@ public class ApiController {
 			return false;
 		}
 
-		//3秒待機
+		// 3秒待機
 		Thread.sleep(3000);
 
 		int counter = 0;
-		while(true){
+		while (true) {
 			TestCaseAdminDTO dto = testCaseAdminSvc.getDTO(req.id);
 			int cnt実行中 = 0;
 			for (InputPattern inputPattern : dto.get入力パターンリスト()) {
-				if(TTConst.JOB_STATUS_EXEC.equals(inputPattern.getJob状況())){
+				if (TTConst.JOB_STATUS_EXEC.equals(inputPattern.getJob状況())) {
 					cnt実行中++;
 				}
 			}
-			if(cnt実行中==0){
+			if (cnt実行中 == 0) {
 				break;
 			}
 
-			//3秒待機
+			// 3秒待機
 			Thread.sleep(3000);
 
 			counter++;
-			if(counter > 30){
+			if (counter > 30) {
 				logger.warn("TIMEOUT! JOB状態待機が指定回数を超過しました");
 				break;
 			}
@@ -206,8 +236,5 @@ public class ApiController {
 		result = true;
 		return result;
 	}
-
-
-
 
 }

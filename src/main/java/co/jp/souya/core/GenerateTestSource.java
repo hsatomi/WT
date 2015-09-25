@@ -290,25 +290,35 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("		String strWebDif = \"\";");
 						strReplace.append(sep);
-						if(inputPattern.get実行回数()<=0){
-							//初回
-							strReplace.append("");
-							strReplace.append(sep);
-							strReplace.append("");
-							strReplace.append(sep);
-						}else{
-							//2回目以降
-							strReplace.append("		String strExpectWebEncoded = \"" + inputPattern.getHtml正解() + "\";");
-							strReplace.append(sep);
-							strReplace.append("		strExpectWeb = URLDecoder.decode(strExpectWebEncoded, \"UTF-8\");");
-							strReplace.append(sep);
-							strReplace.append("		strWebDif = TTUtility.validateWeb(strExpectWeb, strResultWeb);");
-							strReplace.append(sep);
-							strReplace.append("		if(!strWebDif.isEmpty()) bTestResult=false;");
-							strReplace.append(sep);
-							strReplace.append("");
-							strReplace.append(sep);
-						}
+//						if(inputPattern.get実行回数()<=0){
+//							//初回
+//							strReplace.append("");
+//							strReplace.append(sep);
+//							strReplace.append("");
+//							strReplace.append(sep);
+//						}else{
+//							//2回目以降
+//							strReplace.append("		String strExpectWebEncoded = \"" + inputPattern.getHtml正解() + "\";");
+//							strReplace.append(sep);
+//							strReplace.append("		strExpectWeb = URLDecoder.decode(strExpectWebEncoded, \"UTF-8\");");
+//							strReplace.append(sep);
+//							strReplace.append("		strWebDif = TTUtility.validateWeb(strExpectWeb, strResultWeb);");
+//							strReplace.append(sep);
+//							strReplace.append("		if(!strWebDif.isEmpty()) bTestResult=false;");
+//							strReplace.append(sep);
+//							strReplace.append("");
+//							strReplace.append(sep);
+//						}
+						strReplace.append("		String strExpectWebEncoded = \"" + inputPattern.getHtml正解() + "\";");
+						strReplace.append(sep);
+						strReplace.append("		strExpectWeb = URLDecoder.decode(strExpectWebEncoded, \"UTF-8\");");
+						strReplace.append(sep);
+						strReplace.append("		strWebDif = TTUtility.validateWeb(strExpectWeb, strResultWeb);");
+						strReplace.append(sep);
+						strReplace.append("		if(!strWebDif.isEmpty()) bTestResult=false;");
+						strReplace.append(sep);
+						strReplace.append("");
+						strReplace.append(sep);
 
 					}
 					//---------DB状態取得・比較---------
@@ -322,72 +332,72 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("		String strDBDif = \"\";");
 						strReplace.append(sep);
-						if(inputPattern.get実行回数()<=0){
-							//初回
-							strReplace.append("");
-							strReplace.append(sep);
-							strReplace.append("");
-							strReplace.append(sep);
-						}else{
-							//2回目以降
-							strReplace.append("");
-							strReplace.append(sep);
-							strReplace.append("");
-							strReplace.append(sep);
-						}
+//						if(inputPattern.get実行回数()<=0){
+//							//初回
+//							strReplace.append("");
+//							strReplace.append(sep);
+//							strReplace.append("");
+//							strReplace.append(sep);
+//						}else{
+//							//2回目以降
+//							strReplace.append("");
+//							strReplace.append(sep);
+//							strReplace.append("");
+//							strReplace.append(sep);
+//						}
 					}
-					//---------正解値更新---------
-					if(inputPattern.get実行回数()<=0)
-					{
-						//初回
-						strReplace.append(sep);
-						strReplace.append("		// 正解値更新");
-						strReplace.append(sep);
-						strReplace.append("		try {");
-						strReplace.append(sep);
-						strReplace.append("			URI url = new URI(\"" + TTConst.URL_API_BASE + TTConst.URL_UPDATE_RESULT + "\");");
-						strReplace.append(sep);
-						strReplace.append("			JSONObject request = new JSONObject();");
-						strReplace.append(sep);
-						strReplace.append("			request.put(\"id\", " + inputPattern.getId() + ");");
-						strReplace.append(sep);
-						strReplace.append("			request.put(\"html\", URLEncoder.encode(strResultWeb, \"UTF-8\"));");
-						strReplace.append(sep);
-						strReplace.append("			request.put(\"db\", URLEncoder.encode(strResultDB, \"UTF-8\"));");
-						strReplace.append(sep);
-						strReplace.append("");
-						strReplace.append(sep);
-						strReplace.append("			HttpEntity<String> entity = new HttpEntity<String>(");
-						strReplace.append(sep);
-						strReplace.append("					request.toString(), headers);");
-						strReplace.append(sep);
-						strReplace.append("");
-						strReplace.append(sep);
-						strReplace.append("			System.out.println(\"URL: \" + url);");
-						strReplace.append(sep);
-						strReplace.append("			String response = restTemplate.postForObject(url, entity,");
-						strReplace.append(sep);
-						strReplace.append("					String.class);");
-						strReplace.append(sep);
-						strReplace.append("			System.out.println(\"Response: \" + response);");
-						strReplace.append(sep);
-						strReplace.append("");
-						strReplace.append(sep);
-						strReplace.append("		} catch (Exception e) {");
-						strReplace.append(sep);
-						strReplace.append("			e.printStackTrace();");
-						strReplace.append(sep);
-						strReplace.append("			assertTrue(false);");
-						strReplace.append(sep);
-						strReplace.append("		}");
-						strReplace.append(sep);
-						strReplace.append("");
-						strReplace.append(sep);
-						strReplace.append("");
-						strReplace.append(sep);
-						strReplace.append("");
-						strReplace.append(sep);
-					}
+//					//---------正解値更新---------
+//					if(inputPattern.get実行回数()<=0)
+//					{
+//						//初回
+//						strReplace.append(sep);
+//						strReplace.append("		// 正解値更新");
+//						strReplace.append(sep);
+//						strReplace.append("		try {");
+//						strReplace.append(sep);
+//						strReplace.append("			URI url = new URI(\"" + TTConst.URL_API_BASE + TTConst.URL_UPDATE_RESULT + "\");");
+//						strReplace.append(sep);
+//						strReplace.append("			JSONObject request = new JSONObject();");
+//						strReplace.append(sep);
+//						strReplace.append("			request.put(\"id\", " + inputPattern.getId() + ");");
+//						strReplace.append(sep);
+//						strReplace.append("			request.put(\"html\", URLEncoder.encode(strResultWeb, \"UTF-8\"));");
+//						strReplace.append(sep);
+//						strReplace.append("			request.put(\"db\", URLEncoder.encode(strResultDB, \"UTF-8\"));");
+//						strReplace.append(sep);
+//						strReplace.append("");
+//						strReplace.append(sep);
+//						strReplace.append("			HttpEntity<String> entity = new HttpEntity<String>(");
+//						strReplace.append(sep);
+//						strReplace.append("					request.toString(), headers);");
+//						strReplace.append(sep);
+//						strReplace.append("");
+//						strReplace.append(sep);
+//						strReplace.append("			System.out.println(\"URL: \" + url);");
+//						strReplace.append(sep);
+//						strReplace.append("			String response = restTemplate.postForObject(url, entity,");
+//						strReplace.append(sep);
+//						strReplace.append("					String.class);");
+//						strReplace.append(sep);
+//						strReplace.append("			System.out.println(\"Response: \" + response);");
+//						strReplace.append(sep);
+//						strReplace.append("");
+//						strReplace.append(sep);
+//						strReplace.append("		} catch (Exception e) {");
+//						strReplace.append(sep);
+//						strReplace.append("			e.printStackTrace();");
+//						strReplace.append(sep);
+//						strReplace.append("			assertTrue(false);");
+//						strReplace.append(sep);
+//						strReplace.append("		}");
+//						strReplace.append(sep);
+//						strReplace.append("");
+//						strReplace.append(sep);
+//						strReplace.append("");
+//						strReplace.append(sep);
+//						strReplace.append("");
+//						strReplace.append(sep);
+//					}
 					//---------JOB状況更新---------
 					{
 						strReplace.append(sep);

@@ -119,15 +119,16 @@ public class InputPatternSvc extends BaseSvc {
 	 * @param wスナップショットBase64
 	 * @return
 	 */
-	public boolean updateTestResult(int id, String w判定結果, String wJob状況,
+	public InputPattern updateTestResult(int id, String w判定結果, String wJob状況,
 			String wスナップショットBase64, String wHtml, String wDb, String wHtmlDif,
 			String wDbDif) {
 
+		InputPattern dao = null;
 		try {
 			init();
 			tx.begin();
 
-			InputPattern dao = em.find(InputPattern.class, id);
+			dao = em.find(InputPattern.class, id);
 			dao.set判定結果(w判定結果);
 			dao.setJob状況(wJob状況);
 			dao.set遷移結果(wスナップショットBase64);
@@ -143,16 +144,15 @@ public class InputPatternSvc extends BaseSvc {
 		} catch (Throwable e) {
 			tx.rollback();
 			logger.error(e.getMessage(), e);
-			return false;
 		} finally {
 			destroy();
 		}
 
-		return true;
+		return dao;
 	}
 
 	/**
-	 * テストケースを登録済み状態にする
+	 * テストケースを[指定]状態にする
 	 *
 	 * @param input_ids
 	 * @param status
@@ -192,13 +192,13 @@ public class InputPatternSvc extends BaseSvc {
 	 * @param id
 	 * @return
 	 */
-	public boolean updateResult(int id, String wHTML, String wDB) {
-
+	public InputPattern updateResult(int id, String wHTML, String wDB) {
+		InputPattern dao = null;
 		try {
 			init();
 			tx.begin();
 
-			InputPattern dao = em.find(InputPattern.class, id);
+			dao = em.find(InputPattern.class, id);
 			dao.setDb正解(wDB);
 			dao.setHtml正解(wHTML);
 			em.persist(dao);
@@ -208,12 +208,11 @@ public class InputPatternSvc extends BaseSvc {
 		} catch (Throwable e) {
 			tx.rollback();
 			logger.error(e.getMessage(), e);
-			return false;
 		} finally {
 			destroy();
 		}
 
-		return true;
+		return dao;
 	}
 
 	/**
