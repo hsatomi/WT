@@ -725,6 +725,26 @@ public class GenerateTestSource {
 		strbuf.append(sep);
 		strbuf.append("");
 		strbuf.append(sep);
+		strbuf.append("	//アラート確認");
+		strbuf.append(sep);
+		strbuf.append("	private boolean isAlertPresent() {");
+		strbuf.append(sep);
+		strbuf.append("		try {");
+		strbuf.append(sep);
+		strbuf.append("			driver.switchTo().alert();");
+		strbuf.append(sep);
+		strbuf.append("			return true;");
+		strbuf.append(sep);
+		strbuf.append("		} catch (NoAlertPresentException e) {");
+		strbuf.append(sep);
+		strbuf.append("			return false;");
+		strbuf.append(sep);
+		strbuf.append("		}");
+		strbuf.append(sep);
+		strbuf.append("	}");
+		strbuf.append(sep);
+		strbuf.append("");
+		strbuf.append(sep);
 		strbuf.append("}");
 
 		return strbuf.toString();
