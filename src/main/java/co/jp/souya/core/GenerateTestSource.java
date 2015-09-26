@@ -786,7 +786,9 @@ public class GenerateTestSource {
 		strbuf.append(sep);
 		strbuf.append("	// 活性Windowを検索してフォーカスを移動する");
 		strbuf.append(sep);
-		strbuf.append("	private boolean move_activeWindow() {");
+		strbuf.append("	private boolean move_activeWindow() throws Exception {");
+		strbuf.append(sep);
+		strbuf.append("		Thread.sleep(500);");
 		strbuf.append(sep);
 		strbuf.append("		try{");
 		strbuf.append(sep);
@@ -797,6 +799,8 @@ public class GenerateTestSource {
 		strbuf.append("		}catch(Exception e){");
 		strbuf.append(sep);
 		strbuf.append("		}");
+		strbuf.append(sep);
+		strbuf.append("		Thread.sleep(500);");
 		strbuf.append(sep);
 		strbuf.append("");
 		strbuf.append(sep);
