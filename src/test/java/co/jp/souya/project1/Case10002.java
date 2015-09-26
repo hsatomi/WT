@@ -41,6 +41,7 @@ public class Case10002 {
 	private static WebDriver webdriver;
 	private static HttpHeaders headers;
 	private static RestTemplate restTemplate;
+	private static Set<String> hndlsNow;
 
 	@BeforeClass
 	public static  void doBeforeCls(){
@@ -105,6 +106,7 @@ public class Case10002 {
 	public void Test5() throws Exception{
 
 		//実行
+		hndlsNow = webdriver.getWindowHandles();
 		boolean bTestResult = true;
 		{
 			//表示順
@@ -145,6 +147,7 @@ public class Case10002 {
 		}
 		{
 			click_alertOK();
+			move_activeWindow();
 		}
 
 		// 実行後アラートダイアログチェック
@@ -270,6 +273,22 @@ public class Case10002 {
 			e.printStackTrace();
 		}
 		return strSnapshot;
+	}
+
+	// 活性Windowを検索してフォーカスを移動する
+	private boolean move_activeWindow() {
+		boolean bStatus = false;
+		for (String hndlWin : hndlsNow) {
+			try {
+				webdriver.switchTo().window(hndlWin);
+				bStatus = true;
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+			if (bStatus)
+				break;
+		}
+		return bStatus;
 	}
 
 }

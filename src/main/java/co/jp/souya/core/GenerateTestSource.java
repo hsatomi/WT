@@ -220,6 +220,8 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("		//実行");
 						strReplace.append(sep);
+						strReplace.append("		hndlsNow = webdriver.getWindowHandles();");
+						strReplace.append(sep);
 						strReplace.append("		boolean bTestResult = true;");
 						strReplace.append(sep);
 						//TODO:実行順に取得していることを確認
@@ -428,6 +430,8 @@ public class GenerateTestSource {
 			strReplace.append(sep);
 			strReplace.append("			click_alertOK();");
 			strReplace.append(sep);
+			strReplace.append("			move_activeWindow();");
+			strReplace.append(sep);
 			strReplace.append("		}");
 			strReplace.append(sep);
 		}else if("クリックアラートNG".equals(parametaValue.getエレメント型())){
@@ -435,6 +439,8 @@ public class GenerateTestSource {
 			strReplace.append("		{");
 			strReplace.append(sep);
 			strReplace.append("			click_alertNG();");
+			strReplace.append(sep);
+			strReplace.append("			move_activeWindow();");
 			strReplace.append(sep);
 			strReplace.append("		}");
 			strReplace.append(sep);
@@ -579,6 +585,8 @@ public class GenerateTestSource {
 		strbuf.append("	private static HttpHeaders headers;");
 		strbuf.append(sep);
 		strbuf.append("	private static RestTemplate restTemplate;");
+		strbuf.append(sep);
+		strbuf.append("	private static Set<String> hndlsNow;");
 		strbuf.append(sep);
 		strbuf.append("");
 		strbuf.append(sep);
@@ -765,6 +773,38 @@ public class GenerateTestSource {
 		strbuf.append("		}");
 		strbuf.append(sep);
 		strbuf.append("		return strSnapshot;");
+		strbuf.append(sep);
+		strbuf.append("	}");
+		strbuf.append(sep);
+		strbuf.append("");
+		strbuf.append(sep);
+		strbuf.append("	// 活性Windowを検索してフォーカスを移動する");
+		strbuf.append(sep);
+		strbuf.append("	private boolean move_activeWindow() {");
+		strbuf.append(sep);
+		strbuf.append("		boolean bStatus = false;");
+		strbuf.append(sep);
+		strbuf.append("		for (String hndlWin : hndlsNow) {");
+		strbuf.append(sep);
+		strbuf.append("			try {");
+		strbuf.append(sep);
+		strbuf.append("				webdriver.switchTo().window(hndlWin);");
+		strbuf.append(sep);
+		strbuf.append("				bStatus = true;");
+		strbuf.append(sep);
+		strbuf.append("			} catch (Exception e) {");
+		strbuf.append(sep);
+		strbuf.append("				System.out.println(e.getMessage());");
+		strbuf.append(sep);
+		strbuf.append("			}");
+		strbuf.append(sep);
+		strbuf.append("			if (bStatus)");
+		strbuf.append(sep);
+		strbuf.append("				break;");
+		strbuf.append(sep);
+		strbuf.append("		}");
+		strbuf.append(sep);
+		strbuf.append("		return bStatus;");
 		strbuf.append(sep);
 		strbuf.append("	}");
 		strbuf.append(sep);
