@@ -109,6 +109,9 @@ public class Case10002 {
 			WebElement element = webdriver.findElement(By.className("middle_btn"));
 			element.click();
 		}
+		{
+			click_alertOK();
+		}
 
 		// 実行後アラートダイアログチェック
 		Alert alert = null;
