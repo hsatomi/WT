@@ -213,7 +213,7 @@ public class GenerateTestSource {
 				for (InputPattern inputPattern : dao入力パターンリスト) {
 					strReplace.append("	@Test");
 					strReplace.append(sep);
-					strReplace.append("	public void Test" + inputPattern.getNo() + "() throws UnsupportedEncodingException{");
+					strReplace.append("	public void Test" + inputPattern.getNo() + "() throws Exception{");
 					strReplace.append(sep);
 					//---------実行---------
 					{

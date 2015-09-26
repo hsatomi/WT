@@ -100,7 +100,7 @@ public class Case10002 {
 
 		//テストケース開始
 	@Test
-	public void Test4() throws UnsupportedEncodingException{
+	public void Test4() throws Exception{
 
 		//実行
 		boolean bTestResult = true;
