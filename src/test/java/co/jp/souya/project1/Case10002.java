@@ -92,8 +92,7 @@ public class Case10002 {
 			element.click();
 		}
 		{
-			//dummy
-			WebElement element = webdriver.findElement(別ウィンドウへ移動(""));
+			move_anotherWindow();
 		}
 
 	}
