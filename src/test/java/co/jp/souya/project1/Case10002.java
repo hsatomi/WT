@@ -192,6 +192,9 @@ public class Case10002 {
 			}
 		}
 		{
+			move_anotherWindow();
+		}
+		{
 			//表示順
 			List<WebElement> elements = webdriver.findElements(By.id("display_num"));
 			WebElement element = webdriver.findElement(By.id("display_num"));
