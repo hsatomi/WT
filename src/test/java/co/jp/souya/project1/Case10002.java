@@ -116,6 +116,22 @@ public class Case10002 {
 			Select select=new Select(element);
 			select.selectByIndex(1);
 		}
+		{
+			//テンプレート名
+			WebElement element = webdriver.findElement(By.id("template_name"));
+			element.sendKeys("testByTool");
+		}
+		{
+			//データ形式
+			WebElement element = webdriver.findElement(By.id("data_type"));
+			Select select=new Select(element);
+			select.selectByIndex(1);
+		}
+		{
+			//個別精算者
+			WebElement element = webdriver.findElement(By.className("main_unit"));
+			element.sendKeys("1");
+		}
 
 		// 実行後アラートダイアログチェック
 		Alert alert = null;
