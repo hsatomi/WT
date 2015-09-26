@@ -111,7 +111,7 @@ public class Case10002 {
 
 		//テストケース開始
 	@Test
-	public void Test6() throws Exception{
+	public void Test7() throws Exception{
 
 		//実行
 		hndlsNow = webdriver.getWindowHandles();
@@ -121,7 +121,7 @@ public class Case10002 {
 			List<WebElement> elements = webdriver.findElements(By.id("display_num"));
 			WebElement element = webdriver.findElement(By.id("display_num"));
 			element.clear();
-			element.sendKeys("155");
+			element.sendKeys("166");
 		}
 		{
 			//業種
@@ -135,7 +135,7 @@ public class Case10002 {
 			List<WebElement> elements = webdriver.findElements(By.id("template_name"));
 			WebElement element = webdriver.findElement(By.id("template_name"));
 			element.clear();
-			element.sendKeys("testByToolUniqe");
+			element.sendKeys("testByToolForUpdate");
 		}
 		{
 			//データ形式
@@ -172,7 +172,7 @@ public class Case10002 {
 			List<WebElement> elements = webdriver.findElements(By.id("template_name"));
 			WebElement element = webdriver.findElement(By.id("template_name"));
 			element.clear();
-			element.sendKeys("testByToolUniqe");
+			element.sendKeys("");
 		}
 		{
 			//検索ボタン
@@ -181,11 +181,11 @@ public class Case10002 {
 			element.click();
 		}
 		{
-			//削除ボタン
+			//更新ボタン
 			List<WebElement> elements = webdriver.findElements(By.className("middle_btn"));
 			WebElement element = webdriver.findElement(By.className("middle_btn"));
 			for (WebElement webElement : elements) {
-				if("削除".equals(webElement.getAttribute("value"))){
+				if("更新".equals(webElement.getAttribute("value"))){
 					webElement.click();
 					break;
 				}
@@ -194,19 +194,6 @@ public class Case10002 {
 		{
 			click_alertOK();
 			move_activeWindow();
-		}
-		{
-			//テンプレート名
-			List<WebElement> elements = webdriver.findElements(By.id("template_name"));
-			WebElement element = webdriver.findElement(By.id("template_name"));
-			element.clear();
-			element.sendKeys("testByToolUniqe");
-		}
-		{
-			//検索ボタン
-			List<WebElement> elements = webdriver.findElements(By.className("middle_btn"));
-			WebElement element = webdriver.findElement(By.className("middle_btn"));
-			element.click();
 		}
 
 		// 実行後アラートダイアログチェック
@@ -241,7 +228,7 @@ public class Case10002 {
 		try {
 			URI url = new URI("http://localhost:8080/souya/api/updateTestResult");
 			JSONObject request = new JSONObject();
-			request.put("id", 108);
+			request.put("id", 109);
 			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
 			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
 			request.put("snapshot", strSnapshot);
