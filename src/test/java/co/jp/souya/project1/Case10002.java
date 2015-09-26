@@ -88,7 +88,7 @@ public class Case10002 {
 		//一覧
 		{
 			//新規登録
-			WebElement element = webdriver.findElement(By.className("middle_btn"));
+			WebElement element = webdriver.findElement(By.cssSelector("form[name=\"input_form\"] > input.middle_btn"));
 			element.click();
 		}
 

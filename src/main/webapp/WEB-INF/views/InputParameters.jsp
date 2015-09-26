@@ -75,8 +75,9 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 						<option value="" <c:if test="${パラメタ値.エレメント型==''}">selected</c:if>></option>
 						<option value="By.name" <c:if test="${パラメタ値.エレメント型=='By.name'}">selected</c:if>>By.name</option>
 						<option value="By.id" <c:if test="${パラメタ値.エレメント型=='By.id'}">selected</c:if>>By.id</option>
-						<option value="By.linkText" <c:if test="${パラメタ値.エレメント型=='By.linkText'}">selected</c:if>>By.linkText</option>
 						<option value="By.className" <c:if test="${パラメタ値.エレメント型=='By.className'}">selected</c:if>>By.className</option>
+						<option value="By.linkText" <c:if test="${パラメタ値.エレメント型=='By.linkText'}">selected</c:if>>By.linkText</option>
+						<option value="By.cssSelector" <c:if test="${パラメタ値.エレメント型=='By.cssSelector'}">selected</c:if>>By.cssSelector</option>
 						</select>
 					</td>
 					<td>
