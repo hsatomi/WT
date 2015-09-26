@@ -418,7 +418,9 @@ public class GenerateTestSource {
 	}
 
 
+
 	private StringBuffer stackParameters(ParametaValue parametaValue){
+		//TODO:全体的に javaコードエスケープを処理する必要がある 例えば C:\Temp -> C:\\Temp としないとならない
 		StringBuffer strReplace = new StringBuffer();
 		if("別ウィンドウへ移動".equals(parametaValue.getエレメント型())){
 			//固有処理
@@ -467,7 +469,7 @@ public class GenerateTestSource {
 						+ parametaValue.getエレメント名() + "\"));");
 				strReplace.append(sep);
 				if(TTConst.ACTION_SENDKEYS.equals(parametaValue.getアクション())){
-					strReplace.append("			element.sendKeys(\"" + parametaValue.get値() + "\");");
+					strReplace.append("			element.sendKeys(\"" + esc(parametaValue.get値()) + "\");");
 					strReplace.append(sep);
 				}else
 				if(TTConst.ACTION_CLICK.equals(parametaValue.getアクション())){
@@ -491,6 +493,11 @@ public class GenerateTestSource {
 			strReplace.append(sep);
 		}
 		return strReplace;
+	}
+
+	private String esc(String str){
+		//エスケープ for java
+		return str.replace("\\", "\\\\");
 	}
 
 	private String getHinagata(){
