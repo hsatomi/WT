@@ -731,11 +731,11 @@ public class GenerateTestSource {
 		strbuf.append(sep);
 		strbuf.append("		try {");
 		strbuf.append(sep);
-		strbuf.append("			driver.switchTo().alert();");
+		strbuf.append("			webdriver.switchTo().alert();");
 		strbuf.append(sep);
 		strbuf.append("			return true;");
 		strbuf.append(sep);
-		strbuf.append("		} catch (NoAlertPresentException e) {");
+		strbuf.append("		} catch (Exception e) {");
 		strbuf.append(sep);
 		strbuf.append("			return false;");
 		strbuf.append(sep);

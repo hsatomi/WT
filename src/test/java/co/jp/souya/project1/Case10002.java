@@ -248,9 +248,9 @@ public class Case10002 {
 	//アラート確認
 	private boolean isAlertPresent() {
 		try {
-			driver.switchTo().alert();
+			webdriver.switchTo().alert();
 			return true;
-		} catch (NoAlertPresentException e) {
+		} catch (Exception e) {
 			return false;
 		}
 	}
