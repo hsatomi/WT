@@ -100,14 +100,22 @@ public class Case10002 {
 
 		//テストケース開始
 	@Test
-	public void Test3() throws UnsupportedEncodingException{
+	public void Test2() throws UnsupportedEncodingException{
 
 		//実行
 		boolean bTestResult = true;
 		{
+			//表示順
+			WebElement element = webdriver.findElement(By.id("display_num"));
+			element.sendKeys("99999");
+		}
+		{
 			//登録ボタン
 			WebElement element = webdriver.findElement(By.className("middle_btn"));
 			element.click();
+		}
+		{
+			click_alertOK();
 		}
 
 		// 実行後アラートダイアログチェック
@@ -143,7 +151,7 @@ public class Case10002 {
 		try {
 			URI url = new URI("http://localhost:8080/souya/api/updateTestResult");
 			JSONObject request = new JSONObject();
-			request.put("id", 105);
+			request.put("id", 104);
 			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
 			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
 			request.put("snapshot", strSnapshot);
