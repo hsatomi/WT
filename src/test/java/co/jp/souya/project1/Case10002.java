@@ -100,17 +100,19 @@ public class Case10002 {
 
 		//テストケース開始
 	@Test
-	public void Test4() throws Exception{
+	public void Test5() throws Exception{
 
 		//実行
 		boolean bTestResult = true;
 		{
-			//登録ボタン
-			WebElement element = webdriver.findElement(By.className("middle_btn"));
-			element.click();
+			//表示順
+			WebElement element = webdriver.findElement(By.id("display_num"));
+			element.sendKeys("123");
 		}
 		{
-			click_alertNG();
+			//業種
+			WebElement element = webdriver.findElement(By.id("company_industry_id"));
+			element.click();
 		}
 
 		// 実行後アラートダイアログチェック
@@ -146,7 +148,7 @@ public class Case10002 {
 		try {
 			URI url = new URI("http://localhost:8080/souya/api/updateTestResult");
 			JSONObject request = new JSONObject();
-			request.put("id", 106);
+			request.put("id", 107);
 			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
 			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
 			request.put("snapshot", strSnapshot);
