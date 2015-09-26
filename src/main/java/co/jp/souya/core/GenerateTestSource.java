@@ -167,6 +167,14 @@ public class GenerateTestSource {
 							strReplace.append(sep);
 							strReplace.append("		}");
 							strReplace.append(sep);
+						}else if("クリックアラートOK".equals(parametaValue.getエレメント型())){
+								//固有処理
+								strReplace.append("		{");
+								strReplace.append(sep);
+								strReplace.append("			click_alertOK();");
+								strReplace.append(sep);
+								strReplace.append("		}");
+								strReplace.append(sep);
 						}else{
 							strReplace.append("		{");
 							strReplace.append(sep);
