@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Table(name="\"ParametaValue\"")
 @NamedQueries({
 	@NamedQuery(name="ParametaValue.findAll", query="SELECT p FROM ParametaValue p")
-,	@NamedQuery(name="ParametaValue.findListById", query="SELECT i FROM ParametaValue i where 入力パターンid=:入力パターンid")
+,	@NamedQuery(name="ParametaValue.findListById", query="SELECT i FROM ParametaValue i where 入力パターンid=:入力パターンid order by 実行順")
 })
 public class ParametaValue implements Serializable {
 	private static final long serialVersionUID = 1L;

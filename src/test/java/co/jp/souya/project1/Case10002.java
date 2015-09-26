@@ -105,14 +105,14 @@ public class Case10002 {
 		//実行
 		boolean bTestResult = true;
 		{
-			//登録ボタン
-			WebElement element = webdriver.findElement(By.className("middle_btn"));
-			element.click();
-		}
-		{
 			//表示順
 			WebElement element = webdriver.findElement(By.id("display_num"));
 			element.sendKeys("99999");
+		}
+		{
+			//登録ボタン
+			WebElement element = webdriver.findElement(By.className("middle_btn"));
+			element.click();
 		}
 
 		// 実行後アラートダイアログチェック
@@ -185,7 +185,7 @@ public class Case10002 {
 
 	//他画面へ遷移する
 	private void move_anotherWindow() throws Exception{
-		Thread.sleep(200);
+		Thread.sleep(500);
 		String hndlMain = webdriver.getWindowHandle();
 		Set<String> windowList = webdriver.getWindowHandles();
 		for (String hndlWnd : windowList) {
