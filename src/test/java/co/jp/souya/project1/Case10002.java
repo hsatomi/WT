@@ -196,7 +196,10 @@ public class Case10002 {
 
 
 		// 実行後スナップショット取得
-		String strSnapshot = tryGetPicture();
+		String strSnapshot = "";
+		if (alert == null) {
+			strSnapshot = tryGetPicture();
+		}
 
 
 		//web状態取得・比較

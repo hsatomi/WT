@@ -295,7 +295,13 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("		// 実行後スナップショット取得");
 						strReplace.append(sep);
-						strReplace.append("		String strSnapshot = tryGetPicture();");
+						strReplace.append("		String strSnapshot = \"\";");
+						strReplace.append(sep);
+						strReplace.append("		if (alert == null) {");
+						strReplace.append(sep);
+						strReplace.append("			strSnapshot = tryGetPicture();");
+						strReplace.append(sep);
+						strReplace.append("		}");
 						strReplace.append(sep);
 						strReplace.append("");
 						strReplace.append(sep);
