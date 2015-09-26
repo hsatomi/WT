@@ -245,6 +245,12 @@ public class Case10002 {
 
 	// 活性Windowを検索してフォーカスを移動する
 	private boolean move_activeWindow() {
+		try{
+			webdriver.getWindowHandle();
+			return true;
+		}catch(Exception e){
+		}
+
 		boolean bStatus = false;
 		for (String hndlWin : hndlsNow) {
 			try {
@@ -258,5 +264,4 @@ public class Case10002 {
 		}
 		return bStatus;
 	}
-
 }
