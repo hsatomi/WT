@@ -51,7 +51,7 @@ public class Case10002 {
 
 	}
 	@Before
-	public void doBefore(){
+	public void doBefore() throws Exception{
 		//DB初期化
 		//import用スクリプトをキックする、など要検討
 
@@ -182,7 +182,8 @@ public class Case10002 {
 	}
 
 	//他画面へ遷移する
-	private void move_anotherWindow(){
+	private void move_anotherWindow() throws Exception{
+		Thread.sleep(500);
 		String hndlMain = webdriver.getWindowHandle();
 		Set<String> windowList = webdriver.getWindowHandles();
 		for (String hndlWnd : windowList) {

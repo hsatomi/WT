@@ -524,7 +524,7 @@ public class GenerateTestSource {
 		strbuf.append(sep);
 		strbuf.append("	@Before");
 		strbuf.append(sep);
-		strbuf.append("	public void doBefore(){");
+		strbuf.append("	public void doBefore() throws Exception{");
 		strbuf.append(sep);
 		strbuf.append("		//DB初期化");
 		strbuf.append(sep);
@@ -570,7 +570,9 @@ public class GenerateTestSource {
 		strbuf.append(sep);
 		strbuf.append("	//他画面へ遷移する");
 		strbuf.append(sep);
-		strbuf.append("	private void move_anotherWindow(){");
+		strbuf.append("	private void move_anotherWindow() throws Exception{");
+		strbuf.append(sep);
+		strbuf.append("		Thread.sleep(500);");
 		strbuf.append(sep);
 		strbuf.append("		String hndlMain = webdriver.getWindowHandle();");
 		strbuf.append(sep);
