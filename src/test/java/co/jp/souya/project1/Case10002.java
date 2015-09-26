@@ -154,6 +154,11 @@ public class Case10002 {
 			WebElement element = webdriver.findElement(By.id("template_name"));
 			element.sendKeys("testByToolUniqe");
 		}
+		{
+			//検索ボタン
+			WebElement element = webdriver.findElement(By.className("middle_btn"));
+			element.click();
+		}
 
 		// 実行後アラートダイアログチェック
 		Alert alert = null;
@@ -284,12 +289,14 @@ public class Case10002 {
 	}
 
 	// 活性Windowを検索してフォーカスを移動する
-	private boolean move_activeWindow() {
+	private boolean move_activeWindow() throws Exception {
+		Thread.sleep(500);
 		try{
 			webdriver.getWindowHandle();
 			return true;
 		}catch(Exception e){
 		}
+		Thread.sleep(500);
 
 		boolean bStatus = false;
 		for (String hndlWin : hndlsNow) {
