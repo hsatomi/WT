@@ -458,9 +458,21 @@ public class GenerateTestSource {
 			if(TTConst.ACTION_SENDKEYS.equals(parametaValue.getアクション())){
 				strReplace.append("			element.sendKeys(\"" + parametaValue.get値() + "\");");
 				strReplace.append(sep);
-			}
+			}else
 			if(TTConst.ACTION_CLICK.equals(parametaValue.getアクション())){
 				strReplace.append("			element.click();");
+				strReplace.append(sep);
+			}else
+			if(TTConst.ACTION_SELECTBYINDEX.equals(parametaValue.getアクション())){
+				strReplace.append("			Select select=new Select(element);");
+				strReplace.append(sep);
+				strReplace.append("			select.selectByIndex(" + parametaValue.get値() + ");");
+				strReplace.append(sep);
+			}else
+			if(TTConst.ACTION_SELECTBYVALUE.equals(parametaValue.getアクション())){
+				strReplace.append("			Select select=new Select(element);");
+				strReplace.append(sep);
+				strReplace.append("			select.selectByValue(" + parametaValue.get値() + ");");
 				strReplace.append(sep);
 			}
 			strReplace.append("		}");
@@ -520,6 +532,8 @@ public class GenerateTestSource {
 		strbuf.append("import org.openqa.selenium.WebElement;");
 		strbuf.append(sep);
 		strbuf.append("import org.openqa.selenium.firefox.FirefoxDriver;");
+		strbuf.append(sep);
+		strbuf.append("import org.openqa.selenium.support.ui.Select;");
 		strbuf.append(sep);
 		strbuf.append("import org.springframework.http.HttpEntity;");
 		strbuf.append(sep);

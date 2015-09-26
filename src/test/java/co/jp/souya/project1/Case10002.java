@@ -23,6 +23,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -112,7 +113,8 @@ public class Case10002 {
 		{
 			//業種
 			WebElement element = webdriver.findElement(By.id("company_industry_id"));
-			element.click();
+			Select select=new Select(element);
+			select.selectByIndex(1);
 		}
 
 		// 実行後アラートダイアログチェック
