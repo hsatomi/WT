@@ -51,14 +51,14 @@ public class InputParametersApiController {
 						|| parametaValue.getエレメント型().isEmpty()) {
 					continue;
 				}
-				if (parametaValue.getエレメント名() == null
-						|| parametaValue.getエレメント名().isEmpty()) {
-					continue;
-				}
-				if (parametaValue.getアクション() == null
-						|| parametaValue.getアクション().isEmpty()) {
-					continue;
-				}
+//				if (parametaValue.getエレメント名() == null
+//						|| parametaValue.getエレメント名().isEmpty()) {
+//					continue;
+//				}
+//				if (parametaValue.getアクション() == null
+//						|| parametaValue.getアクション().isEmpty()) {
+//					continue;
+//				}
 			}
 			// TODO:削除ロジック
 

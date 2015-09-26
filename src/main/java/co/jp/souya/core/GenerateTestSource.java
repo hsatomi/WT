@@ -207,26 +207,36 @@ public class GenerateTestSource {
 						List<ParametaValue> daoパラメタ値リスト=
 						daoSvc.getParametaValueList(inputPattern.getId());
 						for (ParametaValue parametaValue : daoパラメタ値リスト) {
-							strReplace.append("		{");
-							strReplace.append(sep);
-							strReplace.append("			//" + parametaValue.get項目名());
-							strReplace.append(sep);
-							strReplace
-									.append("			WebElement element = webdriver.findElement("
-											+ parametaValue.getエレメント型()
-											+ "(\""
-											+ parametaValue.getエレメント名() + "\"));");
-							strReplace.append(sep);
-							if(TTConst.ACTION_SENDKEYS.equals(parametaValue.getアクション())){
-								strReplace.append("			element.sendKeys(\"" + parametaValue.get値() + "\");");
+							if("別ウィンドウへ移動".equals(parametaValue.getエレメント型())){
+								//固有処理
+								strReplace.append("		{");
+								strReplace.append(sep);
+								strReplace.append("			move_anotherWindow();");
+								strReplace.append(sep);
+								strReplace.append("		}");
+								strReplace.append(sep);
+							}else{
+								strReplace.append("		{");
+								strReplace.append(sep);
+								strReplace.append("			//" + parametaValue.get項目名());
+								strReplace.append(sep);
+								strReplace
+										.append("			WebElement element = webdriver.findElement("
+												+ parametaValue.getエレメント型()
+												+ "(\""
+												+ parametaValue.getエレメント名() + "\"));");
+								strReplace.append(sep);
+								if(TTConst.ACTION_SENDKEYS.equals(parametaValue.getアクション())){
+									strReplace.append("			element.sendKeys(\"" + parametaValue.get値() + "\");");
+									strReplace.append(sep);
+								}
+								if(TTConst.ACTION_CLICK.equals(parametaValue.getアクション())){
+									strReplace.append("			element.click();");
+									strReplace.append(sep);
+								}
+								strReplace.append("		}");
 								strReplace.append(sep);
 							}
-							if(TTConst.ACTION_CLICK.equals(parametaValue.getアクション())){
-								strReplace.append("			element.click();");
-								strReplace.append(sep);
-							}
-							strReplace.append("		}");
-							strReplace.append(sep);
 						}
 					}
 					//---------実行直後がアラートダイアログ状態かどうかチェック---------
@@ -286,29 +296,6 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("");
 						strReplace.append(sep);
-//						strReplace.append("		String strExpectWeb = \"\";");
-//						strReplace.append(sep);
-//						strReplace.append("		String strWebDif = \"\";");
-//						strReplace.append(sep);
-//						if(inputPattern.get実行回数()<=0){
-//							//初回
-//							strReplace.append("");
-//							strReplace.append(sep);
-//							strReplace.append("");
-//							strReplace.append(sep);
-//						}else{
-//							//2回目以降
-//							strReplace.append("		String strExpectWebEncoded = \"" + inputPattern.getHtml正解() + "\";");
-//							strReplace.append(sep);
-//							strReplace.append("		strExpectWeb = URLDecoder.decode(strExpectWebEncoded, \"UTF-8\");");
-//							strReplace.append(sep);
-//							strReplace.append("		strWebDif = TTUtility.validateWeb(strExpectWeb, strResultWeb);");
-//							strReplace.append(sep);
-//							strReplace.append("		if(!strWebDif.isEmpty()) bTestResult=false;");
-//							strReplace.append(sep);
-//							strReplace.append("");
-//							strReplace.append(sep);
-//						}
 					}
 					//---------DB状態取得・比較---------
 					{
@@ -317,76 +304,7 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("		String strResultDB = \"\";");
 						strReplace.append(sep);
-//						strReplace.append("		String strExpectDB = \"\";");
-//						strReplace.append(sep);
-//						strReplace.append("		String strDBDif = \"\";");
-//						strReplace.append(sep);
-//						if(inputPattern.get実行回数()<=0){
-//							//初回
-//							strReplace.append("");
-//							strReplace.append(sep);
-//							strReplace.append("");
-//							strReplace.append(sep);
-//						}else{
-//							//2回目以降
-//							strReplace.append("");
-//							strReplace.append(sep);
-//							strReplace.append("");
-//							strReplace.append(sep);
-//						}
 					}
-//					//---------正解値更新---------
-//					if(inputPattern.get実行回数()<=0)
-//					{
-//						//初回
-//						strReplace.append(sep);
-//						strReplace.append("		// 正解値更新");
-//						strReplace.append(sep);
-//						strReplace.append("		try {");
-//						strReplace.append(sep);
-//						strReplace.append("			URI url = new URI(\"" + TTConst.URL_API_BASE + TTConst.URL_UPDATE_RESULT + "\");");
-//						strReplace.append(sep);
-//						strReplace.append("			JSONObject request = new JSONObject();");
-//						strReplace.append(sep);
-//						strReplace.append("			request.put(\"id\", " + inputPattern.getId() + ");");
-//						strReplace.append(sep);
-//						strReplace.append("			request.put(\"html\", URLEncoder.encode(strResultWeb, \"UTF-8\"));");
-//						strReplace.append(sep);
-//						strReplace.append("			request.put(\"db\", URLEncoder.encode(strResultDB, \"UTF-8\"));");
-//						strReplace.append(sep);
-//						strReplace.append("");
-//						strReplace.append(sep);
-//						strReplace.append("			HttpEntity<String> entity = new HttpEntity<String>(");
-//						strReplace.append(sep);
-//						strReplace.append("					request.toString(), headers);");
-//						strReplace.append(sep);
-//						strReplace.append("");
-//						strReplace.append(sep);
-//						strReplace.append("			System.out.println(\"URL: \" + url);");
-//						strReplace.append(sep);
-//						strReplace.append("			String response = restTemplate.postForObject(url, entity,");
-//						strReplace.append(sep);
-//						strReplace.append("					String.class);");
-//						strReplace.append(sep);
-//						strReplace.append("			System.out.println(\"Response: \" + response);");
-//						strReplace.append(sep);
-//						strReplace.append("");
-//						strReplace.append(sep);
-//						strReplace.append("		} catch (Exception e) {");
-//						strReplace.append(sep);
-//						strReplace.append("			e.printStackTrace();");
-//						strReplace.append(sep);
-//						strReplace.append("			assertTrue(false);");
-//						strReplace.append(sep);
-//						strReplace.append("		}");
-//						strReplace.append(sep);
-//						strReplace.append("");
-//						strReplace.append(sep);
-//						strReplace.append("");
-//						strReplace.append(sep);
-//						strReplace.append("");
-//						strReplace.append(sep);
-//					}
 					//---------JOB状況更新---------
 					{
 						strReplace.append(sep);
@@ -402,16 +320,8 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("			request.put(\"html\", URLEncoder.encode(strResultWeb, \"UTF-8\"));");
 						strReplace.append(sep);
-//						strReplace.append("			request.put(\"html_dif\", URLEncoder.encode(strWebDif, \"UTF-8\"));");
-//						strReplace.append(sep);
 						strReplace.append("			request.put(\"db\", URLEncoder.encode(strResultDB, \"UTF-8\"));");
 						strReplace.append(sep);
-//						strReplace.append("			request.put(\"db_dif\", URLEncoder.encode(strDBDif, \"UTF-8\"));");
-//						strReplace.append(sep);
-//						strReplace.append("			request.put(\"jobStatus\", URLEncoder.encode(TTConst.JOB_STATUS_FINISH, \"UTF-8\"));");
-//						strReplace.append(sep);
-//						strReplace.append("			request.put(\"testResult\", bTestResult ? TTConst.TEST_RESULT_OK : TTConst.TEST_RESULT_NG);");
-//						strReplace.append(sep);
 						strReplace.append("			request.put(\"snapshot\", strSnapshot);");
 						strReplace.append(sep);
 						strReplace.append("");
@@ -624,6 +534,32 @@ public class GenerateTestSource {
 		strbuf.append("	public static void aftCls(){");
 		strbuf.append(sep);
 		strbuf.append("		//インスタンス破棄等");
+		strbuf.append(sep);
+		strbuf.append("	}");
+		strbuf.append(sep);
+		strbuf.append("	//他画面へ遷移する");
+		strbuf.append(sep);
+		strbuf.append("	@SuppressWarnings(\"unused\")");
+		strbuf.append(sep);
+		strbuf.append("	private void move_anotherWindow(){");
+		strbuf.append(sep);
+		strbuf.append("		String hndlMain = webdriver.getWindowHandle();");
+		strbuf.append(sep);
+		strbuf.append("		Set<String> windowList = webdriver.getWindowHandles();");
+		strbuf.append(sep);
+		strbuf.append("		for (String hndlWnd : windowList) {");
+		strbuf.append(sep);
+		strbuf.append("");
+		strbuf.append(sep);
+		strbuf.append("			if(!hndlMain.equals(hndlWnd)){");
+		strbuf.append(sep);
+		strbuf.append("				webdriver.switchTo().window(hndlWnd);");
+		strbuf.append(sep);
+		strbuf.append("				break;");
+		strbuf.append(sep);
+		strbuf.append("			}");
+		strbuf.append(sep);
+		strbuf.append("		}");
 		strbuf.append(sep);
 		strbuf.append("	}");
 		strbuf.append(sep);

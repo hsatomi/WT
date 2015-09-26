@@ -91,6 +91,10 @@ public class Case10002 {
 			WebElement element = webdriver.findElement(By.cssSelector("form[name=\"input_form\"] > input.middle_btn"));
 			element.click();
 		}
+		{
+			//dummy
+			WebElement element = webdriver.findElement(別ウィンドウへ移動(""));
+		}
 
 	}
 
@@ -172,6 +176,19 @@ public class Case10002 {
 	@AfterClass
 	public static void aftCls(){
 		//インスタンス破棄等
+	}
+	//他画面へ遷移する
+	@SuppressWarnings("unused")
+	private void move_anotherWindow(){
+		String hndlMain = webdriver.getWindowHandle();
+		Set<String> windowList = webdriver.getWindowHandles();
+		for (String hndlWnd : windowList) {
+
+			if(!hndlMain.equals(hndlWnd)){
+				webdriver.switchTo().window(hndlWnd);
+				break;
+			}
+		}
 	}
 
 }
