@@ -100,7 +100,7 @@ public class Case10002 {
 
 		//テストケース開始
 	@Test
-	public void Test3() throws UnsupportedEncodingException{
+	public void Test4() throws UnsupportedEncodingException{
 
 		//実行
 		boolean bTestResult = true;
@@ -108,6 +108,10 @@ public class Case10002 {
 			//登録ボタン
 			WebElement element = webdriver.findElement(By.className("middle_btn"));
 			element.click();
+		}
+		{
+			//
+			WebElement element = webdriver.findElement(クリックアラートNG(""));
 		}
 
 		// 実行後アラートダイアログチェック
@@ -143,7 +147,7 @@ public class Case10002 {
 		try {
 			URI url = new URI("http://localhost:8080/souya/api/updateTestResult");
 			JSONObject request = new JSONObject();
-			request.put("id", 105);
+			request.put("id", 106);
 			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
 			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
 			request.put("snapshot", strSnapshot);
@@ -192,12 +196,23 @@ public class Case10002 {
 		}
 	}
 
-	//アラートをクリックする
+	//アラートをOKクリックする
 	private void click_alertOK(){
 		Alert alert = null;
 		try{
 			alert = webdriver.switchTo().alert();
 			alert.accept();
+		}catch(Exception e){
+			System.out.println("no alert");
+		}
+	}
+
+	//アラートをキャンセルクリックする
+	private void click_alertNG(){
+		Alert alert = null;
+		try{
+			alert = webdriver.switchTo().alert();
+			alert.dismiss();
 		}catch(Exception e){
 			System.out.println("no alert");
 		}

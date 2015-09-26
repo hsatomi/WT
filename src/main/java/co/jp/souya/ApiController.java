@@ -95,6 +95,11 @@ public class ApiController {
 						req.db);
 			}
 			boolean bTestResult=true;
+			if(dao.getHtml正解()==null) dao.setHtml正解("");
+			if(dao.getDb正解()==null) dao.setDb正解("");
+			if(req.html==null) req.html = "";
+			if(req.db==null) req.db = "";
+
 			String strExpectWeb = URLDecoder.decode(dao.getHtml正解(), "UTF-8");
 			String strResultWeb = URLDecoder.decode(req.html, "UTF-8");
 			String strWebDif = TTUtility.validateWeb(strExpectWeb, strResultWeb);
