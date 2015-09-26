@@ -422,6 +422,8 @@ public class GenerateTestSource {
 		strbuf.append(sep);
 		strbuf.append("import java.net.URLEncoder;");
 		strbuf.append(sep);
+		strbuf.append("import java.util.Set;");
+		strbuf.append(sep);
 		strbuf.append("");
 		strbuf.append(sep);
 		strbuf.append("import org.json.JSONObject;");
