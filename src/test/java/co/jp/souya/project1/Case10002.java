@@ -65,33 +65,39 @@ public class Case10002 {
 		webdriver.get("http://prove-admin.rivieramypage.jp/admin/login");
 		{
 			//ユーザ名
+			List<WebElement> elements = webdriver.findElements(By.name("login_id"));
 			WebElement element = webdriver.findElement(By.name("login_id"));
 			element.sendKeys("souya5");
 		}
 		{
 			//パスワード
+			List<WebElement> elements = webdriver.findElements(By.name("password"));
 			WebElement element = webdriver.findElement(By.name("password"));
 			element.sendKeys("souya5");
 		}
 		{
 			//ボタン
+			List<WebElement> elements = webdriver.findElements(By.className("middle_btn"));
 			WebElement element = webdriver.findElement(By.className("middle_btn"));
 			element.click();
 		}
 		//書類テンプレート
 		{
 			//書類テンプレート
+			List<WebElement> elements = webdriver.findElements(By.linkText("マスタ管理"));
 			WebElement element = webdriver.findElement(By.linkText("マスタ管理"));
 			element.click();
 		}
 		{
 			//書類テンプレート
+			List<WebElement> elements = webdriver.findElements(By.linkText("書類テンプレート"));
 			WebElement element = webdriver.findElement(By.linkText("書類テンプレート"));
 			element.click();
 		}
 		//一覧
 		{
 			//新規登録
+			List<WebElement> elements = webdriver.findElements(By.cssSelector("form[name=\"input_form\"] > input.middle_btn"));
 			WebElement element = webdriver.findElement(By.cssSelector("form[name=\"input_form\"] > input.middle_btn"));
 			element.click();
 		}
@@ -110,22 +116,26 @@ public class Case10002 {
 		boolean bTestResult = true;
 		{
 			//表示順
+			List<WebElement> elements = webdriver.findElements(By.id("display_num"));
 			WebElement element = webdriver.findElement(By.id("display_num"));
 			element.sendKeys("155");
 		}
 		{
 			//業種
+			List<WebElement> elements = webdriver.findElements(By.id("company_industry_id"));
 			WebElement element = webdriver.findElement(By.id("company_industry_id"));
 			Select select=new Select(element);
 			select.selectByIndex(1);
 		}
 		{
 			//テンプレート名
+			List<WebElement> elements = webdriver.findElements(By.id("template_name"));
 			WebElement element = webdriver.findElement(By.id("template_name"));
 			element.sendKeys("testByToolUniqe");
 		}
 		{
 			//データ形式
+			List<WebElement> elements = webdriver.findElements(By.id("data_type"));
 			WebElement element = webdriver.findElement(By.id("data_type"));
 			Select select=new Select(element);
 			select.selectByIndex(1);
@@ -133,15 +143,18 @@ public class Case10002 {
 		{
 			//個別清算者
 			List<WebElement> elements = webdriver.findElements(By.className("main_unit"));
+			WebElement element = webdriver.findElement(By.className("main_unit"));
 			elements.get(1).click();
 		}
 		{
 			//対象テンプレートファイル
+			List<WebElement> elements = webdriver.findElements(By.id("file_path"));
 			WebElement element = webdriver.findElement(By.id("file_path"));
 			element.sendKeys("C:\\Temp\\dummy.pxd");
 		}
 		{
 			//登録ボタン
+			List<WebElement> elements = webdriver.findElements(By.className("middle_btn"));
 			WebElement element = webdriver.findElement(By.className("middle_btn"));
 			element.click();
 		}
@@ -151,11 +164,13 @@ public class Case10002 {
 		}
 		{
 			//テンプレート名
+			List<WebElement> elements = webdriver.findElements(By.id("template_name"));
 			WebElement element = webdriver.findElement(By.id("template_name"));
 			element.sendKeys("testByToolUniqe");
 		}
 		{
 			//検索ボタン
+			List<WebElement> elements = webdriver.findElements(By.className("middle_btn"));
 			WebElement element = webdriver.findElement(By.className("middle_btn"));
 			element.click();
 		}
