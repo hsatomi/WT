@@ -74,6 +74,23 @@ public class Case10002 {
 			WebElement element = webdriver.findElement(By.className("middle_btn"));
 			element.click();
 		}
+		//書類テンプレート
+		{
+			//書類テンプレート
+			WebElement element = webdriver.findElement(By.linkText("マスタ管理"));
+			element.click();
+		}
+		{
+			//書類テンプレート
+			WebElement element = webdriver.findElement(By.linkText("書類テンプレート"));
+			element.click();
+		}
+		//一覧
+		{
+			//新規登録
+			WebElement element = webdriver.findElement(By.className("middle_btn"));
+			element.click();
+		}
 
 	}
 
@@ -83,11 +100,6 @@ public class Case10002 {
 
 		//実行
 		boolean bTestResult = true;
-		{
-			//書類テンプレート
-			WebElement element = webdriver.findElement(By.linkText("書類テンプレート"));
-			element.click();
-		}
 
 		// 実行後アラートダイアログチェック
 		Alert alert = null;
@@ -122,7 +134,7 @@ public class Case10002 {
 		try {
 			URI url = new URI("http://localhost:8080/souya/api/updateTestResult");
 			JSONObject request = new JSONObject();
-			request.put("id", 101);
+			request.put("id", 103);
 			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
 			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
 			request.put("snapshot", strSnapshot);
