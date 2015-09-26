@@ -174,6 +174,17 @@ public class Case10002 {
 			WebElement element = webdriver.findElement(By.className("middle_btn"));
 			element.click();
 		}
+		{
+			//削除ボタン
+			List<WebElement> elements = webdriver.findElements(By.className("middle_btn"));
+			WebElement element = webdriver.findElement(By.className("middle_btn"));
+			for (WebElement webElement : elements) {
+				if("削除".equals(webElement.getAttribute("value"))){
+					webElement.click();
+					break;
+				}
+			}
+		}
 
 		// 実行後アラートダイアログチェック
 		Alert alert = null;
