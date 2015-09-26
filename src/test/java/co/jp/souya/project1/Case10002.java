@@ -110,8 +110,7 @@ public class Case10002 {
 			element.click();
 		}
 		{
-			//
-			WebElement element = webdriver.findElement(クリックアラートNG(""));
+			click_alertNG();
 		}
 
 		// 実行後アラートダイアログチェック
