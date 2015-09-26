@@ -103,18 +103,50 @@ public class Case10002 {
 
 		//テストケース開始
 	@Test
-	public void Test4() throws Exception{
+	public void Test5() throws Exception{
 
 		//実行
 		hndlsNow = webdriver.getWindowHandles();
 		boolean bTestResult = true;
+		{
+			//表示順
+			WebElement element = webdriver.findElement(By.id("display_num"));
+			element.sendKeys("123");
+		}
+		{
+			//業種
+			WebElement element = webdriver.findElement(By.id("company_industry_id"));
+			Select select=new Select(element);
+			select.selectByIndex(1);
+		}
+		{
+			//テンプレート名
+			WebElement element = webdriver.findElement(By.id("template_name"));
+			element.sendKeys("testByTool");
+		}
+		{
+			//データ形式
+			WebElement element = webdriver.findElement(By.id("data_type"));
+			Select select=new Select(element);
+			select.selectByIndex(1);
+		}
+		{
+			//個別精算者
+			List<WebElement> elements = webdriver.findElements(By.className("main_unit"));
+			elements.get(1).click();
+		}
+		{
+			//対象テンプレートファイル
+			WebElement element = webdriver.findElement(By.id("file_path"));
+			element.sendKeys("C:\\Temp\\dummy.pxd");
+		}
 		{
 			//登録ボタン
 			WebElement element = webdriver.findElement(By.className("middle_btn"));
 			element.click();
 		}
 		{
-			click_alertNG();
+			click_alertOK();
 			move_activeWindow();
 		}
 
@@ -147,7 +179,7 @@ public class Case10002 {
 		try {
 			URI url = new URI("http://localhost:8080/souya/api/updateTestResult");
 			JSONObject request = new JSONObject();
-			request.put("id", 106);
+			request.put("id", 107);
 			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
 			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
 			request.put("snapshot", strSnapshot);
