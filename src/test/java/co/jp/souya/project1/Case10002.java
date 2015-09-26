@@ -192,8 +192,32 @@ public class Case10002 {
 			}
 		}
 		{
-			click_alertOK();
-			move_activeWindow();
+			//表示順
+			List<WebElement> elements = webdriver.findElements(By.id("display_num"));
+			WebElement element = webdriver.findElement(By.id("display_num"));
+			element.clear();
+			element.sendKeys("167");
+		}
+		{
+			//業種
+			List<WebElement> elements = webdriver.findElements(By.id("company_industry_id"));
+			WebElement element = webdriver.findElement(By.id("company_industry_id"));
+			Select select=new Select(element);
+			select.selectByIndex(2);
+		}
+		{
+			//テンプレート名
+			List<WebElement> elements = webdriver.findElements(By.id("template_name"));
+			WebElement element = webdriver.findElement(By.id("template_name"));
+			element.clear();
+			element.sendKeys("testByToolForUpdateAfter");
+		}
+		{
+			//データ形式
+			List<WebElement> elements = webdriver.findElements(By.id("data_type"));
+			WebElement element = webdriver.findElement(By.id("data_type"));
+			Select select=new Select(element);
+			select.selectByIndex(2);
 		}
 
 		// 実行後アラートダイアログチェック
