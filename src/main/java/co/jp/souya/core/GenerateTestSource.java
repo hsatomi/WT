@@ -457,7 +457,7 @@ public class GenerateTestSource {
 						+ "(\""
 						+ parametaValue.getエレメント名() + "\"));");
 				strReplace.append(sep);
-				strReplace.append("			elements.get(" + parametaValue.get値() + ").click()");
+				strReplace.append("			elements.get(" + parametaValue.get値() + ").click();");
 				strReplace.append(sep);
 			}else{
 				strReplace

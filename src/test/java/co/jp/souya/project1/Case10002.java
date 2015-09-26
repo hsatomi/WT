@@ -131,7 +131,12 @@ public class Case10002 {
 		{
 			//個別精算者
 			List<WebElement> elements = webdriver.findElements(By.className("main_unit"));
-			elements.get(1).click()
+			elements.get(1).click();
+		}
+		{
+			//対象テンプレートファイル
+			WebElement element = webdriver.findElement(By.id("file_path"));
+			element.sendKeys("test");
 		}
 
 		// 実行後アラートダイアログチェック
