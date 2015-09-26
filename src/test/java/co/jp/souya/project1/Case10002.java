@@ -240,6 +240,68 @@ public class Case10002 {
 
 	}
 	@Test
+	public void Test3() throws Exception{
+
+		//実行
+		hndlsNow = webdriver.getWindowHandles();
+		boolean bTestResult = true;
+		{
+			//登録ボタン
+			WebElement element = webdriver.findElement(By.className("middle_btn"));
+			element.click();
+		}
+
+		// 実行後アラートダイアログチェック
+		Alert alert = null;
+		try{
+			alert = webdriver.switchTo().alert();
+		}catch(Exception e){
+			System.out.println("no alert");
+		}
+
+
+		// 実行後スナップショット取得
+		String strSnapshot = tryGetPicture();
+
+
+		//web状態取得・比較
+		String strResultWeb = "";
+		if(alert==null){
+			strResultWeb = webdriver.getPageSource();
+		}else{
+			strResultWeb = alert.getText();
+		}
+
+
+		//DB状態取得・比較
+		String strResultDB = "";
+
+		// 結果更新
+		try {
+			URI url = new URI("http://localhost:8080/souya/api/updateTestResult");
+			JSONObject request = new JSONObject();
+			request.put("id", 105);
+			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
+			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
+			request.put("snapshot", strSnapshot);
+
+			HttpEntity<String> entity = new HttpEntity<String>(
+					request.toString(), headers);
+
+			System.out.println("URL: " + url);
+			String response = restTemplate.postForObject(url, entity,
+					String.class);
+			System.out.println("Response: " + response);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			assertTrue(false);
+		}
+
+
+
+	}
+	@Test
 	public void Test4() throws Exception{
 
 		//実行
