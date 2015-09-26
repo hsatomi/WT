@@ -66,7 +66,7 @@ function reset(_id){
         	if(json_data1 == true){
             	alert("リセットしました");
             	location.reload();
-            	unselectAll();
+//            	unselectAll();
         	}else{
             	alert("リセットに失敗しました");
         	}
