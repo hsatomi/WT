@@ -130,8 +130,8 @@ public class Case10002 {
 		}
 		{
 			//個別精算者
-			WebElement element = webdriver.findElement(By.className("main_unit"));
-			element.sendKeys("1");
+			List<WebElement> elements = webdriver.findElements(By.className("main_unit"));
+			elements.get(1).click()
 		}
 
 		// 実行後アラートダイアログチェック
