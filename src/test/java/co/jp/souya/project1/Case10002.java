@@ -216,11 +216,16 @@ public class Case10002 {
 			element.sendKeys("testByToolForUpdateAfter");
 		}
 		{
-			//データ形式
-			List<WebElement> elements = webdriver.findElements(By.id("data_type"));
-			WebElement element = webdriver.findElement(By.id("data_type"));
-			Select select=new Select(element);
-			select.selectByIndex(2);
+			//個別清算者
+			List<WebElement> elements = webdriver.findElements(By.className("main_unit"));
+			WebElement element = webdriver.findElement(By.className("main_unit"));
+			elements.get(2).click();
+		}
+		{
+			//登録ボタン
+			List<WebElement> elements = webdriver.findElements(By.className("middle_btn"));
+			WebElement element = webdriver.findElement(By.className("middle_btn"));
+			element.click();
 		}
 
 		// 実行後アラートダイアログチェック
