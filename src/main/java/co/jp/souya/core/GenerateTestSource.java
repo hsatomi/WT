@@ -226,6 +226,14 @@ public class GenerateTestSource {
 								strReplace.append(sep);
 								strReplace.append("		}");
 								strReplace.append(sep);
+							}else if("クリックアラートOK".equals(parametaValue.getエレメント型())){
+									//固有処理
+									strReplace.append("		{");
+									strReplace.append(sep);
+									strReplace.append("			click_alertOK();");
+									strReplace.append(sep);
+									strReplace.append("		}");
+									strReplace.append(sep);
 							}else{
 								strReplace.append("		{");
 								strReplace.append(sep);
@@ -550,9 +558,9 @@ public class GenerateTestSource {
 		strbuf.append(sep);
 		strbuf.append("	}");
 		strbuf.append(sep);
-		strbuf.append("	//他画面へ遷移する");
+		strbuf.append("");
 		strbuf.append(sep);
-		strbuf.append("	@SuppressWarnings(\"unused\")");
+		strbuf.append("	//他画面へ遷移する");
 		strbuf.append(sep);
 		strbuf.append("	private void move_anotherWindow(){");
 		strbuf.append(sep);
@@ -571,6 +579,28 @@ public class GenerateTestSource {
 		strbuf.append("				break;");
 		strbuf.append(sep);
 		strbuf.append("			}");
+		strbuf.append(sep);
+		strbuf.append("		}");
+		strbuf.append(sep);
+		strbuf.append("	}");
+		strbuf.append(sep);
+		strbuf.append("");
+		strbuf.append(sep);
+		strbuf.append("	//アラートをクリックする");
+		strbuf.append(sep);
+		strbuf.append("	private void click_alertOK(){");
+		strbuf.append(sep);
+		strbuf.append("		Alert alert = null;");
+		strbuf.append(sep);
+		strbuf.append("		try{");
+		strbuf.append(sep);
+		strbuf.append("			alert = webdriver.switchTo().alert();");
+		strbuf.append(sep);
+		strbuf.append("			alert.accept();");
+		strbuf.append(sep);
+		strbuf.append("		}catch(Exception e){");
+		strbuf.append(sep);
+		strbuf.append("			System.out.println(\"no alert\");");
 		strbuf.append(sep);
 		strbuf.append("		}");
 		strbuf.append(sep);

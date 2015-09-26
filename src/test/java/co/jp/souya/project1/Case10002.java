@@ -105,9 +105,9 @@ public class Case10002 {
 		//実行
 		boolean bTestResult = true;
 		{
-			//display_num
-			WebElement element = webdriver.findElement(By.id("display_num"));
-			element.sendKeys("aaa");
+			//登録ボタン
+			WebElement element = webdriver.findElement(By.className("middle_btn"));
+			element.click();
 		}
 
 		// 実行後アラートダイアログチェック
@@ -177,8 +177,8 @@ public class Case10002 {
 	public static void aftCls(){
 		//インスタンス破棄等
 	}
+
 	//他画面へ遷移する
-	@SuppressWarnings("unused")
 	private void move_anotherWindow(){
 		String hndlMain = webdriver.getWindowHandle();
 		Set<String> windowList = webdriver.getWindowHandles();
@@ -188,6 +188,17 @@ public class Case10002 {
 				webdriver.switchTo().window(hndlWnd);
 				break;
 			}
+		}
+	}
+
+	//アラートをクリックする
+	private void click_alertOK(){
+		Alert alert = null;
+		try{
+			alert = webdriver.switchTo().alert();
+			alert.accept();
+		}catch(Exception e){
+			System.out.println("no alert");
 		}
 	}
 
