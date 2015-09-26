@@ -157,11 +157,7 @@ public class Case10002 {
 
 
 		// 実行後スナップショット取得
-		String strSnapshot = "";
-		if(alert==null){
-			File file = ((TakesScreenshot) webdriver).getScreenshotAs(OutputType.FILE);
-			strSnapshot = TTUtility.getBase64String(file);
-		}
+		String strSnapshot = tryGetPicture();
 
 
 		//web状態取得・比較
@@ -261,6 +257,19 @@ public class Case10002 {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	//画像を取得
+	private String tryGetPicture() {
+		String strSnapshot = "";
+		try {
+			File file = ((TakesScreenshot) webdriver)
+					.getScreenshotAs(OutputType.FILE);
+			strSnapshot = TTUtility.getBase64String(file);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return strSnapshot;
 	}
 
 }
