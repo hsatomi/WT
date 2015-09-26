@@ -185,6 +185,10 @@ public class Case10002 {
 				}
 			}
 		}
+		{
+			click_alertOK();
+			move_activeWindow();
+		}
 
 		// 実行後アラートダイアログチェック
 		Alert alert = null;
