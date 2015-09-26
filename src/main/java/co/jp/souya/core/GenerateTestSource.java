@@ -572,7 +572,7 @@ public class GenerateTestSource {
 		strbuf.append(sep);
 		strbuf.append("	private void move_anotherWindow() throws Exception{");
 		strbuf.append(sep);
-		strbuf.append("		Thread.sleep(500);");
+		strbuf.append("		Thread.sleep(300);");
 		strbuf.append(sep);
 		strbuf.append("		String hndlMain = webdriver.getWindowHandle();");
 		strbuf.append(sep);

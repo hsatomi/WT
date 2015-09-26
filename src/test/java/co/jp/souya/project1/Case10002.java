@@ -185,7 +185,7 @@ public class Case10002 {
 
 	//他画面へ遷移する
 	private void move_anotherWindow() throws Exception{
-		Thread.sleep(500);
+		Thread.sleep(300);
 		String hndlMain = webdriver.getWindowHandle();
 		Set<String> windowList = webdriver.getWindowHandles();
 		for (String hndlWnd : windowList) {
