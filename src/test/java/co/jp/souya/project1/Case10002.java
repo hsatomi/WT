@@ -189,6 +189,18 @@ public class Case10002 {
 			click_alertOK();
 			move_activeWindow();
 		}
+		{
+			//テンプレート名
+			List<WebElement> elements = webdriver.findElements(By.id("template_name"));
+			WebElement element = webdriver.findElement(By.id("template_name"));
+			element.sendKeys("testByToolUniqe");
+		}
+		{
+			//検索ボタン
+			List<WebElement> elements = webdriver.findElements(By.className("middle_btn"));
+			WebElement element = webdriver.findElement(By.className("middle_btn"));
+			element.click();
+		}
 
 		// 実行後アラートダイアログチェック
 		Alert alert = null;
