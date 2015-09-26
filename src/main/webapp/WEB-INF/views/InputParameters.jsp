@@ -93,6 +93,7 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 						<option value="click" <c:if test="${パラメタ値.アクション=='click'}">selected</c:if>>click</option>
 						<option value="selectByIndex" <c:if test="${パラメタ値.アクション=='selectByIndex'}">selected</c:if>>selectByIndex</option>
 						<option value="selectByValue" <c:if test="${パラメタ値.アクション=='selectByValue'}">selected</c:if>>selectByValue</option>
+						<option value="clickRadio" <c:if test="${パラメタ値.アクション=='clickRadio'}">selected</c:if>>clickRadio</option>
 						</select>
 					</td>
 					<td>

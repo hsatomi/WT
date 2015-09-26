@@ -449,31 +449,43 @@ public class GenerateTestSource {
 			strReplace.append(sep);
 			strReplace.append("			//" + parametaValue.get項目名());
 			strReplace.append(sep);
-			strReplace
-					.append("			WebElement element = webdriver.findElement("
-							+ parametaValue.getエレメント型()
-							+ "(\""
-							+ parametaValue.getエレメント名() + "\"));");
-			strReplace.append(sep);
-			if(TTConst.ACTION_SENDKEYS.equals(parametaValue.getアクション())){
-				strReplace.append("			element.sendKeys(\"" + parametaValue.get値() + "\");");
+
+			if(TTConst.ACTION_CLICK_RADIO.equals(parametaValue.getアクション())){
+				strReplace
+				.append("			List<WebElement> elements = webdriver.findElements("
+						+ parametaValue.getエレメント型()
+						+ "(\""
+						+ parametaValue.getエレメント名() + "\"));");
 				strReplace.append(sep);
-			}else
-			if(TTConst.ACTION_CLICK.equals(parametaValue.getアクション())){
-				strReplace.append("			element.click();");
+				strReplace.append("			elements.get(" + parametaValue.get値() + ").click()");
 				strReplace.append(sep);
-			}else
-			if(TTConst.ACTION_SELECTBYINDEX.equals(parametaValue.getアクション())){
-				strReplace.append("			Select select=new Select(element);");
+			}else{
+				strReplace
+				.append("			WebElement element = webdriver.findElement("
+						+ parametaValue.getエレメント型()
+						+ "(\""
+						+ parametaValue.getエレメント名() + "\"));");
 				strReplace.append(sep);
-				strReplace.append("			select.selectByIndex(" + parametaValue.get値() + ");");
-				strReplace.append(sep);
-			}else
-			if(TTConst.ACTION_SELECTBYVALUE.equals(parametaValue.getアクション())){
-				strReplace.append("			Select select=new Select(element);");
-				strReplace.append(sep);
-				strReplace.append("			select.selectByValue(" + parametaValue.get値() + ");");
-				strReplace.append(sep);
+				if(TTConst.ACTION_SENDKEYS.equals(parametaValue.getアクション())){
+					strReplace.append("			element.sendKeys(\"" + parametaValue.get値() + "\");");
+					strReplace.append(sep);
+				}else
+				if(TTConst.ACTION_CLICK.equals(parametaValue.getアクション())){
+					strReplace.append("			element.click();");
+					strReplace.append(sep);
+				}else
+				if(TTConst.ACTION_SELECTBYINDEX.equals(parametaValue.getアクション())){
+					strReplace.append("			Select select=new Select(element);");
+					strReplace.append(sep);
+					strReplace.append("			select.selectByIndex(" + parametaValue.get値() + ");");
+					strReplace.append(sep);
+				}else
+				if(TTConst.ACTION_SELECTBYVALUE.equals(parametaValue.getアクション())){
+					strReplace.append("			Select select=new Select(element);");
+					strReplace.append(sep);
+					strReplace.append("			select.selectByValue(" + parametaValue.get値() + ");");
+					strReplace.append(sep);
+				}
 			}
 			strReplace.append("		}");
 			strReplace.append(sep);
@@ -502,6 +514,8 @@ public class GenerateTestSource {
 		strbuf.append("import java.net.URLDecoder;");
 		strbuf.append(sep);
 		strbuf.append("import java.net.URLEncoder;");
+		strbuf.append(sep);
+		strbuf.append("import java.util.List;");
 		strbuf.append(sep);
 		strbuf.append("import java.util.Set;");
 		strbuf.append(sep);
