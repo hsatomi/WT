@@ -172,7 +172,7 @@ public class Case10002 {
 			List<WebElement> elements = webdriver.findElements(By.id("template_name"));
 			WebElement element = webdriver.findElement(By.id("template_name"));
 			element.clear();
-			element.sendKeys("");
+			element.sendKeys("testByToolForUpdate");
 		}
 		{
 			//検索ボタン
