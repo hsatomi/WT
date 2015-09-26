@@ -67,12 +67,14 @@ public class Case10002 {
 			//ユーザ名
 			List<WebElement> elements = webdriver.findElements(By.name("login_id"));
 			WebElement element = webdriver.findElement(By.name("login_id"));
+			element.clear();
 			element.sendKeys("souya5");
 		}
 		{
 			//パスワード
 			List<WebElement> elements = webdriver.findElements(By.name("password"));
 			WebElement element = webdriver.findElement(By.name("password"));
+			element.clear();
 			element.sendKeys("souya5");
 		}
 		{
@@ -118,6 +120,7 @@ public class Case10002 {
 			//表示順
 			List<WebElement> elements = webdriver.findElements(By.id("display_num"));
 			WebElement element = webdriver.findElement(By.id("display_num"));
+			element.clear();
 			element.sendKeys("155");
 		}
 		{
@@ -131,6 +134,7 @@ public class Case10002 {
 			//テンプレート名
 			List<WebElement> elements = webdriver.findElements(By.id("template_name"));
 			WebElement element = webdriver.findElement(By.id("template_name"));
+			element.clear();
 			element.sendKeys("testByToolUniqe");
 		}
 		{
@@ -150,6 +154,7 @@ public class Case10002 {
 			//対象テンプレートファイル
 			List<WebElement> elements = webdriver.findElements(By.id("file_path"));
 			WebElement element = webdriver.findElement(By.id("file_path"));
+			element.clear();
 			element.sendKeys("C:\\Temp\\dummy.pxd");
 		}
 		{
@@ -166,6 +171,7 @@ public class Case10002 {
 			//テンプレート名
 			List<WebElement> elements = webdriver.findElements(By.id("template_name"));
 			WebElement element = webdriver.findElement(By.id("template_name"));
+			element.clear();
 			element.sendKeys("testByToolUniqe");
 		}
 		{
@@ -193,6 +199,7 @@ public class Case10002 {
 			//テンプレート名
 			List<WebElement> elements = webdriver.findElements(By.id("template_name"));
 			WebElement element = webdriver.findElement(By.id("template_name"));
+			element.clear();
 			element.sendKeys("testByToolUniqe");
 		}
 		{

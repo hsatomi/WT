@@ -160,44 +160,6 @@ public class GenerateTestSource {
 					daoSvc.getParametaValueList(movePatternDetail.get入力パターンid());
 					for (ParametaValue parametaValue : daoパラメタ値リスト) {
 						strReplace.append(stackParameters(parametaValue));
-//						if("別ウィンドウへ移動".equals(parametaValue.getエレメント型())){
-//							//固有処理
-//							strReplace.append("		{");
-//							strReplace.append(sep);
-//							strReplace.append("			move_anotherWindow();");
-//							strReplace.append(sep);
-//							strReplace.append("		}");
-//							strReplace.append(sep);
-//						}else if("クリックアラートOK".equals(parametaValue.getエレメント型())){
-//								//固有処理
-//								strReplace.append("		{");
-//								strReplace.append(sep);
-//								strReplace.append("			click_alertOK();");
-//								strReplace.append(sep);
-//								strReplace.append("		}");
-//								strReplace.append(sep);
-//						}else{
-//							strReplace.append("		{");
-//							strReplace.append(sep);
-//							strReplace.append("			//" + parametaValue.get項目名());
-//							strReplace.append(sep);
-//							strReplace
-//									.append("			WebElement element = webdriver.findElement("
-//											+ parametaValue.getエレメント型()
-//											+ "(\""
-//											+ parametaValue.getエレメント名() + "\"));");
-//							strReplace.append(sep);
-//							if(TTConst.ACTION_SENDKEYS.equals(parametaValue.getアクション())){
-//								strReplace.append("			element.sendKeys(\"" + parametaValue.get値() + "\");");
-//								strReplace.append(sep);
-//							}
-//							if(TTConst.ACTION_CLICK.equals(parametaValue.getアクション())){
-//								strReplace.append("			element.click();");
-//								strReplace.append(sep);
-//							}
-//							strReplace.append("		}");
-//							strReplace.append(sep);
-//						}
 					}
 				}
 				strGenerateCls = strGenerateCls.replace(
@@ -228,46 +190,7 @@ public class GenerateTestSource {
 						List<ParametaValue> daoパラメタ値リスト=
 						daoSvc.getParametaValueList(inputPattern.getId());
 						for (ParametaValue parametaValue : daoパラメタ値リスト) {
-							//TODO:全く同じ処理が上にもあるので、統一したい
 							strReplace.append(stackParameters(parametaValue));
-//							if("別ウィンドウへ移動".equals(parametaValue.getエレメント型())){
-//								//固有処理
-//								strReplace.append("		{");
-//								strReplace.append(sep);
-//								strReplace.append("			move_anotherWindow();");
-//								strReplace.append(sep);
-//								strReplace.append("		}");
-//								strReplace.append(sep);
-//							}else if("クリックアラートOK".equals(parametaValue.getエレメント型())){
-//									//固有処理
-//									strReplace.append("		{");
-//									strReplace.append(sep);
-//									strReplace.append("			click_alertOK();");
-//									strReplace.append(sep);
-//									strReplace.append("		}");
-//									strReplace.append(sep);
-//							}else{
-//								strReplace.append("		{");
-//								strReplace.append(sep);
-//								strReplace.append("			//" + parametaValue.get項目名());
-//								strReplace.append(sep);
-//								strReplace
-//										.append("			WebElement element = webdriver.findElement("
-//												+ parametaValue.getエレメント型()
-//												+ "(\""
-//												+ parametaValue.getエレメント名() + "\"));");
-//								strReplace.append(sep);
-//								if(TTConst.ACTION_SENDKEYS.equals(parametaValue.getアクション())){
-//									strReplace.append("			element.sendKeys(\"" + parametaValue.get値() + "\");");
-//									strReplace.append(sep);
-//								}
-//								if(TTConst.ACTION_CLICK.equals(parametaValue.getアクション())){
-//									strReplace.append("			element.click();");
-//									strReplace.append(sep);
-//								}
-//								strReplace.append("		}");
-//								strReplace.append(sep);
-//							}
 						}
 					}
 					//---------実行直後がアラートダイアログ状態かどうかチェック---------
@@ -469,6 +392,8 @@ public class GenerateTestSource {
 					+ parametaValue.getエレメント名() + "\"));");
 			strReplace.append(sep);
 			if(TTConst.ACTION_SENDKEYS.equals(parametaValue.getアクション())){
+				strReplace.append("			element.clear();");
+				strReplace.append(sep);
 				strReplace.append("			element.sendKeys(\"" + esc(parametaValue.get値()) + "\");");
 				strReplace.append(sep);
 			}else
