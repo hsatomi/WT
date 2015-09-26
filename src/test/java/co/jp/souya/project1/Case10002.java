@@ -100,6 +100,11 @@ public class Case10002 {
 
 		//実行
 		boolean bTestResult = true;
+		{
+			//display_num
+			WebElement element = webdriver.findElement(By.id("display_num"));
+			element.sendKeys("aaa");
+		}
 
 		// 実行後アラートダイアログチェック
 		Alert alert = null;
