@@ -71,7 +71,7 @@ public class Case10002 {
 		}
 		{
 			//ボタン
-			WebElement element = webdriver.findElement(By.className("middle_btn margin_top_btn"));
+			WebElement element = webdriver.findElement(By.className("middle_btn"));
 			element.click();
 		}
 
@@ -83,6 +83,11 @@ public class Case10002 {
 
 		//実行
 		boolean bTestResult = true;
+		{
+			//書類テンプレート
+			WebElement element = webdriver.findElement(By.linkText("書類テンプレート"));
+			element.click();
+		}
 
 		// 実行後アラートダイアログチェック
 		Alert alert = null;

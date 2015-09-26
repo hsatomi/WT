@@ -1,6 +1,7 @@
 package co.jp.souya.service;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -42,6 +43,32 @@ public class TestCaseAdminSvc extends BaseSvc {
 		headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		restTemplate = new RestTemplate();
+	}
+
+
+	/**
+	 * テストケース管理を無条件にリストで取得
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<TestCaseAdmin> getAll() {
+
+		List<TestCaseAdmin> dto = new ArrayList<TestCaseAdmin>();
+
+		try {
+			init();
+
+			dto = em
+					.createNamedQuery("TestCaseAdmin.findAll")
+					.getResultList();
+
+		} catch (Throwable e) {
+			logger.error(e.getMessage(), e);
+		} finally {
+			destroy();
+		}
+
+		return dto;
 	}
 
 	/**

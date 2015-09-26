@@ -6,9 +6,11 @@
 </head>
 <body>
 <h1>
-	Hello world!  
+	テストツールへようこそ！
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
+<P>
+${dto}
+</P>
 </body>
 </html>
