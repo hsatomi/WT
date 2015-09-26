@@ -196,7 +196,8 @@ public class Case10002 {
 	}
 
 	//アラートをOKクリックする
-	private void click_alertOK(){
+	private void click_alertOK() throws Exception{
+		Thread.sleep(300);
 		Alert alert = null;
 		try{
 			alert = webdriver.switchTo().alert();
@@ -207,7 +208,8 @@ public class Case10002 {
 	}
 
 	//アラートをキャンセルクリックする
-	private void click_alertNG(){
+	private void click_alertNG() throws Exception{
+		Thread.sleep(300);
 		Alert alert = null;
 		try{
 			alert = webdriver.switchTo().alert();

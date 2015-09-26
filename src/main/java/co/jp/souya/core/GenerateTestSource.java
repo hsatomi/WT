@@ -651,7 +651,9 @@ public class GenerateTestSource {
 		strbuf.append(sep);
 		strbuf.append("	//アラートをOKクリックする");
 		strbuf.append(sep);
-		strbuf.append("	private void click_alertOK(){");
+		strbuf.append("	private void click_alertOK() throws Exception{");
+		strbuf.append(sep);
+		strbuf.append("		Thread.sleep(300);");
 		strbuf.append(sep);
 		strbuf.append("		Alert alert = null;");
 		strbuf.append(sep);
@@ -673,7 +675,9 @@ public class GenerateTestSource {
 		strbuf.append(sep);
 		strbuf.append("	//アラートをキャンセルクリックする");
 		strbuf.append(sep);
-		strbuf.append("	private void click_alertNG(){");
+		strbuf.append("	private void click_alertNG() throws Exception{");
+		strbuf.append(sep);
+		strbuf.append("		Thread.sleep(300);");
 		strbuf.append(sep);
 		strbuf.append("		Alert alert = null;");
 		strbuf.append(sep);
