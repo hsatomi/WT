@@ -230,7 +230,7 @@ public class Case10002 {
 
 	//アラートをOKクリックする
 	private void click_alertOK() throws Exception{
-		Thread.sleep(300);
+		Thread.sleep(500);
 		Alert alert = null;
 		try{
 			alert = webdriver.switchTo().alert();
@@ -238,11 +238,12 @@ public class Case10002 {
 		}catch(Exception e){
 			System.out.println("no alert");
 		}
+		Thread.sleep(500);
 	}
 
 	//アラートをキャンセルクリックする
 	private void click_alertNG() throws Exception{
-		Thread.sleep(300);
+		Thread.sleep(500);
 		Alert alert = null;
 		try{
 			alert = webdriver.switchTo().alert();
@@ -250,6 +251,7 @@ public class Case10002 {
 		}catch(Exception e){
 			System.out.println("no alert");
 		}
+		Thread.sleep(500);
 	}
 
 	//アラート確認

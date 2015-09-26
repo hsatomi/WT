@@ -688,7 +688,7 @@ public class GenerateTestSource {
 		strbuf.append(sep);
 		strbuf.append("	private void click_alertOK() throws Exception{");
 		strbuf.append(sep);
-		strbuf.append("		Thread.sleep(300);");
+		strbuf.append("		Thread.sleep(500);");
 		strbuf.append(sep);
 		strbuf.append("		Alert alert = null;");
 		strbuf.append(sep);
@@ -704,6 +704,8 @@ public class GenerateTestSource {
 		strbuf.append(sep);
 		strbuf.append("		}");
 		strbuf.append(sep);
+		strbuf.append("		Thread.sleep(500);");
+		strbuf.append(sep);
 		strbuf.append("	}");
 		strbuf.append(sep);
 		strbuf.append("");
@@ -712,7 +714,7 @@ public class GenerateTestSource {
 		strbuf.append(sep);
 		strbuf.append("	private void click_alertNG() throws Exception{");
 		strbuf.append(sep);
-		strbuf.append("		Thread.sleep(300);");
+		strbuf.append("		Thread.sleep(500);");
 		strbuf.append(sep);
 		strbuf.append("		Alert alert = null;");
 		strbuf.append(sep);
@@ -727,6 +729,8 @@ public class GenerateTestSource {
 		strbuf.append("			System.out.println(\"no alert\");");
 		strbuf.append(sep);
 		strbuf.append("		}");
+		strbuf.append(sep);
+		strbuf.append("		Thread.sleep(500);");
 		strbuf.append(sep);
 		strbuf.append("	}");
 		strbuf.append(sep);
