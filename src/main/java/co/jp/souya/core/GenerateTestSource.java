@@ -782,6 +782,18 @@ public class GenerateTestSource {
 		strbuf.append(sep);
 		strbuf.append("	private boolean move_activeWindow() {");
 		strbuf.append(sep);
+		strbuf.append("		try{");
+		strbuf.append(sep);
+		strbuf.append("			webdriver.getWindowHandle();");
+		strbuf.append(sep);
+		strbuf.append("			return true;");
+		strbuf.append(sep);
+		strbuf.append("		}catch(Exception e){");
+		strbuf.append(sep);
+		strbuf.append("		}");
+		strbuf.append(sep);
+		strbuf.append("");
+		strbuf.append(sep);
 		strbuf.append("		boolean bStatus = false;");
 		strbuf.append(sep);
 		strbuf.append("		for (String hndlWin : hndlsNow) {");
@@ -807,8 +819,6 @@ public class GenerateTestSource {
 		strbuf.append("		return bStatus;");
 		strbuf.append(sep);
 		strbuf.append("	}");
-		strbuf.append(sep);
-		strbuf.append("");
 		strbuf.append(sep);
 		strbuf.append("}");
 
