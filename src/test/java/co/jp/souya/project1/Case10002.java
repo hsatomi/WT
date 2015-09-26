@@ -136,7 +136,7 @@ public class Case10002 {
 		{
 			//対象テンプレートファイル
 			WebElement element = webdriver.findElement(By.id("file_path"));
-			element.sendKeys("C:\\Temp\\dummy.pxc");
+			element.sendKeys("C:\\Temp\\dummy.pxd");
 		}
 
 		// 実行後アラートダイアログチェック
