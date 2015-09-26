@@ -481,7 +481,7 @@ public class Case10002 {
 
 	//他画面へ遷移する
 	private void move_anotherWindow() throws Exception{
-		Thread.sleep(300);
+		Thread.sleep(1000);
 		String hndlMain = webdriver.getWindowHandle();
 		Set<String> windowList = webdriver.getWindowHandles();
 		for (String hndlWnd : windowList) {
@@ -491,6 +491,7 @@ public class Case10002 {
 				break;
 			}
 		}
+		Thread.sleep(1000);
 	}
 
 	//アラートをOKクリックする
