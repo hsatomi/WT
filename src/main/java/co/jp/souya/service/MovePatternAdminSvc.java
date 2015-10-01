@@ -11,7 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import co.jp.souya.dto.MovePatternAdminDTO;
 import co.jp.souya.jpa.MovePatternAdmin;
+import co.jp.souya.jpa.MovePatternDetail;
 
 /**
  * 遷移パターン管理画面に絡んだサービス
@@ -64,19 +66,25 @@ public class MovePatternAdminSvc extends BaseSvc {
 	}
 
 	/**
-	 * idで取得
+	 * idでDTO取得
 	 *
 	 * @return
 	 */
-	public MovePatternAdmin get(Integer id) {
+	public MovePatternAdminDTO getDTO(Integer id) {
 
-		MovePatternAdmin dto = null;
+		MovePatternAdminDTO dto = new MovePatternAdminDTO();
 
 		try {
 			init();
 
-			// dto = em.find(MovePatternAdmin.class,"MovePatternAdmin.findAll");
-			em.persist(dto);
+			MovePatternAdmin dao = em.find(MovePatternAdmin.class, id);
+			@SuppressWarnings("unchecked")
+			List<MovePatternDetail> list = em
+					.createNamedQuery("MovePatternDetail.findListById")
+					.setParameter("遷移パターン管理id", id).getResultList();
+
+			dto.set遷移パターン管理(dao);
+			dto.set遷移パターン明細リスト(list);
 
 		} catch (Throwable e) {
 			logger.error(e.getMessage(), e);
@@ -101,7 +109,8 @@ public class MovePatternAdminSvc extends BaseSvc {
 
 			newdao = (dao.getId() == null) ? new MovePatternAdmin() : em.find(
 					MovePatternAdmin.class, dao.getId());
-			if(newdao == null) newdao = new MovePatternAdmin();
+			if (newdao == null)
+				newdao = new MovePatternAdmin();
 
 			newdao.set遷移パターン名(dao.get遷移パターン名());
 			newdao.set画面管理id(dao.get画面管理id());

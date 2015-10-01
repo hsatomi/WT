@@ -19,6 +19,12 @@ function move_InputParameters(id,test_case_id,move_pattern_detail_id) {
 	return;
 }
 
+//画面遷移
+function move_MovePatternDetail(id) {
+	location.href = "MovePatternDetail?id=" + id;
+	return;
+}
+
 //画面遷移(確認画面)
 function move_TestCaseAdmin(name,id,input_id) {
 

@@ -35,6 +35,7 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 					${dto.遷移パターン管理.備考}
 				</p>
 				<h4>画面遷移</h4>
+				<a href="javascript:move_MovePatternDetail('${dto.遷移パターン管理.id}')">遷移パターン編集へ</a>
 				<c:forEach items="${dto.遷移パターン明細リスト}" var="遷移パターン明細" >
 				<div style="width:90%;border-style: solid; margin:10px; ">
 					${遷移パターン明細.画面タイトル}
