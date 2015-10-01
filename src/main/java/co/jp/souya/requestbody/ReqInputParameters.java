@@ -12,6 +12,7 @@ import co.jp.souya.jpa.ParametaValue;
 public class ReqInputParameters {
 
 	public ReqInputParameters(){
+		inputPattern = new InputPattern();
 		list = new ArrayList<ParametaValue>();
 	}
 

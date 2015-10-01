@@ -15,10 +15,16 @@ function move(mode) {
 }
 
 function doAnalyze(){
+	var _id = document.getElementById("_id").value;
 	var selenium_code = document.getElementById("selenium_code").value;
 
+	var inputPattern = {
+			"id":_id
+	};
+
 	var data = {
-			"seleniumCode":selenium_code
+			"inputPattern":inputPattern
+			,"seleniumCode":selenium_code
 	};
 
     $.ajax({
