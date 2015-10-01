@@ -15,6 +15,8 @@ public class ReqInputParameters {
 		list = new ArrayList<ParametaValue>();
 	}
 
+	public String seleniumCode;
+
 	public InputPattern inputPattern ;
 
 	public List<ParametaValue> list;

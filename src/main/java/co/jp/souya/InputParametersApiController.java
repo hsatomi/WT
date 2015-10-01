@@ -71,4 +71,22 @@ public class InputParametersApiController {
 		return true;
 	}
 
+	@RequestMapping(value = "/analyze", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public boolean analyze(@RequestBody ReqInputParameters req)
+			throws UnsupportedEncodingException {
+		logger.info("analyze");
+
+		// 解析
+		if(req.seleniumCode==null) return false;
+		if(req.seleniumCode.isEmpty()) return false;
+
+		
+
+
+
+		return true;
+	}
+
+
 }

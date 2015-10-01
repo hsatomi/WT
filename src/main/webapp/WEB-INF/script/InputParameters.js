@@ -14,6 +14,35 @@ function move(mode) {
     }
 }
 
+function doAnalyze(){
+	var selenium_code = document.getElementById("selenium_code").value;
+
+	var data = {
+			"seleniumCode":selenium_code
+	};
+
+    $.ajax({
+        type:"post",
+        url:URL_API_BASE+"/InputParameters/api/analyze",
+        data:JSON.stringify(data),
+        contentType: 'application/json',
+        dataType: "json",
+        success: function(json_data1) {
+            // 成功時の処理
+        	if(json_data1 == true){
+            	alert("登録しました");
+            	location.reload();
+        	}else{
+            	alert("登録に失敗しました");
+        	}
+        },
+        error: function(json_data2) {
+            // 失敗時の処理
+        	alert("失敗");
+        }
+    });
+}
+
 //登録
 function doRegist(){
 	var _id = document.getElementById("_id").value;

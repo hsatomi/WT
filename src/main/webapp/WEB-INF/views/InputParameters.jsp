@@ -44,7 +44,6 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 				<input type="text" id="_備考"
 					value="${dto.入力パターン.備考}" />
 			</div>
-
 		</div>
 	</div>
 	<div id="input_parameter_pattern" style="float: left; border-style: solid; padding: 10px;">
@@ -56,7 +55,7 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 			<br>
 			<table class="borderList">
 				<tr>
-					<th>実行順</th>
+					<th>実行順※</th>
 					<th>項目名</th>
 					<th>エレメント型※</th>
 					<th>エレメント名※</th>
@@ -123,6 +122,10 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 			</table>
 		</div>
     </div>
+	<div>
+		<textarea id="selenium_code" rows="20" cols="100" ></textarea>
+		<input type="button" value="SeleniumIDE解析" onClick="doAnalyze()" />
+	</div>
 
 </body>
 </html>
