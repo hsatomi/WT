@@ -17,10 +17,11 @@ function doRegist(){
 	for(i=0;i<borderList.length;i++){
 		var row = borderList[i];
 
-		var _id = row.cells[0].firstElementChild.value;
-		var _画面管理id = row.cells[1].firstElementChild.value;
-		var _遷移パターン名 = row.cells[2].firstElementChild.value;
-		var _備考 = row.cells[3].firstElementChild.value;
+		var idx=0;
+		var _id = row.cells[idx++].firstElementChild.value;
+		var _画面管理id = row.cells[idx++].firstElementChild.value;
+		var _遷移パターン名 = row.cells[idx++].firstElementChild.value;
+		var _備考 = row.cells[idx++].firstElementChild.value;
 
 		var data_row = {
 				"id":_id

@@ -23,6 +23,7 @@ import co.jp.souya.tool.TTConst;
 
 /**
  * テストケース管理画面に絡んだサービス
+ *
  * @author hsatomi
  *
  */
@@ -39,15 +40,15 @@ public class TestCaseAdminSvc extends BaseSvc {
 
 	public TestCaseAdminSvc() {
 		logger.info(this.getClass().getName());
-		//初期化
+		// 初期化
 		headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		restTemplate = new RestTemplate();
 	}
 
-
 	/**
 	 * テストケース管理を無条件にリストで取得
+	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -58,9 +59,31 @@ public class TestCaseAdminSvc extends BaseSvc {
 		try {
 			init();
 
-			dto = em
-					.createNamedQuery("TestCaseAdmin.findAll")
-					.getResultList();
+			dto = em.createNamedQuery("TestCaseAdmin.findAll").getResultList();
+
+		} catch (Throwable e) {
+			logger.error(e.getMessage(), e);
+		} finally {
+			destroy();
+		}
+
+		return dto;
+	}
+
+	/**
+	 * idで取得
+	 *
+	 * @param id
+	 * @return
+	 */
+	public TestCaseAdmin get(int id) {
+
+		TestCaseAdmin dto = null;
+
+		try {
+			init();
+
+			dto = em.find(TestCaseAdmin.class, id);
 
 		} catch (Throwable e) {
 			logger.error(e.getMessage(), e);
@@ -73,7 +96,8 @@ public class TestCaseAdminSvc extends BaseSvc {
 
 	/**
 	 *
-	 * @param id テストケース管理id
+	 * idでDTO取得
+	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -96,18 +120,19 @@ public class TestCaseAdminSvc extends BaseSvc {
 					.setParameter("テストケース管理id", daoテストケース管理.getId())
 					.getResultList();
 
-			DisplayAdmin dao画面管理
-			= daoSvc.getDisplayAdmin(daoテストケース管理.get画面管理id());
-			ProjectAdmin daoプロジェクト管理
-			= daoSvc.getProjectAdmin(dao画面管理.getプロジェクトid());
+			DisplayAdmin dao画面管理 = daoSvc.getDisplayAdmin(daoテストケース管理
+					.get画面管理id());
+			ProjectAdmin daoプロジェクト管理 = daoSvc.getProjectAdmin(dao画面管理
+					.getプロジェクトid());
 
-			//クラス名生成
+			// クラス名生成
 			String strLinkJenkins = "";
 			{
-				long nケース管理番号 = 10000*daoプロジェクト管理.getId()
-						+1*daoテストケース管理.getId();
+				long nケース管理番号 = 10000 * daoプロジェクト管理.getId() + 1
+						* daoテストケース管理.getId();
 				String strクラス名 = "Case" + nケース管理番号;
-				strLinkJenkins = TTConst.URL_JENKINS_JOB_BASE + strクラス名 + "/lastBuild";
+				strLinkJenkins = TTConst.URL_JENKINS_JOB_BASE + strクラス名
+						+ "/lastBuild";
 			}
 
 			dto.setテストケース管理(daoテストケース管理);
@@ -125,25 +150,24 @@ public class TestCaseAdminSvc extends BaseSvc {
 		return dto;
 	}
 
-
 	/**
 	 * テストケース管理idでjenkinsJOBを実行する
+	 *
 	 * @param id
 	 * @return
 	 */
-	public boolean execJenkins(int id){
+	public boolean execJenkins(int id) {
 		// 結果更新
 		try {
 			// ----------------必要情報取得----------------
-			TestCaseAdmin daoテストケース管理
-			= daoSvc.getTestCaseAdmin(id);
-			DisplayAdmin dao画面管理
-			= daoSvc.getDisplayAdmin(daoテストケース管理.get画面管理id());
-			ProjectAdmin daoプロジェクト管理
-			= daoSvc.getProjectAdmin(dao画面管理.getプロジェクトid());
-			//クラス名生成
-			long nケース管理番号 = 10000*daoプロジェクト管理.getId()
-					+1*daoテストケース管理.getId();
+			TestCaseAdmin daoテストケース管理 = daoSvc.getTestCaseAdmin(id);
+			DisplayAdmin dao画面管理 = daoSvc.getDisplayAdmin(daoテストケース管理
+					.get画面管理id());
+			ProjectAdmin daoプロジェクト管理 = daoSvc.getProjectAdmin(dao画面管理
+					.getプロジェクトid());
+			// クラス名生成
+			long nケース管理番号 = 10000 * daoプロジェクト管理.getId() + 1
+					* daoテストケース管理.getId();
 			String strクラス名 = "Case" + nケース管理番号;
 
 			URI url = new URI(TTConst.URL_JENKINS_JOB_BASE + strクラス名 + "/build");
@@ -152,12 +176,10 @@ public class TestCaseAdminSvc extends BaseSvc {
 			System.out.println("Response: " + response);
 
 		} catch (Exception e) {
-			logger.error(e.getMessage(),e);
+			logger.error(e.getMessage(), e);
 			return false;
 		}
 		return true;
 	}
-
-
 
 }

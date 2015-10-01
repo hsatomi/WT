@@ -8,14 +8,15 @@
 };
 
 //画面遷移
-function move_InputParameters(id) {
-	location.href = "InputParameters?id=" + id;
+function move_InputParameters(id,test_case_id,move_pattern_detail_id) {
+	if (test_case_id === undefined) {
+		test_case_id="";
+	}
+	if (move_pattern_detail_id === undefined) {
+		move_pattern_detail_id="";
+	}
+	location.href = "InputParameters?id=" + id + "&test_case_id=" + test_case_id + "&move_pattern_detail_id=" + move_pattern_detail_id;
 	return;
-
-//    switch (id) {
-//        case "1": location.href = "InputParameters?id=" + id; break;
-//        default: break;
-//    }
 }
 
 //画面遷移(確認画面)

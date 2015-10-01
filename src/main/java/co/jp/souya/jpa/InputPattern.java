@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Table(name="\"InputPattern\"")
 @NamedQueries({
 	@NamedQuery(name="InputPattern.findAll", query="SELECT i FROM InputPattern i")
-,	@NamedQuery(name="InputPattern.findListById", query="SELECT i FROM InputPattern i where テストケース管理id=:テストケース管理id")
+,	@NamedQuery(name="InputPattern.findListById", query="SELECT i FROM InputPattern i where テストケース管理id=:テストケース管理id order by No")
 })
 public class InputPattern implements Serializable {
 	private static final long serialVersionUID = 1L;

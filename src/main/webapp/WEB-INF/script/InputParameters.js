@@ -37,15 +37,16 @@ function doRegist(){
 	for(i=0;i<borderList.length;i++){
 		var row = borderList[i];
 
-		var _実行順 = row.cells[0].firstElementChild.value;
-		var _項目名 = row.cells[1].firstElementChild.value;
-		var _エレメント型 = row.cells[2].firstElementChild.value;
-		var _エレメント名 = row.cells[3].firstElementChild.value;
-		var _アクション = row.cells[4].firstElementChild.value;
-		var _型 = row.cells[5].firstElementChild.value;
-		var _値 = row.cells[6].firstElementChild.value;
-		var _備考 = row.cells[7].firstElementChild.value;
-		var _id = row.cells[8].firstElementChild.value;
+		var idx=0;
+		var _実行順 = row.cells[idx++].firstElementChild.value;
+		var _項目名 = row.cells[idx++].firstElementChild.value;
+		var _エレメント型 = row.cells[idx++].firstElementChild.value;
+		var _エレメント名 = row.cells[idx++].firstElementChild.value;
+		var _アクション = row.cells[idx++].firstElementChild.value;
+		var _型 = row.cells[idx++].firstElementChild.value;
+		var _値 = row.cells[idx++].firstElementChild.value;
+		var _備考 = row.cells[idx++].firstElementChild.value;
+		var _id = row.cells[idx++].firstElementChild.value;
 
 		var data_row = {
 				"id":_id

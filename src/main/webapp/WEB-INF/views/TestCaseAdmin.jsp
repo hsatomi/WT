@@ -79,6 +79,7 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 			<br>
 			<button>パターン自動生成</button>
 			<button>遷移パターン削除</button>
+			<input type="button" name="btnAddPattern" value="パターン追加" onClick="move_InputParameters('',${dto.テストケース管理.id},'')" />
 			<br>
 			<br>
 			<input type="button" name="btnReset" value="回数リセット" onClick="reset(${dto.テストケース管理.id})" />
@@ -111,7 +112,7 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 						${入力パターン.id}
 					</td>
 					<td>
-						<a href="javascript:move_InputParameters('${入力パターン.id}');">${入力パターン.入力パターン名}</a>
+						<a href="javascript:move_InputParameters('${入力パターン.id}','','');">${入力パターン.入力パターン名}</a>
 					</td>
 					<td>
 						${入力パターン.実行回数}
