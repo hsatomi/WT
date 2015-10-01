@@ -62,7 +62,7 @@ public class Case10011 {
     	webdriver = new FirefoxDriver();
 		//画面遷移
 		//テストサイトログイン画面
-		webdriver.get("http://192.168.0.142:8080/ts/");
+		webdriver.get("http://prove-admin.rivieramypage.jp/admin/login");
 		{
 			//
 			List<WebElement> elements = webdriver.findElements(By.name("login_id"));
