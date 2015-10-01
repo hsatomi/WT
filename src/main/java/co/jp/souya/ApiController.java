@@ -49,25 +49,6 @@ public class ApiController {
 	@Autowired
 	private DaoSvc daoSvc;
 
-//	/**
-//	 * テスト結果（正解値）をアップデートする テストケース初回のみ実行すること 補足：テストユニットから呼び出される
-//	 *
-//	 * @param req
-//	 * @return
-//	 * @throws UnsupportedEncodingException
-//	 */
-//	@RequestMapping(value = "/updateResult", method = RequestMethod.POST)
-//	@ResponseStatus(HttpStatus.OK)
-//	public boolean updateResult(@RequestBody ReqUpdateTestResult req)
-//			throws UnsupportedEncodingException {
-//		logger.info("updateTestResult");
-//		InputPattern dao = inputPatternSvc.updateResult(req.id, req.html,
-//				req.db);
-//		if (dao == null)
-//			return false;
-//		return true;
-//	}
-
 	/**
 	 * テスト結果をアップデートする 補足：テストユニットから呼び出される
 	 *
@@ -92,7 +73,7 @@ public class ApiController {
 			if (dao.get実行回数() <= 0) {
 				// 初回のみ正解値を格納
 				dao = inputPatternSvc.updateResult(req.id, req.html,
-						req.db);
+						req.db,req.snapshot);
 			}
 			boolean bTestResult=true;
 			if(dao.getHtml正解()==null) dao.setHtml正解("");

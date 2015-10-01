@@ -131,7 +131,8 @@ public class InputPatternSvc extends BaseSvc {
 			dao = em.find(InputPattern.class, id);
 			dao.set判定結果(w判定結果);
 			dao.setJob状況(wJob状況);
-			dao.set遷移結果(wスナップショットBase64);
+//			dao.set遷移結果(wスナップショットBase64);
+			dao.set画面(wスナップショットBase64);
 			dao.set実行回数(dao.get実行回数() + 1);
 			dao.setDb(wDb);
 			dao.setHtml(wHtml);
@@ -192,7 +193,7 @@ public class InputPatternSvc extends BaseSvc {
 	 * @param id
 	 * @return
 	 */
-	public InputPattern updateResult(int id, String wHTML, String wDB) {
+	public InputPattern updateResult(int id, String wHTML, String wDB,String wSnapshot) {
 		InputPattern dao = null;
 		try {
 			init();
@@ -201,6 +202,7 @@ public class InputPatternSvc extends BaseSvc {
 			dao = em.find(InputPattern.class, id);
 			dao.setDb正解(wDB);
 			dao.setHtml正解(wHTML);
+			dao.set画面正解(wSnapshot);
 			em.persist(dao);
 
 			tx.commit();

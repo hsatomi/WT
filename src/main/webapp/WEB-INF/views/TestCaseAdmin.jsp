@@ -97,7 +97,8 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 					<th>入力パターン名</th>
 					<th>実行回数</th>
 					<th>JOB状況</th>
-					<th>キャプチャ(前回実行)</th>
+					<th>キャプチャ(正解)</th>
+					<th>キャプチャ(今回)</th>
 					<th width=70>HTML</th>
 					<th width=70>DB</th>
 					<th>判定結果</th>
@@ -122,7 +123,10 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 						${入力パターン.job状況}
 					</td>
 					<td>
-						<img src="data:image/jpg;base64,${入力パターン.遷移結果}" width=200 height=70 />
+						<img src="data:image/jpg;base64,${入力パターン.画面正解}" width=200 height=70 />
+					</td>
+					<td>
+						<img src="data:image/jpg;base64,${入力パターン.画面}" width=200 height=70 />
 					</td>
 					<td>
 						<a href="javascript:move_TestCaseAdmin('htmlCorrect','${dto.テストケース管理.id}','${入力パターン.id}')">正解値</a>

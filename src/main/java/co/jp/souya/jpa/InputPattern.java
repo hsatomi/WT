@@ -50,6 +50,12 @@ public class InputPattern implements Serializable {
 	@Column(name="\"テストケース管理id\"")
 	private Integer テストケース管理id;
 
+	private String 画面;
+
+	private String 画面差異;
+
+	private String 画面正解;
+
 	private Integer 実行回数;
 
 	private String 遷移結果;
@@ -141,6 +147,30 @@ public class InputPattern implements Serializable {
 
 	public void setテストケース管理id(Integer テストケース管理id) {
 		this.テストケース管理id = テストケース管理id;
+	}
+
+	public String get画面() {
+		return this.画面;
+	}
+
+	public void set画面(String 画面) {
+		this.画面 = 画面;
+	}
+
+	public String get画面差異() {
+		return this.画面差異;
+	}
+
+	public void set画面差異(String 画面差異) {
+		this.画面差異 = 画面差異;
+	}
+
+	public String get画面正解() {
+		return this.画面正解;
+	}
+
+	public void set画面正解(String 画面正解) {
+		this.画面正解 = 画面正解;
 	}
 
 	public Integer get実行回数() {
