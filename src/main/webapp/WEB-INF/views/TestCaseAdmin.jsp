@@ -49,7 +49,7 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 				<input type="button" name="btnAnalyze" value="遷移先解析" onClick="analyze(${dto.テストケース管理.id})" />
 			</div>
 			<div style="margin:10px; border-style:solid;">
-				<h4>インプット情報</h4>
+				<h4>インプット情報 !未実装</h4>
 				<div style="margin:0 auto;">
 					インプット(初期化)
 					<SELECT>
@@ -61,7 +61,7 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 				</div>
 			</div>
 			<div style="margin:10px; border-style:solid;">
-				<h4>アウトプット情報</h4>
+				<h4>アウトプット情報 !未実装</h4>
 				<div style="margin:0 auto;">
 					更新するテーブル
 					<SELECT>
@@ -95,7 +95,7 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 					<th>入力パターン名</th>
 					<th>実行回数</th>
 					<th>JOB状況</th>
-					<th>キャプチャー</th>
+					<th>キャプチャ(前回実行)</th>
 					<th width=70>HTML</th>
 					<th width=70>DB</th>
 					<th>判定結果</th>

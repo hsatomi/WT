@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import co.jp.souya.dto.TestCaseAdminDTO;
 import co.jp.souya.jpa.TestCaseAdmin;
 import co.jp.souya.service.TestCaseAdminSvc;
 import co.jp.souya.tool.TTConst;
@@ -42,7 +43,10 @@ public class StubController {
 
 		List<TestCaseAdmin> dtoList = testCaseAdminSvc.getAll();
 		for (TestCaseAdmin testCaseAdmin : dtoList) {
-			String link = "<a href=\"" + baseUrl + testCaseAdmin.getId() + "\">id=" + testCaseAdmin.getId() + "</a><br>";
+			TestCaseAdminDTO dto = testCaseAdminSvc.getDTO(testCaseAdmin.getId());
+
+			String name=dto.get遷移パターン管理().get遷移パターン名();
+			String link = "<a href=\"" + baseUrl + testCaseAdmin.getId() + "\">id=" + testCaseAdmin.getId() + " " + name  +  "</a><br>";
 			buf.append(link);
 		}
 

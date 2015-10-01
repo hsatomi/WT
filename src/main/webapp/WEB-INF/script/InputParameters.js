@@ -14,6 +14,7 @@ function move(mode) {
     }
 }
 
+//登録
 function doRegist(){
 	var _id = document.getElementById("_id").value;
 	var _no = document.getElementById("_no").value;
