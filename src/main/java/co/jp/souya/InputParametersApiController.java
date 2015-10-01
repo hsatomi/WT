@@ -146,6 +146,7 @@ public class InputParametersApiController {
 			}catch(Exception e){
 			}
 			name = TTUtility.removePatternChar("\"", name);
+			name = TTUtility.removePatternChar("\"", name);
 			if(name.isEmpty()) continue;
 
 			dao.setエレメント名(name);
