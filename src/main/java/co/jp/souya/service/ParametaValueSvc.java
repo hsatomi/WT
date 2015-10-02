@@ -16,7 +16,7 @@ public class ParametaValueSvc extends BaseSvc {
 	}
 
 	/**
-	 * 単純取得
+	 * 取得
 	 *
 	 * @param id
 	 * @return
@@ -38,7 +38,7 @@ public class ParametaValueSvc extends BaseSvc {
 	}
 
 	/**
-	 * 単純更新
+	 * 更新
 	 *
 	 * @param dao
 	 * @return
@@ -73,6 +73,33 @@ public class ParametaValueSvc extends BaseSvc {
 		}
 
 		return newdao;
+	}
+
+	/**
+	 * idで削除
+	 *
+	 * @param dao
+	 * @return
+	 */
+	public boolean delete(int id) {
+		try {
+			init();
+			tx.begin();
+
+			ParametaValue dao = em.find(ParametaValue.class, id);
+			em.remove(dao);
+
+			tx.commit();
+
+		} catch (Throwable e) {
+			tx.rollback();
+			logger.error(e.getMessage(), e);
+			return false;
+		} finally {
+			destroy();
+		}
+
+		return true;
 	}
 
 }

@@ -63,6 +63,36 @@ function doRegist(){
 
 }
 
+//明細削除
+function doDelete(_id){
+
+	var data = {
+			"id":_id
+	};
+
+    $.ajax({
+        type:"post",
+        url:URL_API_BASE+"/MovePatternDetail/api/delete",
+        data:JSON.stringify(data),
+        contentType: 'application/json',
+        dataType: "json",
+        success: function(json_data1) {
+            // 成功時の処理
+        	if(json_data1 == true){
+            	alert("削除しました");
+            	location.reload();
+        	}else{
+            	alert("削除に失敗しました");
+        	}
+        },
+        error: function(json_data2) {
+            // 失敗時の処理
+        	alert("失敗");
+        }
+    });
+
+}
+
 //明細追加
 function doAdd(_id){
 

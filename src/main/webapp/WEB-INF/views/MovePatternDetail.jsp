@@ -39,6 +39,7 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 					<th>遷移パターン管理id</th>
 					<th>遷移順</th>
 					<th>入力パターンid</th>
+					<th>明細削除</th>
 				</tr>
 
 				<c:forEach items="${dto.遷移パターン明細リスト}" var="遷移パターン明細" >
@@ -60,6 +61,9 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 					</td>
 					<td>
 						<input type="text" value="${遷移パターン明細.入力パターンid}" readonly="readonly" />
+					</td>
+					<td>
+						<input type="button" value="削除" onClick="doDelete('${遷移パターン明細.id}')" />
 					</td>
 				</tr>
 				</c:forEach>

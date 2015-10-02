@@ -4,9 +4,7 @@ package co.jp.souya.project1;
 import static org.junit.Assert.*;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.List;
 import java.util.Set;
@@ -24,13 +22,11 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
-import co.jp.souya.tool.TTConst;
 import co.jp.souya.tool.TTUtility;
 
 public class Case10001 {
@@ -86,9 +82,9 @@ public class Case10001 {
 		//入力画面
 		//不明？
 		{
-			//7
-			List<WebElement> elements = webdriver.findElements(By.name(""));
-			WebElement element = webdriver.findElement(By.name(""));
+//			//7
+//			List<WebElement> elements = webdriver.findElements(By.name(""));
+//			WebElement element = webdriver.findElement(By.name(""));
 		}
 
 	}

@@ -116,6 +116,9 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 					<td style="display:none">
 						<input type="text" value="${パラメタ値.id}" />
 					</td>
+					<td>
+						<input type="button" value="削除" onClick="doDelete('${パラメタ値.id}')" />
+					</td>
 				</tr>
 				</c:forEach>
 

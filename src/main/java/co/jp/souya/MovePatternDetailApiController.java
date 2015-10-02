@@ -59,6 +59,19 @@ public class MovePatternDetailApiController {
 		return true;
 	}
 
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public boolean delete(@RequestBody ReqMovePatternDetail req)
+			throws UnsupportedEncodingException {
+		logger.info("delete");
+
+		if(req.id == null) return false;
+		//ひもづく入力パターンごと削除
+		boolean result = movePatternDetailSvc.delete(req.id);
+
+		return result;
+	}
+
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public boolean add(@RequestBody ReqMovePatternDetail req)

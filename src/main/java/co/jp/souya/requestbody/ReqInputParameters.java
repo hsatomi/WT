@@ -22,5 +22,9 @@ public class ReqInputParameters {
 
 	public List<ParametaValue> list;
 
+	/**
+	 * パラメタ値のid
+	 */
+	public Integer parametaValueId;
 
 }

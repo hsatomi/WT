@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import co.jp.souya.jpa.InputPattern;
 import co.jp.souya.jpa.MovePatternDetail;
 
 /**
@@ -33,6 +34,28 @@ public class MovePatternDetailSvc extends BaseSvc {
 		headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		restTemplate = new RestTemplate();
+	}
+
+	/**
+	 * idで取得
+	 *
+	 * @return
+	 */
+	public MovePatternDetail get(int id) {
+
+		MovePatternDetail newdao = null;
+		try {
+			init();
+
+			newdao = em.find(MovePatternDetail.class, id);
+
+		} catch (Throwable e) {
+			logger.error(e.getMessage(), e);
+		} finally {
+			destroy();
+		}
+
+		return newdao;
 	}
 
 	/**
@@ -69,6 +92,42 @@ public class MovePatternDetailSvc extends BaseSvc {
 		}
 
 		return newdao;
+	}
+
+	/**
+	 * idでひもづく入力パターンごと削除
+	 *
+	 * @return
+	 */
+	public boolean delete(int id) {
+
+		try {
+			init();
+			tx.begin();
+
+			MovePatternDetail dao = em.find(MovePatternDetail.class, id);
+
+			if(dao.get入力パターンid() != null){
+				InputPattern entity = em.find(InputPattern.class, dao.get入力パターンid());
+				em.remove(entity);
+			}
+
+			{
+				MovePatternDetail entity = em.find(MovePatternDetail.class, dao.getId());
+				em.remove(entity);
+			}
+
+			tx.commit();
+
+		} catch (Throwable e) {
+			tx.rollback();
+			logger.error(e.getMessage(), e);
+			return false;
+		} finally {
+			destroy();
+		}
+
+		return true;
 	}
 
 }

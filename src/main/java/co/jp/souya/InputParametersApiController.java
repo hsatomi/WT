@@ -53,14 +53,6 @@ public class InputParametersApiController {
 						|| parametaValue.getエレメント型().isEmpty()) {
 					continue;
 				}
-//				if (parametaValue.getエレメント名() == null
-//						|| parametaValue.getエレメント名().isEmpty()) {
-//					continue;
-//				}
-//				if (parametaValue.getアクション() == null
-//						|| parametaValue.getアクション().isEmpty()) {
-//					continue;
-//				}
 			}
 			// TODO:削除ロジック
 
@@ -71,6 +63,17 @@ public class InputParametersApiController {
 		}
 
 		return true;
+	}
+
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public boolean delete(@RequestBody ReqInputParameters req)
+			throws UnsupportedEncodingException {
+		logger.info("delete");
+
+		if(req.parametaValueId==null) return false;
+		boolean result = parametaValueSvc.delete(req.parametaValueId);
+		return result;
 	}
 
 	@RequestMapping(value = "/analyze", method = RequestMethod.POST)
