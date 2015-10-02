@@ -238,7 +238,15 @@ public class InputPatternSvc extends BaseSvc {
 			dao.setJob状況("");
 			dao.set判定結果("");
 			dao.set遷移結果("");
-			// TODO:全部リセットする？
+			dao.setHtml正解("");
+			dao.setHtml("");
+			dao.setHtml差異("");
+			dao.setDb("");
+			dao.setDb正解("");
+			dao.setDb差異("");
+			dao.set遷移結果("");
+			dao.set画面正解("");
+			dao.set画面差異("");
 			em.persist(dao);
 
 			tx.commit();
