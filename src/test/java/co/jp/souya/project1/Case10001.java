@@ -95,7 +95,7 @@ public class Case10001 {
 
 		//テストケース開始
 	@Test
-	public void Test1() throws Exception{
+	public void Test2() throws Exception{
 
 		//実行
 		hndlsNow = webdriver.getWindowHandles();
@@ -105,7 +105,7 @@ public class Case10001 {
 			List<WebElement> elements = webdriver.findElements(By.name("textfree"));
 			WebElement element = webdriver.findElement(By.name("textfree"));
 			element.clear();
-			element.sendKeys("TESTパターン1のテストです");
+			element.sendKeys("TESTパターン2のテストです");
 		}
 		{
 			//入力エリア適当
@@ -160,7 +160,7 @@ public class Case10001 {
 		try {
 			URI url = new URI("http://localhost:8080/souya/api/updateTestResult");
 			JSONObject request = new JSONObject();
-			request.put("id", 1);
+			request.put("id", 2);
 			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
 			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
 			request.put("snapshot", strSnapshot);
