@@ -165,7 +165,7 @@ public class Case10011 {
 			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
 			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
 			request.put("snapshot", strSnapshot);
-			request.put("db", URLEncoder.encode(errList.toString(), "UTF-8"));
+			request.put("errList", URLEncoder.encode(errList.toString(), "UTF-8"));
 
 			HttpEntity<String> entity = new HttpEntity<String>(
 					request.toString(), headers);

@@ -276,7 +276,7 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("			request.put(\"snapshot\", strSnapshot);");
 						strReplace.append(sep);
-						strReplace.append("			request.put(\"db\", URLEncoder.encode(errList.toString(), \"UTF-8\"));");
+						strReplace.append("			request.put(\"errList\", URLEncoder.encode(errList.toString(), \"UTF-8\"));");
 						strReplace.append(sep);
 						strReplace.append("");
 						strReplace.append(sep);

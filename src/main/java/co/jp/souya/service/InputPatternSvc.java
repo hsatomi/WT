@@ -133,7 +133,7 @@ public class InputPatternSvc extends BaseSvc {
 			dao.setJob状況(wJob状況);
 			// dao.set遷移結果(wスナップショットBase64);
 			dao.set画面(wスナップショットBase64);
-			int n実行回数 = dao.get実行回数() == null ? 0 : 1;
+			int n実行回数 = dao.get実行回数() == null ? 0 : dao.get実行回数();
 			dao.set実行回数(n実行回数 + 1);
 			dao.setDb(wDb);
 			dao.setHtml(wHtml);
@@ -206,6 +206,7 @@ public class InputPatternSvc extends BaseSvc {
 			dao.setDb正解(wDB);
 			dao.setHtml正解(wHTML);
 			dao.set画面正解(wSnapshot);
+			dao.set実行回数(0);
 			em.persist(dao);
 
 			tx.commit();
