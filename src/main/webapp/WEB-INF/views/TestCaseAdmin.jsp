@@ -114,7 +114,7 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 						${入力パターン.id}
 					</td>
 					<td>
-						<a href="javascript:move_InputParameters('${入力パターン.id}','','');">${入力パターン.入力パターン名}</a>
+						<a href="javascript:move_InputParameters('${入力パターン.id}','','');">${入力パターン.入力パターン名}編集へ</a>
 					</td>
 					<td>
 						${入力パターン.実行回数}
