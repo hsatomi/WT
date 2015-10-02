@@ -96,13 +96,6 @@ public class Case10011 {
 		//実行
 		hndlsNow = webdriver.getWindowHandles();
 		boolean bTestResult = true;
-		try{
-			//
-			List<WebElement> elements = webdriver.findElements(By.name("afwefaw"));
-			WebElement element = webdriver.findElement(By.name("afwefaw"));
-			element.clear();
-			element.sendKeys("fawef");
-		}catch(Exception e){errList.add(e.getMessage());}
 
 		// 実行後アラートダイアログチェック
 		Alert alert = null;
