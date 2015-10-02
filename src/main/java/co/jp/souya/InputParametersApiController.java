@@ -20,7 +20,9 @@ import co.jp.souya.service.ParametaValueSvc;
 import co.jp.souya.tool.TTUtility;
 
 /**
- * Handles requests for the application home page.
+ * 入力パターン画面用API
+ * @author hsatomi
+ *
  */
 @RestController
 @RequestMapping(value = "/InputParameters/api")

@@ -244,12 +244,35 @@ function analyze(_id){
     });
 }
 
+//明細削除
+function doDelete(_id){
+	var ids = getSelectedStr();
+	if(ids.length==0){
+		alert("ケースが未選択です");
+		return;
+	}
 
-//別窓でテキスト表示(未使用)
-function HtmlWrite(strText){
-	//ウィンドウサイズ600×400でスクロールバーONに設定する
-var htmlsource = window.open("", "", "scrollbars=yes, width=600, height=400");
-htmlsource.document.open();
-htmlsource.document.write(strText);
-htmlsource.document.close();
+	var data = {"id":_id,"input_ids":ids};
+
+    $.ajax({
+        type:"post",
+        url:URL_API_BASE+"/TestCaseAdmin/api/delete",
+        data:JSON.stringify(data),
+        contentType: 'application/json',
+        dataType: "json",
+        success: function(json_data1) {
+            // 成功時の処理
+        	if(json_data1 == true){
+            	alert("削除しました");
+            	location.reload();
+        	}else{
+            	alert("削除に失敗しました");
+        	}
+        },
+        error: function(json_data2) {
+            // 失敗時の処理
+        	alert("失敗");
+        }
+    });
+
 }

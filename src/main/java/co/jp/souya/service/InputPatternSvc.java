@@ -76,6 +76,34 @@ public class InputPatternSvc extends BaseSvc {
 	}
 
 	/**
+	 * 削除
+	 *
+	 * @param id
+	 * @return
+	 */
+	public boolean delete(int id) {
+
+		try {
+			init();
+			tx.begin();
+
+			InputPattern dao = em.find(InputPattern.class, id);
+			em.remove(dao);
+
+			tx.commit();
+
+		} catch (Throwable e) {
+			tx.rollback();
+			logger.error(e.getMessage(), e);
+			return false;
+		} finally {
+			destroy();
+		}
+
+		return true;
+	}
+
+	/**
 	 * 入力パターン画面　表示情報を取得する
 	 *
 	 * @param id
@@ -244,7 +272,7 @@ public class InputPatternSvc extends BaseSvc {
 			dao.setDb("");
 			dao.setDb正解("");
 			dao.setDb差異("");
-			dao.set遷移結果("");
+			dao.set画面("");
 			dao.set画面正解("");
 			dao.set画面差異("");
 			em.persist(dao);

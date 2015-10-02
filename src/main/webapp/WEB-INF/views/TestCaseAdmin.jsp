@@ -12,6 +12,7 @@
 	<link href="css/stylesheet.css" rel="stylesheet" />
 
 <script>
+var URL_API_BASE = "<%= TTConst.URL_API_BASE %>";
 var URL_RESET = "<%= TTConst.URL_API_BASE+TTConst.URL_RESET_TESTCASE %>";
 var URL_GENERATE = "<%= TTConst.URL_API_BASE+TTConst.URL_GENERATE_TESTCASE %>";
 var URL_EXECJENKINS = "<%= TTConst.URL_API_BASE+TTConst.URL_EXECJENKINS %>";
@@ -86,15 +87,16 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 			<br>
 			<button>パターン自動生成</button>
 			<button>遷移パターン削除</button>
-			<input type="button" name="btnAddPattern" value="パターン追加" onClick="move_InputParameters('',${dto.テストケース管理.id},'')" />
+			<input type="button" value="パターン追加" onClick="move_InputParameters('',${dto.テストケース管理.id},'')" />
+			<input type="button" value="パターン削除" onClick="doDelete(${dto.テストケース管理.id})" />
 			<br>
 			<br>
-			<input type="button" name="btnReset" value="回数リセット" onClick="reset(${dto.テストケース管理.id})" />
-			<input type="button" name="btnGenerate" value="生成" onClick="generate(${dto.テストケース管理.id})" />
-			<input type="button" name="btnExec" value="実行" onClick="execjenkins(${dto.テストケース管理.id})" />
-			<input type="button" name="btnSelectAll" value="全て選択" onClick="selectAll()" />
-			<input type="button" name="btnSelectNG" value="NGパターン選択" onClick="selectNG()" />
-			<input type="button" name="btnUnselectAll" value="全て解除" onClick="unselectAll()" />
+			<input type="button" value="回数リセット" onClick="reset(${dto.テストケース管理.id})" />
+			<input type="button" value="生成" onClick="generate(${dto.テストケース管理.id})" />
+			<input type="button" value="実行" onClick="execjenkins(${dto.テストケース管理.id})" />
+			<input type="button" value="全て選択" onClick="selectAll()" />
+			<input type="button" value="NGパターン選択" onClick="selectNG()" />
+			<input type="button" value="全て解除" onClick="unselectAll()" />
 			<br>
 			<table class="borderList">
 				<tr>

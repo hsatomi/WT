@@ -18,7 +18,9 @@ import co.jp.souya.jpa.InputPattern;
 import co.jp.souya.service.TestCaseAdminSvc;
 
 /**
- * Handles requests for the application home page.
+ * テストケース管理画面
+ * @author hsatomi
+ *
  */
 @Controller
 @RequestMapping(value = "/TestCaseAdmin")

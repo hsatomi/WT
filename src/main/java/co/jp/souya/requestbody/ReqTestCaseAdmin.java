@@ -5,9 +5,10 @@ import java.util.List;
 
 
 
-public class ReqTestCaseAdminGenerate {
 
-	public ReqTestCaseAdminGenerate(){
+public class ReqTestCaseAdmin {
+
+	public ReqTestCaseAdmin(){
 		input_ids = new ArrayList<Integer>();
 	}
 
@@ -20,5 +21,6 @@ public class ReqTestCaseAdminGenerate {
 	 * 入力パターンids
 	 */
 	public List<Integer> input_ids;
+
 
 }
