@@ -2,6 +2,7 @@ package co.jp.souya.dto;
 
 import java.util.List;
 
+import co.jp.souya.jpa.DisplayAdmin;
 import co.jp.souya.jpa.InputPattern;
 import co.jp.souya.jpa.MovePatternAdmin;
 import co.jp.souya.jpa.MovePatternDetail;
@@ -13,6 +14,7 @@ public class TestCaseAdminDTO {
 	}
 
 	private TestCaseAdmin テストケース管理;
+	private DisplayAdmin 画面管理;
 	private MovePatternAdmin 遷移パターン管理;
 	private List<MovePatternDetail> 遷移パターン明細リスト;
 	private List<InputPattern> 入力パターンリスト;
@@ -56,6 +58,14 @@ public class TestCaseAdminDTO {
 
 	public void setジェンキンスURL(String ジェンキンスurl) {
 		ジェンキンスURL = ジェンキンスurl;
+	}
+
+	public DisplayAdmin get画面管理() {
+		return 画面管理;
+	}
+
+	public void set画面管理(DisplayAdmin 画面管理) {
+		this.画面管理 = 画面管理;
 	}
 
 

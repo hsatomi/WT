@@ -136,6 +136,7 @@ public class TestCaseAdminSvc extends BaseSvc {
 			}
 
 			dto.setテストケース管理(daoテストケース管理);
+			dto.set画面管理(dao画面管理);
 			dto.set遷移パターン管理(dao遷移パターン管理);
 			dto.set遷移パターン明細リスト(dao遷移パターン明細リスト);
 			dto.set入力パターンリスト(dao入力パターンリスト);

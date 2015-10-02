@@ -24,7 +24,13 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 	<h3>テストツール - テストケース管理画面</h3>
 	<div id="move_pattern_information" style="float: left; border-style: solid; margin-right: 20px;">
 		<div>
-			遷移パターン情報
+			総合情報
+			<div style="border-style: solid; margin:10px;">
+				<h4>画面名</h4>
+				<p>
+					${dto.画面管理.画面名}
+				</p>
+			</div>
 			<div style="border-style: solid; margin:10px;">
 				<h4>画面遷移パターン名</h4>
 				<p>
@@ -49,7 +55,7 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 				</c:forEach>
 				<input type="button" name="btnAnalyze" value="遷移先解析" onClick="analyze(${dto.テストケース管理.id})" />
 			</div>
-			<div style="margin:10px; border-style:solid;">
+			<div style="margin:10px; border-style:solid; display:none;">
 				<h4>インプット情報 !未実装</h4>
 				<div style="margin:0 auto;">
 					インプット(初期化)
@@ -61,7 +67,7 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 					<input type="file" name="example" size="30">
 				</div>
 			</div>
-			<div style="margin:10px; border-style:solid;">
+			<div style="margin:10px; border-style:solid; display:none;">
 				<h4>アウトプット情報 !未実装</h4>
 				<div style="margin:0 auto;">
 					更新するテーブル
