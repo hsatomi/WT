@@ -98,7 +98,7 @@ public class ApiController {
 			html_dif = URLEncoder.encode(strWebDif, "UTF-8");
 			db_dif = URLEncoder.encode(strDBDif, "UTF-8");
 			req.testResult = bTestResult ? TTConst.TEST_RESULT_OK : TTConst.TEST_RESULT_NG;
-			if(req.errList.length() > 5 ){
+			if(req.errList.length() > 10 ){
 				//TODO:何もエラーなくても"[]"の文字列が入るため2文字以上ぐらい
 				req.testResult =  TTConst.TEST_RESULT_ERROR;
 			}
