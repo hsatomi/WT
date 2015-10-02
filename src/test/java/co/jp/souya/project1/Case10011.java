@@ -42,6 +42,7 @@ public class Case10011 {
 	private static HttpHeaders headers;
 	private static RestTemplate restTemplate;
 	private static Set<String> hndlsNow;
+	private static List<String> errList;
 
 	@BeforeClass
 	public static  void doBeforeCls(){
@@ -49,6 +50,7 @@ public class Case10011 {
 		headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		restTemplate = new RestTemplate();
+		errList = new ArrayList<String>();
 
 		//永続化マネージャの生成等
 
@@ -63,32 +65,32 @@ public class Case10011 {
 		//画面遷移
 		//テストサイトログイン画面
 		webdriver.get("http://prove-admin.rivieramypage.jp/admin/login");
-		{
+		try{
 			//
 			List<WebElement> elements = webdriver.findElements(By.name("login_id"));
 			WebElement element = webdriver.findElement(By.name("login_id"));
 			element.clear();
 			element.sendKeys("souya5");
-		}
-		{
+		}catch(Exception e){errList.add(e.getMessage());}
+		try{
 			//
 			List<WebElement> elements = webdriver.findElements(By.name("password"));
 			WebElement element = webdriver.findElement(By.name("password"));
 			element.clear();
 			element.sendKeys("souya5");
-		}
-		{
+		}catch(Exception e){errList.add(e.getMessage());}
+		try{
 			//
 			List<WebElement> elements = webdriver.findElements(By.cssSelector("input.middle_btn.margin_top_btn"));
 			WebElement element = webdriver.findElement(By.cssSelector("input.middle_btn.margin_top_btn"));
 			element.click();
-		}
-		{
+		}catch(Exception e){errList.add(e.getMessage());}
+		try{
 			//
 			List<WebElement> elements = webdriver.findElements(By.linkText("書類テンプレート"));
 			WebElement element = webdriver.findElement(By.linkText("書類テンプレート"));
 			element.click();
-		}
+		}catch(Exception e){errList.add(e.getMessage());}
 
 	}
 
@@ -99,32 +101,32 @@ public class Case10011 {
 		//実行
 		hndlsNow = webdriver.getWindowHandles();
 		boolean bTestResult = true;
-		{
+		try{
 			//null
 			List<WebElement> elements = webdriver.findElements(By.name("login_id"));
 			WebElement element = webdriver.findElement(By.name("login_id"));
 			element.clear();
 			element.sendKeys("souya5");
-		}
-		{
+		}catch(Exception e){errList.add(e.getMessage());}
+		try{
 			//null
 			List<WebElement> elements = webdriver.findElements(By.name("password"));
 			WebElement element = webdriver.findElement(By.name("password"));
 			element.clear();
 			element.sendKeys("souya5");
-		}
-		{
+		}catch(Exception e){errList.add(e.getMessage());}
+		try{
 			//null
 			List<WebElement> elements = webdriver.findElements(By.cssSelector("input.middle_btn.margin_top_btn"));
 			WebElement element = webdriver.findElement(By.cssSelector("input.middle_btn.margin_top_btn"));
 			element.click();
-		}
-		{
+		}catch(Exception e){errList.add(e.getMessage());}
+		try{
 			//null
 			List<WebElement> elements = webdriver.findElements(By.linkText("書類テンプレート"));
 			WebElement element = webdriver.findElement(By.linkText("書類テンプレート"));
 			element.click();
-		}
+		}catch(Exception e){errList.add(e.getMessage());}
 
 		// 実行後アラートダイアログチェック
 		Alert alert = null;
@@ -162,6 +164,7 @@ public class Case10011 {
 			request.put("html", URLEncoder.encode(strResultWeb, "UTF-8"));
 			request.put("db", URLEncoder.encode(strResultDB, "UTF-8"));
 			request.put("snapshot", strSnapshot);
+			request.put("db", URLEncoder.encode(errList.toString(), "UTF-8"));
 
 			HttpEntity<String> entity = new HttpEntity<String>(
 					request.toString(), headers);
@@ -184,6 +187,8 @@ public class Case10011 {
 
 	@After
 	public void doAfter(){
+		//エラーリストをクリア
+		errList.clear();
 		//WebDriver終了
 		webdriver.quit();
 	}

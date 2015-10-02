@@ -127,6 +127,8 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 					</td>
 					<td>
 						${入力パターン.job状況}
+						<br>
+						<a href="javascript:move_TestCaseAdmin('moveResult','${dto.テストケース管理.id}','${入力パターン.id}')">エラー</a>
 					</td>
 					<td>
 						<img src="data:image/jpg;base64,${入力パターン.画面正解}" width=200 height=70 />

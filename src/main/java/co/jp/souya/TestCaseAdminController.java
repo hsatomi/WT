@@ -171,8 +171,36 @@ public class TestCaseAdminController {
 		return getResult(locale,model,"dbCorrect",id,input_id);
 	}
 
+	/**
+	 * 結果参照ページ
+	 *
+	 * @param locale
+	 * @param model
+	 * @param id
+	 * @param input_id
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
+	@RequestMapping(value = "/moveResult", method = RequestMethod.GET)
+	public String moveResult(Locale locale, Model model,
+			@RequestParam(value = "id", required = true) Integer id,
+			@RequestParam(value = "input_id", required = true) Integer input_id
 
+	) throws UnsupportedEncodingException {
+		logger.info("moveResult");
+		return getResult(locale,model,"moveResult",id,input_id);
+	}
 
+	/**
+	 * URLEncodeされた文字列を確認画面表示用にDecodeして確認する画面リソースを返す
+	 * @param locale
+	 * @param model
+	 * @param kind
+	 * @param id
+	 * @param input_id
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	private String getResult( Locale locale, Model model,
 			String kind,
 			Integer id, Integer input_id) throws UnsupportedEncodingException{
@@ -200,6 +228,9 @@ public class TestCaseAdminController {
 				}
 				if("dbCorrect".equals(kind)){
 					strDto = inputPattern.getDb正解();
+				}
+				if("moveResult".equals(kind)){
+					strDto = inputPattern.get遷移結果();
 				}
 
 				if (strDto == null || strDto.isEmpty())

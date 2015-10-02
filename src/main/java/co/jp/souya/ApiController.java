@@ -69,8 +69,11 @@ public class ApiController {
 			return false;
 
 		// 状態評価を全てAPI側で判定する
+		String html_dif ="";
+		String db_dif ="";
+		String jobStatus="";
 		{
-			if (dao.get実行回数() <= 0) {
+			if (dao.get実行回数()==null || dao.get実行回数() <= 0) {
 				// 初回のみ正解値を格納
 				dao = inputPatternSvc.updateResult(req.id, req.html,
 						req.db,req.snapshot);
@@ -91,15 +94,15 @@ public class ApiController {
 			String strDBDif = TTUtility.validateWeb(strExpectDB, strResultDB);
 			if(!strDBDif.isEmpty()) bTestResult=false;
 
-			req.jobStatus = TTConst.JOB_STATUS_FINISH;
-			req.html_dif = URLEncoder.encode(strWebDif, "UTF-8");
-			req.db_dif = URLEncoder.encode(strDBDif, "UTF-8");
+			jobStatus = TTConst.JOB_STATUS_FINISH;
+			html_dif = URLEncoder.encode(strWebDif, "UTF-8");
+			db_dif = URLEncoder.encode(strDBDif, "UTF-8");
 			req.testResult = bTestResult ? TTConst.TEST_RESULT_OK : TTConst.TEST_RESULT_NG;
 		}
 
 		InputPattern newdao = inputPatternSvc.updateTestResult(req.id,
-				req.testResult, req.jobStatus, req.snapshot, req.html, req.db,
-				req.html_dif, req.db_dif);
+				req.testResult, jobStatus, req.snapshot, req.html, req.db,
+				html_dif, db_dif, req.errList);
 
 		if (newdao == null)
 			return false;

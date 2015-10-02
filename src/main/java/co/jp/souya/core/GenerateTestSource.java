@@ -276,6 +276,8 @@ public class GenerateTestSource {
 						strReplace.append(sep);
 						strReplace.append("			request.put(\"snapshot\", strSnapshot);");
 						strReplace.append(sep);
+						strReplace.append("			request.put(\"db\", URLEncoder.encode(errList.toString(), \"UTF-8\"));");
+						strReplace.append(sep);
 						strReplace.append("");
 						strReplace.append(sep);
 						strReplace.append("			HttpEntity<String> entity = new HttpEntity<String>(");
@@ -374,7 +376,7 @@ public class GenerateTestSource {
 			strReplace.append("		}");
 			strReplace.append(sep);
 		}else{
-			strReplace.append("		{");
+			strReplace.append("		try{");
 			strReplace.append(sep);
 			strReplace.append("			//" + parametaValue.get項目名());
 			strReplace.append(sep);
@@ -431,7 +433,7 @@ public class GenerateTestSource {
 				strReplace.append("			}");
 				strReplace.append(sep);
 			}
-			strReplace.append("		}");
+			strReplace.append("		}catch(Exception e){errList.add(e.getMessage());}");
 			strReplace.append(sep);
 		}
 		return strReplace;
@@ -532,6 +534,8 @@ public class GenerateTestSource {
 		strbuf.append(sep);
 		strbuf.append("	private static Set<String> hndlsNow;");
 		strbuf.append(sep);
+		strbuf.append("	private static List<String> errList;");
+		strbuf.append(sep);
 		strbuf.append("");
 		strbuf.append(sep);
 		strbuf.append("	@BeforeClass");
@@ -545,6 +549,8 @@ public class GenerateTestSource {
 		strbuf.append("		headers.setContentType(MediaType.APPLICATION_JSON);");
 		strbuf.append(sep);
 		strbuf.append("		restTemplate = new RestTemplate();");
+		strbuf.append(sep);
+		strbuf.append("		errList = new ArrayList<String>();");
 		strbuf.append(sep);
 		strbuf.append("");
 		strbuf.append(sep);
@@ -581,6 +587,10 @@ public class GenerateTestSource {
 		strbuf.append("	@After");
 		strbuf.append(sep);
 		strbuf.append("	public void doAfter(){");
+		strbuf.append(sep);
+		strbuf.append("		//エラーリストをクリア");
+		strbuf.append(sep);
+		strbuf.append("		errList.clear();");
 		strbuf.append(sep);
 		strbuf.append("		//WebDriver終了");
 		strbuf.append(sep);

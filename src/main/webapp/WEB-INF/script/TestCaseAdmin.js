@@ -47,6 +47,9 @@ function move_TestCaseAdmin(name,id,input_id) {
 	case "dbCorrect":
 		location.href = "TestCaseAdmin/dbCorrect?id=" + id + "&input_id=" + input_id;
 		break;
+	case "moveResult":
+		location.href = "TestCaseAdmin/moveResult?id=" + id + "&input_id=" + input_id;
+		break;
 	default: break;
 	}
 
