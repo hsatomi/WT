@@ -19,6 +19,7 @@ public class TTConst {
 	public static String URL_ANALYZE="/api/analyze";
 	public static String TEST_RESULT_OK="OK";
 	public static String TEST_RESULT_NG="NG";
+	public static String TEST_RESULT_ERROR="ERROR";
 	public static String ACTION_CLICK="click";
 	public static String ACTION_SENDKEYS="sendKeys";
 	public static String ACTION_SELECTBYINDEX="selectByIndex";
