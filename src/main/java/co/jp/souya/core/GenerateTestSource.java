@@ -466,6 +466,8 @@ public class GenerateTestSource {
 		strbuf.append(sep);
 		strbuf.append("import java.net.URLEncoder;");
 		strbuf.append(sep);
+		strbuf.append("import java.util.ArrayList;");
+		strbuf.append(sep);
 		strbuf.append("import java.util.List;");
 		strbuf.append(sep);
 		strbuf.append("import java.util.Set;");
