@@ -50,7 +50,8 @@ function doRegist(){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("登録しました");
-            	location.reload();
+//            	location.reload();
+            	location.href = location.href;
         	}else{
             	alert("登録に失敗しました");
         	}
@@ -80,7 +81,8 @@ function doDelete(_id){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("削除しました");
-            	location.reload();
+//            	location.reload();
+            	location.href = location.href;
         	}else{
             	alert("削除に失敗しました");
         	}
@@ -110,7 +112,8 @@ function doAdd(_id){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("登録しました");
-            	location.reload();
+//            	location.reload();
+            	location.href = location.href;
         	}else{
             	alert("登録に失敗しました");
         	}

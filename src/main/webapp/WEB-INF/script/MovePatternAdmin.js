@@ -46,7 +46,8 @@ function doRegist(){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("登録しました");
-            	location.reload();
+//            	location.reload();
+            	location.href = location.href;
             	unselectAll();
         	}else{
             	alert("登録に失敗しました");

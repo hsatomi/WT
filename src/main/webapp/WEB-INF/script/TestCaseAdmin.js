@@ -75,7 +75,8 @@ function reset(_id){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("リセットしました");
-            	location.reload();
+//            	location.reload();
+            	location.href = location.href;
 //            	unselectAll();
         	}else{
             	alert("リセットに失敗しました");
@@ -106,7 +107,8 @@ function generate(_id){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("テストユニットを生成しました");
-            	location.reload();
+//            	location.reload();
+            	location.href = location.href;
         	}else{
             	alert("テストユニットの生成に失敗しました");
         	}
@@ -136,7 +138,8 @@ function execjenkins(_id){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("JOB実行を登録しました");
-            	location.reload();
+//            	location.reload();
+            	location.href = location.href;
         	}else{
             	alert("JOB実行の登録に失敗しました");
         	}
@@ -161,7 +164,8 @@ function ungenerate(_id){
           // 成功時の処理
       	if(json_data1 == true){
           	alert("テストユニットを削除しました");
-          	location.reload();
+//          location.reload();
+        	location.href = location.href;
       	}else{
           	alert("テストユニットの削除に失敗しました");
       	}
@@ -185,7 +189,8 @@ function polling(_id){
         dataType: "json",
         success: function(json_data1) {
             // 成功時の処理
-        	location.reload();
+//          location.reload();
+        	location.href = location.href;
         },
         error: function(json_data2) {
             // 失敗時の処理
@@ -257,7 +262,8 @@ function analyze(_id){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("解析しました");
-            	location.reload();
+//            	location.reload();
+            	location.href = location.href;
         	}else{
             	alert("解析に失敗しました");
         	}
@@ -289,7 +295,8 @@ function doDelete(_id){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("削除しました");
-            	location.reload();
+//            	location.reload();
+            	location.href = location.href;
         	}else{
             	alert("削除に失敗しました");
         	}

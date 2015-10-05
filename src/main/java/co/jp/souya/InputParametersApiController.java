@@ -78,6 +78,12 @@ public class InputParametersApiController {
 		return result;
 	}
 
+	/**
+	 * JUNIT4 Javaコードを解析してパラメータ化する
+	 * @param req
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	@RequestMapping(value = "/analyze", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public boolean analyze(@RequestBody ReqInputParameters req)

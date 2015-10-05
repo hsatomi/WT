@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page import="co.jp.souya.tool.TTConst" %>
+<%@ page session="false" %>
 
 <!DOCTYPE html>
 <html>
@@ -52,6 +53,7 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 			<br>
 			<br>
 			<input type="button" value="登録" onClick="doRegist()" />
+			<input type="button" value="test" onClick="test()" />
 			<br>
 			<table class="borderList">
 				<tr>
