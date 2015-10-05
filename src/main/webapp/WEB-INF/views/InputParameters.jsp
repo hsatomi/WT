@@ -53,7 +53,6 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 			<br>
 			<br>
 			<input type="button" value="登録" onClick="doRegist()" />
-			<input type="button" value="test" onClick="test()" />
 			<br>
 			<table class="borderList">
 				<tr>
@@ -83,6 +82,7 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 						<option value="By.className" <c:if test="${パラメタ値.エレメント型=='By.className'}">selected</c:if>>By.className</option>
 						<option value="By.linkText" <c:if test="${パラメタ値.エレメント型=='By.linkText'}">selected</c:if>>By.linkText</option>
 						<option value="By.cssSelector" <c:if test="${パラメタ値.エレメント型=='By.cssSelector'}">selected</c:if>>By.cssSelector</option>
+						<option value="By.xpath" <c:if test="${パラメタ値.エレメント型=='By.xpath'}">selected</c:if>>By.xpath</option>
 						<option value="別ウィンドウへ移動" <c:if test="${パラメタ値.エレメント型=='別ウィンドウへ移動'}">selected</c:if>>別ウィンドウへ移動</option>
 						<option value="クリックアラートOK" <c:if test="${パラメタ値.エレメント型=='クリックアラートOK'}">selected</c:if>>クリックアラートOK</option>
 						<option value="クリックアラートNG" <c:if test="${パラメタ値.エレメント型=='クリックアラートNG'}">selected</c:if>>クリックアラートNG</option>

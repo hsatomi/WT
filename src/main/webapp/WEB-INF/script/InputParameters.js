@@ -7,14 +7,6 @@
     document.getElementById("project_list").style.height = window.parent.screen.height * 0.8 + "px";
 };
 
-function test(){
-
-	var str = location.href;
-	//alert(str);
-
-	location.href = location.href;
-
-}
 
 function move(mode) {
     switch (mode) {

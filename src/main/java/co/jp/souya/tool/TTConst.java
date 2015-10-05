@@ -22,6 +22,7 @@ public class TTConst {
 	public static String TEST_RESULT_NG="NG";
 	public static String TEST_RESULT_ERROR="ERROR";
 	public static String ACTION_CLICK="click";
+	public static String ACTION_CLEAR="clear";
 	public static String ACTION_SENDKEYS="sendKeys";
 	public static String ACTION_SELECTBYINDEX="selectByIndex";
 	public static String ACTION_SELECTBYVALUE="selectByValue";
