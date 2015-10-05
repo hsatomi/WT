@@ -87,7 +87,6 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 			<br>
 			<br>
 			<button>パターン自動生成</button>
-			<button>遷移パターン削除</button>
 			<input type="button" value="③パターン追加" onClick="move_InputParameters('',${dto.テストケース管理.id},'')" />
 			<input type="button" value="パターン削除" onClick="doDelete(${dto.テストケース管理.id})" />
 			<br>
@@ -97,7 +96,6 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 			<input type="button" value="UNIT実行" onClick="execjenkins(${dto.テストケース管理.id})" />
 			<input type="button" value="UNIT削除" onClick="ungenerate(${dto.テストケース管理.id})" />
 			<input type="button" value="全て選択" onClick="selectAll()" />
-			<input type="button" value="NGパターン選択" onClick="selectNG()" />
 			<input type="button" value="全て解除" onClick="unselectAll()" />
 			<br>
 			<table class="borderList">
@@ -135,10 +133,14 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 						<a href="javascript:move_TestCaseAdmin('moveResult','${dto.テストケース管理.id}','${入力パターン.id}')">エラー</a>
 					</td>
 					<td>
-						<img src="data:image/jpg;base64,${入力パターン.画面正解}" width=200 height=70 />
+						<a href="javascript:move_TestCaseAdmin('pictureCorrect','${dto.テストケース管理.id}','${入力パターン.id}')">
+						<img src="data:image/jpg;base64,${入力パターン.画面正解}" width=200 height=70 alt="画像" />
+						</a>
 					</td>
 					<td>
+						<a href="javascript:move_TestCaseAdmin('pictureNow','${dto.テストケース管理.id}','${入力パターン.id}')">
 						<img src="data:image/jpg;base64,${入力パターン.画面}" width=200 height=70 />
+						</a>
 					</td>
 					<td>
 						<a href="javascript:move_TestCaseAdmin('htmlCorrect','${dto.テストケース管理.id}','${入力パターン.id}')">正解値</a>

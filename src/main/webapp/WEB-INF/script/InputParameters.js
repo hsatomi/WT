@@ -15,9 +15,13 @@ function move(mode) {
     }
 }
 
+//SeleniumIDEによるコード解析
 function doAnalyze(){
 	var _id = document.getElementById("_id").value;
 	var selenium_code = document.getElementById("selenium_code").value;
+	if(selenium_code==""){
+		return;
+	}
 
 	var inputPattern = {
 			"id":_id
@@ -37,16 +41,16 @@ function doAnalyze(){
         success: function(json_data1) {
             // 成功時の処理
         	if(json_data1 == true){
-            	alert("登録しました");
+            	alert("解析しました");
 //            	location.reload();
             	location.href = location.href;
         	}else{
-            	alert("登録に失敗しました");
+            	alert("解析に失敗しました");
         	}
         },
         error: function(json_data2) {
             // 失敗時の処理
-        	alert("失敗");
+        	alert("失敗しました");
         }
     });
 }
@@ -55,17 +59,26 @@ function doAnalyze(){
 function doRegist(){
 	var _id = document.getElementById("_id").value;
 	var _no = document.getElementById("_no").value;
-	var _テストケース管理id = document.getElementById("_テストケース管理id").value;
-	var _備考 = document.getElementById("_備考").value;
 	var _入力パターン名 = document.getElementById("_入力パターン名").value;
-//	var _id = document.getElementById("input_id").value;
+	var _備考 = document.getElementById("_備考").value;
+	var _テストケース管理id = document.getElementById("_テストケース管理id").value;
+
+	//----入力チェック(ヘッダ)----
+	if(_no == ""){
+		alert("Noを入力してください");
+		return;
+	}
+	if(_入力パターン名 == ""){
+		alert("入力パターン名を入力してください");
+		return;
+	}
 
 	var data_inputPattern = {
 			"id":_id
 			,"no":_no
-			,"テストケース管理id":_テストケース管理id
-			,"備考":_備考
 			,"入力パターン名":_入力パターン名
+			,"備考":_備考
+			,"テストケース管理id":_テストケース管理id
 			};
 	var data_list = [];
 
@@ -123,7 +136,7 @@ function doRegist(){
         },
         error: function(json_data2) {
             // 失敗時の処理
-        	alert("失敗");
+        	alert("失敗しました");
         }
     });
 }

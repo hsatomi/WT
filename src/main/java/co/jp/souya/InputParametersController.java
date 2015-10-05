@@ -1,5 +1,6 @@
 package co.jp.souya;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -54,8 +55,21 @@ public class InputParametersController {
 		}
 
 		{
+			int n実行順 = 1;
+			List<ParametaValue> list = dto.getパラメタ値リスト();
+			for (ParametaValue parametaValue : list) {
+				Integer _n実行順 = parametaValue.get実行順();
+				if(_n実行順==null) continue;
+				if(parametaValue.get実行順() > n実行順){
+					n実行順 = parametaValue.get実行順();
+				}
+			}
+			n実行順++;
+
 			// 空白編集行を追加
-			dto.getパラメタ値リスト().add(new ParametaValue());
+			ParametaValue newDetail = new ParametaValue();
+			newDetail.set実行順(n実行順);
+			dto.getパラメタ値リスト().add(newDetail);
 		}
 		model.addAttribute("dto", dto);
 		return "InputParameters";

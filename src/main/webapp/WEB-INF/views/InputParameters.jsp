@@ -10,7 +10,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>入力パラメータ画面</title>
-	<script src="script/ajax.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="script/InputParameters.js"></script>
     <link href="css/stylesheet.css" rel="stylesheet" />
 <script>
@@ -32,7 +32,7 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 			パラメタ情報
 			<div style="margin:10px; border-style:solid;">
 				<h4>No</h4>
-				<input type="text" id="_no"
+				<input type="number" id="_no"
 					value="${dto.入力パターン.no}" />
 			</div>
 			<div style="margin:10px; border-style:solid;">
@@ -59,8 +59,8 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 					<th>実行順※</th>
 					<th>項目名</th>
 					<th>エレメント型※</th>
-					<th>エレメント名※</th>
-					<th>アクション※</th>
+					<th>エレメント名</th>
+					<th>アクション</th>
 					<th>型</th>
 					<th>値</th>
 					<th>備考</th>
@@ -69,7 +69,7 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 				<c:forEach items="${dto.パラメタ値リスト}" var="パラメタ値" >
 				<tr class="list">
 					<td>
-						<input type="text" value="${パラメタ値.実行順}" />
+						<input type="number" value="${パラメタ値.実行順}" />
 					</td>
 					<td>
 						<input type="text" value="${パラメタ値.項目名}" />

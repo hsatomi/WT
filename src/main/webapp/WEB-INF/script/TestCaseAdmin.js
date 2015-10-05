@@ -50,6 +50,12 @@ function move_TestCaseAdmin(name,id,input_id) {
 	case "moveResult":
 		location.href = "TestCaseAdmin/moveResult?id=" + id + "&input_id=" + input_id;
 		break;
+	case "pictureCorrect":
+		location.href = "TestCaseAdmin/pictureCorrect?id=" + id + "&input_id=" + input_id;
+		break;
+	case "pictureNow":
+		location.href = "TestCaseAdmin/pictureNow?id=" + id + "&input_id=" + input_id;
+		break;
 	default: break;
 	}
 

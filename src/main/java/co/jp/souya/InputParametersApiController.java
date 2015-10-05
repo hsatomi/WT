@@ -61,13 +61,19 @@ public class InputParametersApiController {
 
 		for (ParametaValue parametaValue : req.list) {
 			// 入力チェック・自動除外
-			if (parametaValue.getId() == null) {
-				if (parametaValue.getエレメント型() == null
-						|| parametaValue.getエレメント型().isEmpty()) {
-					continue;
-				}
+//			if (parametaValue.getId() == null) {
+//				if (parametaValue.getエレメント型() == null
+//						|| parametaValue.getエレメント型().isEmpty()) {
+//					continue;
+//				}
+//			}
+			if (parametaValue.get実行順() == null) {
+				continue;
 			}
-			// TODO:削除ロジック
+			if (parametaValue.getエレメント型() == null
+					|| parametaValue.getエレメント型().isEmpty()) {
+				continue;
+			}
 
 			parametaValue.set入力パターンid(req.inputPattern.getId());
 			parametaValue = parametaValueSvc.update(parametaValue);

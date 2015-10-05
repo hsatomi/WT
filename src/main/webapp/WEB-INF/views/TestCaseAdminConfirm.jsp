@@ -10,6 +10,9 @@
 <body>
 <form>
 <pre><code>${dto}</code></pre>
+
+<img src="data:image/jpg;base64,${dto_image}" />
+
 </form>
 </body>
 </html>

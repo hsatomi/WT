@@ -2,6 +2,7 @@ package co.jp.souya;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import co.jp.souya.dto.TestCaseAdminDTO;
 import co.jp.souya.jpa.InputPattern;
 import co.jp.souya.service.TestCaseAdminSvc;
+import co.jp.souya.tool.TTConst;
 
 /**
  * テストケース管理画面
@@ -44,18 +46,72 @@ public class TestCaseAdminController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String get(Locale locale, Model model,
 			@RequestParam(value = "id", required = true) Integer id
-
+			,@RequestParam(value = "bDisp", required = false) Boolean bDisp
 	) throws UnsupportedEncodingException {
 		logger.info("get");
 
 		TestCaseAdminDTO dto = testCaseAdminSvc.getDTO(id);
+
+		if(bDisp==null || !bDisp){
+			List<InputPattern> list = dto.get入力パターンリスト();
+			for (InputPattern inputPattern : list) {
+				if(!TTConst.JOB_STATUS_FINISH.equals(inputPattern.getJob状況()) ||
+						inputPattern.get遷移結果().length() > 10
+						){
+					inputPattern.set画面("");
+					inputPattern.set画面正解("");
+					inputPattern.setDb("");
+					inputPattern.setDb正解("");
+					inputPattern.setDb差異("");
+					inputPattern.setHtml("");
+					inputPattern.setHtml正解("");
+					inputPattern.setHtml差異("");
+				}
+			}
+		}
+
 		model.addAttribute("dto", dto);
 		return "TestCaseAdmin";
 	}
 
 
+	/**
+	 * 結果参照ページ
+	 * @param locale
+	 * @param model
+	 * @param id
+	 * @param input_id
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
+	@RequestMapping(value = "/pictureNow", method = RequestMethod.GET)
+	public String pictureNow(Locale locale, Model model,
+			@RequestParam(value = "id", required = true) Integer id,
+			@RequestParam(value = "input_id", required = true) Integer input_id
 
+	) throws UnsupportedEncodingException {
+		logger.info("pictureNow");
+		return getResult(locale,model,"pictureNow",id,input_id);
+	}
 
+	/**
+	 * 結果参照ページ
+	 * @param locale
+	 * @param model
+	 * @param id
+	 * @param input_id
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
+	@RequestMapping(value = "/pictureCorrect", method = RequestMethod.GET)
+	public String pictureCorrect(Locale locale, Model model,
+			@RequestParam(value = "id", required = true) Integer id,
+			@RequestParam(value = "input_id", required = true) Integer input_id
+
+	) throws UnsupportedEncodingException {
+		logger.info("pictureCorrect");
+		return getResult(locale,model,"pictureCorrect",id,input_id);
+	}
 	/**
 	 * 結果参照ページ
 	 *
@@ -209,6 +265,7 @@ public class TestCaseAdminController {
 
 		TestCaseAdminDTO dto = testCaseAdminSvc.getDTO(id);
 		String strDto = "";
+		String strDtoImage = "";
 		// 欲しいのは入力パターンid1つ
 		for (InputPattern inputPattern : dto.get入力パターンリスト()) {
 			if (input_id.equals(inputPattern.getId())) {
@@ -234,6 +291,12 @@ public class TestCaseAdminController {
 				if("moveResult".equals(kind)){
 					strDto = inputPattern.get遷移結果();
 				}
+				if("pictureCorrect".equals(kind)){
+					strDtoImage = inputPattern.get画面正解();
+				}
+				if("pictureNow".equals(kind)){
+					strDtoImage = inputPattern.get画面();
+				}
 
 				if (strDto == null || strDto.isEmpty())
 					break;
@@ -243,6 +306,7 @@ public class TestCaseAdminController {
 			}
 		}
 		model.addAttribute("dto", strDto);
+		model.addAttribute("dto_image", strDtoImage);
 		return "TestCaseAdminConfirm";
 	}
 
