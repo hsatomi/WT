@@ -15,6 +15,7 @@
 var URL_API_BASE = "<%= TTConst.URL_API_BASE %>";
 var URL_RESET = "<%= TTConst.URL_API_BASE+TTConst.URL_RESET_TESTCASE %>";
 var URL_GENERATE = "<%= TTConst.URL_API_BASE+TTConst.URL_GENERATE_TESTCASE %>";
+var URL_UNGENERATE = "<%= TTConst.URL_API_BASE+TTConst.URL_DELETE_TESTCASE %>";
 var URL_EXECJENKINS = "<%= TTConst.URL_API_BASE+TTConst.URL_EXECJENKINS %>";
 var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
@@ -92,8 +93,9 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 			<br>
 			<br>
 			<input type="button" value="回数リセット" onClick="reset(${dto.テストケース管理.id})" />
-			<input type="button" value="生成" onClick="generate(${dto.テストケース管理.id})" />
-			<input type="button" value="実行" onClick="execjenkins(${dto.テストケース管理.id})" />
+			<input type="button" value="UNIT生成" onClick="generate(${dto.テストケース管理.id})" />
+			<input type="button" value="UNIT実行" onClick="execjenkins(${dto.テストケース管理.id})" />
+			<input type="button" value="UNIT削除" onClick="ungenerate(${dto.テストケース管理.id})" />
 			<input type="button" value="全て選択" onClick="selectAll()" />
 			<input type="button" value="NGパターン選択" onClick="selectNG()" />
 			<input type="button" value="全て解除" onClick="unselectAll()" />

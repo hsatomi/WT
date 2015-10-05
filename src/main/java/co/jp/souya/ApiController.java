@@ -3,6 +3,7 @@ package co.jp.souya;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -154,7 +155,7 @@ public class ApiController {
 			return false;
 		}
 		result = generateTestSource.generate(req.id, req.input_ids);
-		result = generateTestSource.gitpush();
+//		result = generateTestSource.gitpush();
 		result = inputPatternSvc.updateTestStatus(req.input_ids,
 				TTConst.JOB_STATUS_START);
 
@@ -179,7 +180,37 @@ public class ApiController {
 
 		result = inputPatternSvc.updateTestStatus(req.input_ids,
 				TTConst.JOB_STATUS_EXEC);
+//		result = generateTestSource.gitpush();
 		result = testCaseAdminSvc.execJenkins(req.id);
+
+		return result;
+	}
+
+	/**
+	 * テストユニットを削除する
+	 *
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping(value = "/deleteTestCase", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public boolean deleteTestCase(@RequestBody ReqTestCaseAdminGenerate req) {
+		logger.info("deleteTestCase");
+		boolean result = false;
+		if (req == null || req.id == null) {
+			logger.warn("idがnull");
+			return false;
+		}
+		result = generateTestSource.ungenerate(req.id);
+
+		List<Integer> input_ids = new ArrayList<Integer>();
+		TestCaseAdminDTO dto = testCaseAdminSvc.getDTO(req.id);
+		for (InputPattern dao : dto.get入力パターンリスト()) {
+			Integer ids = dao.getId();
+			input_ids.add(ids);
+		}
+		result = inputPatternSvc.updateTestStatus(input_ids,
+				TTConst.JOB_STATUS_DELETED);
 
 		return result;
 	}

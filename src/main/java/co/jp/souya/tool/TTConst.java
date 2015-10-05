@@ -14,6 +14,7 @@ public class TTConst {
 	public static String URL_UPDATE_RESULT="/api/updateResult";
 	public static String URL_RESET_TESTCASE="/api/resetTestCase";
 	public static String URL_GENERATE_TESTCASE="/api/generateTestCase";
+	public static String URL_DELETE_TESTCASE="/api/deleteTestCase";
 	public static String URL_EXECJENKINS="/api/execJenkins";
 	public static String URL_POLLINGJENKINS="/api/pollingJenkins";
 	public static String URL_ANALYZE="/api/analyze";
@@ -27,6 +28,7 @@ public class TTConst {
 	public static String ACTION_CLICK_RADIO="clickRadio";
 	public static String ACTION_CLICK_BYATTRVALUE="clickByAttrValue";
 	public static String JOB_STATUS_START="登録済み";
+	public static String JOB_STATUS_DELETED="削除済み";
 	public static String JOB_STATUS_EXEC="実行中";
 	public static String JOB_STATUS_FINISH="完了";
 

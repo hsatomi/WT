@@ -342,7 +342,55 @@ public class GenerateTestSource {
 		return result;
 	}
 
+	/**
+	 * ユニットテストコードを削除する(物理削除)
+	 * @param id
+	 * @return
+	 */
+	public boolean ungenerate(Integer id) {
+		boolean result = false;
 
+		try{
+			// ----------------必要情報取得----------------
+			// TODO: EntityRelationから自動取得を実装できればよい
+			TestCaseAdmin daoテストケース管理
+			= daoSvc.getTestCaseAdmin(id);
+			DisplayAdmin dao画面管理
+			= daoSvc.getDisplayAdmin(daoテストケース管理.get画面管理id());
+			ProjectAdmin daoプロジェクト管理
+			= daoSvc.getProjectAdmin(dao画面管理.getプロジェクトid());
+
+			String strプロジェクト名;
+			{
+				//プロジェクト名生成
+				strプロジェクト名 = "project" + daoプロジェクト管理.getId();
+			}
+			String strクラス名;
+			{
+				//クラス名生成
+				long nケース管理番号 = 10000*daoプロジェクト管理.getId()
+						+1*daoテストケース管理.getId();
+				strクラス名 = "Case" + nケース管理番号;
+			}
+
+			//クラスファイル出力
+			String fileName = TTConst.PATH_GENERATESRC_OUTPUT + strプロジェクト名 + File.separator + strクラス名 +  ".java";
+			File file = new File(fileName);
+			if(file.delete()){
+				logger.info("ファイル削除しました file:" + fileName);
+				result = true;
+			}else{
+				logger.info("ファイル削除できませんでした file:" + fileName);
+				result = false;
+			}
+
+		}catch(Exception e){
+			logger.error(e.getMessage(),e);
+			result = false;
+		}
+
+		return result;
+	}
 
 	private StringBuffer stackParameters(ParametaValue parametaValue){
 		//TODO:全体的に javaコードエスケープを処理する必要がある 例えば C:\Temp -> C:\\Temp としないとならない

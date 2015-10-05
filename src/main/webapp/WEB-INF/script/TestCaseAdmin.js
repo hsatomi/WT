@@ -148,6 +148,31 @@ function execjenkins(_id){
     });
 }
 
+//テストユニット削除
+function ungenerate(_id){
+  var data = {"id":_id};
+  $.ajax({
+      type:"post",
+      url:URL_UNGENERATE,
+      data:JSON.stringify(data),
+      contentType: 'application/json',
+      dataType: "json",
+      success: function(json_data1) {
+          // 成功時の処理
+      	if(json_data1 == true){
+          	alert("テストユニットを削除しました");
+          	location.reload();
+      	}else{
+          	alert("テストユニットの削除に失敗しました");
+      	}
+      },
+      error: function(json_data2) {
+          // 失敗時の処理
+      	alert("失敗");
+      }
+  });
+}
+
 //Jenkinsジョブポーリング
 //TODO:ジョブ実行をポーリングして再表示したい・・・けど、うまくいかない
 function polling(_id){
