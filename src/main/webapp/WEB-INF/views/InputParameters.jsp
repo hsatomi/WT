@@ -27,15 +27,18 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
     <input type="text" id="_id" value="${dto.入力パターン.id}" />
     <input type="text" id="_テストケース管理id" value="${dto.入力パターン.テストケース管理id}" />
     </div>
+    <div>
+		<input type="button" value="登録" onClick="doRegist()" />
+    </div>
 	<div id="move_pattern_information" style="float: left; border-style: solid; margin-right: 20px;">
 		<div>
 			パラメタ情報
-			<div style="margin:10px; border-style:solid;">
+			<div style="margin:10px; border-style:solid;" title="管理番号-テストケースの並び順に影響します">
 				<h4>No</h4>
 				<input type="number" id="_no"
 					value="${dto.入力パターン.no}" />
 			</div>
-			<div style="margin:10px; border-style:solid;">
+			<div style="margin:10px; border-style:solid;" title="パターンを端的に表す名称">
 				<h4>パターン名</h4>
 				<input type="text" id="_入力パターン名"
 					value="${dto.入力パターン.入力パターン名}" />
@@ -50,9 +53,6 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 	<div id="input_parameter_pattern" style="float: left; border-style: solid; padding: 10px;">
  		<div>
 			入力パラメータ一覧
-			<br>
-			<br>
-			<input type="button" value="登録" onClick="doRegist()" />
 			<br>
 			<table class="borderList">
 				<tr>
