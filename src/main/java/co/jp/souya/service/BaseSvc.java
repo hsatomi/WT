@@ -7,6 +7,9 @@ import javax.persistence.Persistence;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.web.client.RestTemplate;
 
 public abstract class BaseSvc {
 	private static final Logger logger = LoggerFactory
@@ -16,8 +19,15 @@ public abstract class BaseSvc {
 	protected EntityManager em;
 	protected EntityTransaction tx;
 
+	protected HttpHeaders headers;
+	protected RestTemplate restTemplate;
+
 	public BaseSvc(){
 		logger.info("BaseSvcコンストラクタ");
+		// 初期化
+		headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		restTemplate = new RestTemplate();
 	}
 
 	protected void init() {

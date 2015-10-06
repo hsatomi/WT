@@ -54,6 +54,12 @@ public class InputPatternApiController {
 	private static String BYXPATH="By.xpath";
 
 
+	/**
+	 * 入力パターン　登録・更新
+	 * @param req
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public boolean update(@RequestBody ReqInputPattern req)
@@ -63,10 +69,10 @@ public class InputPatternApiController {
 		// 入力パターン(新規)は自動でNoと名前をセット
 		if(req.inputPattern.getId() == null){
 			if(req.inputPattern.getテストケース管理id()==null) return false;
-			Integer id = req.inputPattern.getテストケース管理id();
+			Integer id_TestCase = req.inputPattern.getテストケース管理id();
 
 			Integer maxNo = 0;
-			TestCaseAdminDTO dto = testCaseAdminSvc.getDTO(id);
+			TestCaseAdminDTO dto = testCaseAdminSvc.getDTO(id_TestCase);
 			for (InputPattern inputPattern : dto.get入力パターンリスト()) {
 				if(inputPattern.getNo()==null) continue;
 				if(inputPattern.getNo() > maxNo){
@@ -86,12 +92,6 @@ public class InputPatternApiController {
 
 		for (ParametaValue parametaValue : req.list) {
 			// 入力チェック・自動除外
-//			if (parametaValue.getId() == null) {
-//				if (parametaValue.getエレメント型() == null
-//						|| parametaValue.getエレメント型().isEmpty()) {
-//					continue;
-//				}
-//			}
 			if (parametaValue.get実行順() == null) {
 				continue;
 			}
@@ -106,9 +106,21 @@ public class InputPatternApiController {
 				return false;
 		}
 
+		// 更新時は自動でリセット扱いとする(No16対応)
+		{
+			boolean result = inputPatternSvc.reset(req.inputPattern.getId());
+			if(!result) return false;
+		}
+
 		return true;
 	}
 
+	/**
+	 * 入力パターン　削除
+	 * @param req
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public boolean delete(@RequestBody ReqInputPattern req)
@@ -159,129 +171,11 @@ public class InputPatternApiController {
 			dao.set入力パターンid(req.inputPattern.getId());
 			dao.set備考("SeleniumIDE解析結果");
 
-
-//			String t="";
-//			try{
-//				t = TTUtility.fetchPatternChar("driver\\.findElement\\(By.+", code);
-//			}catch(Exception e){
-//			}
-//			if(t.isEmpty()) continue;
-//
-//			try{
-//				t = TTUtility.fetchPatternChar("By\\..+", code);
-//			}catch(Exception e){
-//			}
-//			if(t.isEmpty()) continue;
-//
-//			//By部分切り出し
-//			String by="";
-//			try{
-//				by = TTUtility.fetchPatternChar("By\\..+?\\(", t);
-//			}catch(Exception e){
-//			}
-//			if(by.isEmpty()) continue;
-//
-//
-//			//TODO:セレクターの文字列は定数化すること
-//			if("By.name(".equals(by)){
-//				dao.setエレメント型("By.name");
-//			}
-//			if("By.cssSelector(".equals(by)){
-//				dao.setエレメント型("By.cssSelector");
-//			}
-//			if("By.linkText(".equals(by)){
-//				dao.setエレメント型("By.linkText");
-//			}
-//			if("By.id(".equals(by)){
-//				dao.setエレメント型("By.id");
-//			}
-//			if("By.className(".equals(by)){
-//				dao.setエレメント型("By.className");
-//			}
-//
-//
-//			//要素名以降切り出し
-//			try{
-//				t = TTUtility.removePatternChar("By\\..+?\\(", t);
-//			}catch(Exception e){
-//			}
-//			if(t.isEmpty()) continue;
-//
-//			String name="";
-//			try{
-//				name = TTUtility.fetchPatternChar("\\\".+?\\\"", t);
-//			}catch(Exception e){
-//			}
-//			name = TTUtility.removePatternChar("\"", name);
-//			name = TTUtility.removePatternChar("\"", name);
-//			if(name.isEmpty()) continue;
-//
-//			dao.setエレメント名(name);
-//
-//
-//
-//			//動詞部以降切り出し
-//			try{
-//				t = TTUtility.removePatternChar("\\\".+?\\\"\\)\\)", t);
-//			}catch(Exception e){
-//			}
-//			if(t.isEmpty()) continue;
-//
-//			t = t.substring(1, t.length()-1);
-//			if(t.isEmpty()) continue;
-//
-//
-//			//TODO: clear() は無視することで大丈夫か確認
-//			if("clear()".equals(t)){
-//				continue;
-//			}
-//
-//
-//
-//			//Action部分切り出し
-//			String action="";
-//			try{
-//				action = TTUtility.fetchPatternChar(".+?\\(", t);
-//			}catch(Exception e){
-//			}
-//			if(action.isEmpty()) continue;
-//
-//
-//			//TODO:セレクターの文字列は定数化すること
-//			if("sendKeys(".equals(action)){
-//				dao.setアクション("sendKeys");
-//			}
-//			if("click(".equals(action)){
-//				dao.setアクション("click");
-//			}
-//
-//
-//			//切り出し
-//			try{
-//				t = TTUtility.removePatternChar(".+?\\(", t);
-//			}catch(Exception e){
-//			}
-//			if(t.isEmpty()) continue;
-//
-//
-//
-//			//値部分切り出し
-//			String value="";
-//			try{
-//				value = TTUtility.fetchPatternChar("\\\".+", t);
-//				if(!value.isEmpty()){
-//					value = value.substring(1, value.length()-2);
-//				}
-//			}catch(Exception e){
-//			}
-//			dao.set値(value);
-
 			{
 				String strSelector="";
 				try{
 					//検索	driver\.findElement\(.+\)\.
 					strSelector = TTUtility.fetchPatternChar("driver\\.findElement\\(.+\\)\\.", code);
-//					strSelector = TTUtility.fetchPatternChar("driver.findElement\\(.*)", code);
 				}catch(Exception e){
 					e.printStackTrace();
 				}

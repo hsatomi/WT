@@ -3,10 +3,7 @@ package co.jp.souya.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import co.jp.souya.jpa.InputPattern;
 import co.jp.souya.jpa.MovePatternDetail;
@@ -22,18 +19,18 @@ public class MovePatternDetailSvc extends BaseSvc {
 	private static final Logger logger = LoggerFactory
 			.getLogger(MovePatternDetailSvc.class);
 
-	private static HttpHeaders headers;
-	private static RestTemplate restTemplate;
+//	private static HttpHeaders headers;
+//	private static RestTemplate restTemplate;
 
 	@Autowired
 	private DaoSvc daoSvc;
 
 	public MovePatternDetailSvc() {
 		logger.info(this.getClass().getName());
-		// 初期化
-		headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		restTemplate = new RestTemplate();
+//		// 初期化
+//		headers = new HttpHeaders();
+//		headers.setContentType(MediaType.APPLICATION_JSON);
+//		restTemplate = new RestTemplate();
 	}
 
 	/**

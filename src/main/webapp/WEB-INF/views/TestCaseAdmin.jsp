@@ -93,12 +93,14 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 			<input type="button" value="パターン削除" onClick="doDelete(${dto.テストケース管理.id})" />
 			<br>
 			<br>
+			<input type="button" value="一括登録・実行" onClick="execAll(${dto.テストケース管理.id})" />
+			<input type="button" value="全て選択" onClick="selectAll()" />
+			<input type="button" value="全て解除" onClick="unselectAll()" />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="button" value="回数リセット" onClick="reset(${dto.テストケース管理.id})" />
 			<input type="button" value="UNIT生成" onClick="generate(${dto.テストケース管理.id})" />
 			<input type="button" value="UNIT実行" onClick="execjenkins(${dto.テストケース管理.id})" />
 			<input type="button" value="UNIT削除" onClick="ungenerate(${dto.テストケース管理.id})" />
-			<input type="button" value="全て選択" onClick="selectAll()" />
-			<input type="button" value="全て解除" onClick="unselectAll()" />
 			<br>
 			<table class="borderList">
 				<tr>
@@ -136,12 +138,12 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 					</td>
 					<td>
 						<a href="javascript:move_TestCaseAdmin('pictureCorrect','${dto.テストケース管理.id}','${入力パターン.id}')">
-						<img src="data:image/jpg;base64,${入力パターン.画面正解}" width=200 height=70 alt="画像" />
+						<img src="data:image/jpg;base64,${入力パターン.画面正解}" width=200 height=70 alt="1回目画像" />
 						</a>
 					</td>
 					<td>
 						<a href="javascript:move_TestCaseAdmin('pictureNow','${dto.テストケース管理.id}','${入力パターン.id}')">
-						<img src="data:image/jpg;base64,${入力パターン.画面}" width=200 height=70 />
+						<img src="data:image/jpg;base64,${入力パターン.画面}" width=200 height=70 alt="今回画像" />
 						</a>
 					</td>
 					<td>

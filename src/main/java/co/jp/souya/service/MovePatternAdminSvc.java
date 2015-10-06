@@ -6,10 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import co.jp.souya.dto.MovePatternAdminDTO;
 import co.jp.souya.jpa.MovePatternAdmin;
@@ -26,18 +23,18 @@ public class MovePatternAdminSvc extends BaseSvc {
 	private static final Logger logger = LoggerFactory
 			.getLogger(MovePatternAdminSvc.class);
 
-	private static HttpHeaders headers;
-	private static RestTemplate restTemplate;
+//	private static HttpHeaders headers;
+//	private static RestTemplate restTemplate;
 
 	@Autowired
 	private DaoSvc daoSvc;
 
 	public MovePatternAdminSvc() {
 		logger.info(this.getClass().getName());
-		// 初期化
-		headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		restTemplate = new RestTemplate();
+//		// 初期化
+//		headers = new HttpHeaders();
+//		headers.setContentType(MediaType.APPLICATION_JSON);
+//		restTemplate = new RestTemplate();
 	}
 
 	/**

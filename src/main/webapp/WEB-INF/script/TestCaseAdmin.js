@@ -67,6 +67,73 @@ function move_TestCaseAdmin(name,id,input_id) {
 	return;
 }
 
+//リセット・生成・実行を全て行う
+function execAll(_id){
+	selectAll();
+	var ids = getSelectedStr();
+	var data = {"id":_id,"input_ids":ids};
+	//1段目ajax
+    $.ajax({
+        type:"post",
+        url:URL_RESET,
+        data:JSON.stringify(data),
+        contentType: 'application/json',
+        dataType: "json",
+        success: function(json_data1) {
+            // 成功時の処理
+        	if(json_data1 == true){
+        		//2段目ajax
+                $.ajax({
+                    type:"post",
+                    url:URL_GENERATE,
+                    data:JSON.stringify(data),
+                    contentType: 'application/json',
+                    dataType: "json",
+                    success: function(json_data1) {
+                        // 成功時の処理
+                    	if(json_data1 == true){
+                    		//3段目ajax
+                    	    $.ajax({
+                    	        type:"post",
+                    	        url:URL_EXECJENKINS,
+                    	        data:JSON.stringify(data),
+                    	        contentType: 'application/json',
+                    	        dataType: "json",
+                    	        success: function(json_data1) {
+                    	            // 成功時の処理
+                    	        	if(json_data1 == true){
+                    	            	alert("JOB実行を登録しました");
+                    	            	location.href = location.href;
+                    	        	}else{
+                    	            	alert("JOB実行の登録に失敗しました");
+                    	        	}
+                    	        },
+                    	        error: function(json_data2) {
+                    	            // 失敗時の処理
+                                	alert("失敗しました");
+                    	        }
+                    	    });
+                    	}else{
+                        	alert("テストユニットの生成に失敗しました");
+                    	}
+                    },
+                    error: function(json_data2) {
+                        // 失敗時の処理
+                    	alert("失敗しました");
+                    }
+                });
+        	}else{
+            	alert("リセットに失敗しました");
+        	}
+        },
+        error: function(json_data2) {
+            // 失敗時の処理
+        	alert("失敗しました");
+        }
+    });
+}
+
+
 //回数リセット
 function reset(_id){
 	var ids = getSelectedStr();
@@ -86,9 +153,7 @@ function reset(_id){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("リセットしました");
-//            	location.reload();
             	location.href = location.href;
-//            	unselectAll();
         	}else{
             	alert("リセットに失敗しました");
         	}
@@ -118,7 +183,6 @@ function generate(_id){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("テストユニットを生成しました");
-//            	location.reload();
             	location.href = location.href;
         	}else{
             	alert("テストユニットの生成に失敗しました");
@@ -149,7 +213,6 @@ function execjenkins(_id){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("JOB実行を登録しました");
-//            	location.reload();
             	location.href = location.href;
         	}else{
             	alert("JOB実行の登録に失敗しました");
@@ -175,7 +238,6 @@ function ungenerate(_id){
           // 成功時の処理
       	if(json_data1 == true){
           	alert("テストユニットを削除しました");
-//          location.reload();
         	location.href = location.href;
       	}else{
           	alert("テストユニットの削除に失敗しました");
@@ -200,7 +262,6 @@ function polling(_id){
         dataType: "json",
         success: function(json_data1) {
             // 成功時の処理
-//          location.reload();
         	location.href = location.href;
         },
         error: function(json_data2) {
@@ -249,11 +310,6 @@ function getSelectedStr(){
 		var chk = chkboxes[i];
 		if(chk.checked){
 			var val = chk.value;
-//			if(list==""){
-//				list+=val;
-//			}else{
-//				list+=","+val;
-//			}
 			list.push(val);
 		}
 	}
@@ -273,7 +329,6 @@ function analyze(_id){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("解析しました");
-//            	location.reload();
             	location.href = location.href;
         	}else{
             	alert("解析に失敗しました");
@@ -306,7 +361,6 @@ function doDelete(_id){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("削除しました");
-//            	location.reload();
             	location.href = location.href;
         	}else{
             	alert("削除に失敗しました");
