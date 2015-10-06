@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.jp.souya.dto.InputParametersDTO;
+import co.jp.souya.dto.InputPatternDTO;
 import co.jp.souya.jpa.ParametaValue;
-import co.jp.souya.requestbody.ReqInputParameters;
+import co.jp.souya.requestbody.ReqInputPattern;
 import co.jp.souya.service.InputPatternSvc;
 import co.jp.souya.service.ParametaValueSvc;
 import co.jp.souya.tool.TTConst;
@@ -27,11 +27,11 @@ import co.jp.souya.tool.TTUtility;
  *
  */
 @RestController
-@RequestMapping(value = "/InputParameters/api")
-public class InputParametersApiController {
+@RequestMapping(value = "/InputPattern/api")
+public class InputPatternApiController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(InputParametersApiController.class);
+			.getLogger(InputPatternApiController.class);
 
 	@Autowired
 	private InputPatternSvc inputPatternSvc;
@@ -50,7 +50,7 @@ public class InputParametersApiController {
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public boolean update(@RequestBody ReqInputParameters req)
+	public boolean update(@RequestBody ReqInputPattern req)
 			throws UnsupportedEncodingException {
 		logger.info("update");
 
@@ -86,7 +86,7 @@ public class InputParametersApiController {
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public boolean delete(@RequestBody ReqInputParameters req)
+	public boolean delete(@RequestBody ReqInputPattern req)
 			throws UnsupportedEncodingException {
 		logger.info("delete");
 
@@ -104,7 +104,7 @@ public class InputParametersApiController {
 	 */
 	@RequestMapping(value = "/analyze", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public boolean analyze(@RequestBody ReqInputParameters req)
+	public boolean analyze(@RequestBody ReqInputPattern req)
 			throws UnsupportedEncodingException {
 		logger.info("analyze");
 
@@ -115,7 +115,7 @@ public class InputParametersApiController {
 
 		int n実行順 = 0;
 		{
-			InputParametersDTO dto = inputPatternSvc.getDTO(req.inputPattern.getId());
+			InputPatternDTO dto = inputPatternSvc.getDTO(req.inputPattern.getId());
 			List<ParametaValue> list = dto.getパラメタ値リスト();
 			for (ParametaValue parametaValue : list) {
 				Integer _n実行順 = parametaValue.get実行順();

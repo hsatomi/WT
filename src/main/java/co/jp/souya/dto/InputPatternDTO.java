@@ -6,12 +6,12 @@ import java.util.List;
 import co.jp.souya.jpa.InputPattern;
 import co.jp.souya.jpa.ParametaValue;
 
-public class InputParametersDTO {
+public class InputPatternDTO {
 
 	private InputPattern 入力パターン;
 	private List<ParametaValue> パラメタ値リスト;
 
-	public InputParametersDTO(){
+	public InputPatternDTO(){
 		入力パターン = new InputPattern();
 		パラメタ値リスト = new ArrayList<ParametaValue>();
 	}

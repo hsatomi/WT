@@ -50,7 +50,7 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 					<br/>
 					${遷移パターン明細.url}
 					<br/>
-					<a href="javascript:move_InputParameters('${遷移パターン明細.入力パターンid}')">②入力パターン編集へ</a>
+					<a href="javascript:move_InputPattern('${遷移パターン明細.入力パターンid}')">②入力パターン編集へ</a>
 					<input type="hidden" id="_遷移パターン明細id" value="${遷移パターン明細.id}" />
 					<input type="hidden" id="_入力パターンid" value="${遷移パターン明細.入力パターンid}" />
 				</div>
@@ -87,7 +87,7 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 			<br>
 			<br>
 			<button>パターン自動生成</button>
-			<input type="button" value="③パターン追加" onClick="move_InputParameters('',${dto.テストケース管理.id},'')" />
+			<input type="button" value="③パターン追加" onClick="move_InputPattern('',${dto.テストケース管理.id},'')" />
 			<input type="button" value="パターン削除" onClick="doDelete(${dto.テストケース管理.id})" />
 			<br>
 			<br>
@@ -122,7 +122,7 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 						${入力パターン.id}
 					</td>
 					<td>
-						<a href="javascript:move_InputParameters('${入力パターン.id}','','');">④${入力パターン.入力パターン名}編集へ</a>
+						<a href="javascript:move_InputPattern('${入力パターン.id}','','');">④${入力パターン.入力パターン名}編集へ</a>
 					</td>
 					<td>
 						${入力パターン.実行回数}

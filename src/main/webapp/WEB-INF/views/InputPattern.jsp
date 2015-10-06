@@ -11,7 +11,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>入力パラメータ画面</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="script/InputParameters.js"></script>
+    <script src="script/InputPattern.js"></script>
     <link href="css/stylesheet.css" rel="stylesheet" />
 <script>
 var URL_API_BASE = "<%= TTConst.URL_API_BASE %>";

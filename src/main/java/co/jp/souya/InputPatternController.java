@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import co.jp.souya.dto.InputParametersDTO;
+import co.jp.souya.dto.InputPatternDTO;
 import co.jp.souya.jpa.ParametaValue;
 import co.jp.souya.jpa.TestCaseAdmin;
 import co.jp.souya.service.InputPatternSvc;
@@ -22,11 +22,11 @@ import co.jp.souya.service.TestCaseAdminSvc;
  * Handles requests for the application home page.
  */
 @Controller
-@RequestMapping(value = "/InputParameters")
-public class InputParametersController {
+@RequestMapping(value = "/InputPattern")
+public class InputPatternController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(InputParametersController.class);
+			.getLogger(InputPatternController.class);
 
 	@Autowired
 	private InputPatternSvc inputPatternSvc;
@@ -41,12 +41,12 @@ public class InputParametersController {
 			,@RequestParam(value = "move_pattern_detail_id", required = false) Integer move_pattern_detail_id
 			) {
 		logger.info("get");
-		InputParametersDTO dto = null;
+		InputPatternDTO dto = null;
 		if(id==null){
 			logger.info("新規");
 			TestCaseAdmin testCaseAdmin = testCaseAdminSvc.get(test_case_id);
 
-			dto = new InputParametersDTO();
+			dto = new InputPatternDTO();
 			dto.get入力パターン().setテストケース管理id(testCaseAdmin.getId());
 
 		}else{
@@ -72,7 +72,7 @@ public class InputParametersController {
 			dto.getパラメタ値リスト().add(newDetail);
 		}
 		model.addAttribute("dto", dto);
-		return "InputParameters";
+		return "InputPattern";
 	}
 
 

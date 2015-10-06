@@ -9,9 +9,9 @@ import co.jp.souya.jpa.ParametaValue;
 
 
 
-public class ReqInputParameters {
+public class ReqInputPattern {
 
-	public ReqInputParameters(){
+	public ReqInputPattern(){
 		inputPattern = new InputPattern();
 		list = new ArrayList<ParametaValue>();
 	}

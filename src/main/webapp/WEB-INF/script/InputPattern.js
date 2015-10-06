@@ -34,7 +34,7 @@ function doAnalyze(){
 
     $.ajax({
         type:"post",
-        url:URL_API_BASE+"/InputParameters/api/analyze",
+        url:URL_API_BASE+"/InputPattern/api/analyze",
         data:JSON.stringify(data),
         contentType: 'application/json',
         dataType: "json",
@@ -119,7 +119,7 @@ function doRegist(){
 
     $.ajax({
         type:"post",
-        url:URL_API_BASE+"/InputParameters/api/update",
+        url:URL_API_BASE+"/InputPattern/api/update",
         data:JSON.stringify(data),
         contentType: 'application/json',
         dataType: "json",
@@ -150,7 +150,7 @@ function doDelete(_id){
 
     $.ajax({
         type:"post",
-        url:URL_API_BASE+"/InputParameters/api/delete",
+        url:URL_API_BASE+"/InputPattern/api/delete",
         data:JSON.stringify(data),
         contentType: 'application/json',
         dataType: "json",

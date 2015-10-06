@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import co.jp.souya.dto.InputParametersDTO;
+import co.jp.souya.dto.InputPatternDTO;
 import co.jp.souya.jpa.InputPattern;
 import co.jp.souya.jpa.ParametaValue;
 
@@ -110,9 +110,9 @@ public class InputPatternSvc extends BaseSvc {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public InputParametersDTO getDTO(int id) {
+	public InputPatternDTO getDTO(int id) {
 
-		InputParametersDTO dto = new InputParametersDTO();
+		InputPatternDTO dto = new InputPatternDTO();
 
 		try {
 			init();
