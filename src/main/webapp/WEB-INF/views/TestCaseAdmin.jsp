@@ -78,12 +78,14 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 					</SELECT>
 				</div>
 			</div>
-
 		</div>
 	</div>
 	<div id="input_parameter_pattern" style="float: left; border-style: solid; padding: 10px;">
+		<div style="display:none;">
+			<input type="hidden" id="_テストケース管理id" value="${dto.テストケース管理.id}" />
+		</div>
 		<div>
-			パラメータパターン一覧
+			入力パターン一覧
 			<br>
 			<br>
 			<button>パターン自動生成</button>

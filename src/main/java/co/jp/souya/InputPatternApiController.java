@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.jp.souya.dto.InputPatternDTO;
+import co.jp.souya.dto.TestCaseAdminDTO;
+import co.jp.souya.jpa.InputPattern;
 import co.jp.souya.jpa.ParametaValue;
 import co.jp.souya.requestbody.ReqInputPattern;
 import co.jp.souya.service.InputPatternSvc;
 import co.jp.souya.service.ParametaValueSvc;
+import co.jp.souya.service.TestCaseAdminSvc;
 import co.jp.souya.tool.TTConst;
 import co.jp.souya.tool.TTUtility;
 
@@ -32,6 +35,9 @@ public class InputPatternApiController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(InputPatternApiController.class);
+
+	@Autowired
+	private TestCaseAdminSvc testCaseAdminSvc;
 
 	@Autowired
 	private InputPatternSvc inputPatternSvc;
@@ -53,6 +59,25 @@ public class InputPatternApiController {
 	public boolean update(@RequestBody ReqInputPattern req)
 			throws UnsupportedEncodingException {
 		logger.info("update");
+
+		// 入力パターン(新規)は自動でNoと名前をセット
+		if(req.inputPattern.getId() == null){
+			if(req.inputPattern.getテストケース管理id()==null) return false;
+			Integer id = req.inputPattern.getテストケース管理id();
+
+			Integer maxNo = 0;
+			TestCaseAdminDTO dto = testCaseAdminSvc.getDTO(id);
+			for (InputPattern inputPattern : dto.get入力パターンリスト()) {
+				if(inputPattern.getNo()==null) continue;
+				if(inputPattern.getNo() > maxNo){
+					maxNo = inputPattern.getNo();
+				}
+			}
+			maxNo++;
+
+			req.inputPattern.setNo(maxNo);
+			req.inputPattern.set入力パターン名("");
+		}
 
 		// 登録 or 更新
 		req.inputPattern = inputPatternSvc.update(req.inputPattern);

@@ -9,6 +9,11 @@
 
 //画面遷移
 function move_InputPattern(id,test_case_id,move_pattern_detail_id) {
+
+	if (id === undefined || id == "") {
+		doRegistNewInputPattern();
+		return;
+	}
 	if (test_case_id === undefined) {
 		test_case_id="";
 	}
@@ -314,3 +319,59 @@ function doDelete(_id){
     });
 
 }
+
+
+//(入力パターン新規)登録
+function doRegistNewInputPattern(){
+	var _テストケース管理id = document.getElementById("_テストケース管理id").value;
+	var data_inputPattern = {
+			"テストケース管理id":_テストケース管理id
+			};
+	var data = {
+			"inputPattern":data_inputPattern
+	};
+
+  $.ajax({
+      type:"post",
+      url:URL_API_BASE+"/InputPattern/api/update",
+      data:JSON.stringify(data),
+      contentType: 'application/json',
+      dataType: "json",
+      success: function(json_data1) {
+          // 成功時の処理
+      	if(json_data1 == true){
+          	alert("登録しました");
+          	location.href = location.href;
+      	}else{
+          	alert("登録に失敗しました");
+      	}
+      },
+      error: function(json_data2) {
+          // 失敗時の処理
+      	alert("失敗しました");
+      }
+  });
+}
+
+//function HtmlWrite(strText){
+//	var str = '';
+//	str+='			<head>';
+//	str+='			<script src="script/TestCaseAdmin.js"></script>';
+//	str+='			</head>';
+//	str+='			<div style="margin:10px; border-style:solid;" title="管理番号-テストケースの並び順に影響します">';
+//	str+='				<h4>No</h4>';
+//	str+='				<input type="number" id="_no"';
+//	str+='					value="" />';
+//	str+='			</div>';
+//	str+='			<div style="margin:10px; border-style:solid;" title="パターンを端的に表す名称">';
+//	str+='				<h4>パターン名</h4>';
+//	str+='				<input type="text" id="_入力パターン名"';
+//	str+='					value="" />';
+//	str+='			</div>';
+//	str+='			<input type="button" value="登録" onClick="doRegistNewInputPattern()" />';
+//	str+='			<input type="button" value="閉じる" onClick="test(1)" />';
+//	var htmlsrc = window.open("","","scrollbars=yes, width=600,height=400");
+//	htmlsrc.document.open();
+//	htmlsrc.document.write(str);
+//	htmlsrc.document.close();
+//}

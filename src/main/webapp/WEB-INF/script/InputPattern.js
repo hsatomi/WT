@@ -8,12 +8,12 @@
 };
 
 
-function move(mode) {
-    switch (mode) {
-        case "transition_list": location.href = "transition_list.jsp"; break;
-        default: break;
-    }
-}
+//function move(mode) {
+//    switch (mode) {
+//        case "transition_list": location.href = "transition_list.jsp"; break;
+//        default: break;
+//    }
+//}
 
 //SeleniumIDEによるコード解析
 function doAnalyze(){
@@ -57,6 +57,7 @@ function doAnalyze(){
 
 //登録
 function doRegist(){
+
 	var _id = document.getElementById("_id").value;
 	var _no = document.getElementById("_no").value;
 	var _入力パターン名 = document.getElementById("_入力パターン名").value;
