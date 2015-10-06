@@ -183,7 +183,7 @@ public class InputPatternApiController {
 
 				try{
 					//除去	driver\.findElement\(
-					strSelector = TTUtility.removePatternChar("driver\\.findElement\\(", strSelector);
+					strSelector = TTUtility.removePatternChar(".*driver\\.findElement\\(", strSelector);
 				}catch(Exception e){
 				}
 				if(strSelector.isEmpty()) continue;
@@ -236,8 +236,8 @@ public class InputPatternApiController {
 					}catch(Exception e){
 					}
 					try{
-						//除去	\"\)$
-						strSelectorName = TTUtility.removePatternChar("\\\"\\)$", strSelectorName);
+						//除去	\"\)+$
+						strSelectorName = TTUtility.removePatternChar("\\\"\\)+$", strSelectorName);
 					}catch(Exception e){
 					}
 					if(strSelectorName.isEmpty()) continue;
@@ -251,7 +251,8 @@ public class InputPatternApiController {
 			{
 				String strMethod = "";
 				try{
-					strMethod = TTUtility.removePatternChar("driver\\.findElement\\(.+\\)\\.", code);
+					//除去	.*driver\.findElement\(.+\)\.
+					strMethod = TTUtility.removePatternChar(".*driver\\.findElement\\(.+\\)\\.", code);
 				}catch(Exception e){
 				}
 				if(strMethod.isEmpty()) continue;
@@ -274,7 +275,8 @@ public class InputPatternApiController {
 					dao.setアクション(strAction);
 				}
 
-				if(TTConst.ACTION_SENDKEYS.equals(dao.getアクション()))
+				if(TTConst.ACTION_SENDKEYS.equals(dao.getアクション()) ||
+					TTConst.ACTION_SELECTBYVISIBLETEXT.equals(dao.getアクション()))
 				{
 					//値
 					String strValue="";

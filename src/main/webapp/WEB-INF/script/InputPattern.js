@@ -7,7 +7,6 @@
     document.getElementById("project_list").style.height = window.parent.screen.height * 0.8 + "px";
 };
 
-
 //function move(mode) {
 //    switch (mode) {
 //        case "transition_list": location.href = "transition_list.jsp"; break;
@@ -57,22 +56,21 @@ function doAnalyze(){
 
 //登録
 function doRegist(){
-
 	var _id = document.getElementById("_id").value;
 	var _no = document.getElementById("_no").value;
 	var _入力パターン名 = document.getElementById("_入力パターン名").value;
 	var _備考 = document.getElementById("_備考").value;
 	var _テストケース管理id = document.getElementById("_テストケース管理id").value;
 
-	//----入力チェック(ヘッダ)----
-	if(_no == ""){
-		alert("Noを入力してください");
-		return;
-	}
-	if(_入力パターン名 == ""){
-		alert("入力パターン名を入力してください");
-		return;
-	}
+//	//----入力チェック(ヘッダ)----
+//	if(_no == ""){
+//		alert("Noを入力してください");
+//		return;
+//	}
+//	if(_入力パターン名 == ""){
+//		alert("入力パターン名を入力してください");
+//		return;
+//	}
 
 	var data_inputPattern = {
 			"id":_id

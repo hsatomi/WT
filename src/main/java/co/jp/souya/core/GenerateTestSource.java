@@ -145,12 +145,14 @@ public class GenerateTestSource {
 				StringBuffer strReplace = new StringBuffer();
 				strReplace.append("//画面遷移");
 				strReplace.append(sep);
+				@SuppressWarnings("unused")
 				boolean doInitialURL = false;
 				for (MovePatternDetail movePatternDetail : dao遷移パターン明細リスト) {
 					String url = movePatternDetail.getUrl();
 					strReplace.append("		//" + movePatternDetail.get画面タイトル());
 					strReplace.append(sep);
-					if(url!=null && !"".equals(url) && !doInitialURL){
+//					if(url!=null && !"".equals(url) && !doInitialURL){
+					if(url!=null && !"".equals(url)){
 						strReplace.append("		webdriver.get(\"" + url + "\");");
 						strReplace.append(sep);
 						doInitialURL = true;
@@ -434,13 +436,13 @@ public class GenerateTestSource {
 			.append("			List<WebElement> elements = webdriver.findElements("
 					+ parametaValue.getエレメント型()
 					+ "(\""
-					+ parametaValue.getエレメント名() + "\"));");
+					+ esc(parametaValue.getエレメント名()) + "\"));");
 			strReplace.append(sep);
 			strReplace
 			.append("			WebElement element = webdriver.findElement("
 					+ parametaValue.getエレメント型()
 					+ "(\""
-					+ parametaValue.getエレメント名() + "\"));");
+					+ esc(parametaValue.getエレメント名()) + "\"));");
 			strReplace.append(sep);
 			if(TTConst.ACTION_SENDKEYS.equals(parametaValue.getアクション())){
 				strReplace.append("			element.clear();");
@@ -455,23 +457,29 @@ public class GenerateTestSource {
 			if(TTConst.ACTION_SELECTBYINDEX.equals(parametaValue.getアクション())){
 				strReplace.append("			Select select=new Select(element);");
 				strReplace.append(sep);
-				strReplace.append("			select.selectByIndex(" + parametaValue.get値() + ");");
+				strReplace.append("			select.selectByIndex(" + esc(parametaValue.get値()) + ");");
 				strReplace.append(sep);
 			}else
 			if(TTConst.ACTION_SELECTBYVALUE.equals(parametaValue.getアクション())){
 				strReplace.append("			Select select=new Select(element);");
 				strReplace.append(sep);
-				strReplace.append("			select.selectByValue(" + parametaValue.get値() + ");");
+				strReplace.append("			select.selectByValue(\"" + esc(parametaValue.get値()) + "\");");
 				strReplace.append(sep);
 			}else
-			if(TTConst.ACTION_CLICK_RADIO.equals(parametaValue.getアクション())){
-				strReplace.append("			elements.get(" + parametaValue.get値() + ").click();");
+			if(TTConst.ACTION_SELECTBYVISIBLETEXT.equals(parametaValue.getアクション())){
+				strReplace.append("			Select select=new Select(element);");
+				strReplace.append(sep);
+				strReplace.append("			select.selectByVisibleText(\"" + esc(parametaValue.get値()) + "\");");
+				strReplace.append(sep);
+			}else
+			if(TTConst.ACTION_CLICK_RADIOBYINDEX.equals(parametaValue.getアクション())){
+				strReplace.append("			elements.get(" + esc(parametaValue.get値()) + ").click();");
 				strReplace.append(sep);
 			}else
 			if(TTConst.ACTION_CLICK_BYATTRVALUE.equals(parametaValue.getアクション())){
 				strReplace.append("			for (WebElement webElement : elements) {");
 				strReplace.append(sep);
-				strReplace.append("				if(\"" + parametaValue.get値() + "\".equals(webElement.getAttribute(\"value\"))){");
+				strReplace.append("				if(\"" + esc(parametaValue.get値()) + "\".equals(webElement.getAttribute(\"value\"))){");
 				strReplace.append(sep);
 				strReplace.append("					webElement.click();");
 				strReplace.append(sep);

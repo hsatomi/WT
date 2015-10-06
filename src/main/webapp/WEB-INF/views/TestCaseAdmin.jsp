@@ -23,7 +23,10 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 </head>
 
 <body>
-	<h3>テストツール - テストケース管理画面</h3>
+	<h3>テストツール - テストケース管理画面
+    <a href="javascript:history.back();">戻る</a>
+    <a href="">再表示</a>
+	</h3>
 	<div id="move_pattern_information" style="float: left; border-style: solid; margin-right: 20px;">
 		<div>
 			総合情報
@@ -93,13 +96,14 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 			<input type="button" value="パターン削除" onClick="doDelete(${dto.テストケース管理.id})" />
 			<br>
 			<br>
-			<input type="button" value="一括登録・実行" onClick="execAll(${dto.テストケース管理.id})" />
+			<input type="button" value="UNIT一括実行(初回)" onClick="execFirstAll(${dto.テストケース管理.id})" />
+			<input type="button" value="UNIT一括実行" onClick="execAll(${dto.テストケース管理.id})" />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="button" value="全て選択" onClick="selectAll()" />
 			<input type="button" value="全て解除" onClick="unselectAll()" />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="button" value="回数リセット" onClick="reset(${dto.テストケース管理.id})" />
-			<input type="button" value="UNIT生成" onClick="generate(${dto.テストケース管理.id})" />
-			<input type="button" value="UNIT実行" onClick="execjenkins(${dto.テストケース管理.id})" />
+			<input type="button" value="UNIT部分生成" onClick="generate(${dto.テストケース管理.id})" />
+			<input type="button" value="UNIT部分実行" onClick="execjenkins(${dto.テストケース管理.id})" />
 			<input type="button" value="UNIT削除" onClick="ungenerate(${dto.テストケース管理.id})" />
 			<br>
 			<table class="borderList">

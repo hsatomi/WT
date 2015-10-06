@@ -22,7 +22,10 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 
 <body>
 	<strong>スタブ機能です！実装はほとんどありません！</strong>
-	<h3>テストツール - 遷移パターン管理画面</h3>
+	<h3>テストツール - 遷移パターン管理画面
+    <a href="javascript:history.back();">戻る</a>
+    <a href="">再表示</a>
+	</h3>
 	<div id="input_parameter_pattern" style="float: left; border-style: solid; padding: 10px;">
 		<div>
 			遷移パターン一覧

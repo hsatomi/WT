@@ -26,7 +26,8 @@ public class TTConst {
 	public static String ACTION_SENDKEYS="sendKeys";
 	public static String ACTION_SELECTBYINDEX="selectByIndex";
 	public static String ACTION_SELECTBYVALUE="selectByValue";
-	public static String ACTION_CLICK_RADIO="clickRadio";
+	public static String ACTION_SELECTBYVISIBLETEXT="selectByVisibleText";
+	public static String ACTION_CLICK_RADIOBYINDEX="clickRadioByIndex";
 	public static String ACTION_CLICK_BYATTRVALUE="clickByAttrValue";
 	public static String JOB_STATUS_START="登録済み";
 	public static String JOB_STATUS_DELETED="削除済み";

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import co.jp.souya.dto.InputPatternDTO;
 import co.jp.souya.jpa.ParametaValue;
-import co.jp.souya.jpa.TestCaseAdmin;
 import co.jp.souya.service.InputPatternSvc;
 import co.jp.souya.service.TestCaseAdminSvc;
 
@@ -34,6 +33,15 @@ public class InputPatternController {
 	@Autowired
 	private TestCaseAdminSvc testCaseAdminSvc;
 
+	/**
+	 * 入力パターン画面　標準
+	 * @param locale
+	 * @param model
+	 * @param id
+	 * @param test_case_id
+	 * @param move_pattern_detail_id
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String get(Locale locale, Model model,
 			@RequestParam(value = "id", required = false) Integer id
@@ -43,11 +51,12 @@ public class InputPatternController {
 		logger.info("get");
 		InputPatternDTO dto = null;
 		if(id==null){
-			logger.info("新規");
-			TestCaseAdmin testCaseAdmin = testCaseAdminSvc.get(test_case_id);
-
-			dto = new InputPatternDTO();
-			dto.get入力パターン().setテストケース管理id(testCaseAdmin.getId());
+			//TODO:確認　未使用
+//			logger.info("新規");
+//			TestCaseAdmin testCaseAdmin = testCaseAdminSvc.get(test_case_id);
+//
+//			dto = new InputPatternDTO();
+//			dto.get入力パターン().setテストケース管理id(testCaseAdmin.getId());
 
 		}else{
 			logger.info("変更");
@@ -55,7 +64,7 @@ public class InputPatternController {
 		}
 
 		{
-			int n実行順 = 1;
+			int n実行順 = 0;
 			List<ParametaValue> list = dto.getパラメタ値リスト();
 			for (ParametaValue parametaValue : list) {
 				Integer _n実行順 = parametaValue.get実行順();

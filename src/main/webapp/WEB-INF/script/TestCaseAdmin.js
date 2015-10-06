@@ -33,42 +33,47 @@ function move_MovePatternDetail(id) {
 //画面遷移(確認画面)
 function move_TestCaseAdmin(name,id,input_id) {
 
+	var url = "";
 	switch (name) {
 	case "htmlResult":
-		location.href = "TestCaseAdmin/htmlResult?id=" + id + "&input_id=" + input_id;
+		url = "TestCaseAdmin/htmlResult?id=" + id + "&input_id=" + input_id;
 		break;
 	case "htmlDiff":
-		location.href = "TestCaseAdmin/htmlDiff?id=" + id + "&input_id=" + input_id;
+		url = "TestCaseAdmin/htmlDiff?id=" + id + "&input_id=" + input_id;
 		break;
 	case "htmlCorrect":
-		location.href = "TestCaseAdmin/htmlCorrect?id=" + id + "&input_id=" + input_id;
+		url = "TestCaseAdmin/htmlCorrect?id=" + id + "&input_id=" + input_id;
 		break;
 	case "dbResult":
-		location.href = "TestCaseAdmin/dbResult?id=" + id + "&input_id=" + input_id;
+		url = "TestCaseAdmin/dbResult?id=" + id + "&input_id=" + input_id;
 		break;
 	case "dbDiff":
-		location.href = "TestCaseAdmin/dbDiff?id=" + id + "&input_id=" + input_id;
+		url = "TestCaseAdmin/dbDiff?id=" + id + "&input_id=" + input_id;
 		break;
 	case "dbCorrect":
-		location.href = "TestCaseAdmin/dbCorrect?id=" + id + "&input_id=" + input_id;
+		url = "TestCaseAdmin/dbCorrect?id=" + id + "&input_id=" + input_id;
 		break;
 	case "moveResult":
-		location.href = "TestCaseAdmin/moveResult?id=" + id + "&input_id=" + input_id;
+		url = "TestCaseAdmin/moveResult?id=" + id + "&input_id=" + input_id;
 		break;
 	case "pictureCorrect":
-		location.href = "TestCaseAdmin/pictureCorrect?id=" + id + "&input_id=" + input_id;
+		url = "TestCaseAdmin/pictureCorrect?id=" + id + "&input_id=" + input_id;
 		break;
 	case "pictureNow":
-		location.href = "TestCaseAdmin/pictureNow?id=" + id + "&input_id=" + input_id;
+		url = "TestCaseAdmin/pictureNow?id=" + id + "&input_id=" + input_id;
 		break;
 	default: break;
 	}
 
+//	location.href = url;
+	var htmlsrc = window.open("","","scrollbars=yes, width=600,height=400");
+	htmlsrc.location.href = url;
+
 	return;
 }
 
-//リセット・生成・実行を全て行う
-function execAll(_id){
+//リセット・生成・実行を全て行う(初回)
+function execFirstAll(_id){
 	selectAll();
 	var ids = getSelectedStr();
 	var data = {"id":_id,"input_ids":ids};
@@ -133,6 +138,52 @@ function execAll(_id){
     });
 }
 
+//生成・実行を全て行う
+function execAll(_id){
+	selectAll();
+	var ids = getSelectedStr();
+	var data = {"id":_id,"input_ids":ids};
+	//2段目ajax
+    $.ajax({
+        type:"post",
+        url:URL_GENERATE,
+        data:JSON.stringify(data),
+        contentType: 'application/json',
+        dataType: "json",
+        success: function(json_data1) {
+            // 成功時の処理
+        	if(json_data1 == true){
+        		//3段目ajax
+        	    $.ajax({
+        	        type:"post",
+        	        url:URL_EXECJENKINS,
+        	        data:JSON.stringify(data),
+        	        contentType: 'application/json',
+        	        dataType: "json",
+        	        success: function(json_data1) {
+        	            // 成功時の処理
+        	        	if(json_data1 == true){
+        	            	alert("JOB実行を登録しました");
+        	            	location.href = location.href;
+        	        	}else{
+        	            	alert("JOB実行の登録に失敗しました");
+        	        	}
+        	        },
+        	        error: function(json_data2) {
+        	            // 失敗時の処理
+                    	alert("失敗しました");
+        	        }
+        	    });
+        	}else{
+            	alert("テストユニットの生成に失敗しました");
+        	}
+        },
+        error: function(json_data2) {
+            // 失敗時の処理
+        	alert("失敗しました");
+        }
+    });
+}
 
 //回数リセット
 function reset(_id){

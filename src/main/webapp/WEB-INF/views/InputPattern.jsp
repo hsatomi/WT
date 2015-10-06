@@ -22,7 +22,10 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 </script>
 </head>
 <body>
-    <h3>テストツール - 入力パラメータ画面</h3>
+    <h3>テストツール - 入力パラメータ画面
+    <a href="javascript:history.back();">戻る</a>
+    <a href="">再表示</a>
+    </h3>
     <div id="div_hidden" style="display:none">
     <input type="text" id="_id" value="${dto.入力パターン.id}" />
     <input type="text" id="_テストケース管理id" value="${dto.入力パターン.テストケース管理id}" />
@@ -30,6 +33,7 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
     <div>
 		<input type="button" value="登録" onClick="doRegist()" />
     </div>
+    <br>
 	<div id="move_pattern_information" style="float: left; border-style: solid; margin-right: 20px;">
 		<div>
 			パラメタ情報
@@ -57,11 +61,11 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 			<table class="borderList">
 				<tr>
 					<th>実行順※</th>
-					<th>項目名</th>
+					<th>項目名(未使用)</th>
 					<th>エレメント型※</th>
 					<th>エレメント名</th>
 					<th>アクション</th>
-					<th>型</th>
+					<th>型(未使用)</th>
 					<th>値</th>
 					<th>備考</th>
 				</tr>
@@ -94,12 +98,9 @@ var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
 					<td>
 						<select name="_アクション">
 						<option value="" <c:if test="${パラメタ値.アクション==''}">selected</c:if>></option>
-						<option value="sendKeys" <c:if test="${パラメタ値.アクション=='sendKeys'}">selected</c:if>>sendKeys</option>
-						<option value="click" <c:if test="${パラメタ値.アクション=='click'}">selected</c:if>>click</option>
-						<option value="selectByIndex" <c:if test="${パラメタ値.アクション=='selectByIndex'}">selected</c:if>>selectByIndex</option>
-						<option value="selectByValue" <c:if test="${パラメタ値.アクション=='selectByValue'}">selected</c:if>>selectByValue</option>
-						<option value="clickRadio" <c:if test="${パラメタ値.アクション=='clickRadio'}">selected</c:if>>clickRadio</option>
-						<option value="clickByAttrValue" <c:if test="${パラメタ値.アクション=='clickByAttrValue'}">selected</c:if>>clickByAttrValue</option>
+						<c:forEach items="${dto.アクションリスト}" var="アクション" >
+						<option value="${アクション}" <c:if test="${パラメタ値.アクション==アクション}">selected</c:if>>${アクション}</option>
+						</c:forEach>
 						</select>
 					</td>
 					<td>
