@@ -498,7 +498,10 @@ public class GenerateTestSource {
 
 	private String esc(String str){
 		//エスケープ for java
-		return str.replace("\\", "\\\\");
+		String rtnStr = str;
+		rtnStr = rtnStr.replace("\\", "\\\\");
+		rtnStr = rtnStr.replace("\"", "\\\"");
+		return rtnStr;
 	}
 
 	private String getHinagata(){
