@@ -13,17 +13,21 @@
 
 <script>
 var URL_API_BASE = "<%= TTConst.URL_API_BASE %>";
+var URL_UPDATE_SESSION_URLGO = "<%= TTConst.URL_API_BASE+TTConst.URL_UPDATE_SESSION_URLGO %>";
+var URL_UPDATE_SESSION_URLBACK = "<%= TTConst.URL_API_BASE+TTConst.URL_UPDATE_SESSION_URLBACK %>";
 var URL_RESET = "<%= TTConst.URL_API_BASE+TTConst.URL_RESET_TESTCASE %>";
 var URL_GENERATE = "<%= TTConst.URL_API_BASE+TTConst.URL_GENERATE_TESTCASE %>";
+var URL_UNGENERATE = "<%= TTConst.URL_API_BASE+TTConst.URL_DELETE_TESTCASE %>";
 var URL_EXECJENKINS = "<%= TTConst.URL_API_BASE+TTConst.URL_EXECJENKINS %>";
 var URL_POLLING = "<%= TTConst.URL_API_BASE+TTConst.URL_POLLINGJENKINS %>";
+var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 </script>
 </head>
 
-<body>
+<body onload="javascript:url_push();">
 	<strong>スタブ機能です！実装はほとんどありません！</strong>
 	<h3>テストツール - 遷移パターン管理画面
-    <a href="javascript:history.back();">戻る</a>
+    <a href="javascript:url_back();">戻る</a>
     <a href="">再表示</a>
 	</h3>
 	<div id="input_parameter_pattern" style="float: left; border-style: solid; padding: 10px;">

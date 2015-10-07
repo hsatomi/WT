@@ -7,12 +7,15 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>テストケース管理画面</title>
-	<script src="script/ajax.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="script/Common.js"></script>
 	<script src="script/TestCaseAdmin.js"></script>
 	<link href="css/stylesheet.css" rel="stylesheet" />
 
 <script>
 var URL_API_BASE = "<%= TTConst.URL_API_BASE %>";
+var URL_UPDATE_SESSION_URLGO = "<%= TTConst.URL_API_BASE+TTConst.URL_UPDATE_SESSION_URLGO %>";
+var URL_UPDATE_SESSION_URLBACK = "<%= TTConst.URL_API_BASE+TTConst.URL_UPDATE_SESSION_URLBACK %>";
 var URL_RESET = "<%= TTConst.URL_API_BASE+TTConst.URL_RESET_TESTCASE %>";
 var URL_GENERATE = "<%= TTConst.URL_API_BASE+TTConst.URL_GENERATE_TESTCASE %>";
 var URL_UNGENERATE = "<%= TTConst.URL_API_BASE+TTConst.URL_DELETE_TESTCASE %>";
@@ -22,9 +25,9 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 </script>
 </head>
 
-<body>
+<body onload="javascript:url_push();">
 	<h3>テストツール - テストケース管理画面
-    <a href="javascript:history.back();">戻る</a>
+    <a href="javascript:url_back();">戻る</a>
     <a href="">再表示</a>
 	</h3>
 	<div id="move_pattern_information" style="float: left; border-style: solid; margin-right: 20px;">
