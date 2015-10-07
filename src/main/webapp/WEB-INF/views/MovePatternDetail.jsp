@@ -7,7 +7,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>遷移パターン管理画面</title>
-	<script src="script/ajax.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="script/Common.js"></script>
 	<script src="script/MovePatternDetail.js"></script>
 	<link href="css/stylesheet.css" rel="stylesheet" />
 
