@@ -524,18 +524,46 @@ public class TTUtility {
         	Delta delta = (Delta)deltaobj;
 //            System.out.println(String.format("[変更前(%d)行目]", delta.getOriginal().getPosition() + 1));
             for (Object line : delta.getOriginal().getLines()) {
-//                System.out.println(line);
                 buf.append(line + lineSeparator);
             }
-//            System.out.println("　↓");
             buf.append("↓" + lineSeparator);
 
 //            System.out.println(String.format("[変更後(%d)行目]", delta.getRevised().getPosition() + 1));
             for (Object line : delta.getRevised().getLines()) {
-//                System.out.println(line);
                 buf.append(line + lineSeparator);
             }
-//            System.out.println();
+        }
+        logger.debug(buf.toString());
+		return buf.toString();
+	}
+
+	/**
+	 * 改行つき文字列の差異を出力する
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public static String getDifString2(List<String> oldLines,List<String> newLines){
+
+		StringBuffer buf = new StringBuffer();
+
+        Patch patch = DiffUtils.diff(oldLines, newLines);
+        int cnt = 1;
+        for (Object deltaobj : patch.getDeltas()) {
+            buf.append("-------------------------------" + cnt++ + "箇所目---------------------------------" + lineSeparator);
+
+            Delta delta = (Delta)deltaobj;
+            for (Object line : delta.getOriginal().getLines()) {
+                buf.append(line + lineSeparator);
+            }
+            buf.append("↓" + lineSeparator);
+
+            for (Object line : delta.getRevised().getLines()) {
+                buf.append(line + lineSeparator);
+            }
+
+            buf.append(lineSeparator);
+            buf.append(lineSeparator);
+
         }
         logger.debug(buf.toString());
 		return buf.toString();

@@ -2,6 +2,7 @@ package co.jp.souya;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Locale;
 
@@ -18,6 +19,7 @@ import co.jp.souya.dto.TestCaseAdminDTO;
 import co.jp.souya.jpa.InputPattern;
 import co.jp.souya.service.TestCaseAdminSvc;
 import co.jp.souya.tool.TTConst;
+import co.jp.souya.tool.TTUtility;
 
 /**
  * テストケース管理画面
@@ -275,6 +277,15 @@ public class TestCaseAdminController {
 				}
 				if("htmlDiff".equals(kind)){
 					strDto = inputPattern.getHtml差異();
+
+					String strExpectWeb = URLDecoder.decode(inputPattern.getHtml正解(), "UTF-8");
+					String strResultWeb = URLDecoder.decode(inputPattern.getHtml(), "UTF-8");
+//					String strResultWeb = inputPattern.getHtml();
+//					String strExpectWeb = inputPattern.getHtml正解();
+					List<String> oldLines = TTUtility.splitByLineSeparator(strExpectWeb);
+					List<String> newLines = TTUtility.splitByLineSeparator(strResultWeb);
+					strDto = TTUtility.getDifString2(oldLines, newLines);
+					strDto = URLEncoder.encode(strDto,"UTF-8");
 				}
 				if("htmlCorrect".equals(kind)){
 					strDto = inputPattern.getHtml正解();
