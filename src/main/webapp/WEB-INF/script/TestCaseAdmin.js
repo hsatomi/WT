@@ -62,6 +62,9 @@ function move_TestCaseAdmin(name,id,input_id) {
 	case "pictureNow":
 		url = "TestCaseAdmin/pictureNow?id=" + id + "&input_id=" + input_id;
 		break;
+	case "pictureDiff":
+		url = "TestCaseAdmin/pictureDiff?id=" + id + "&input_id=" + input_id;
+		break;
 	default: break;
 	}
 

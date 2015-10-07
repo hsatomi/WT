@@ -1,5 +1,8 @@
 package co.jp.souya.tool;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,6 +15,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.imageio.ImageIO;
 
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
@@ -497,13 +502,49 @@ public class TTUtility {
 		return encodeResult;
 	}
 
+	/**
+	 * byte[] to Base64String
+	 *
+	 * @param file
+	 * @return
+	 */
+	public static String getBase64String(byte[] data) {
+		String encodeResult = "";
+		try {
+			encodeResult = Base64.encodeBase64String(data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return encodeResult;
+	}
+
+
+	/**
+	 * Base64String to File
+	 * @param encodeResult
+	 * @return
+	 */
+	public static byte[] getImageFromBase64String(String encodeResult) {
+		byte[] data = null;
+		try {
+			 data = Base64.decodeBase64(encodeResult);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return data;
+	}
+
+	/**
+	 * HTML評価
+	 * @param strResultWeb
+	 * @param strExpectWeb
+	 * @return
+	 */
 	public static String validateWeb(String strResultWeb,String strExpectWeb){
 		String strDif = "";
 
 		if(!strResultWeb.equals(strExpectWeb)){
-			//TODO:差分を記載する
-			strDif = getDifString(splitByLineSeparator(strResultWeb),splitByLineSeparator(strExpectWeb));
-
+			strDif = getDifString2(splitByLineSeparator(strResultWeb),splitByLineSeparator(strExpectWeb));
 		}
 
 		return strDif;
@@ -568,5 +609,74 @@ public class TTUtility {
         logger.debug(buf.toString());
 		return buf.toString();
 	}
+
+
+	/**
+	 * 画像差分を返却する
+	 * @param fileBG
+	 * @param fileFG
+	 * @return Base64String
+	 */
+	public static String getImageDiff(byte[]  fileBG,byte[]  fileFG){
+		String rtnStr = "";
+
+		try {
+			BufferedImage imgBG = ImageIO.read(new ByteArrayInputStream(fileBG));
+			BufferedImage imgFG = ImageIO.read(new ByteArrayInputStream(fileFG));
+
+		    int w = imgBG.getWidth(), h = imgBG.getHeight();
+		    int[] pixelsBG = imgBG.getRGB(0, 0, w, h, null, 0, w);
+		    int[] pixelsFG = imgFG.getRGB(0, 0, w, h, null, 0, w);
+
+		    for (int x = 0; x < w; x++) {
+				  for (int y = 0; y < h; y++) {
+					  int argbBG  = pixelsBG[w * y + x];
+					  int argbFG  = pixelsFG[w * y + x];
+					  int alpha = argbFG >> 24 & 0xFF;
+					  int red   = argbFG >> 16 & 0xFF;
+					  int green = argbFG >>  8 & 0xFF;
+					  int blue  = argbFG       & 0xFF;
+
+				    argbFG = (alpha << 24) | (red << 16) | (green << 8) | blue;
+				    pixelsFG[w * y + x] = argbFG;
+
+					  /*
+					   * ここでいろいろ操作して
+					   * 配列に戻す
+					  */
+					    if(argbBG != argbFG ){
+//					    	//周辺も変更する
+//					    	for(int j=0;j<2;j++){
+//						    	for(int i=0;i<2;i++){
+//							    	int x_new = x+i;
+//							    	int y_new = y+j;
+//							    	if(x_new < 0) break;
+//							    	if(y_new < 0) break;
+//							    	if(x_new >= w) break;
+//							    	if(y_new >= h) break;
+//							    	pixelsFG[w * y_new + x_new] = 0;
+//						    	}
+//					    	}
+						    pixelsFG[w * y + x] = 0;
+					    }
+
+				  }
+				}
+
+			    BufferedImage imgFGw = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+			    imgFGw.setRGB(0, 0, w, h, pixelsFG, 0, w);
+
+
+			    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			    ImageIO.write(imgFGw, "png", bos);
+			    rtnStr = getBase64String(bos.toByteArray());
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+
+		return rtnStr;
+	}
+
 
 }

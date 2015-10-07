@@ -2,7 +2,6 @@ package co.jp.souya;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.List;
 import java.util.Locale;
 
@@ -76,6 +75,24 @@ public class TestCaseAdminController {
 		return "TestCaseAdmin";
 	}
 
+	/**
+	 * 結果参照ページ
+	 * @param locale
+	 * @param model
+	 * @param id
+	 * @param input_id
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
+	@RequestMapping(value = "/pictureDiff", method = RequestMethod.GET)
+	public String pictureDiff(Locale locale, Model model,
+			@RequestParam(value = "id", required = true) Integer id,
+			@RequestParam(value = "input_id", required = true) Integer input_id
+
+	) throws UnsupportedEncodingException {
+		logger.info("pictureDiff");
+		return getResult(locale,model,"pictureDiff",id,input_id);
+	}
 
 	/**
 	 * 結果参照ページ
@@ -277,15 +294,6 @@ public class TestCaseAdminController {
 				}
 				if("htmlDiff".equals(kind)){
 					strDto = inputPattern.getHtml差異();
-
-					String strExpectWeb = URLDecoder.decode(inputPattern.getHtml正解(), "UTF-8");
-					String strResultWeb = URLDecoder.decode(inputPattern.getHtml(), "UTF-8");
-//					String strResultWeb = inputPattern.getHtml();
-//					String strExpectWeb = inputPattern.getHtml正解();
-					List<String> oldLines = TTUtility.splitByLineSeparator(strExpectWeb);
-					List<String> newLines = TTUtility.splitByLineSeparator(strResultWeb);
-					strDto = TTUtility.getDifString2(oldLines, newLines);
-					strDto = URLEncoder.encode(strDto,"UTF-8");
 				}
 				if("htmlCorrect".equals(kind)){
 					strDto = inputPattern.getHtml正解();
@@ -307,6 +315,15 @@ public class TestCaseAdminController {
 				}
 				if("pictureNow".equals(kind)){
 					strDtoImage = inputPattern.get画面();
+				}
+				if("pictureDiff".equals(kind)){
+					//EDIT -S
+					String strBG = inputPattern.get画面();
+					String strFG = inputPattern.get画面正解();
+					byte[]  fileBG = TTUtility.getImageFromBase64String(strBG);
+					byte[]  fileFG = TTUtility.getImageFromBase64String(strFG);
+					strDtoImage = TTUtility.getImageDiff(fileBG,fileFG);
+					//EDIT -E
 				}
 
 				if (strDto == null || strDto.isEmpty())

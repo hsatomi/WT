@@ -151,6 +151,8 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 						<a href="javascript:move_TestCaseAdmin('pictureNow','${dto.テストケース管理.id}','${入力パターン.id}')">
 						<img src="data:image/jpg;base64,${入力パターン.画面}" width=200 height=70 alt="今回画像" />
 						</a>
+						<br>
+						<a href="javascript:move_TestCaseAdmin('pictureDiff','${dto.テストケース管理.id}','${入力パターン.id}')">差異</a>
 					</td>
 					<td>
 						<a href="javascript:move_TestCaseAdmin('htmlCorrect','${dto.テストケース管理.id}','${入力パターン.id}')">正解値</a>
