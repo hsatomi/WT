@@ -488,7 +488,7 @@ public class TTUtility {
 			FileInputStream fis;
 			fis = new FileInputStream(file);
 			fis.read(data);
-//			encodeResult = Base64.encodeBase64URLSafeString(data);
+			// encodeResult = Base64.encodeBase64URLSafeString(data);
 			encodeResult = Base64.encodeBase64String(data);
 
 			// byte[] data2 = Base64.decodeBase64(encodeResult);
@@ -518,16 +518,16 @@ public class TTUtility {
 		return encodeResult;
 	}
 
-
 	/**
 	 * Base64String to File
+	 *
 	 * @param encodeResult
 	 * @return
 	 */
 	public static byte[] getImageFromBase64String(String encodeResult) {
 		byte[] data = null;
 		try {
-			 data = Base64.decodeBase64(encodeResult);
+			data = Base64.decodeBase64(encodeResult);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -536,140 +536,140 @@ public class TTUtility {
 
 	/**
 	 * HTML評価
+	 *
 	 * @param strResultWeb
 	 * @param strExpectWeb
 	 * @return
 	 */
-	public static String validateWeb(String strResultWeb,String strExpectWeb){
+	public static String validateWeb(String strResultWeb, String strExpectWeb) {
 		String strDif = "";
 
-		if(!strResultWeb.equals(strExpectWeb)){
-			strDif = getDifString2(splitByLineSeparator(strResultWeb),splitByLineSeparator(strExpectWeb));
+		if (!strResultWeb.equals(strExpectWeb)) {
+			strDif = getDifString2(splitByLineSeparator(strResultWeb),
+					splitByLineSeparator(strExpectWeb));
 		}
 
 		return strDif;
 	}
 
-
 	/**
 	 * 改行つき文字列の差異を出力する
+	 *
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
-	public static String getDifString(List<String> oldLines,List<String> newLines){
+	public static String getDifString(List<String> oldLines,
+			List<String> newLines) {
 
 		StringBuffer buf = new StringBuffer();
 
-        Patch patch = DiffUtils.diff(oldLines, newLines);
-        for (Object deltaobj : patch.getDeltas()) {
-        	Delta delta = (Delta)deltaobj;
-//            System.out.println(String.format("[変更前(%d)行目]", delta.getOriginal().getPosition() + 1));
-            for (Object line : delta.getOriginal().getLines()) {
-                buf.append(line + lineSeparator);
-            }
-            buf.append("↓" + lineSeparator);
+		Patch patch = DiffUtils.diff(oldLines, newLines);
+		for (Object deltaobj : patch.getDeltas()) {
+			Delta delta = (Delta) deltaobj;
+			// System.out.println(String.format("[変更前(%d)行目]",
+			// delta.getOriginal().getPosition() + 1));
+			for (Object line : delta.getOriginal().getLines()) {
+				buf.append(line + lineSeparator);
+			}
+			buf.append("↓" + lineSeparator);
 
-//            System.out.println(String.format("[変更後(%d)行目]", delta.getRevised().getPosition() + 1));
-            for (Object line : delta.getRevised().getLines()) {
-                buf.append(line + lineSeparator);
-            }
-        }
-        logger.debug(buf.toString());
+			// System.out.println(String.format("[変更後(%d)行目]",
+			// delta.getRevised().getPosition() + 1));
+			for (Object line : delta.getRevised().getLines()) {
+				buf.append(line + lineSeparator);
+			}
+		}
+		logger.debug(buf.toString());
 		return buf.toString();
 	}
 
 	/**
 	 * 改行つき文字列の差異を出力する
+	 *
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
-	public static String getDifString2(List<String> oldLines,List<String> newLines){
+	public static String getDifString2(List<String> oldLines,
+			List<String> newLines) {
 
 		StringBuffer buf = new StringBuffer();
 
-        Patch patch = DiffUtils.diff(oldLines, newLines);
-        int cnt = 1;
-        for (Object deltaobj : patch.getDeltas()) {
-            buf.append("-------------------------------" + cnt++ + "箇所目---------------------------------" + lineSeparator);
+		Patch patch = DiffUtils.diff(oldLines, newLines);
+		int cnt = 1;
+		for (Object deltaobj : patch.getDeltas()) {
+			buf.append("-------------------------------" + cnt++
+					+ "箇所目---------------------------------" + lineSeparator);
 
-            Delta delta = (Delta)deltaobj;
-            for (Object line : delta.getOriginal().getLines()) {
-                buf.append(line + lineSeparator);
-            }
-            buf.append("↓" + lineSeparator);
+			Delta delta = (Delta) deltaobj;
+			for (Object line : delta.getOriginal().getLines()) {
+				buf.append(line + lineSeparator);
+			}
+			buf.append("↓" + lineSeparator);
 
-            for (Object line : delta.getRevised().getLines()) {
-                buf.append(line + lineSeparator);
-            }
+			for (Object line : delta.getRevised().getLines()) {
+				buf.append(line + lineSeparator);
+			}
 
-            buf.append(lineSeparator);
-            buf.append(lineSeparator);
+			buf.append(lineSeparator);
+			buf.append(lineSeparator);
 
-        }
-        logger.debug(buf.toString());
+		}
+		logger.debug(buf.toString());
 		return buf.toString();
 	}
-
 
 	/**
 	 * 画像差分を返却する
+	 *
 	 * @param fileBG
 	 * @param fileFG
 	 * @return Base64String
 	 */
-	public static String getImageDiff(byte[]  fileBG,byte[]  fileFG){
+	public static String getImageDiff(byte[] fileBG, byte[] fileFG) {
 		String rtnStr = "";
 
 		try {
-			BufferedImage imgBG = ImageIO.read(new ByteArrayInputStream(fileBG));
-			BufferedImage imgFG = ImageIO.read(new ByteArrayInputStream(fileFG));
+			BufferedImage imgBG = ImageIO
+					.read(new ByteArrayInputStream(fileBG));
+			BufferedImage imgFG = ImageIO
+					.read(new ByteArrayInputStream(fileFG));
 
-		    int w = imgBG.getWidth(), h = imgBG.getHeight();
-		    int[] pixelsBG = imgBG.getRGB(0, 0, w, h, null, 0, w);
-		    int[] pixelsFG = imgFG.getRGB(0, 0, w, h, null, 0, w);
+			int w = imgBG.getWidth(), h = imgBG.getHeight();
+			int[] pixelsBG = imgBG.getRGB(0, 0, w, h, null, 0, w);
+			int[] pixelsFG = imgFG.getRGB(0, 0, w, h, null, 0, w);
 
-		    for (int x = 0; x < w; x++) {
-				  for (int y = 0; y < h; y++) {
-					  int argbBG  = pixelsBG[w * y + x];
-					  int argbFG  = pixelsFG[w * y + x];
-					  int alpha = argbFG >> 24 & 0xFF;
-					  int red   = argbFG >> 16 & 0xFF;
-					  int green = argbFG >>  8 & 0xFF;
-					  int blue  = argbFG       & 0xFF;
+			for (int x = 0; x < w; x++) {
+				for (int y = 0; y < h; y++) {
+					int argbBG = pixelsBG[w * y + x];
+					int argbFG = pixelsFG[w * y + x];
+					int alpha = argbFG >> 24 & 0xFF;
+					int red = argbFG >> 16 & 0xFF;
+					int green = argbFG >> 8 & 0xFF;
+					int blue = argbFG & 0xFF;
 
-				    argbFG = (alpha << 24) | (red << 16) | (green << 8) | blue;
-				    pixelsFG[w * y + x] = argbFG;
+					argbFG = (alpha << 24) | (red << 16) | (green << 8) | blue;
+					pixelsFG[w * y + x] = argbFG;
 
-					  /*
-					   * ここでいろいろ操作して
-					   * 配列に戻す
-					  */
-					    if(argbBG != argbFG ){
-//					    	//周辺も変更する
-//					    	for(int j=0;j<2;j++){
-//						    	for(int i=0;i<2;i++){
-//							    	int x_new = x+i;
-//							    	int y_new = y+j;
-//							    	if(x_new < 0) break;
-//							    	if(y_new < 0) break;
-//							    	if(x_new >= w) break;
-//							    	if(y_new >= h) break;
-//							    	pixelsFG[w * y_new + x_new] = 0;
-//						    	}
-//					    	}
-						    pixelsFG[w * y + x] = 0;
-					    }
+					/*
+					 * ここでいろいろ操作して 配列に戻す
+					 */
+					if (argbBG != argbFG) {
+						// pixelsFG[w * y + x] = 0;
+					} else {
+						// 変更内場所を0にする
+						pixelsFG[w * y + x] = 0;
+					}
 
-				  }
 				}
+			}
 
-			    BufferedImage imgFGw = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-			    imgFGw.setRGB(0, 0, w, h, pixelsFG, 0, w);
+			BufferedImage imgFGw = new BufferedImage(w, h,
+					BufferedImage.TYPE_INT_RGB);
+			imgFGw.setRGB(0, 0, w, h, pixelsFG, 0, w);
 
-
-			    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			    ImageIO.write(imgFGw, "png", bos);
-			    rtnStr = getBase64String(bos.toByteArray());
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			ImageIO.write(imgFGw, "png", bos);
+			rtnStr = getBase64String(bos.toByteArray());
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -677,6 +677,5 @@ public class TTUtility {
 
 		return rtnStr;
 	}
-
 
 }

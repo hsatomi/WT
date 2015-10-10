@@ -51,12 +51,12 @@ public class TestCaseAdminSvc extends BaseSvc {
 	@SuppressWarnings("unchecked")
 	public List<TestCaseAdmin> getAll() {
 
-		List<TestCaseAdmin> dto = new ArrayList<TestCaseAdmin>();
+		List<TestCaseAdmin> dao = new ArrayList<TestCaseAdmin>();
 
 		try {
 			init();
 
-			dto = em.createNamedQuery("TestCaseAdmin.findAll").getResultList();
+			dao = em.createNamedQuery("TestCaseAdmin.findAll").getResultList();
 
 		} catch (Throwable e) {
 			logger.error(e.getMessage(), e);
@@ -64,7 +64,7 @@ public class TestCaseAdminSvc extends BaseSvc {
 			destroy();
 		}
 
-		return dto;
+		return dao;
 	}
 
 	/**

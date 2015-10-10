@@ -69,7 +69,7 @@ function move_TestCaseAdmin(name,id,input_id) {
 	}
 
 //	location.href = url;
-	var htmlsrc = window.open("","","scrollbars=yes, width=600,height=400");
+	var htmlsrc = window.open("","","scrollbars=yes, width=800,height=600");
 	htmlsrc.location.href = url;
 
 	return;
@@ -267,7 +267,8 @@ function execjenkins(_id){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("JOB実行を登録しました");
-            	location.href = location.href;
+//            	location.href = location.href;
+            	polling(_id);
         	}else{
             	alert("JOB実行の登録に失敗しました");
         	}

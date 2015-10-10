@@ -296,13 +296,13 @@ public class ApiController {
 	 */
 	@RequestMapping(value = "/pollingJenkins", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public boolean pollingJenkins(@RequestBody ReqTestCaseAdminGenerate req)
+	public String pollingJenkins(@RequestBody ReqTestCaseAdminGenerate req)
 			throws InterruptedException {
 		logger.info("pollingJenkins");
-		boolean result = false;
+		String result = "";
 		if (req == null || req.id == null) {
 			logger.warn("idがnull");
-			return false;
+			return result;
 		}
 
 		// 3秒待機
@@ -318,6 +318,11 @@ public class ApiController {
 				}
 			}
 			if (cnt実行中 == 0) {
+				if(counter==0){
+					result = "待機不要";
+				}else{
+					result = "待機完了";
+				}
 				break;
 			}
 
@@ -327,11 +332,11 @@ public class ApiController {
 			counter++;
 			if (counter > 30) {
 				logger.warn("TIMEOUT! JOB状態待機が指定回数を超過しました");
+				result = "待機失敗";
 				break;
 			}
 		}
 
-		result = true;
 		return result;
 	}
 
