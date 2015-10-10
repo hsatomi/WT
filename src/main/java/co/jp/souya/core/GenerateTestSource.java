@@ -453,6 +453,8 @@ public class GenerateTestSource {
 			if(TTConst.ACTION_CLICK.equals(parametaValue.getアクション())){
 				strReplace.append("			element.click();");
 				strReplace.append(sep);
+				strReplace.append("			Thread.sleep(300);");
+				strReplace.append(sep);
 			}else
 			if(TTConst.ACTION_SELECTBYINDEX.equals(parametaValue.getアクション())){
 				strReplace.append("			Select select=new Select(element);");

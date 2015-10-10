@@ -115,6 +115,7 @@ public class InputPatternApiController {
 		return true;
 	}
 
+
 	/**
 	 * 入力パターン　削除
 	 * @param req

@@ -65,7 +65,7 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 						<input type="text" value="${遷移パターン明細.遷移パターン管理id}" readonly="readonly" />
 					</td>
 					<td>
-						<input type="text" value="${遷移パターン明細.遷移順}" />
+						<input type="number" value="${遷移パターン明細.遷移順}" />
 					</td>
 					<td>
 						<input type="text" value="${遷移パターン明細.入力パターンid}" readonly="readonly" />

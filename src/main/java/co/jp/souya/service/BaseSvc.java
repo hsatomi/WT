@@ -38,10 +38,18 @@ public abstract class BaseSvc {
 
 	protected void destroy() {
 		if(em!=null){
-			em.close();
+			try{
+				em.close();
+			}catch(Exception e){
+				logger.error("!TODO:em.closeエラー原因不明  " + e.getMessage());
+			}
 		}
 		if(emf!=null){
-			emf.close();
+			try{
+				emf.close();
+			}catch(Exception e){
+				logger.error("!TODO:emf.closeエラー原因不明  " + e.getMessage());
+			}
 		}
 	}
 

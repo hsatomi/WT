@@ -95,8 +95,9 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 			<br>
 			<br>
 			<button>パターン自動生成</button>
-			<input type="button" value="パターン追加" onClick="move_InputPattern('',${dto.テストケース管理.id},'')" />
+			<input type="button" value="パターン追加" onClick="doRegistNewInputPattern()" />
 			<input type="button" value="パターン削除" onClick="doDelete(${dto.テストケース管理.id})" />
+			<input type="button" value="パターンコピー" onClick="doCopy(${dto.テストケース管理.id})" />
 			<br>
 			<br>
 			<input type="button" value="UNIT一括実行(初回)" onClick="execFirstAll(${dto.テストケース管理.id})" />
@@ -133,6 +134,8 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 					</td>
 					<td>
 						<a href="javascript:move_InputPattern('${入力パターン.id}','','');">${入力パターン.入力パターン名}編集へ</a>
+						<br>
+						${入力パターン.備考}
 					</td>
 					<td>
 						${入力パターン.実行回数}

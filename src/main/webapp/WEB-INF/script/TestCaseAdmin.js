@@ -16,10 +16,10 @@ function _onload(_id){
 //画面遷移
 function move_InputPattern(id,test_case_id,move_pattern_detail_id) {
 
-	if (id === undefined || id == "") {
-		doRegistNewInputPattern();
-		return;
-	}
+//	if (id === undefined || id == "") {
+//		doRegistNewInputPattern();
+//		return;
+//	}
 	if (test_case_id === undefined) {
 		test_case_id="";
 	}
@@ -408,6 +408,39 @@ function analyze(_id){
     });
 }
 
+
+//(入力パターン新規)登録
+function doRegistNewInputPattern(){
+	var _テストケース管理id = document.getElementById("_テストケース管理id").value;
+	var data_inputPattern = {
+			"テストケース管理id":_テストケース管理id
+			};
+	var data = {
+			"inputPattern":data_inputPattern
+	};
+
+	$.ajax({
+	    type:"post",
+	    url:URL_API_BASE+"/InputPattern/api/update",
+	    data:JSON.stringify(data),
+	    contentType: 'application/json',
+	    dataType: "json",
+	    success: function(json_data1) {
+	        // 成功時の処理
+	    	if(json_data1 == true){
+	        	alert("登録しました");
+	        	location.href = location.href;
+	    	}else{
+	        	alert("登録に失敗しました");
+	    	}
+	    },
+	    error: function(json_data2) {
+	        // 失敗時の処理
+	    	alert("失敗しました");
+	    }
+	});
+}
+
 //明細削除
 function doDelete(_id){
 	var ids = getSelectedStr();
@@ -438,40 +471,38 @@ function doDelete(_id){
         	alert("失敗");
         }
     });
-
 }
 
+//明細コピー
+function doCopy(_id){
+	var ids = getSelectedStr();
+	if(ids.length==0){
+		alert("ケースが未選択です");
+		return;
+	}
 
-//(入力パターン新規)登録
-function doRegistNewInputPattern(){
-	var _テストケース管理id = document.getElementById("_テストケース管理id").value;
-	var data_inputPattern = {
-			"テストケース管理id":_テストケース管理id
-			};
-	var data = {
-			"inputPattern":data_inputPattern
-	};
+	var data = {"id":_id,"input_ids":ids};
 
-  $.ajax({
-      type:"post",
-      url:URL_API_BASE+"/InputPattern/api/update",
-      data:JSON.stringify(data),
-      contentType: 'application/json',
-      dataType: "json",
-      success: function(json_data1) {
-          // 成功時の処理
-      	if(json_data1 == true){
-          	alert("登録しました");
-          	location.href = location.href;
-      	}else{
-          	alert("登録に失敗しました");
-      	}
-      },
-      error: function(json_data2) {
-          // 失敗時の処理
-      	alert("失敗しました");
-      }
-  });
+    $.ajax({
+        type:"post",
+        url:URL_API_BASE+"/TestCaseAdmin/api/copy",
+        data:JSON.stringify(data),
+        contentType: 'application/json',
+        dataType: "json",
+        success: function(json_data1) {
+            // 成功時の処理
+        	if(json_data1 == true){
+            	alert("コピーしました");
+            	location.href = location.href;
+        	}else{
+            	alert("コピーに失敗しました");
+        	}
+        },
+        error: function(json_data2) {
+            // 失敗時の処理
+        	alert("失敗しました");
+        }
+    });
 }
 
 //function HtmlWrite(strText){
