@@ -7,6 +7,12 @@
     document.getElementById("parameter_pattern").style.height = window.parent.screen.height * 0.8 + "px";
 };
 
+
+function _onload(_id){
+	url_push();
+	polling(_id);
+}
+
 //画面遷移
 function move_InputPattern(id,test_case_id,move_pattern_detail_id) {
 
@@ -249,6 +255,31 @@ function generate(_id){
     });
 }
 
+//テストユニット削除
+function ungenerate(_id){
+	var data = {"id":_id};
+	$.ajax({
+	    type:"post",
+	    url:URL_UNGENERATE,
+	    data:JSON.stringify(data),
+	    contentType: 'application/json',
+	    dataType: "json",
+	    success: function(json_data1) {
+	        // 成功時の処理
+	    	if(json_data1 == true){
+	        	alert("テストユニットを削除しました");
+	      	location.href = location.href;
+	    	}else{
+	        	alert("テストユニットの削除に失敗しました");
+	    	}
+	    },
+	    error: function(json_data2) {
+	        // 失敗時の処理
+	    	alert("失敗");
+	    }
+	});
+}
+
 //Jenkins実行登録
 function execjenkins(_id){
 	var ids = getSelectedStr();
@@ -267,8 +298,7 @@ function execjenkins(_id){
             // 成功時の処理
         	if(json_data1 == true){
             	alert("JOB実行を登録しました");
-//            	location.href = location.href;
-            	polling(_id);
+            	location.href = location.href;
         	}else{
             	alert("JOB実行の登録に失敗しました");
         	}
@@ -280,33 +310,8 @@ function execjenkins(_id){
     });
 }
 
-//テストユニット削除
-function ungenerate(_id){
-  var data = {"id":_id};
-  $.ajax({
-      type:"post",
-      url:URL_UNGENERATE,
-      data:JSON.stringify(data),
-      contentType: 'application/json',
-      dataType: "json",
-      success: function(json_data1) {
-          // 成功時の処理
-      	if(json_data1 == true){
-          	alert("テストユニットを削除しました");
-        	location.href = location.href;
-      	}else{
-          	alert("テストユニットの削除に失敗しました");
-      	}
-      },
-      error: function(json_data2) {
-          // 失敗時の処理
-      	alert("失敗");
-      }
-  });
-}
 
 //Jenkinsジョブポーリング
-//TODO:ジョブ実行をポーリングして再表示したい・・・けど、うまくいかない
 function polling(_id){
 	var data = {"id":_id};
     $.ajax({
@@ -315,13 +320,20 @@ function polling(_id){
         data:JSON.stringify(data),
         contentType: 'application/json',
         dataType: "json",
-        success: function(json_data1) {
-            // 成功時の処理
-        	location.href = location.href;
-        },
-        error: function(json_data2) {
-            // 失敗時の処理
-        	alert("ポーリング失敗");
+        complete: function(json_data1) {
+            // 応答時の処理
+
+        	if(json_data1!=null){
+        		if(json_data1.responseText=="待機不要"){
+        			//何もしない
+        		}
+        		if(json_data1.responseText=="待機完了"){
+                	location.href = location.href;
+        		}
+        		if(json_data1.responseText=="待機失敗"){
+        			//何もしない
+        		}
+        	}
         }
     });
 }

@@ -25,7 +25,7 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 </script>
 </head>
 
-<body onload="javascript:url_push();">
+<body onload="javascript:_onload('${dto.テストケース管理.id}')">
 	<h3>テストツール - テストケース管理画面
     <a href="javascript:url_back();">戻る</a>
     <a href="">再表示</a>
