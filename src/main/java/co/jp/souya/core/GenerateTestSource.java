@@ -432,6 +432,12 @@ public class GenerateTestSource {
 			strReplace.append("			//" + parametaValue.get項目名());
 			strReplace.append(sep);
 
+			strReplace.append("			strIdentifyName = \""
+			+ "項目名:"+ parametaValue.get項目名() + ",実行順:" + parametaValue.get実行順() + ",エレメント名:" + parametaValue.getエレメント名() + ",アクション:" + parametaValue.getアクション()
+			+"\";");
+			strReplace.append(sep);
+
+
 			strReplace
 			.append("			List<WebElement> elements = webdriver.findElements("
 					+ parametaValue.getエレメント型()
@@ -452,8 +458,6 @@ public class GenerateTestSource {
 			}else
 			if(TTConst.ACTION_CLICK.equals(parametaValue.getアクション())){
 				strReplace.append("			element.click();");
-				strReplace.append(sep);
-				strReplace.append("			Thread.sleep(300);");
 				strReplace.append(sep);
 			}else
 			if(TTConst.ACTION_SELECTBYINDEX.equals(parametaValue.getアクション())){
@@ -492,7 +496,9 @@ public class GenerateTestSource {
 				strReplace.append("			}");
 				strReplace.append(sep);
 			}
-			strReplace.append("		}catch(Exception e){errList.add(e.getMessage());}");
+			strReplace.append("			Thread.sleep(300);");
+			strReplace.append(sep);
+			strReplace.append("		}catch(Exception e){errList.add(strIdentifyName+e.getMessage());}");
 			strReplace.append(sep);
 		}
 		return strReplace;
@@ -599,6 +605,8 @@ public class GenerateTestSource {
 		strbuf.append("	private static Set<String> hndlsNow;");
 		strbuf.append(sep);
 		strbuf.append("	private static List<String> errList;");
+		strbuf.append(sep);
+		strbuf.append("	private static String strIdentifyName;");
 		strbuf.append(sep);
 		strbuf.append("");
 		strbuf.append(sep);
