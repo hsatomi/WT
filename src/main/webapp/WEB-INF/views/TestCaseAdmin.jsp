@@ -111,15 +111,15 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 			<br>
 			<table class="borderList">
 				<tr>
-					<th>No</th>
+					<th title="実行順序に影響します">No</th>
 					<th>id</th>
 					<th>入力パターン名</th>
-					<th>実行回数</th>
-					<th>JOB状況</th>
-					<th>キャプチャ(正解)</th>
-					<th>キャプチャ(今回)</th>
+					<th title="0:未実行 1:初回 2～2回目以降">実行回数</th>
+					<th title="JenkinsJOB状況">JOB状況</th>
+					<th title="1回目の実行結果画面">キャプチャ(正解)</th>
+					<th title="前回実行結果画面">キャプチャ(今回)</th>
 					<th width=70>HTML</th>
-					<th>判定結果</th>
+					<th title="差分判定結果">判定結果</th>
 				</tr>
 
 				<c:forEach items="${dto.入力パターンリスト}" var="入力パターン" >
@@ -175,7 +175,7 @@ var URL_ANALYZE = "<%= TTConst.URL_API_BASE+TTConst.URL_ANALYZE %>";
 				</c:forEach>
 			</table>
 			<br>
-			<a href="${dto.ジェンキンスURL}">JOBの確認</a>
+			<a href="${dto.ジェンキンスURL}" target="_blank">JOBの確認</a>
 		</div>
 	</div>
 </body>

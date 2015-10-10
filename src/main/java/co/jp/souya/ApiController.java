@@ -309,20 +309,27 @@ public class ApiController {
 		Thread.sleep(3000);
 
 		int counter = 0;
+		int cnt実行中 = 0;
+		TestCaseAdminDTO dto = testCaseAdminSvc.getDTO(req.id);
+		for (InputPattern inputPattern : dto.get入力パターンリスト()) {
+			if (TTConst.JOB_STATUS_EXEC.equals(inputPattern.getJob状況())) {
+				cnt実行中++;
+			}
+		}
 		while (true) {
-			TestCaseAdminDTO dto = testCaseAdminSvc.getDTO(req.id);
-			int cnt実行中 = 0;
+			dto = testCaseAdminSvc.getDTO(req.id);
+			int cnt現在実行中 = 0;
 			for (InputPattern inputPattern : dto.get入力パターンリスト()) {
 				if (TTConst.JOB_STATUS_EXEC.equals(inputPattern.getJob状況())) {
-					cnt実行中++;
+					cnt現在実行中++;
 				}
 			}
 			if (cnt実行中 == 0) {
-				if(counter==0){
-					result = "待機不要";
-				}else{
-					result = "待機完了";
-				}
+				result = "待機不要";
+				break;
+			}
+			if (cnt実行中 != cnt現在実行中) {
+				result = "待機完了";
 				break;
 			}
 
@@ -330,7 +337,7 @@ public class ApiController {
 			Thread.sleep(3000);
 
 			counter++;
-			if (counter > 30) {
+			if (counter > 15) {
 				logger.warn("TIMEOUT! JOB状態待機が指定回数を超過しました");
 				result = "待機失敗";
 				break;
